@@ -6,6 +6,20 @@ _Created: 16-07-2026 · Last updated: 16-07-2026_
 
 ## [Unreleased]
 
+## [0.3.1] - 2026-07-16
+
+### Added — 16-07-2026 · H1020 · Klammerdiagramm in the wheel's detail panel
+
+- The [samāsa-cakra wheel](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/samasacakra-wheel.html)
+  detail panel can now show a leaf's **Klammerdiagramm** below its text. A leaf carries an
+  optional `"diagram"` field naming a plate SVG in `../klammerdiagramm/`; the generator inlines
+  it (the plates are fully `currentColor`, so they inherit the panel's theme ink, and the page
+  already embeds Klammer Serif). **Piloted on `madhyamapadalopin`** — clicking it now shows the
+  D4 ghost-member notation `śāka-[priya]-pārthivaḥ` as a bracket diagram, where the elided
+  `[priya]` visibly carries no bar. Composes with the v0.3.0 Devanāgarī layer (panel shows the
+  Devanāgarī twin above the diagram). Verified light + dark. The static
+  `samasacakra-wheel.svg`/`.png` are unchanged (the diagram lives only in the interactive panel).
+
 ## [0.3.0] - 2026-07-16
 
 ### Added — 16-07-2026 · H1017 · Devanāgarī label layer on the wheel

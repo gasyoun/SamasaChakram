@@ -17,7 +17,7 @@
      {"id": "gati", "term": "gati-", "ex": "puraskāraḥ", "vigraha": "puras + √kṛ", "ru": "почитание, поставление вперёд"},
      {"id": "upapada", "term": "upapada-", "ex": "kumbhakāraḥ", "vigraha": "kumbhaṃ karoti iti", "ru": "горшечник"},
      {"id": "aluk", "term": "aluk-", "ex": "yudhiṣṭhiraḥ", "vigraha": "yudhi sthiraḥ", "ru": "стойкий в битве"},
-     {"id": "madhyamapadalopin", "term": "madhyamapadalopin", "ex": "śāka-[priya]-pārthivaḥ", "vigraha": "śākapriyaḥ pārthivaḥ", "ru": "царь-любитель овощей", "note": "призрачная нотация — правило D4"},
+     {"id": "madhyamapadalopin", "term": "madhyamapadalopin", "ex": "śāka-[priya]-pārthivaḥ", "vigraha": "śākapriyaḥ pārthivaḥ", "ru": "царь-любитель овощей", "note": "призрачная нотация — правило D4", "diagram": "klammerdiagramm-sakapriyaparthivah-example.svg"},
      {"id": "ekadesin", "term": "ekadeśin", "ex": "rājadantaḥ", "vigraha": "dantānāṃ rājā", "ru": "передний зуб", "note": "«перевёрнутое доминирование» — семантика, не структура (D3)"},
      {"id": "mayura", "term": "X-antara-", "ex": "vanāntaram", "vigraha": "anyad vanam", "ru": "другой лес", "note": "mayūravyaṃsakādi (D3)"}]},
     {"id": "karmadharaya", "name": "karmadhāraya", "leaves": [

@@ -32,6 +32,13 @@ WOFF2 = os.path.join(HERE, "..", "klammerdiagramm", "charis-klammer-subset.woff2
 WOFF2_DEVA = os.path.join(HERE, "noto-deva-klammer-subset.woff2")
 FONT = "'Klammer Serif', 'Charis SIL', Charis, Georgia, serif"
 
+def load_diagram(fname):
+    # inline a Klammerdiagramm SVG for a leaf's detail panel. The plate SVGs are
+    # fully currentColor (strokes + text + hatch), so they inherit the panel's
+    # theme ink; the page already embeds Klammer Serif, which they reference.
+    with open(os.path.join(HERE, "..", "klammerdiagramm", fname), encoding="utf-8") as fh:
+        return fh.read()
+
 CX = CY = 560
 R_HUB, R1a, R1b, R2a, R2b, R3a, R3b = 96, 102, 186, 192, 288, 294, 448
 GAP_DEG = 0.0          # gaps drawn as surface-color strokes, not angular gaps
@@ -115,7 +122,8 @@ for c in classes:
                          "family": fname, "pradhana": c["pradhana"], "structure": c["structure"],
                          "ex": leaf["ex"], "vigraha": leaf["vigraha"], "ru": leaf["ru"],
                          "ex_d": deva(leaf["ex"]), "vigraha_d": deva(leaf["vigraha"]),
-                         "note": leaf.get("note", "")}
+                         "note": leaf.get("note", ""),
+                         "diagram": load_diagram(leaf["diagram"]) if leaf.get("diagram") else ""}
             al += UNIT
         af += span_f
     a += span_c
@@ -205,6 +213,9 @@ body.deva svg text.l-deva { display:block; }
 #panel .ru { margin-top:.4em; }
 #panel .rule,#panel .note { font-size:.85rem; color:var(--ink2); border-top:1px dashed var(--line);
   margin-top:12px; padding-top:8px; }
+#panel .diagram { margin:12px 0 0; padding-top:10px; border-top:1px dashed var(--line); color:var(--ink); }
+#panel .diagram svg { width:100%; height:auto; display:block; }
+#panel .diagram figcaption { font-size:.78rem; color:var(--ink2); margin-top:6px; text-align:center; }
 #legend { display:flex; gap:14px; flex-wrap:wrap; font-size:.9rem; margin:0 0 8px; padding:0 2px; width:100%; }
 #legend span { display:inline-flex; align-items:center; gap:6px; }
 #legend i { width:12px; height:12px; border-radius:3px; display:inline-block; }
@@ -262,6 +273,7 @@ svg.addEventListener('click', ev => {
   if (m.ex) h += `<div class="ex">${m.ex}</div><div class="pdeva">${m.ex_d}</div><div class="vig">${m.vigraha}${m.vigraha_d && m.vigraha_d !== m.vigraha ? ' · <span class="pdeva">' + m.vigraha_d + '</span>' : ''}</div><div class="ru">«${m.ru}»</div>`;
   h += `<div class="rule">${m.pradhana}<br>структура: ${m.structure}</div>`;
   if (m.note) h += `<div class="note">${m.note}</div>`;
+  if (m.diagram) h += `<figure class="diagram">${m.diagram}<figcaption>Klammerdiagramm — скобочная схема этого композита</figcaption></figure>`;
   panel.innerHTML = h;
 });
 </script>

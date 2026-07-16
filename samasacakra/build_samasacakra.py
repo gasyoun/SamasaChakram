@@ -1,5 +1,15 @@
 import sys, os, json, math, base64
 sys.stdout.reconfigure(encoding="utf-8")
+from indic_transliteration import sanscript
+
+def _has_cyr(t):
+    return any("а" <= ch.lower() <= "я" or ch.lower() == "ё" for ch in t)
+
+def deva(t):
+    # Devanagari twin of an IAST label; non-Sanskrit (RU/mixed) labels stay as-is
+    if _has_cyr(t):
+        return t
+    return sanscript.transliterate(t, sanscript.IAST, sanscript.DEVANAGARI)
 
 # ---------------------------------------------------------------------------
 # The samāsa-cakra wheel (H1016, 16-07-2026) — the repo's eponymous deliverable:
@@ -19,6 +29,7 @@ sys.stdout.reconfigure(encoding="utf-8")
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 WOFF2 = os.path.join(HERE, "..", "klammerdiagramm", "charis-klammer-subset.woff2")
+WOFF2_DEVA = os.path.join(HERE, "noto-deva-klammer-subset.woff2")
 FONT = "'Klammer Serif', 'Charis SIL', Charis, Georgia, serif"
 
 CX = CY = 560
@@ -40,6 +51,17 @@ def arc_path(r0, r1, a0, a1):
     x0i, y0i = pol(r0, a1); x1i, y1i = pol(r0, a0)
     return (f"M{x0o:.2f} {y0o:.2f} A{r1} {r1} 0 {large} 1 {x1o:.2f} {y1o:.2f} "
             f"L{x0i:.2f} {y0i:.2f} A{r0} {r0} 0 {large} 0 {x1i:.2f} {y1i:.2f} Z")
+
+def dual(fn, *args, **kw):
+    # emit the IAST label + its hidden Devanagari twin
+    text = args[2] if fn is radial_label else args[3]
+    out = fn(*args, **kw)
+    d = deva(text)
+    if fn is radial_label:
+        out += fn(args[0], args[1], d, args[3], args[4] + " l-deva")
+    else:
+        out += fn(args[0], args[1], args[2], d, args[4], args[5] + " l-deva")
+    return out
 
 def radial_label(r, a, text, size, cls):
     # text runs along the radius; flipped on the left half so it reads outward
@@ -67,9 +89,9 @@ for c in classes:
     span_c = n_c * UNIT
     svg.append(f'<path d="{arc_path(R1a, R1b, a, a + span_c)}" class="seg c-{c["id"]} ring1" data-id="{c["id"]}"/>')
     if span_c >= 36:
-        svg.append(tangential_label((R1a + R1b) / 2, a, a + span_c, c["name"], 30, "lbl lbl1"))
+        svg.append(dual(tangential_label, (R1a + R1b) / 2, a, a + span_c, c["name"], 30, "lbl lbl1"))
     else:
-        svg.append(radial_label(R1a + 6, a + span_c / 2, c["name"], 19, "lbl lbl1"))
+        svg.append(dual(radial_label, R1a + 6, a + span_c / 2, c["name"], 19, "lbl lbl1"))
     meta[c["id"]] = {"kind": "class", "name": c["name"], "pradhana": c["pradhana"],
                      "structure": c["structure"], "class": c["name"], "cid": c["id"]}
     af = a
@@ -79,19 +101,20 @@ for c in classes:
         svg.append(f'<path d="{arc_path(R2a, R2b, af, af + span_f)}" class="seg c-{c["id"]} ring2" data-id="{fid}"/>')
         fname = f["name"]
         if span_f >= 24:
-            svg.append(tangential_label((R2a + R2b) / 2, af, af + span_f, fname, 19, "lbl lbl2"))
+            svg.append(dual(tangential_label, (R2a + R2b) / 2, af, af + span_f, fname, 19, "lbl lbl2"))
         else:
-            svg.append(radial_label(R2a + 8, af + span_f / 2, fname, 15, "lbl lbl2r"))
+            svg.append(dual(radial_label, R2a + 8, af + span_f / 2, fname, 15, "lbl lbl2r"))
         meta[fid] = {"kind": "family", "name": fname, "class": c["name"], "cid": c["id"],
                      "pradhana": c["pradhana"], "structure": c["structure"]}
         al = af
         for leaf in f["leaves"]:
             lid = f'{c["id"]}--{f["id"]}--{leaf["id"]}'
             svg.append(f'<path d="{arc_path(R3a, R3b, al, al + UNIT)}" class="seg c-{c["id"]} ring3" data-id="{lid}"/>')
-            svg.append(radial_label(R3a + 8, al + UNIT / 2, leaf["term"], 14.5, "lbl lbl3"))
+            svg.append(dual(radial_label, R3a + 8, al + UNIT / 2, leaf["term"], 14.5, "lbl lbl3"))
             meta[lid] = {"kind": "leaf", "name": leaf["term"], "class": c["name"], "cid": c["id"],
                          "family": fname, "pradhana": c["pradhana"], "structure": c["structure"],
                          "ex": leaf["ex"], "vigraha": leaf["vigraha"], "ru": leaf["ru"],
+                         "ex_d": deva(leaf["ex"]), "vigraha_d": deva(leaf["vigraha"]),
                          "note": leaf.get("note", "")}
             al += UNIT
         af += span_f
@@ -100,6 +123,8 @@ for c in classes:
 svg.append(f'<circle cx="{CX}" cy="{CY}" r="{R_HUB}" class="hub"/>')
 svg.append(f'<text x="{CX}" y="{CY - 10}" font-size="34" class="lbl hublbl" text-anchor="middle">samāsa</text>')
 svg.append(f'<text x="{CX}" y="{CY + 26}" font-size="20" class="lbl hublbl2" text-anchor="middle">cakra</text>')
+svg.append(f'<text x="{CX}" y="{CY - 10}" font-size="34" class="lbl hublbl l-deva" text-anchor="middle">समास</text>')
+svg.append(f'<text x="{CX}" y="{CY + 26}" font-size="20" class="lbl hublbl2 l-deva" text-anchor="middle">चक्र</text>')
 svg.append('</g>')
 
 STYLE_LIGHT = """
@@ -112,6 +137,7 @@ STYLE_LIGHT = """
 .lbl2r, .lbl3 { fill: var(--ink2); }
 .hublbl2 { fill: var(--ink2); }
 .seg:hover { fill-opacity: .72; }
+.l-deva { display: none; }
 """
 
 svg_doc = (f'<svg viewBox="0 0 {2*CX} {2*CY}" xmlns="http://www.w3.org/2000/svg" role="img" '
@@ -128,6 +154,7 @@ with open(os.path.join(HERE, "samasacakra-wheel.svg"), "w", encoding="utf-8") as
 print("wrote samasacakra-wheel.svg", len(svg_doc) // 1024, "KB")
 
 b64 = base64.b64encode(open(WOFF2, "rb").read()).decode("ascii")
+b64d = base64.b64encode(open(WOFF2_DEVA, "rb").read()).decode("ascii")
 meta_json = json.dumps(meta, ensure_ascii=False)
 # the inline SVG for HTML drops the internal <style>/<rect> (the page styles it)
 svg_inline = ('<svg id="cakra" viewBox="0 0 1120 1120" role="img" '
@@ -141,6 +168,7 @@ html = """<!doctype html>
 <title>samāsa-cakra — колесо санскритских композитов</title>
 <style>
 @font-face { font-family: 'Klammer Serif'; src: url(data:font/woff2;base64,__B64__) format('woff2'); }
+@font-face { font-family: 'Klammer Deva'; src: url(data:font/woff2;base64,__B64D__) format('woff2'); }
 :root { --surface:#fcfcfb; --ink:#20201d; --ink2:#5d5c55; --line:#ddd8cc; --panel:#ffffff; }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme=light]) { --surface:#1a1a19; --ink:#f2efe6; --ink2:#b5b2a5; --line:#3c3a33; --panel:#232320;
@@ -161,6 +189,13 @@ svg { display:block; width:100%; height:auto; touch-action:none; }
 .hub { fill:var(--surface); stroke:var(--line); stroke-width:1.4; }
 .lbl { fill:var(--ink); pointer-events:none; }
 .lbl2r,.lbl3,.hublbl2 { fill:var(--ink2); }
+.l-deva { display:none; font-family:'Klammer Deva','Nirmala UI',serif; }
+body.deva .l-iast-hide, body.deva svg text.lbl:not(.l-deva) { display:none; }
+body.deva svg text.l-deva { display:block; }
+#scripttoggle { margin-left:auto; display:inline-flex; gap:0; border:1px solid var(--line); border-radius:5px; overflow:hidden; }
+#scripttoggle button { font:inherit; font-size:.85rem; padding:3px 12px; border:0; background:transparent; color:var(--ink2); cursor:pointer; }
+#scripttoggle button.on { background:var(--c-tatpurusa); color:#fff; }
+.pdeva { font-family:'Klammer Deva','Nirmala UI',serif; color:var(--ink); }
 #panel { flex:0 1 360px; min-width:300px; background:var(--panel); border:1px solid var(--line);
   border-radius:6px; padding:18px 20px; align-self:flex-start; position:sticky; top:16px; }
 #panel h2 { margin:0 0 2px; font-size:1.3rem; font-weight:normal; }
@@ -183,6 +218,7 @@ svg { display:block; width:100%; height:auto; touch-action:none; }
   <span><i style="background:var(--c-bahuvrihi)"></i>bahuvrīhi</span>
   <span><i style="background:var(--c-dvandva)"></i>dvandva</span>
   <span><i style="background:var(--c-avyayibhava)"></i>avyayībhāva</span>
+  <span id="scripttoggle"><button id="btn-iast" class="on">IAST</button><button id="btn-deva">देवनागरी</button></span>
 </div>
 <p class="hint">Колесо можно вращать (перетаскиванием); клик по сегменту — разбор справа; двойной клик — сброс поворота.</p>
 <div id="wheelbox">__SVG__</div>
@@ -212,6 +248,10 @@ svg.addEventListener('pointermove', ev => { if (!dragging) return;
   rot = r0 + d; wheel.setAttribute('transform', `rotate(${rot} 560 560)`); });
 svg.addEventListener('pointerup', () => { dragging = false; });
 svg.addEventListener('dblclick', () => { rot = 0; wheel.setAttribute('transform', ''); });
+document.getElementById('btn-iast').onclick = () => { document.body.classList.remove('deva');
+  document.getElementById('btn-iast').classList.add('on'); document.getElementById('btn-deva').classList.remove('on'); };
+document.getElementById('btn-deva').onclick = () => { document.body.classList.add('deva');
+  document.getElementById('btn-deva').classList.add('on'); document.getElementById('btn-iast').classList.remove('on'); };
 svg.addEventListener('click', ev => {
   if (moved > 3) return;                       // it was a drag, not a click
   const seg = ev.target.closest('.seg'); if (!seg) return;
@@ -219,7 +259,7 @@ svg.addEventListener('click', ev => {
   seg.classList.add('sel');
   const m = META[seg.dataset.id]; if (!m) return;
   let h = `<h2>${m.name}</h2><div class="chain">${m.class}${m.family ? ' · ' + m.family : ''}</div>`;
-  if (m.ex) h += `<div class="ex">${m.ex}</div><div class="vig">${m.vigraha}</div><div class="ru">«${m.ru}»</div>`;
+  if (m.ex) h += `<div class="ex">${m.ex}</div><div class="pdeva">${m.ex_d}</div><div class="vig">${m.vigraha}${m.vigraha_d && m.vigraha_d !== m.vigraha ? ' · <span class="pdeva">' + m.vigraha_d + '</span>' : ''}</div><div class="ru">«${m.ru}»</div>`;
   h += `<div class="rule">${m.pradhana}<br>структура: ${m.structure}</div>`;
   if (m.note) h += `<div class="note">${m.note}</div>`;
   panel.innerHTML = h;
@@ -228,7 +268,7 @@ svg.addEventListener('click', ev => {
 </body>
 </html>
 """
-html = html.replace("__B64__", b64).replace("__META__", meta_json).replace("__SVG__", svg_inline)
+html = html.replace("__B64__", b64).replace("__B64D__", b64d).replace("__META__", meta_json).replace("__SVG__", svg_inline)
 with open(os.path.join(HERE, "samasacakra-wheel.html"), "w", encoding="utf-8") as fh:
     fh.write(html)
 print("wrote samasacakra-wheel.html", len(html) // 1024, "KB;", total_leaves, "leaves")

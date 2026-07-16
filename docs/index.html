@@ -88,25 +88,45 @@ const GAL = 'https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm-
 const svg = document.getElementById('cakra');
 const wheel = document.getElementById('wheel');
 const panel = document.getElementById('panel');
-let rot = 0, dragging = false, a0 = 0, r0 = 0, moved = 0;
+let rot = 0, dragging = false, a0 = 0, r0 = 0, moved = 0, downSeg = null, px = 0, py = 0;
 function angleOf(ev) {
   const r = svg.getBoundingClientRect();
   const x = ev.clientX - (r.left + r.width/2), y = ev.clientY - (r.top + r.height/2);
   return Math.atan2(y, x) * 180 / Math.PI;
 }
-svg.addEventListener('pointerdown', ev => { dragging = true; moved = 0; a0 = angleOf(ev); r0 = rot; svg.setPointerCapture(ev.pointerId); });
-svg.addEventListener('pointermove', ev => { if (!dragging) return;
-  const d = angleOf(ev) - a0; moved = Math.max(moved, Math.abs(d));
-  rot = r0 + d; wheel.setAttribute('transform', `rotate(${rot} 560 560)`); });
-svg.addEventListener('pointerup', () => { dragging = false; });
+// The seg is remembered at pointerdown: once the pointer is captured the browser
+// retargets the compat mouse events (click included) to the capture element, so a
+// click handler reading ev.target would only ever see the <svg> itself.
+svg.addEventListener('pointerdown', ev => {
+  if (ev.button !== 0 && ev.pointerType === 'mouse') return;
+  dragging = true; moved = 0; a0 = angleOf(ev); r0 = rot;
+  px = ev.clientX; py = ev.clientY;
+  downSeg = ev.target.closest ? ev.target.closest('.seg') : null;
+  try { svg.setPointerCapture(ev.pointerId); } catch (e) {}
+  ev.preventDefault();
+});
+function onMove(ev) {
+  if (!dragging) return;
+  const d = angleOf(ev) - a0;
+  moved = Math.max(moved, Math.hypot(ev.clientX - px, ev.clientY - py));
+  rot = r0 + d; wheel.setAttribute('transform', `rotate(${rot} 560 560)`);
+}
+function onUp(ev) {
+  if (!dragging) return;
+  dragging = false;
+  if (moved <= 4 && downSeg) select(downSeg);   // a tap, not a drag
+  downSeg = null;
+}
+// window-level so the drag survives a failed capture and a pointer leaving the svg
+window.addEventListener('pointermove', onMove);
+window.addEventListener('pointerup', onUp);
+window.addEventListener('pointercancel', () => { dragging = false; downSeg = null; });
 svg.addEventListener('dblclick', () => { rot = 0; wheel.setAttribute('transform', ''); });
 document.getElementById('btn-iast').onclick = () => { document.body.classList.remove('deva');
   document.getElementById('btn-iast').classList.add('on'); document.getElementById('btn-deva').classList.remove('on'); };
 document.getElementById('btn-deva').onclick = () => { document.body.classList.add('deva');
   document.getElementById('btn-deva').classList.add('on'); document.getElementById('btn-iast').classList.remove('on'); };
-svg.addEventListener('click', ev => {
-  if (moved > 3) return;                       // it was a drag, not a click
-  const seg = ev.target.closest('.seg'); if (!seg) return;
+function select(seg) {
   document.querySelectorAll('.seg.sel').forEach(s => s.classList.remove('sel'));
   seg.classList.add('sel');
   const m = META[seg.dataset.id]; if (!m) return;
@@ -117,7 +137,7 @@ svg.addEventListener('click', ev => {
   if (m.diagram) h += `<figure class="diagram">${m.diagram}<figcaption>Klammerdiagramm — скобочная схема (композит с этой конструкцией из галереи)</figcaption></figure>`;
   if (m.kind === 'leaf') h += `<div class="glink"><a href="${GAL}" target="_blank" rel="noopener">Галерея разобранных композитов →</a></div>`;
   panel.innerHTML = h;
-});
+}
 </script>
 </body>
 </html>

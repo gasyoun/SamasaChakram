@@ -6,6 +6,24 @@ _Created: 16-07-2026 · Last updated: 16-07-2026_
 
 ## [Unreleased]
 
+## [0.7.3] - 2026-07-16
+
+### Fixed — 16-07-2026 · the published wheel was inert: no rotation, no click
+
+- **Click did nothing.** `pointerdown` called `svg.setPointerCapture(ev.pointerId)`, and a
+  captured pointer makes the browser retarget the compatibility mouse events — `click`
+  included — to the capture element. The click handler read `ev.target.closest('.seg')`,
+  which from the `<svg>` itself is always `null`, so every real click bailed out one line in.
+  The segment is now remembered at `pointerdown` (before capture can retarget anything) and
+  the panel is filled on `pointerup`; the `click` listener is gone.
+- **Drag did not rotate.** `pointermove`/`pointerup` were bound to the `<svg>` and so depended
+  on capture-on-an-SVG-element delivering moves — which it does not do everywhere. Both are
+  now bound to `window`, so the drag survives a failed or unsupported capture and a pointer
+  that leaves the wheel; `setPointerCapture` is wrapped in `try/catch` and `pointercancel`
+  releases the drag.
+- Tap-vs-drag is now measured in pixels travelled (≤4 px = tap) instead of degrees swept,
+  which near the hub crossed the old 3° threshold on an ordinary click.
+
 ## [0.7.2] - 2026-07-16
 
 ### Changed — 16-07-2026 · README brought current

@@ -6,6 +6,15 @@ _Created: 16-07-2026 · Last updated: 16-07-2026_
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-07-16
+
+### Added — 16-07-2026 · H1036 · the wheel live on GitHub Pages
+
+- **[gasyoun.github.io/SamasaChakram](https://gasyoun.github.io/SamasaChakram/)** — the
+  interactive wheel published; the generator now also emits `docs/index.html` (the same
+  self-contained page + SEO/OG head, RU) and `docs/.nojekyll`, so every rebuild refreshes
+  the live page on push. Pages source: `main:/docs`.
+
 ## [0.6.0] - 2026-07-16
 
 ### Added — 16-07-2026 · H1030 · the remaining gallery compounds wired into wheel leaves

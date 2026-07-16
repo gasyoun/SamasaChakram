@@ -291,6 +291,23 @@ with open(os.path.join(HERE, "samasacakra-wheel.html"), "w", encoding="utf-8") a
     fh.write(html)
 print("wrote samasacakra-wheel.html", len(html) // 1024, "KB;", total_leaves, "leaves")
 
+# GitHub Pages copy (H1031): same page + SEO head, served from /docs
+SEO = """<meta name="description" content="samāsa-cakra — интерактивное колесо санскритских композитов: 4 класса, 10 семейств, 58 подтипов с примерами и виграхами; IAST и деванагари; скобочные схемы Klammerdiagramm.">
+<meta property="og:title" content="samāsa-cakra — колесо санскритских композитов">
+<meta property="og:description" content="Интерактивная классификация санскритских сложных слов: вращающееся колесо, разбор каждого подтипа, скобочные схемы. Таксономия по конспекту Э. З. Лейтана.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gasyoun.github.io/SamasaChakram/">
+<meta property="og:site_name" content="SamasaChakram">
+<link rel="canonical" href="https://gasyoun.github.io/SamasaChakram/">
+"""
+docs = os.path.join(HERE, "..", "docs")
+os.makedirs(docs, exist_ok=True)
+pages_html = html.replace('<meta name="viewport"', SEO + '<meta name="viewport"', 1)
+with open(os.path.join(docs, "index.html"), "w", encoding="utf-8") as fh:
+    fh.write(pages_html)
+open(os.path.join(docs, ".nojekyll"), "w").close()
+print("wrote docs/index.html (GitHub Pages)")
+
 
 # --- POSTER EXPORT (H1021, 16-07-2026) -------------------------------------
 # A2 portrait (420x594 mm) single-sheet print: title in both scripts, the IAST

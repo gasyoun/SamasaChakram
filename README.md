@@ -6,6 +6,19 @@ _Created: 11-07-2026 · Last updated: 16-07-2026_
 > claude-config: the /klammerdiagramm drawing system, its worked-example gallery,
 > the shared right-to-left reading method, and the Leitan conspectus crosswalk.
 
+## The wheel
+
+![samāsa-cakra — the wheel of Sanskrit compounds](samasacakra/samasacakra-wheel.png)
+
+**Interactive version:** [samasacakra/samasacakra-wheel.html](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/samasacakra-wheel.html)
+(open locally — drag to rotate, click a segment for the vigraha + Russian gloss, double-click
+to reset; embedded Klammer Serif, light/dark themes). Built by
+[samasacakra/build_samasacakra.py](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/build_samasacakra.py)
+from [samasacakra/samasacakra-taxonomy.json](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/samasacakra-taxonomy.json) —
+4 classes (Patañjali's pradhāna scheme) · 10 families · 58 leaf subtypes, each with a
+canonical example from the Leitan conspectus; the MG structural rulings (right-to-left law,
+dvandva the sole flat exception, D1–D6) annotated per class and leaf.
+
 ## Contents
 
 | Path | What it is |
@@ -14,6 +27,7 @@ _Created: 11-07-2026 · Last updated: 16-07-2026_
 | [klammerdiagramm-worked-examples.md](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm-worked-examples.md) | the illustrated gallery — eleven compounds from the 2-lemma pair to the all-five-kinds capstone, each with diagram, config and what its run proved |
 | [KLAMMERDIAGRAMM_LEITAN_SAMASA_COMPARISON.md](https://github.com/gasyoun/SamasaChakram/blob/main/KLAMMERDIAGRAMM_LEITAN_SAMASA_COMPARISON.md) | the H982 crosswalk of the drawing system against Э. З. Лейтан's samāsa conspectus, with the six voted rulings (D1–D6) applied |
 | [klammerdiagramm/](https://github.com/gasyoun/SamasaChakram/tree/main/klammerdiagramm) | the generator ([build_klammerdiagramm.py](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/build_klammerdiagramm.py)), the OFL-renamed Charis 7.000 subset + licence, the printed reference plate, and every worked diagram (config JSON + SVG + embedded-font HTML + PNG) |
+| [samasacakra/](https://github.com/gasyoun/SamasaChakram/tree/main/samasacakra) | the samāsa-cakra wheel itself — taxonomy JSON, generator, SVG/HTML/PNG (H1016) |
 | [leitan/](https://github.com/gasyoun/SamasaChakram/tree/main/leitan) | pinned text export of Э. З. Лейтан, «Сложные слова в санскрите» (from MG's «Общество ревнителей санскрита» webinar; publication here authorized by MG 16-07-2026) |
 
 ## What this is

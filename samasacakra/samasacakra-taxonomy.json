@@ -1,0 +1,87 @@
+{
+ "classes": [
+  {"id": "tatpurusa", "name": "tatpuruṣa", "hue_light": "#2a78d6", "hue_dark": "#3987e5",
+   "pradhana": "uttarapadārtha-pradhāna — главная правая часть",
+   "structure": "направленная пара, право-налево",
+   "families": [
+    {"id": "vibhakti", "name": "vibhakti-tatpuruṣa", "leaves": [
+     {"id": "dvitiya", "term": "dvitīyā", "ex": "grāmagataḥ", "vigraha": "grāmaṃ gataḥ", "ru": "пошедший в деревню"},
+     {"id": "trtiya", "term": "tṛtīyā", "ex": "vākkalahaḥ", "vigraha": "vāgbhiḥ kalahaḥ", "ru": "словесный спор"},
+     {"id": "caturthi", "term": "caturthī", "ex": "yūpadāruḥ", "vigraha": "yūpāya dāruḥ", "ru": "древесина для жертвенного столба"},
+     {"id": "pancami", "term": "pañcamī", "ex": "caurabhayam", "vigraha": "caurād bhayam", "ru": "страх перед вором"},
+     {"id": "sasthi", "term": "ṣaṣṭhī", "ex": "rājaputraḥ", "vigraha": "rājñaḥ putraḥ", "ru": "сын царя"},
+     {"id": "saptami", "term": "saptamī", "ex": "vanavāsaḥ", "vigraha": "vane vāsaḥ", "ru": "проживание в лесу"}]},
+    {"id": "tp-special", "name": "особые татпуруши", "leaves": [
+     {"id": "nan-tp", "term": "nañ-", "ex": "abrāhmaṇaḥ", "vigraha": "na brāhmaṇaḥ", "ru": "не-брахман"},
+     {"id": "pradi-tp", "term": "prādi-", "ex": "prapitāmahaḥ", "vigraha": "pragataḥ pitāmahaḥ", "ru": "прадед"},
+     {"id": "gati", "term": "gati-", "ex": "puraskāraḥ", "vigraha": "puras + √kṛ", "ru": "почитание, поставление вперёд"},
+     {"id": "upapada", "term": "upapada-", "ex": "kumbhakāraḥ", "vigraha": "kumbhaṃ karoti iti", "ru": "горшечник"},
+     {"id": "aluk", "term": "aluk-", "ex": "yudhiṣṭhiraḥ", "vigraha": "yudhi sthiraḥ", "ru": "стойкий в битве"},
+     {"id": "madhyamapadalopin", "term": "madhyamapadalopin", "ex": "śāka-[priya]-pārthivaḥ", "vigraha": "śākapriyaḥ pārthivaḥ", "ru": "царь-любитель овощей", "note": "призрачная нотация — правило D4"},
+     {"id": "ekadesin", "term": "ekadeśin", "ex": "rājadantaḥ", "vigraha": "dantānāṃ rājā", "ru": "передний зуб", "note": "«перевёрнутое доминирование» — семантика, не структура (D3)"},
+     {"id": "mayura", "term": "X-antara-", "ex": "vanāntaram", "vigraha": "anyad vanam", "ru": "другой лес", "note": "mayūravyaṃsakādi (D3)"}]},
+    {"id": "karmadharaya", "name": "karmadhāraya", "leaves": [
+     {"id": "visesanapurvapada", "term": "viśeṣaṇa-pūrvapada", "ex": "kṛṣṇasarpaḥ", "vigraha": "kṛṣṇaś cāsau sarpaś ca", "ru": "чёрная змея"},
+     {"id": "appositional", "term": "аппозиционная", "ex": "rājarṣiḥ", "vigraha": "rājā ca sa ṛṣiś ca", "ru": "царь-провидец"},
+     {"id": "visesyapurvapada", "term": "viśeṣya-pūrvapada", "ex": "gopālabālaḥ", "vigraha": "gopālaś cāsau bālaś ca", "ru": "мальчик-пастушок"},
+     {"id": "ubhayapada", "term": "viśeṣaṇobhayapada", "ex": "śītoṣṇam", "vigraha": "śītaṃ ca tad uṣṇaṃ ca", "ru": "тепло-холодная [вода]", "note": "направленная пара — класс важнее виграхи (D6)"},
+     {"id": "upamanapurvapada", "term": "upamāna-pūrvapada", "ex": "meghaśyāmaḥ", "vigraha": "megha iva śyāmaḥ", "ru": "тёмный, как туча"},
+     {"id": "upamita", "term": "upamita", "ex": "puruṣavyāghraḥ", "vigraha": "puruṣo vyāghra iva", "ru": "человек-тигр"},
+     {"id": "rupaka", "term": "rūpaka", "ex": "saṃsārārṇavaḥ", "vigraha": "saṃsāra eva arṇavaḥ", "ru": "океан — круговерть бытия"},
+     {"id": "sambhavana", "term": "sambhāvanā", "ex": "guṇabuddhiḥ", "vigraha": "guṇa iti buddhiḥ", "ru": "представление «качество»"}]},
+    {"id": "dvigu", "name": "dvigu", "leaves": [
+     {"id": "taddhitarthe", "term": "taddhitārthe", "ex": "pañcakapālaḥ", "vigraha": "pañcasu kapāleṣu saṃskṛtaḥ", "ru": "пятигоршечное [приношение]"},
+     {"id": "uttarapade", "term": "uttarapade", "ex": "pañcagavadhanaḥ", "vigraha": "pañca gāvo dhanaṃ yasya", "ru": "чьё богатство — пять коров"},
+     {"id": "samahare-dvigu", "term": "samāhāre", "ex": "tribhuvanam", "vigraha": "trayāṇāṃ bhuvanānāṃ samāhāraḥ", "ru": "троемирье", "note": "двигу = подтип кармадхараи (D1)"}]}]},
+  {"id": "bahuvrihi", "name": "bahuvrīhi", "hue_light": "#1baf7a", "hue_dark": "#199e70",
+   "pradhana": "anyapadārtha-pradhāna — главное слово вне композита",
+   "structure": "направленная пара; экзоцентричность — семантика",
+   "families": [
+    {"id": "samanadhikarana", "name": "samānādhikaraṇa", "leaves": [
+     {"id": "dvitiyartha", "term": "dvitīyārtha", "ex": "prāptodakaḥ", "vigraha": "prāptam udakaṃ yam [grāmaḥ]", "ru": "деревня, до которой дошла вода"},
+     {"id": "trtiyartha", "term": "tṛtīyārtha", "ex": "ūḍharathaḥ", "vigraha": "ūḍho ratho yena", "ru": "бык, тянущий повозку"},
+     {"id": "caturthyartha", "term": "caturthyartha", "ex": "upahatapaśuḥ", "vigraha": "upahataḥ paśur yasmai", "ru": "Рудра, которому забивают скот"},
+     {"id": "pancamyartha", "term": "pañcamyartha", "ex": "uddhṛtaudanā", "vigraha": "uddhṛta odano yasyāḥ [sthālī]", "ru": "кастрюля, из которой вычерпана каша"},
+     {"id": "sasthyartha", "term": "ṣaṣṭhyartha", "ex": "pītāmbaraḥ", "vigraha": "pītam ambaraṃ yasya", "ru": "жёлтоодеждный (Хари)"},
+     {"id": "saptamyartha", "term": "saptamyartha", "ex": "vīrapuruṣaḥ", "vigraha": "vīrāḥ puruṣā yasmin [grāmaḥ]", "ru": "деревня героев"}]},
+    {"id": "vyadhikarana", "name": "vyadhikaraṇa", "leaves": [
+     {"id": "loc-bv", "term": "локатив справа", "ex": "cakrapāṇiḥ", "vigraha": "cakraṃ pāṇau yasya", "ru": "с диском в руке (Вишну)"},
+     {"id": "gen-bv", "term": "генетив слева", "ex": "candrakāntiḥ", "vigraha": "candrasyeva kāntir yasya", "ru": "лунной красоты (Рама)"}]},
+    {"id": "bv-special", "name": "особые бахуврихи", "leaves": [
+     {"id": "nan-bv", "term": "nañ-", "ex": "abhāryaḥ", "vigraha": "avidyamānā bhāryā yasya", "ru": "неженатый"},
+     {"id": "pradi-bv", "term": "prādi-", "ex": "prāñjaliḥ", "vigraha": "prabaddho ñjalir yena", "ru": "со сложенными ладонями"},
+     {"id": "saha", "term": "saha-", "ex": "saputraḥ", "vigraha": "saha putreṇa", "ru": "вместе с сыном"},
+     {"id": "sankhya", "term": "saṃkhyā-", "ex": "dvitrāḥ", "vigraha": "dvau vā trayo vā", "ru": "два-три"},
+     {"id": "dig", "term": "dig-", "ex": "dakṣiṇapūrvā", "vigraha": "dakṣiṇasyāḥ pūrvasyāś ca diśor antarālam", "ru": "юго-восток"},
+     {"id": "adverbial", "term": "наречные", "ex": "keśākeśi", "vigraha": "keśeṣu keśeṣu gṛhītvā", "ru": "волос-к-волосу"},
+     {"id": "ahitagni", "term": "āhitāgnyādi", "ex": "āhitāgniḥ", "vigraha": "āhito gnir yena", "ru": "разложивший [ритуальный] огонь"},
+     {"id": "vibhakti-bv", "term": "vibhakti-", "ex": "bhavanetrajanmā", "vigraha": "bhavasya netrāj janma yasya", "ru": "рождённый из ока Бхавы"},
+     {"id": "kim", "term": "kiṃ-", "ex": "kiṃlakṣaṇaḥ", "vigraha": "kiṃ lakṣaṇaṃ yasya", "ru": "какова характеристика?"},
+     {"id": "adi", "term": "X-ādi-", "ex": "rāgādayaḥ", "vigraha": "rāga ādir yeṣām", "ru": "страсть и так далее"},
+     {"id": "para", "term": "X-para-", "ex": "dharmaparā", "vigraha": "dharmaḥ paraṃ yasyāḥ", "ru": "преданная Дхарме"},
+     {"id": "matra", "term": "X-mātra-", "ex": "dehamātram", "vigraha": "deha eva", "ru": "всего лишь тело"}]}]},
+  {"id": "dvandva", "name": "dvandva", "hue_light": "#eda100", "hue_dark": "#c98500",
+   "pradhana": "ubhayapadārtha-pradhāna — главны обе части",
+   "structure": "единственное исключение: плоская координация, без внутренней вершины",
+   "families": [
+    {"id": "dv", "name": "dvandva", "leaves": [
+     {"id": "itaretara", "term": "itaretara", "ex": "rāmakṛṣṇau", "vigraha": "rāmaś ca kṛṣṇaś ca", "ru": "Рама и Кришна"},
+     {"id": "samahara-dv", "term": "samāhāra", "ex": "pāṇipādamukham", "vigraha": "pāṇī ca pādau ca mukhaṃ ca", "ru": "руки, ноги и лицо (вместе)", "note": "без отдельной пометки — подтип в строке анализа (D2)"}]}]},
+  {"id": "avyayibhava", "name": "avyayībhāva", "hue_light": "#008300", "hue_dark": "#008300",
+   "pradhana": "pūrvapadārtha-pradhāna — главная левая часть",
+   "structure": "право-налево, как все (главенство = семантика)",
+   "families": [
+    {"id": "av", "name": "значения по Пан. 2.1.6", "leaves": [
+     {"id": "vibhakti-av", "term": "vibhakti", "ex": "adhihari", "vigraha": "harau iti", "ru": "касательно Хари"},
+     {"id": "samipa", "term": "samīpa", "ex": "upagaṅgam", "vigraha": "gaṅgāyāḥ samīpam", "ru": "близ Ганги"},
+     {"id": "samrddhi", "term": "samṛddhi", "ex": "sumagadham", "vigraha": "magadhānāṃ samṛddhiḥ", "ru": "процветание Магадхи"},
+     {"id": "vyrddhi", "term": "vyṛddhi", "ex": "duryavanam", "vigraha": "yavanānāṃ vyṛddhiḥ", "ru": "нужда варваров"},
+     {"id": "arthabhava", "term": "arthābhāva", "ex": "nirmakṣikam", "vigraha": "makṣikāṇām abhāvaḥ", "ru": "безмушно"},
+     {"id": "atyaya", "term": "atyaya", "ex": "atihimam", "vigraha": "himasya atyayaḥ", "ru": "конец мороза"},
+     {"id": "asamprati", "term": "asamprati", "ex": "atinidram", "vigraha": "nidrāṃ samprati na yujyate", "ru": "не ко сну"},
+     {"id": "sabda", "term": "śabda-prādurbhāva", "ex": "itihari", "vigraha": "hari-śabdasya prādurbhāvaḥ", "ru": "выговаривание «Хари»"},
+     {"id": "pascat", "term": "paścāt", "ex": "anuratham", "vigraha": "rathasya paścāt", "ru": "вслед за повозкой"},
+     {"id": "yatha", "term": "yathā", "ex": "yathāśakti", "vigraha": "śaktim anatikramya", "ru": "по силам"},
+     {"id": "vipsa", "term": "vīpsā", "ex": "pratigrāmam", "vigraha": "grāmaṃ grāmaṃ prati", "ru": "в каждой деревне"}]}]}
+ ]
+}

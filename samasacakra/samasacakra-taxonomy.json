@@ -45,7 +45,8 @@
        "term": "ṣaṣṭhī",
        "ex": "rājaputraḥ",
        "vigraha": "rājñaḥ putraḥ",
-       "ru": "сын царя"
+       "ru": "сын царя",
+       "diagram": "klammerdiagramm-sankhabherinadahastyasvaghosapurnanagaram-example.svg"
       },
       {
        "id": "saptami",
@@ -103,7 +104,10 @@
        "vigraha": "śākapriyaḥ pārthivaḥ",
        "ru": "царь-любитель овощей",
        "note": "призрачная нотация — правило D4",
-       "diagram": "klammerdiagramm-sakapriyaparthivah-example.svg"
+       "diagram": [
+        "klammerdiagramm-sakapriyaparthivah-example.svg",
+        "klammerdiagramm-abhijnanasakuntalam-example.svg"
+       ]
       },
       {
        "id": "ekadesin",
@@ -169,14 +173,16 @@
        "term": "upamita",
        "ex": "puruṣavyāghraḥ",
        "vigraha": "puruṣo vyāghra iva",
-       "ru": "человек-тигр"
+       "ru": "человек-тигр",
+       "diagram": "klammerdiagramm-sankhacakragadapanicaranakamalaseva-example.svg"
       },
       {
        "id": "rupaka",
        "term": "rūpaka",
        "ex": "saṃsārārṇavaḥ",
        "vigraha": "saṃsāra eva arṇavaḥ",
-       "ru": "океан — круговерть бытия"
+       "ru": "океан — круговерть бытия",
+       "diagram": "klammerdiagramm-yathavidhigandhapuspanilakanthapadapadmapujaphalam-example.svg"
       },
       {
        "id": "sambhavana",
@@ -263,7 +269,8 @@
        "term": "ṣaṣṭhyartha",
        "ex": "pītāmbaraḥ",
        "vigraha": "pītam ambaraṃ yasya",
-       "ru": "жёлтоодеждный (Хари)"
+       "ru": "жёлтоодеждный (Хари)",
+       "diagram": "klammerdiagramm-uddama-example.svg"
       },
       {
        "id": "saptamyartha",

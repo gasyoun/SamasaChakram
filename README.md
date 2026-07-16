@@ -11,8 +11,9 @@ _Created: 11-07-2026 · Last updated: 16-07-2026_
 ![samāsa-cakra — the wheel of Sanskrit compounds](samasacakra/samasacakra-wheel.png)
 
 **Interactive version:** [samasacakra/samasacakra-wheel.html](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/samasacakra-wheel.html)
-(open locally — drag to rotate, click a segment for the vigraha + Russian gloss — nine
-leaves also embed their Klammerdiagramm from the gallery right in the panel, and every
+(open locally — drag to rotate, click a segment for the vigraha + Russian gloss — thirteen
+leaves embed their Klammerdiagramm from the gallery right in the panel — every drawn
+gallery compound is now reachable from the wheel, and every
 leaf links to the gallery; double-click to reset; **IAST ⇄ Devanāgarī script toggle**, embedded Klammer Serif + Klammer Deva
 (an OFL-renamed Noto Serif Devanagari subset — licence bundled), light/dark themes). **Print/poster export:** [samasacakra/samasacakra-poster.pdf](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/samasacakra-poster.pdf)
 — a single A2 sheet (420×594 mm): dual-script title, the wheel full-width, and the complete

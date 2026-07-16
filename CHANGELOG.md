@@ -6,6 +6,19 @@ _Created: 16-07-2026 · Last updated: 16-07-2026_
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-07-16
+
+### Added — 16-07-2026 · H1030 · the remaining gallery compounds wired into wheel leaves
+
+- Five more placements, construction-matched: **ṣaṣṭhyartha-bahuvrīhi** → *uddāma…svabhāvā-*
+  (the flagship: «чья природа — Луна…», the same whose-X-is-Y build as pītāmbaraḥ);
+  **ṣaṣṭhī-tatpuruṣa** → *śaṅkha-bherī-nāda-…-nagaram* (its nāda/ghoṣa genitive binds);
+  **upamita** → *śaṅkha-cakra-gadā-pāṇi-caraṇa-kamala-sevā* (caraṇa-kamala inside);
+  **rūpaka** → *yathā-vidhi-…-pāda-padma-pūjā-phalam* (pāda-padma inside);
+  **madhyamapadalopin** gains *abhijñāna-śākuntalam* as a SECOND diagram (the title's
+  conventional analysis: abhijñāna-[smṛtā]-śākuntala) — panels now support diagram lists.
+  13 diagram-bearing leaves; **all 12 drawn gallery compounds are reachable from the wheel.**
+
 ## [0.5.0] - 2026-07-16
 
 ### Added — 16-07-2026 · H1026 · per-leaf gallery links (the last v2-queue item)

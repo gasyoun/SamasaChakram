@@ -124,7 +124,7 @@ for c in classes:
                          "ex": leaf["ex"], "vigraha": leaf["vigraha"], "ru": leaf["ru"],
                          "ex_d": deva(leaf["ex"]), "vigraha_d": deva(leaf["vigraha"]),
                          "note": leaf.get("note", ""),
-                         "diagram": load_diagram(leaf["diagram"]) if leaf.get("diagram") else ""}
+                         "diagram": "".join(f'<div class="dwrap">{load_diagram(d)}</div>' for d in ([leaf["diagram"]] if isinstance(leaf.get("diagram"), str) else leaf.get("diagram", [])))}
             al += UNIT
         af += span_f
     a += span_c
@@ -216,6 +216,7 @@ body.deva svg text.l-deva { display:block; }
   margin-top:12px; padding-top:8px; }
 #panel .diagram { margin:12px 0 0; padding-top:10px; border-top:1px dashed var(--line); color:var(--ink); }
 #panel .diagram svg { width:100%; height:auto; display:block; }
+#panel .dwrap + .dwrap { margin-top:10px; border-top:1px dotted var(--line); padding-top:10px; }
 #panel .diagram figcaption { font-size:.78rem; color:var(--ink2); margin-top:6px; text-align:center; }
 #panel .glink { font-size:.85rem; margin-top:10px; }
 #panel .glink a { color:var(--c-tatpurusa); text-decoration:none; border-bottom:1px dotted var(--c-tatpurusa); }

@@ -6,6 +6,20 @@ _Created: 16-07-2026 · Last updated: 16-07-2026_
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-07-16
+
+### Added — 16-07-2026 · H1026 · per-leaf gallery links (the last v2-queue item)
+
+- Eight more leaves embed their Klammerdiagramm in the click panel via the H1020
+  mechanism (inline currentColor SVG, theme-aware): appositional → *rāja-ṛṣi-vaṃśaḥ*,
+  loc-bahuvrīhi → *cakrapāṇi…phalam*, dvigu-uttarapade → *pañca-gava-dhanaḥ*, yathā →
+  *yathā-śakti…bhāgī*, X-ādi → *janma-roga-maraṇa-ādiḥ*, itaretara →
+  *hasti-aśva-ratha-ghoṣaḥ*, samāhāra + upapada → *śīta-uṣṇa-sukha-duḥkha-dāḥ* —
+  nine diagram-bearing leaves total with H1020's ghost-member. Every leaf panel now also
+  carries a «Галерея разобранных композитов →» link to
+  [klammerdiagramm-worked-examples.md](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm-worked-examples.md).
+  The wheel-v2 queue is now empty.
+
 ## [0.4.0] - 2026-07-16
 
 ### Added — 16-07-2026 · H1021 · print/poster export (A2 single sheet)

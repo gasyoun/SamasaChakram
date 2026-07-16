@@ -43,6 +43,7 @@ CX = CY = 560
 R_HUB, R1a, R1b, R2a, R2b, R3a, R3b = 96, 102, 186, 192, 288, 294, 448
 GAP_DEG = 0.0          # gaps drawn as surface-color strokes, not angular gaps
 
+GALLERY_URL = "https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm-worked-examples.md"
 T = json.load(open(os.path.join(HERE, "samasacakra-taxonomy.json"), encoding="utf-8"))
 classes = T["classes"]
 total_leaves = sum(len(f["leaves"]) for c in classes for f in c["families"])
@@ -216,6 +217,8 @@ body.deva svg text.l-deva { display:block; }
 #panel .diagram { margin:12px 0 0; padding-top:10px; border-top:1px dashed var(--line); color:var(--ink); }
 #panel .diagram svg { width:100%; height:auto; display:block; }
 #panel .diagram figcaption { font-size:.78rem; color:var(--ink2); margin-top:6px; text-align:center; }
+#panel .glink { font-size:.85rem; margin-top:10px; }
+#panel .glink a { color:var(--c-tatpurusa); text-decoration:none; border-bottom:1px dotted var(--c-tatpurusa); }
 #legend { display:flex; gap:14px; flex-wrap:wrap; font-size:.9rem; margin:0 0 8px; padding:0 2px; width:100%; }
 #legend span { display:inline-flex; align-items:center; gap:6px; }
 #legend i { width:12px; height:12px; border-radius:3px; display:inline-block; }
@@ -244,6 +247,7 @@ body.deva svg text.l-deva { display:block; }
 </main>
 <script>
 const META = __META__;
+const GAL = '__GAL__';
 const svg = document.getElementById('cakra');
 const wheel = document.getElementById('wheel');
 const panel = document.getElementById('panel');
@@ -273,14 +277,15 @@ svg.addEventListener('click', ev => {
   if (m.ex) h += `<div class="ex">${m.ex}</div><div class="pdeva">${m.ex_d}</div><div class="vig">${m.vigraha}${m.vigraha_d && m.vigraha_d !== m.vigraha ? ' · <span class="pdeva">' + m.vigraha_d + '</span>' : ''}</div><div class="ru">«${m.ru}»</div>`;
   h += `<div class="rule">${m.pradhana}<br>структура: ${m.structure}</div>`;
   if (m.note) h += `<div class="note">${m.note}</div>`;
-  if (m.diagram) h += `<figure class="diagram">${m.diagram}<figcaption>Klammerdiagramm — скобочная схема этого композита</figcaption></figure>`;
+  if (m.diagram) h += `<figure class="diagram">${m.diagram}<figcaption>Klammerdiagramm — скобочная схема (композит с этой конструкцией из галереи)</figcaption></figure>`;
+  if (m.kind === 'leaf') h += `<div class="glink"><a href="${GAL}" target="_blank" rel="noopener">Галерея разобранных композитов →</a></div>`;
   panel.innerHTML = h;
 });
 </script>
 </body>
 </html>
 """
-html = html.replace("__B64__", b64).replace("__B64D__", b64d).replace("__META__", meta_json).replace("__SVG__", svg_inline)
+html = html.replace("__B64__", b64).replace("__B64D__", b64d).replace("__GAL__", GALLERY_URL).replace("__META__", meta_json).replace("__SVG__", svg_inline)
 with open(os.path.join(HERE, "samasacakra-wheel.html"), "w", encoding="utf-8") as fh:
     fh.write(html)
 print("wrote samasacakra-wheel.html", len(html) // 1024, "KB;", total_leaves, "leaves")

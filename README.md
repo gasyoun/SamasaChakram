@@ -31,51 +31,49 @@ dvandva the sole flat exception, D1–D6) annotated per class and leaf.
 | Path | What it is |
 |---|---|
 | [sanskrit-right-to-left-reading.md](https://github.com/gasyoun/SamasaChakram/blob/main/sanskrit-right-to-left-reading.md) | the canonical right-to-left (head-first) reading method + all MG samāsa-direction rulings; shared source for the `/sanskrit-parse`, `/klammeruebersetzung` and `/klammerdiagramm` skills (which live in [claude-config](https://github.com/gasyoun/claude-config)) |
-| [klammerdiagramm-worked-examples.md](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm-worked-examples.md) | the illustrated gallery — eleven compounds from the 2-lemma pair to the all-five-kinds capstone, each with diagram, config and what its run proved |
+| [klammerdiagramm-worked-examples.md](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm-worked-examples.md) | the illustrated gallery — eleven worked sections from the 2-lemma pair to the all-five-kinds capstone, each with diagram, config and what its run proved (19 drawn plates in all, counting the Leitan-comparison and D-vote examples) |
 | [KLAMMERDIAGRAMM_LEITAN_SAMASA_COMPARISON.md](https://github.com/gasyoun/SamasaChakram/blob/main/KLAMMERDIAGRAMM_LEITAN_SAMASA_COMPARISON.md) | the H982 crosswalk of the drawing system against Э. З. Лейтан's samāsa conspectus, with the six voted rulings (D1–D6) applied |
 | [klammerdiagramm/](https://github.com/gasyoun/SamasaChakram/tree/main/klammerdiagramm) | the generator ([build_klammerdiagramm.py](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/build_klammerdiagramm.py)), the OFL-renamed Charis 7.000 subset + licence, the printed reference plate, and every worked diagram (config JSON + SVG + embedded-font HTML + PNG) |
-| [samasacakra/](https://github.com/gasyoun/SamasaChakram/tree/main/samasacakra) | the samāsa-cakra wheel itself — taxonomy JSON, generator, SVG/HTML/PNG (H1016) |
-| [leitan/](https://github.com/gasyoun/SamasaChakram/tree/main/leitan) | pinned text export of Э. З. Лейтан, «Сложные слова в санскрите» (from MG's «Общество ревнителей санскрита» webinar; publication here authorized by MG 16-07-2026) |
+| [samasacakra/](https://github.com/gasyoun/SamasaChakram/tree/main/samasacakra) | the samāsa-cakra wheel itself — taxonomy JSON, generator, interactive SVG/HTML (IAST ⇄ Devanāgarī, 18 of 58 leaves carrying their own bracket plates), the A2 poster, the Pages source (`docs/`), and the OFL-renamed Klammer Deva subset (H1016–H1036) |
+| [leitan/](https://github.com/gasyoun/SamasaChakram/tree/main/leitan) | pinned text export of Э. З. Лейтан, «Сложные слова в санскрите» (from MG's «Общество ревнителей санскрита» webinar; publication authorized by MG 16-07-2026 pending Leitan's own word) + the review-request letter **sent to Leitan 16-07-2026** — his reply governs corrections and the copy's fate |
 
 ## What this is
 
-*Samāsa Cakra* ("the wheel of compounds") is a traditional Sanskrit pedagogical
-device: a chart, arranged as a wheel, used to teach the classification and
-analysis of Sanskrit nominal compounds (*samāsa*) — the six classical groups
-(*avyayībhāva*, *tatpuruṣa* incl. *karmadhāraya*, *dvigu*, *bahuvrīhi*,
-*dvandva*) and the resolution (*vigraha*) of a compound into its members.
+*Samāsa Cakra* («колесо композитов») is a traditional Sanskrit pedagogical device: a
+chart, arranged as a wheel, for teaching the classification and analysis (*vigraha*) of
+Sanskrit nominal compounds — *tatpuruṣa* (incl. *karmadhāraya* and *dvigu*), *bahuvrīhi*,
+*dvandva*, *avyayībhāva*. This repo is that device reinvented digitally: the live wheel
+above, regenerable end-to-end from one taxonomy file, plus the drawing system
+(Klammerdiagramm), the reading method, and the scholarly crosswalk it is all built on.
 
-This repo — per its one-line description, "Samasa Chakram reinvented" — is
-intended as a modern, digital reinvention of that device: an interactive tool
-for exploring and analysing Sanskrit compounds. **That work has not started
-yet.** The repository was created on 18-04-2026 and so far contains only the
-standard org baseline (see below).
+## Provenance & rules of the road
 
-## Current contents
+- **Taxonomy**: Э. З. Лейтан, «Сложные слова в санскрите» (conspectus of MG's webinar
+  programme), crosswalked in [KLAMMERDIAGRAMM_LEITAN_SAMASA_COMPARISON.md](https://github.com/gasyoun/SamasaChakram/blob/main/KLAMMERDIAGRAMM_LEITAN_SAMASA_COMPARISON.md).
+- **Structural rulings (MG)**: every samāsa binds right-to-left (head last) — bahuvrīhi
+  exocentricity and avyayībhāva first-member prominence are semantics, not bracket
+  direction; the dvandva alone is flat; the six crosswalk votes D1–D6 (dvigu, samāhāra,
+  ekadeśin, the ghost-member notation, the uddāma constituency per Leitan, śītoṣṇa-type)
+  are applied throughout.
+- **Fonts**: Klammer Serif (Charis 7.000 subset) and Klammer Deva (Noto Serif Devanagari
+  subset) — both renamed per the OFL Reserved-Font-Name rules, licences bundled beside
+  the subsets, provenance scripts committed.
+- The three skills that *use* this material (`/sanskrit-parse`, `/klammeruebersetzung`,
+  `/klammerdiagramm`) live in [claude-config](https://github.com/gasyoun/claude-config)
+  and point here; the repo is wired into
+  [Uprava/PROJECT_INTERLINKS.md](https://github.com/gasyoun/Uprava/blob/main/PROJECT_INTERLINKS.md)
+  (consume, don't rebuild).
 
-| Path | Purpose |
-|---|---|
-| [`LICENSE`](https://github.com/gasyoun/SamasaChakram/blob/main/LICENSE) | Apache License 2.0 |
-| [`.github/dependabot.yml`](https://github.com/gasyoun/SamasaChakram/blob/main/.github/dependabot.yml) | Weekly Dependabot updates for GitHub Actions |
-| [`.github/workflows/dependabot-auto-merge.yml`](https://github.com/gasyoun/SamasaChakram/blob/main/.github/workflows/dependabot-auto-merge.yml) | Hands-off auto-merge of passing Dependabot PRs |
+## Status
 
-No source code, data, or documentation beyond this file is present yet.
-
-## Project context
-
-SamasaChakram is one of the [Sanskrit Lexicon / `gasyoun`](https://github.com/gasyoun)
-research repositories (Tier 2 — other research). It is not yet wired into any
-cross-repo pipeline or dataset in
-[`Uprava/PROJECT_INTERLINKS.md`](https://github.com/gasyoun/Uprava/blob/main/PROJECT_INTERLINKS.md),
-and has no entry in the paper pipeline
-([`Uprava/ARTICLES.md`](https://github.com/gasyoun/Uprava/blob/main/ARTICLES.md)).
-
-## Status / next steps
-
-There is no roadmap document, `.ai_state.md`, or handoff for this repository yet.
-When development begins, this section should be replaced with a concrete scope,
-a data/implementation inventory, and a link to a dated roadmap. Until then, treat
-this repository as reserved for the planned *samāsa*-analysis tool.
+Live since 16-07-2026 (H1010 consolidation → H1016 wheel → H1017 Devanāgarī → H1020/H1026
+panel plates → H1021 poster → H1025 D-vote plates → H1030 full gallery coverage → H1036
+Pages). Current release: see [CHANGELOG.md](https://github.com/gasyoun/SamasaChakram/blob/main/CHANGELOG.md)
+and the [releases page](https://github.com/gasyoun/SamasaChakram/releases).
+**@WAITING**: review letter sent to Э. Лейтан 16-07-2026 — his corrections go into
+[samasacakra/samasacakra-taxonomy.json](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/samasacakra-taxonomy.json)
+(one rebuild refreshes the wheel, the Pages site and the poster); his word on the
+conspectus copy is final. Session journal: [.ai_state.md](https://github.com/gasyoun/SamasaChakram/blob/main/.ai_state.md).
 
 ## License
 

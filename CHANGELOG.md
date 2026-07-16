@@ -6,6 +6,15 @@ _Created: 16-07-2026 · Last updated: 16-07-2026_
 
 ## [Unreleased]
 
+## [0.7.2] - 2026-07-16
+
+### Changed — 16-07-2026 · README brought current
+
+- The stale 11-07 placeholder bottom half («that work has not started yet», empty-repo
+  contents table, "no .ai_state") replaced with the live state: provenance & rulings
+  section, the H1010→H1036 status chain, the @WAITING-on-Leitan note, and corrected
+  counts (19 drawn plates, 18 diagram-bearing leaves, poster + Pages rows).
+
 ## [0.7.1] - 2026-07-16
 
 ### Added / Fixed — 16-07-2026 · H1025 · exact-match plates for the D-vote leaves

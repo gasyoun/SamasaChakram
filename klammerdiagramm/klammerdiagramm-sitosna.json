@@ -1,0 +1,20 @@
+{
+  "tokens": [
+    "śīta",
+    "uṣṇam"
+  ],
+  "trailing_hyphen": false,
+  "style": {
+    "FS": 46
+  },
+  "nodes": [
+    [
+      "A",
+      0,
+      1,
+      131
+    ]
+  ],
+  "title": "Klammerdiagramm — śītoṣṇam (viśeṣaṇobhayapada-karmadhāraya)",
+  "desc": "Leitan's viśeṣaṇobhayapada-karmadhāraya example śītoṣṇam (śītaṃ ca tad uṣṇaṃ ca — warm-and-cold water): a directed pair — the class (karmadhāraya) wins over the dvandva-like ca…ca vigraha, which is the analysis idiom, not coordination of the compound itself (MG vote D6). I/II часть omitted (notation demo)."
+}

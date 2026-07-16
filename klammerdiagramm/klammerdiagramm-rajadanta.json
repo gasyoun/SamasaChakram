@@ -1,0 +1,20 @@
+{
+  "tokens": [
+    "rāja",
+    "dantaḥ"
+  ],
+  "trailing_hyphen": false,
+  "style": {
+    "FS": 46
+  },
+  "nodes": [
+    [
+      "A",
+      0,
+      1,
+      140
+    ]
+  ],
+  "title": "Klammerdiagramm — rājadantaḥ (ekadeśin)",
+  "desc": "Leitan's ekadeśin / prathamā-tatpuruṣa example rājadantaḥ (dantānāṃ rājā — the front tooth): «перевёрнутое доминирование» — the semantic head is the FIRST member, yet the bracket binds right-to-left like any samāsa; the inverted dominance is a semantics footnote, not a structural mark (MG vote D3). I/II часть omitted (notation demo)."
+}

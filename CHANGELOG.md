@@ -6,6 +6,21 @@ _Created: 16-07-2026 · Last updated: 16-07-2026_
 
 ## [Unreleased]
 
+## [0.7.1] - 2026-07-16
+
+### Added / Fixed — 16-07-2026 · H1025 · exact-match plates for the D-vote leaves
+
+- The four resolved D-vote leaves still without a diagram now get a **purpose-drawn** plate
+  from their own vigraha (new files under `klammerdiagramm/`, svg + html + png + json):
+  **D1** `samāhāre` (dvigu) → `tribhuvanam`, **D3** `ekadeśin` → `rājadantaḥ` and
+  `X-antara` → `vanāntaram`, **D6** `viśeṣaṇobhayapada` → `śītoṣṇam` — three exceptionless /
+  class-wins directed pairs and one numeral-first pair.
+- **Fixed:** the `samāhāra`-dvandva leaf still pointed at `sitosnasukhaduhkhadah` (a 5-member
+  itaretara-dvandva-of-dvandvas — the wrong construction for a *samāhāra* leaf), replaced with
+  its own `pāṇipādamukham` (one flat collective band). Every D-vote leaf now shows its **own**
+  example; the multi-diagram `madhyamapadalopin` panel (v0.6.0) and the Pages page (v0.7.0)
+  pick the plates up on rebuild.
+
 ## [0.7.0] - 2026-07-16
 
 ### Added — 16-07-2026 · H1036 · the wheel live on GitHub Pages

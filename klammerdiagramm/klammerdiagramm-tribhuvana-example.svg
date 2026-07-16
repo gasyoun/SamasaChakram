@@ -1,0 +1,30 @@
+<svg viewBox="0 0 365 290" xmlns="http://www.w3.org/2000/svg" role="img" font-family="'Klammer Serif', 'Charis SIL', Charis, 'Gentium Plus', Georgia, serif">
+<title>Klammerdiagramm — tribhuvanam (samāhāra-dvigu)</title>
+<desc>Leitan's samāhāra-dvigu example tribhuvanam (trayāṇāṃ bhuvanānāṃ samāhāraḥ — the three worlds as a collective): dvigu = an ordinary right-to-left directed pair, numeral first; his three Pāṇinian conditions are classification, not structure (MG vote D1). I/II часть omitted (notation demo).</desc>
+<defs>
+<pattern id="hatch" width="5.5" height="5.5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="5.5" stroke="currentColor" stroke-width="0.8"/></pattern>
+</defs>
+<text y="126" font-size="46" fill="currentColor">
+<tspan x="44.0">tri-</tspan>
+<tspan x="106.3">bhuvanam</tspan>
+</text>
+<rect x="48" y="162" width="40" height="84" fill="url(#hatch)"/>
+<rect x="88" y="198" width="23" height="48" fill="url(#hatch)"/>
+<path d="M48 146 L44 157 L52 157 Z" fill="currentColor"/>
+<path d="M88 146 L83 157 L92 157 Z" fill="currentColor"/>
+<line x1="48" y1="155" x2="48" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="88" y1="155" x2="88" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="88" y1="198" x2="111" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="48" y1="246" x2="111" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="111" y1="198" x2="111" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<rect x="168" y="162" width="92" height="36" fill="url(#hatch)"/>
+<rect x="145" y="198" width="115" height="48" fill="url(#hatch)"/>
+<path d="M168 146 L163 157 L172 157 Z" fill="currentColor"/>
+<path d="M260 146 L255 157 L264 157 Z" fill="currentColor"/>
+<line x1="168" y1="155" x2="168" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="260" y1="155" x2="260" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="145" y1="198" x2="168" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="145" y1="198" x2="145" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="145" y1="246" x2="260" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<text x="128" y="231" font-size="26" text-anchor="middle" fill="currentColor">A</text>
+</svg>

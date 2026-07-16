@@ -1,0 +1,25 @@
+{
+  "tokens": [
+    "pāṇi",
+    "pāda",
+    "mukham"
+  ],
+  "trailing_hyphen": false,
+  "style": {
+    "FS": 46
+  },
+  "nodes": [
+    [
+      "A",
+      [
+        0,
+        1,
+        2
+      ],
+      null,
+      273
+    ]
+  ],
+  "title": "Klammerdiagramm — pāṇipādamukham (samāhāra-dvandva)",
+  "desc": "Leitan's samāhāra-dvandva example pāṇipādamukham (pāṇī ca pādau ca mukhaṃ ca — hands, feet and face as a collective, neuter singular): one flat band, no internal head — the SAME drawing as an itaretara-dvandva; the collective subtype is named in the analysis line, not marked visually (MG vote D2). I/II часть omitted (notation demo)."
+}

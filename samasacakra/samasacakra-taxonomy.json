@@ -115,7 +115,8 @@
        "ex": "rājadantaḥ",
        "vigraha": "dantānāṃ rājā",
        "ru": "передний зуб",
-       "note": "«перевёрнутое доминирование» — семантика, не структура (D3)"
+       "note": "«перевёрнутое доминирование» — семантика, не структура (D3)",
+       "diagram": "klammerdiagramm-rajadanta-example.svg"
       },
       {
        "id": "mayura",
@@ -123,7 +124,8 @@
        "ex": "vanāntaram",
        "vigraha": "anyad vanam",
        "ru": "другой лес",
-       "note": "mayūravyaṃsakādi (D3)"
+       "note": "mayūravyaṃsakādi (D3)",
+       "diagram": "klammerdiagramm-vanantara-example.svg"
       }
      ]
     },
@@ -159,7 +161,8 @@
        "ex": "śītoṣṇam",
        "vigraha": "śītaṃ ca tad uṣṇaṃ ca",
        "ru": "тепло-холодная [вода]",
-       "note": "направленная пара — класс важнее виграхи (D6)"
+       "note": "направленная пара — класс важнее виграхи (D6)",
+       "diagram": "klammerdiagramm-sitosna-example.svg"
       },
       {
        "id": "upamanapurvapada",
@@ -218,7 +221,8 @@
        "ex": "tribhuvanam",
        "vigraha": "trayāṇāṃ bhuvanānāṃ samāhāraḥ",
        "ru": "троемирье",
-       "note": "двигу = подтип кармадхараи (D1)"
+       "note": "двигу = подтип кармадхараи (D1)",
+       "diagram": "klammerdiagramm-tribhuvana-example.svg"
       }
      ]
     }
@@ -422,7 +426,7 @@
        "vigraha": "pāṇī ca pādau ca mukhaṃ ca",
        "ru": "руки, ноги и лицо (вместе)",
        "note": "без отдельной пометки — подтип в строке анализа (D2)",
-       "diagram": "klammerdiagramm-sitosnasukhaduhkhadah-example.svg"
+       "diagram": "klammerdiagramm-panipadamukha-example.svg"
       }
      ]
     }

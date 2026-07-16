@@ -13,7 +13,10 @@ _Created: 11-07-2026 · Last updated: 16-07-2026_
 **Interactive version:** [samasacakra/samasacakra-wheel.html](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/samasacakra-wheel.html)
 (open locally — drag to rotate, click a segment for the vigraha + Russian gloss, double-click
 to reset; **IAST ⇄ Devanāgarī script toggle**, embedded Klammer Serif + Klammer Deva
-(an OFL-renamed Noto Serif Devanagari subset — licence bundled), light/dark themes). Built by
+(an OFL-renamed Noto Serif Devanagari subset — licence bundled), light/dark themes). **Print/poster export:** [samasacakra/samasacakra-poster.pdf](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/samasacakra-poster.pdf)
+— a single A2 sheet (420×594 mm): dual-script title, the wheel full-width, and the complete
+58-subtype index in four class columns (term — example in both scripts — RU gloss), with
+the pradhāna line and MG structure rule heading each class. Built by
 [samasacakra/build_samasacakra.py](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/build_samasacakra.py)
 from [samasacakra/samasacakra-taxonomy.json](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/samasacakra-taxonomy.json) —
 4 classes (Patañjali's pradhāna scheme) · 10 families · 58 leaf subtypes, each with a

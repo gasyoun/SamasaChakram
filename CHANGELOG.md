@@ -6,6 +6,20 @@ _Created: 16-07-2026 · Last updated: 16-07-2026_
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-07-16
+
+### Added — 16-07-2026 · H1021 · print/poster export (A2 single sheet)
+
+- [`samasacakra/samasacakra-poster.pdf`](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/samasacakra-poster.pdf)
+  (+ source `samasacakra-poster.html`, PNG preview) — A2 portrait (420×594 mm), one sheet,
+  emitted by the same generator from the same taxonomy: dual-script title, the IAST wheel
+  full-width, four class columns (pradhāna + MG structure rule per class, family subheads)
+  carrying the complete 58-subtype index — term, example in IAST **and** Devanāgarī, RU
+  gloss. `@page`-pinned size, fonts embedded from the two OFL-renamed subsets, printed via
+  headless Edge `--print-to-pdf` (house single-sheet pattern). First cut spilled to two
+  pages and mis-flowed the index across class headers — both fixed before shipping
+  (overflow clamp; per-class columns instead of free column flow).
+
 ## [0.3.1] - 2026-07-16
 
 ### Added — 16-07-2026 · H1020 · Klammerdiagramm in the wheel's detail panel

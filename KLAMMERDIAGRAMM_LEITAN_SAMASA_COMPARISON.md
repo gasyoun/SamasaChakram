@@ -34,22 +34,23 @@ NO-GO is superseded by that ruling). Handoff: [H982](https://github.com/gasyoun/
 | vibhakti-tatpuruṣa (dvitīyā…saptamī) | grāmagata, rājaputra, akṣaśauṇḍa… | directed pair, head right | ✅ covered |
 | nañ-, prādi-, gati-, upapada-tatpuruṣa | abrāhmaṇa, prācārya, puraskāra, kumbhakāra | directed pair (upapada heads = our `-bhāgī`, `-da` runs) | ✅ covered |
 | karmadhāraya (viśeṣaṇapūrvapada, appositional, upamāna-/upamita-, rūpaka-, sambhāvanā-) | tuṅgavṛkṣa, **rājarṣi**, meghaśyāma, puruṣavyāghra, saṃsārārṇava, guṇabuddhi | directed pair | ✅ covered — his rājarṣi vigraha (rājā ca sa ṛṣiś ca, appositional) matches our gallery §3 A-node |
-| **dvigu** (3 conditions: taddhitārthe, uttarapade, samāhāre) | pañcakapāla, **pañcagava-dhana**, tribhuvana | directed pair (numeral first) | 🟨 **D1** — his placement (dvigu ⊂ karmadhāraya) resolves our previously-unruled gap; drawn below |
+| **dvigu** (3 conditions: taddhitārthe, uttarapade, samāhāre) | pañcakapāla, **pañcagava-dhana**, tribhuvana | directed pair (numeral first) | ✅ **D1 adopted** — dvigu = ordinary right-to-left pair; his placement closes our previously-unruled gap; drawn §3.2 |
 | bahuvrīhi: samānādhikaraṇa (6 case-subtypes), nañ-, prādi-, saha- | prāptodaka, abhārya, praparṇa, sakṛṣṇa | directed pair; exocentricity = semantics | ✅ covered |
 | bahuvrīhi: vyadhikaraṇa (loc./gen.) | **cakrapāṇi** (cakraṃ pāṇau yasya), candrakānti | directed pair | ✅ covered — his locative analysis enriches our gallery §6-A annotation |
 | saṃkhyā-, dig-, kiṃ-, X-ādi, X-para, X-mātra bahuvrīhi | dvitrāḥ, dakṣiṇapūrvā, kiṃlakṣaṇa, **janmarogamaraṇādi** | pair / flat block + head | ✅ covered — X-ādi with internal dvandva drawn below |
 | adverbial reduplicated bahuvrīhi | keśākeśi, daṇḍādaṇḍi | two same-lemma tokens as given | ✅ drawable (surface segmentation) |
 | āhitāgnyādi (participle on the RIGHT) | āhitāgni = agnyāhita | pair — member order as given | ✅ drawing unaffected by the inversion |
-| itaretara- vs samāhāra-dvandva | rāmakṛṣṇau vs pāṇipādamukham | one flat band for both | 🟨 **D2** — mark the collective subtype? |
+| itaretara- vs samāhāra-dvandva | rāmakṛṣṇau vs pāṇipādamukham | one flat band for both | ✅ **D2** — no visual mark; the samāhāra subtype is named in the analysis line |
 | avyayībhāva (16 Pāṇinian senses) | upagaṅgam, yathāśakti, pratigrāmam | ∪ pair, right-to-left (§9 ruling) | ✅ covered |
-| **ekadeśin / prathamā-tatpuruṣa** | pūrvakāya, ardhapippalī, rājadanta | — | 🟨 **D3** — «перевёрнутое доминирование», his own flagged exception |
-| mayūravyaṃsakādi / X-antara idioms | vanāntaram (anyaṃ vanam) | — | 🟨 **D3** (same family) |
-| **madhyamapadalopin** | śākapārthiva (= śāka**priya**-pārthiva) | — | 🟨 **D4** — the elided member has no bar |
+| **ekadeśin / prathamā-tatpuruṣa** | pūrvakāya, ardhapippalī, rājadanta | directed pair (exceptionless) | ✅ **D3** — bracket stays exceptionless; «перевёрнутое доминирование» is a semantics footnote |
+| mayūravyaṃsakādi / X-antara idioms | vanāntaram (anyaṃ vanam) | directed pair (exceptionless) | ✅ **D3** (same family) — exceptionless bracket + semantics footnote |
+| **madhyamapadalopin** | śākapārthiva (= śāka**priya**-pārthiva) | ghost member `[priya]` — word line, no bar | ✅ **D4 reject** — «одной только сноски недостаточно»: the elided member is restored as an editorial ghost `śāka-[priya]-pārthivaḥ`, measured into the run but with no bar/arrows/node index; gallery §11 |
 | aluk-samāsa | yudhiṣṭhira (yudhi-), vanecara (vane-) | pair; tokens carry the retained ending | ✅ drawable — tokens are surface members by design |
 | pṛṣodarādi, kevala-samāsa | balāhaka; ājanmaśuddha, vāgarthāviva | pair, noting irregularity | ✅ drawable; classification stays his |
 
 **Bottom line: nothing in the conspectus is undrawable.** Every category maps onto the
-seven forms; the open points are *annotation* questions (D1–D6), not grammar gaps.
+seven forms; the six divergences (D1–D6) were *annotation* questions, not grammar gaps, and
+all are now resolved by MG vote — see §4.
 
 ## 3 · Leitan's own examples, drawn (zero code changes)
 

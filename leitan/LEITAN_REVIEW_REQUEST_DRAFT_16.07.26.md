@@ -2,7 +2,7 @@ _Created: 16-07-2026 · Last updated: 16-07-2026_
 
 # Черновик письма Э. З. Лейтану — просьба о рецензии колеса композитов
 
-Готов к отправке (почта / Telegram — канал на выбор M. Гасунса; отправляет человек).
+**🟢 ОТПРАВЛЕНО Э. Лейтану 16-07-2026 (MG).** Ниже — отправленный текст; ждём ответа.
 Контекст: [H1038](https://github.com/gasyoun/Uprava/blob/main/handoffs/archive/H1038-Fable_SamasaChakram_leitan-pages-review-request-draft_16.07.26.md);
 живое колесо — [gasyoun.github.io/SamasaChakram](https://gasyoun.github.io/SamasaChakram/).
 

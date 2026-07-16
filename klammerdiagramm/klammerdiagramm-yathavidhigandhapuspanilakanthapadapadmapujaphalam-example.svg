@@ -1,0 +1,136 @@
+<svg viewBox="0 0 1058 640" xmlns="http://www.w3.org/2000/svg" role="img" font-family="'Klammer Serif', 'Charis SIL', Charis, 'Gentium Plus', Georgia, serif">
+<title>Klammerdiagramm — yathāvidhigandhapuṣpanīlakaṇṭhapādapadmapūjāphalam</title>
+<desc>German-Indological bracket diagram of the ten-member compound yathā-vidhi-gandha-puṣpa-nīla-kaṇṭha-pāda-padma-pūjā-phalam mixing ALL FIVE samāsa kinds: avyayībhāva A = yathā+vidhi, flat dvandva B = gandha·puṣpa, bahuvrīhi C = nīla+kaṇṭha, karmadhāraya D = pāda+padma — four pairs on one rung — then tatpuruṣa binds all right-to-left: E = [C]→[D] (the foot-lotus of the Blue-Throated), F = [E]+pūjā, G = [B]→[F] (worship with incense-and-flowers), H = [A]→[G] (performed according to rule), I = [H]+phalam — the fruit of the whole. Dvandva alone flat; every other kind right-to-left per the MG rulings. II часть begins at nīla (asked). Unsandhied segmented members, full word form.</desc>
+<defs>
+<pattern id="hatch" width="5.5" height="5.5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="5.5" stroke="currentColor" stroke-width="0.8"/></pattern>
+</defs>
+<line x1="44" y1="52" x2="155" y2="52" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.5 4.5"/>
+<line x1="271" y1="52" x2="382" y2="52" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.5 4.5"/>
+<line x1="502" y1="52" x2="693" y2="52" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.5 4.5"/>
+<line x1="817" y1="52" x2="1008" y2="52" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.5 4.5"/>
+<path d="M382 52 C 416 54 436 70 442 96" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.5 4.5"/>
+<path d="M502 52 C 468 54 448 70 442 96" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.5 4.5"/>
+<text x="213" y="59" font-size="21" text-anchor="middle" fill="currentColor">I часть</text>
+<text x="755" y="59" font-size="21" text-anchor="middle" fill="currentColor">II часть</text>
+<text y="126" font-size="34" fill="currentColor">
+<tspan x="44.0">yathā-</tspan>
+<tspan x="138.6">vidhi-</tspan>
+<tspan x="226.7">gandha-</tspan>
+<tspan x="348.0">puṣpa-</tspan>
+<tspan x="447.1">nīla-</tspan>
+<tspan x="514.9">kaṇṭha-</tspan>
+<tspan x="628.9">pāda-</tspan>
+<tspan x="712.6">padma-</tspan>
+<tspan x="825.1">pūjā-</tspan>
+<tspan x="901.6">phalam</tspan>
+</text>
+<rect x="48" y="162" width="76" height="84" fill="url(#hatch)"/>
+<path d="M48 146 L44 157 L52 157 Z" fill="currentColor"/>
+<path d="M124 146 L119 157 L128 157 Z" fill="currentColor"/>
+<line x1="48" y1="155" x2="48" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="124" y1="155" x2="124" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="124" y1="198" x2="116" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="48" y1="246" x2="116" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="116" y1="198" x2="116" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<rect x="143" y="162" width="69" height="36" fill="url(#hatch)"/>
+<rect x="150" y="198" width="62" height="48" fill="url(#hatch)"/>
+<path d="M143 146 L138 157 L147 157 Z" fill="currentColor"/>
+<path d="M212 146 L207 157 L216 157 Z" fill="currentColor"/>
+<line x1="143" y1="155" x2="143" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="212" y1="155" x2="212" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="150" y1="198" x2="150" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="150" y1="246" x2="212" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<text x="133" y="231" font-size="26" text-anchor="middle" fill="currentColor">A</text>
+<rect x="236" y="162" width="92" height="36" fill="url(#hatch)"/>
+<path d="M236 146 L231 157 L240 157 Z" fill="currentColor"/>
+<path d="M328 146 L323 157 L332 157 Z" fill="currentColor"/>
+<line x1="236" y1="155" x2="236" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="328" y1="155" x2="328" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<rect x="352" y="162" width="80" height="36" fill="url(#hatch)"/>
+<path d="M352 146 L348 157 L357 157 Z" fill="currentColor"/>
+<path d="M432 146 L428 157 L437 157 Z" fill="currentColor"/>
+<line x1="352" y1="155" x2="352" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="432" y1="155" x2="432" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<rect x="236" y="198" width="87" height="48" fill="url(#hatch)"/>
+<rect x="357" y="198" width="75" height="48" fill="url(#hatch)"/>
+<line x1="236" y1="198" x2="236" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="432" y1="198" x2="432" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="236" y1="246" x2="323" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="357" y1="246" x2="432" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="323" y1="198" x2="323" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="357" y1="198" x2="357" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<text x="340" y="231" font-size="26" text-anchor="middle" fill="currentColor">B</text>
+<rect x="451" y="162" width="49" height="84" fill="url(#hatch)"/>
+<path d="M451 146 L447 157 L456 157 Z" fill="currentColor"/>
+<path d="M500 146 L496 157 L505 157 Z" fill="currentColor"/>
+<line x1="451" y1="155" x2="451" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="500" y1="155" x2="500" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="500" y1="198" x2="493" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="451" y1="246" x2="493" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="493" y1="198" x2="493" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<rect x="520" y="162" width="92" height="36" fill="url(#hatch)"/>
+<rect x="527" y="198" width="85" height="48" fill="url(#hatch)"/>
+<path d="M520 146 L516 157 L525 157 Z" fill="currentColor"/>
+<path d="M612 146 L608 157 L617 157 Z" fill="currentColor"/>
+<line x1="520" y1="155" x2="520" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="612" y1="155" x2="612" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="527" y1="198" x2="527" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="527" y1="246" x2="612" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<text x="510" y="231" font-size="26" text-anchor="middle" fill="currentColor">C</text>
+<rect x="633" y="162" width="65" height="84" fill="url(#hatch)"/>
+<path d="M633 146 L628 157 L637 157 Z" fill="currentColor"/>
+<path d="M698 146 L693 157 L702 157 Z" fill="currentColor"/>
+<line x1="633" y1="155" x2="633" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="698" y1="155" x2="698" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="698" y1="198" x2="690" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="633" y1="246" x2="690" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="690" y1="198" x2="690" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<rect x="717" y="162" width="92" height="36" fill="url(#hatch)"/>
+<rect x="724" y="198" width="85" height="48" fill="url(#hatch)"/>
+<path d="M717 146 L713 157 L722 157 Z" fill="currentColor"/>
+<path d="M809 146 L805 157 L814 157 Z" fill="currentColor"/>
+<line x1="717" y1="155" x2="717" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="809" y1="155" x2="809" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="724" y1="198" x2="724" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="724" y1="246" x2="809" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<text x="707" y="231" font-size="26" text-anchor="middle" fill="currentColor">D</text>
+<line x1="591" y1="292" x2="510" y2="292" stroke="currentColor" stroke-width="1.3"/>
+<line x1="510" y1="292" x2="510" y2="248" stroke="currentColor" stroke-width="1.3"/>
+<line x1="625" y1="292" x2="707" y2="292" stroke="currentColor" stroke-width="1.3"/>
+<line x1="707" y1="292" x2="707" y2="248" stroke="currentColor" stroke-width="1.3"/>
+<text x="608" y="301" font-size="26" text-anchor="middle" fill="currentColor">E</text>
+<rect x="829" y="162" width="58" height="224" fill="url(#hatch)"/>
+<rect x="812" y="338" width="17" height="48" fill="url(#hatch)"/>
+<path d="M829 146 L825 157 L834 157 Z" fill="currentColor"/>
+<path d="M887 146 L882 157 L891 157 Z" fill="currentColor"/>
+<line x1="887" y1="155" x2="887" y2="386" stroke="currentColor" stroke-width="1.3"/>
+<line x1="829" y1="155" x2="829" y2="338" stroke="currentColor" stroke-width="1.3"/>
+<line x1="812" y1="338" x2="829" y2="338" stroke="currentColor" stroke-width="1.3"/>
+<line x1="812" y1="386" x2="887" y2="386" stroke="currentColor" stroke-width="1.3"/>
+<line x1="812" y1="338" x2="812" y2="386" stroke="currentColor" stroke-width="1.3"/>
+<line x1="778" y1="362" x2="608" y2="362" stroke="currentColor" stroke-width="1.3"/>
+<line x1="608" y1="362" x2="608" y2="318" stroke="currentColor" stroke-width="1.3"/>
+<text x="795" y="371" font-size="26" text-anchor="middle" fill="currentColor">F</text>
+<line x1="543" y1="432" x2="340" y2="432" stroke="currentColor" stroke-width="1.3"/>
+<line x1="340" y1="432" x2="340" y2="248" stroke="currentColor" stroke-width="1.3"/>
+<line x1="577" y1="432" x2="795" y2="432" stroke="currentColor" stroke-width="1.3"/>
+<line x1="795" y1="432" x2="795" y2="388" stroke="currentColor" stroke-width="1.3"/>
+<text x="560" y="441" font-size="26" text-anchor="middle" fill="currentColor">G</text>
+<line x1="283" y1="502" x2="133" y2="502" stroke="currentColor" stroke-width="1.3"/>
+<line x1="133" y1="502" x2="133" y2="248" stroke="currentColor" stroke-width="1.3"/>
+<line x1="317" y1="502" x2="560" y2="502" stroke="currentColor" stroke-width="1.3"/>
+<line x1="560" y1="502" x2="560" y2="458" stroke="currentColor" stroke-width="1.3"/>
+<text x="300" y="511" font-size="26" text-anchor="middle" fill="currentColor">H</text>
+<rect x="912" y="162" width="92" height="434" fill="url(#hatch)"/>
+<rect x="895" y="548" width="17" height="48" fill="url(#hatch)"/>
+<path d="M912 146 L907 157 L916 157 Z" fill="currentColor"/>
+<path d="M1004 146 L999 157 L1008 157 Z" fill="currentColor"/>
+<line x1="1004" y1="155" x2="1004" y2="596" stroke="currentColor" stroke-width="1.3"/>
+<line x1="912" y1="155" x2="912" y2="548" stroke="currentColor" stroke-width="1.3"/>
+<line x1="895" y1="548" x2="912" y2="548" stroke="currentColor" stroke-width="1.3"/>
+<line x1="895" y1="596" x2="1004" y2="596" stroke="currentColor" stroke-width="1.3"/>
+<line x1="895" y1="548" x2="895" y2="596" stroke="currentColor" stroke-width="1.3"/>
+<line x1="861" y1="572" x2="300" y2="572" stroke="currentColor" stroke-width="1.3"/>
+<line x1="300" y1="572" x2="300" y2="528" stroke="currentColor" stroke-width="1.3"/>
+<text x="878" y="581" font-size="26" text-anchor="middle" fill="currentColor">I</text>
+</svg>

@@ -1,0 +1,88 @@
+<svg viewBox="0 0 781 500" xmlns="http://www.w3.org/2000/svg" role="img" font-family="'Klammer Serif', 'Charis SIL', Charis, 'Gentium Plus', Georgia, serif">
+<title>Klammerdiagramm — cakrapāṇicaraṇakamalasevāphalam</title>
+<desc>German-Indological bracket diagram of the six-member compound cakra-pāṇi-caraṇa-kamala-sevā-phalam: the bahuvrīhi A = cakra+pāṇi (the Discus-Handed, exocentric — semantics, not structure) and the karmadhāraya B = caraṇa+kamala (the foot-lotus) pre-form on one rung; the directed join C = [A]+[B] takes the head right-to-left (the foot-lotus OF the discus-handed); then D = [C]+sevā and E = [D]+phalam accrete the heads — the fruit of service to the lotus-feet of Viṣṇu. II часть begins at sevā (asked). Unsandhied segmented members, full word form.</desc>
+<defs>
+<pattern id="hatch" width="5.5" height="5.5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="5.5" stroke="currentColor" stroke-width="0.8"/></pattern>
+</defs>
+<line x1="44" y1="52" x2="188" y2="52" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.5 4.5"/>
+<line x1="304" y1="52" x2="449" y2="52" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.5 4.5"/>
+<line x1="569" y1="52" x2="588" y2="52" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.5 4.5"/>
+<line x1="712" y1="52" x2="731" y2="52" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.5 4.5"/>
+<path d="M449 52 C 483 54 503 70 509 96" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.5 4.5"/>
+<path d="M569 52 C 535 54 515 70 509 96" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.5 4.5"/>
+<text x="246" y="59" font-size="21" text-anchor="middle" fill="currentColor">I часть</text>
+<text x="650" y="59" font-size="21" text-anchor="middle" fill="currentColor">II часть</text>
+<text y="126" font-size="40" fill="currentColor">
+<tspan x="44.0">cakra-</tspan>
+<tspan x="153.1">pāṇi-</tspan>
+<tspan x="243.5">caraṇa-</tspan>
+<tspan x="374.3">kamala-</tspan>
+<tspan x="515.3">sevā-</tspan>
+<tspan x="605.2">phalam</tspan>
+</text>
+<rect x="48" y="162" width="88" height="84" fill="url(#hatch)"/>
+<path d="M48 146 L44 157 L52 157 Z" fill="currentColor"/>
+<path d="M136 146 L132 157 L141 157 Z" fill="currentColor"/>
+<line x1="48" y1="155" x2="48" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="136" y1="155" x2="136" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="136" y1="198" x2="129" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="48" y1="246" x2="129" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="129" y1="198" x2="129" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<rect x="157" y="162" width="70" height="36" fill="url(#hatch)"/>
+<rect x="163" y="198" width="64" height="48" fill="url(#hatch)"/>
+<path d="M157 146 L153 157 L162 157 Z" fill="currentColor"/>
+<path d="M227 146 L222 157 L231 157 Z" fill="currentColor"/>
+<line x1="157" y1="155" x2="157" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="227" y1="155" x2="227" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="163" y1="198" x2="163" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="163" y1="246" x2="227" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<text x="146" y="231" font-size="26" text-anchor="middle" fill="currentColor">A</text>
+<rect x="256" y="162" width="92" height="84" fill="url(#hatch)"/>
+<rect x="348" y="198" width="5" height="48" fill="url(#hatch)"/>
+<path d="M256 146 L252 157 L261 157 Z" fill="currentColor"/>
+<path d="M348 146 L344 157 L353 157 Z" fill="currentColor"/>
+<line x1="256" y1="155" x2="256" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="348" y1="155" x2="348" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="348" y1="198" x2="353" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="256" y1="246" x2="353" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="353" y1="198" x2="353" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<rect x="392" y="162" width="92" height="36" fill="url(#hatch)"/>
+<rect x="387" y="198" width="97" height="48" fill="url(#hatch)"/>
+<path d="M392 146 L388 157 L397 157 Z" fill="currentColor"/>
+<path d="M484 146 L480 157 L489 157 Z" fill="currentColor"/>
+<line x1="392" y1="155" x2="392" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="484" y1="155" x2="484" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="387" y1="198" x2="392" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="387" y1="198" x2="387" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="387" y1="246" x2="484" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<text x="370" y="231" font-size="26" text-anchor="middle" fill="currentColor">B</text>
+<line x1="241" y1="292" x2="146" y2="292" stroke="currentColor" stroke-width="1.3"/>
+<line x1="146" y1="292" x2="146" y2="248" stroke="currentColor" stroke-width="1.3"/>
+<line x1="275" y1="292" x2="370" y2="292" stroke="currentColor" stroke-width="1.3"/>
+<line x1="370" y1="292" x2="370" y2="248" stroke="currentColor" stroke-width="1.3"/>
+<text x="258" y="301" font-size="26" text-anchor="middle" fill="currentColor">C</text>
+<rect x="519" y="162" width="69" height="224" fill="url(#hatch)"/>
+<rect x="502" y="338" width="17" height="48" fill="url(#hatch)"/>
+<path d="M519 146 L515 157 L524 157 Z" fill="currentColor"/>
+<path d="M588 146 L584 157 L593 157 Z" fill="currentColor"/>
+<line x1="588" y1="155" x2="588" y2="386" stroke="currentColor" stroke-width="1.3"/>
+<line x1="519" y1="155" x2="519" y2="338" stroke="currentColor" stroke-width="1.3"/>
+<line x1="502" y1="338" x2="519" y2="338" stroke="currentColor" stroke-width="1.3"/>
+<line x1="502" y1="386" x2="588" y2="386" stroke="currentColor" stroke-width="1.3"/>
+<line x1="502" y1="338" x2="502" y2="386" stroke="currentColor" stroke-width="1.3"/>
+<line x1="468" y1="362" x2="258" y2="362" stroke="currentColor" stroke-width="1.3"/>
+<line x1="258" y1="362" x2="258" y2="318" stroke="currentColor" stroke-width="1.3"/>
+<text x="485" y="371" font-size="26" text-anchor="middle" fill="currentColor">D</text>
+<rect x="625" y="162" width="92" height="294" fill="url(#hatch)"/>
+<rect x="608" y="408" width="17" height="48" fill="url(#hatch)"/>
+<path d="M625 146 L621 157 L630 157 Z" fill="currentColor"/>
+<path d="M717 146 L713 157 L722 157 Z" fill="currentColor"/>
+<line x1="717" y1="155" x2="717" y2="456" stroke="currentColor" stroke-width="1.3"/>
+<line x1="625" y1="155" x2="625" y2="408" stroke="currentColor" stroke-width="1.3"/>
+<line x1="608" y1="408" x2="625" y2="408" stroke="currentColor" stroke-width="1.3"/>
+<line x1="608" y1="456" x2="717" y2="456" stroke="currentColor" stroke-width="1.3"/>
+<line x1="608" y1="408" x2="608" y2="456" stroke="currentColor" stroke-width="1.3"/>
+<line x1="574" y1="432" x2="485" y2="432" stroke="currentColor" stroke-width="1.3"/>
+<line x1="485" y1="432" x2="485" y2="388" stroke="currentColor" stroke-width="1.3"/>
+<text x="591" y="441" font-size="26" text-anchor="middle" fill="currentColor">E</text>
+</svg>

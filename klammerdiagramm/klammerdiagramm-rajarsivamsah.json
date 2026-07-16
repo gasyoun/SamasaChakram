@@ -1,0 +1,12 @@
+{
+  "tokens": ["rāja", "ṛṣi", "vaṃśaḥ"],
+  "II_START": 2,
+  "trailing_hyphen": false,
+  "style": {"FS": 46},
+  "nodes": [
+    ["A", 0, 1, 130],
+    ["B", "A", 2, 196]
+  ],
+  "title": "Klammerdiagramm — rājarṣivaṃśaḥ",
+  "desc": "German-Indological bracket diagram of the three-member LEFT-nested compound rāja-ṛṣi-vaṃśaḥ: deepest node A = rāja+ṛṣi (rājarṣi, the king-sage), mirrored node B = [A]+vaṃśaḥ — the lineage of royal sages. II часть begins at vaṃśaḥ (asked, per contract). Unsandhied segmented members, full word form."
+}

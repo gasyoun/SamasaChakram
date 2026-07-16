@@ -1,0 +1,14 @@
+{
+  "tokens": ["śīta", "uṣṇa", "sukha", "duḥkha", "dāḥ"],
+  "II_START": 4,
+  "trailing_hyphen": false,
+  "style": {"FS": 42},
+  "nodes": [
+    ["A", [0, 1], null, 126, 0],
+    ["B", [2, 3], null, 345, 0],
+    ["C", ["A", "B"], null, 236, 1],
+    ["D", "C", 4, 456, 2]
+  ],
+  "title": "Klammerdiagramm — śītoṣṇasukhaduḥkhadāḥ",
+  "desc": "German-Indological bracket diagram of the five-member compound śīta-uṣṇa-sukha-duḥkha-dāḥ (BG 2.14): two coordinate dvandva pairs — A = śīta+uṣṇa, B = sukha+duḥkha, on one rung — coordinated as block C (a dvandva of dvandvas), then the upapada head dāḥ taken right-to-left as mirrored node D: giving cold-and-heat, pleasure-and-pain. II часть begins at dāḥ (asked). Unsandhied segmented members, full word form."
+}

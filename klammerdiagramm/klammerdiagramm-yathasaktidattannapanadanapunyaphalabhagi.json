@@ -1,0 +1,18 @@
+{
+  "tokens": ["yathā", "śakti", "datta", "anna", "pāna", "dāna", "puṇya", "phala", "bhāgī"],
+  "II_START": 6,
+  "trailing_hyphen": false,
+  "style": {"FS": 36},
+  "nodes": [
+    ["A", 0, 1, 138, 0],
+    ["C", [3, 4], null, 407, 0],
+    ["F", 6, 7, 694, 0],
+    ["B", "A", 2, 201, 1],
+    ["D", "C", 5, 471, 1],
+    ["E", "B", "D", 336, 2],
+    ["G", "E", "F", 515, 3],
+    ["H", "G", 8, 770, 4]
+  ],
+  "title": "Klammerdiagramm — yathāśaktidattānnapānadānapuṇyaphalabhāgī",
+  "desc": "German-Indological bracket diagram of the nine-member compound yathā-śakti-datta-anna-pāna-dāna-puṇya-phala-bhāgī with an avyayībhāva inside: A = yathā+śakti (avyayībhāva — pūrvapada-pradhāna in the tradition, yet bound right-to-left like every samāsa per the MG ruling; dvandva remains the sole exception), B = [A]+datta, flat dvandva C = anna·pāna, D = [C]+dāna, joins E = [B]→[D] and G = [E]→[F] over the karmadhāraya F = puṇya+phala, head H = [G]+bhāgī — sharing in the merit-fruit of the gift of food-and-drink given according to ability. II часть begins at puṇya (asked). Unsandhied segmented members, full word form."
+}

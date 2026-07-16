@@ -1,0 +1,47 @@
+<svg viewBox="0 0 484 360" xmlns="http://www.w3.org/2000/svg" role="img" font-family="'Klammer Serif', 'Charis SIL', Charis, 'Gentium Plus', Georgia, serif">
+<title>Klammerdiagramm — pañcagavadhanaḥ (Leitan comparison)</title>
+<desc>Leitan's dvigu-inside-bahuvrīhi example pañca-gava-dhanaḥ (his vigraha: pañca gāvo dhanaṃ yasya saḥ): dvigu pair A = pañca+gava (numeral-first karmadhāraya subtype, ordinary right-to-left pair), mirrored head B = [A]+dhanaḥ — whose wealth is five cows. II часть at dhanaḥ (asked). Drawn for the H982 comparison.</desc>
+<defs>
+<pattern id="hatch" width="5.5" height="5.5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="5.5" stroke="currentColor" stroke-width="0.8"/></pattern>
+</defs>
+<line x1="44" y1="52" x2="75" y2="52" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.5 4.5"/>
+<line x1="191" y1="52" x2="221" y2="52" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.5 4.5"/>
+<path d="M221 52 C 255 54 275 70 281 96" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.5 4.5"/>
+<path d="M341 52 C 307 54 287 70 281 96" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.5 4.5"/>
+<text x="133" y="59" font-size="21" text-anchor="middle" fill="currentColor">I часть</text>
+<text x="388" y="59" font-size="21" text-anchor="middle" fill="currentColor">II часть</text>
+<text y="126" font-size="46" fill="currentColor">
+<tspan x="44.0">pañca-</tspan>
+<tspan x="178.7">gava-</tspan>
+<tspan x="288.7">dhanaḥ</tspan>
+</text>
+<rect x="58" y="162" width="92" height="84" fill="url(#hatch)"/>
+<path d="M58 146 L54 157 L63 157 Z" fill="currentColor"/>
+<path d="M150 146 L146 157 L155 157 Z" fill="currentColor"/>
+<line x1="58" y1="155" x2="58" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="150" y1="155" x2="150" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="150" y1="198" x2="149" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="58" y1="246" x2="149" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="149" y1="198" x2="149" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<rect x="183" y="162" width="87" height="36" fill="url(#hatch)"/>
+<rect x="183" y="198" width="87" height="48" fill="url(#hatch)"/>
+<path d="M183 146 L178 157 L187 157 Z" fill="currentColor"/>
+<path d="M270 146 L266 157 L275 157 Z" fill="currentColor"/>
+<line x1="183" y1="155" x2="183" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="270" y1="155" x2="270" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="183" y1="198" x2="183" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="183" y1="246" x2="270" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<text x="166" y="231" font-size="26" text-anchor="middle" fill="currentColor">A</text>
+<rect x="319" y="162" width="92" height="154" fill="url(#hatch)"/>
+<rect x="302" y="268" width="17" height="48" fill="url(#hatch)"/>
+<path d="M319 146 L314 157 L323 157 Z" fill="currentColor"/>
+<path d="M411 146 L406 157 L415 157 Z" fill="currentColor"/>
+<line x1="411" y1="155" x2="411" y2="316" stroke="currentColor" stroke-width="1.3"/>
+<line x1="319" y1="155" x2="319" y2="268" stroke="currentColor" stroke-width="1.3"/>
+<line x1="302" y1="268" x2="319" y2="268" stroke="currentColor" stroke-width="1.3"/>
+<line x1="302" y1="316" x2="411" y2="316" stroke="currentColor" stroke-width="1.3"/>
+<line x1="302" y1="268" x2="302" y2="316" stroke="currentColor" stroke-width="1.3"/>
+<line x1="268" y1="292" x2="166" y2="292" stroke="currentColor" stroke-width="1.3"/>
+<line x1="166" y1="292" x2="166" y2="248" stroke="currentColor" stroke-width="1.3"/>
+<text x="285" y="301" font-size="26" text-anchor="middle" fill="currentColor">B</text>
+</svg>

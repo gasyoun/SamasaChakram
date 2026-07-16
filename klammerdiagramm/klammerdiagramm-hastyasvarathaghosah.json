@@ -1,0 +1,11 @@
+{
+  "tokens": ["hasti", "aśva", "ratha", "ghoṣaḥ"],
+  "trailing_hyphen": false,
+  "style": {"FS": 44},
+  "nodes": [
+    ["A", [0, 1, 2], null, 198],
+    ["B", "A", 3, 356]
+  ],
+  "title": "Klammerdiagramm — hastyaśvarathaghoṣaḥ",
+  "desc": "German-Indological bracket diagram of the four-member compound hasti-aśva-ratha-ghoṣaḥ with a FLAT dvandva block: coordinate members hasti+aśva+ratha share one band (node A — no internal head, dvandva is coordinate), then B = [A]+ghoṣaḥ, the head taken right-to-left — the din of elephants, horses and chariots. I/II часть spans omitted by choice. Unsandhied segmented members, full word form."
+}

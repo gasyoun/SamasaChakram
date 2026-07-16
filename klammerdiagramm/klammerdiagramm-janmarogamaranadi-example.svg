@@ -1,0 +1,57 @@
+<svg viewBox="0 0 569 360" xmlns="http://www.w3.org/2000/svg" role="img" font-family="'Klammer Serif', 'Charis SIL', Charis, 'Gentium Plus', Georgia, serif">
+<title>Klammerdiagramm — janmarogamaraṇādiḥ (Leitan comparison)</title>
+<desc>Leitan's X-ādi bahuvrīhi example janma-roga-maraṇa-ādiḥ (his vigraha: janma ca rogaś ca maraṇaṃ ca ādayaḥ yasya sa bhāvaḥ): flat dvandva block A = janma·roga·maraṇa, mirrored head B = [A]+ādiḥ. II часть at ādiḥ (asked). Drawn for the H982 comparison.</desc>
+<defs>
+<pattern id="hatch" width="5.5" height="5.5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="5.5" stroke="currentColor" stroke-width="0.8"/></pattern>
+</defs>
+<line x1="44" y1="52" x2="150" y2="52" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.5 4.5"/>
+<line x1="266" y1="52" x2="372" y2="52" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.5 4.5"/>
+<path d="M372 52 C 406 54 426 70 432 96" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.5 4.5"/>
+<path d="M492 52 C 458 54 438 70 432 96" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.5 4.5"/>
+<text x="208" y="59" font-size="21" text-anchor="middle" fill="currentColor">I часть</text>
+<text x="506" y="59" font-size="21" text-anchor="middle" fill="currentColor">II часть</text>
+<text y="126" font-size="44" fill="currentColor">
+<tspan x="44.0">janma-</tspan>
+<tspan x="178.0">roga-</tspan>
+<tspan x="278.7">maraṇa-</tspan>
+<tspan x="439.5">ādiḥ</tspan>
+</text>
+<rect x="58" y="162" width="92" height="36" fill="url(#hatch)"/>
+<path d="M58 146 L53 157 L62 157 Z" fill="currentColor"/>
+<path d="M150 146 L145 157 L154 157 Z" fill="currentColor"/>
+<line x1="58" y1="155" x2="58" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="150" y1="155" x2="150" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<rect x="182" y="162" width="79" height="36" fill="url(#hatch)"/>
+<path d="M182 146 L178 157 L187 157 Z" fill="currentColor"/>
+<path d="M261 146 L256 157 L265 157 Z" fill="currentColor"/>
+<line x1="182" y1="155" x2="182" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="261" y1="155" x2="261" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<rect x="306" y="162" width="92" height="36" fill="url(#hatch)"/>
+<path d="M306 146 L302 157 L311 157 Z" fill="currentColor"/>
+<path d="M398 146 L394 157 L403 157 Z" fill="currentColor"/>
+<line x1="306" y1="155" x2="306" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="398" y1="155" x2="398" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<rect x="58" y="198" width="153" height="48" fill="url(#hatch)"/>
+<rect x="245" y="198" width="153" height="48" fill="url(#hatch)"/>
+<line x1="58" y1="198" x2="58" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="398" y1="198" x2="398" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="150" y1="198" x2="182" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="261" y1="198" x2="306" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="58" y1="246" x2="211" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="245" y1="246" x2="398" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="211" y1="198" x2="211" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="245" y1="198" x2="245" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<text x="228" y="231" font-size="26" text-anchor="middle" fill="currentColor">A</text>
+<rect x="444" y="162" width="78" height="154" fill="url(#hatch)"/>
+<rect x="427" y="268" width="17" height="48" fill="url(#hatch)"/>
+<path d="M444 146 L439 157 L448 157 Z" fill="currentColor"/>
+<path d="M521 146 L517 157 L526 157 Z" fill="currentColor"/>
+<line x1="521" y1="155" x2="521" y2="316" stroke="currentColor" stroke-width="1.3"/>
+<line x1="444" y1="155" x2="444" y2="268" stroke="currentColor" stroke-width="1.3"/>
+<line x1="427" y1="268" x2="444" y2="268" stroke="currentColor" stroke-width="1.3"/>
+<line x1="427" y1="316" x2="521" y2="316" stroke="currentColor" stroke-width="1.3"/>
+<line x1="427" y1="268" x2="427" y2="316" stroke="currentColor" stroke-width="1.3"/>
+<line x1="393" y1="292" x2="228" y2="292" stroke="currentColor" stroke-width="1.3"/>
+<line x1="228" y1="292" x2="228" y2="248" stroke="currentColor" stroke-width="1.3"/>
+<text x="410" y="301" font-size="26" text-anchor="middle" fill="currentColor">B</text>
+</svg>

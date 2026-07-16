@@ -1,0 +1,15 @@
+{
+  "tokens": ["uddāma", "ajñāna", "rūpa", "prabalatama", "tamaḥ", "stoma", "soma", "svabhāvā"],
+  "II_START": 7,
+  "nodes": [
+    ["A", 6, 7, 990, 0],
+    ["P", 0, 1, 183, 0],
+    ["B", 5, "A", 895, 1],
+    ["Q", "P", 2, 315, 1],
+    ["C", 4, "B", 780, 2],
+    ["D", 3, "C", 620, 3],
+    ["R", "Q", "D", 430, 4]
+  ],
+  "title": "Klammerdiagramm",
+  "desc": "Leitan's constituency (E. Leitan samāsa-conspectus, MG vote D5, 16-07-2026): the left block {uddāma-ajñāna-rūpa} — \"whose form is boundless ignorance\" (uddāma-ajñāna = boundless ignorance, + rūpa) — joins the right-branching prabalatama-tamaḥ-stoma-soma-svabhāvā tail at the outermost node R; the I/II часть ‖-mark falls before svabhāvā (the plate's fell at tamaḥ), a reading-aid annotation independent of the binary nesting."
+}

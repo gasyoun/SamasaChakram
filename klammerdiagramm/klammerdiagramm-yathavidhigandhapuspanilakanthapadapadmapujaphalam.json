@@ -1,0 +1,19 @@
+{
+  "tokens": ["yathā", "vidhi", "gandha", "puṣpa", "nīla", "kaṇṭha", "pāda", "padma", "pūjā", "phalam"],
+  "II_START": 4,
+  "trailing_hyphen": false,
+  "style": {"FS": 34},
+  "nodes": [
+    ["A", 0, 1, 133, 0],
+    ["B", [2, 3], null, 340, 0],
+    ["C", 4, 5, 510, 0],
+    ["D", 6, 7, 707, 0],
+    ["E", "C", "D", 608, 1],
+    ["F", "E", 8, 795, 2],
+    ["G", "B", "F", 560, 3],
+    ["H", "A", "G", 300, 4],
+    ["I", "H", 9, 878, 5]
+  ],
+  "title": "Klammerdiagramm — yathāvidhigandhapuṣpanīlakaṇṭhapādapadmapūjāphalam",
+  "desc": "German-Indological bracket diagram of the ten-member compound yathā-vidhi-gandha-puṣpa-nīla-kaṇṭha-pāda-padma-pūjā-phalam mixing ALL FIVE samāsa kinds: avyayībhāva A = yathā+vidhi, flat dvandva B = gandha·puṣpa, bahuvrīhi C = nīla+kaṇṭha, karmadhāraya D = pāda+padma — four pairs on one rung — then tatpuruṣa binds all right-to-left: E = [C]→[D] (the foot-lotus of the Blue-Throated), F = [E]+pūjā, G = [B]→[F] (worship with incense-and-flowers), H = [A]→[G] (performed according to rule), I = [H]+phalam — the fruit of the whole. Dvandva alone flat; every other kind right-to-left per the MG rulings. II часть begins at nīla (asked). Unsandhied segmented members, full word form."
+}

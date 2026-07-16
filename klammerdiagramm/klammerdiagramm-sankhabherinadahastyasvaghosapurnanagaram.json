@@ -1,0 +1,17 @@
+{
+  "tokens": ["śaṅkha", "bherī", "nāda", "hasti", "aśva", "ghoṣa", "pūrṇa", "nagaram"],
+  "II_START": 6,
+  "trailing_hyphen": false,
+  "style": {"FS": 38},
+  "nodes": [
+    ["A", [0, 1], null, 163, 0],
+    ["C", [3, 4], null, 454, 0],
+    ["B", "A", 2, 244, 1],
+    ["D", "C", 5, 516, 1],
+    ["E", ["B", "D"], null, 380, 2],
+    ["F", "E", 6, 625, 3],
+    ["G", "F", 7, 760, 4]
+  ],
+  "title": "Klammerdiagramm — śaṅkhabherīnādahastyaśvaghoṣapūrṇanagaram",
+  "desc": "German-Indological bracket diagram of the eight-member compound śaṅkha-bherī-nāda-hasti-aśva-ghoṣa-pūrṇa-nagaram with TWO dvandva blocks: A = śaṅkha·bherī and C = hasti·aśva (each flat, coordinate), the tatpuruṣa heads B = [A]+nāda and D = [C]+ghoṣa, the two sounds coordinated as E = B·D (a dvandva of tatpuruṣas), then F = [E]+pūrṇa and G = [F]+nagaram — the city filled with the sound of conches-and-kettledrums and the din of elephants-and-horses. II часть begins at pūrṇa (asked). Unsandhied segmented members, full word form."
+}

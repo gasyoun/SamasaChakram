@@ -1,0 +1,15 @@
+{
+  "tokens": ["uddāma", "ajñāna", "rūpa", "prabalatama", "tamaḥ", "stoma", "soma", "svabhāvā"],
+  "II_START": 4,
+  "nodes": [
+    ["A", 6, 7, 1038],
+    ["B", 5, 6, 873],
+    ["C", 4, 5, 840],
+    ["D", 3, 4, 698],
+    ["E", 2, 3, 540],
+    ["F", 1, 2, 395],
+    ["G", 0, 1, 256]
+  ],
+  "title": "Klammerdiagramm",
+  "desc": "HISTORICAL — the MG-signed-off printed-plate reading (H814, traced 1:1): a pure right-branching chain G→A with the I/II часть split at tamaḥ. Superseded as the canonical uddāma constituency by Leitan's reading (D5 vote, 16-07-2026, klammerdiagramm-uddama-leitan.json); retained here so the plate remains reproducible and the trace geometry stays calibrated."
+}

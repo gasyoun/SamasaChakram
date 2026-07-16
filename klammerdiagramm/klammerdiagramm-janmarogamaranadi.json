@@ -1,0 +1,12 @@
+{
+  "tokens": ["janma", "roga", "maraṇa", "ādiḥ"],
+  "II_START": 3,
+  "trailing_hyphen": false,
+  "style": {"FS": 44},
+  "nodes": [
+    ["A", [0, 1, 2], null, 228, 0],
+    ["B", "A", 3, 410, 1]
+  ],
+  "title": "Klammerdiagramm — janmarogamaraṇādiḥ (Leitan comparison)",
+  "desc": "Leitan's X-ādi bahuvrīhi example janma-roga-maraṇa-ādiḥ (his vigraha: janma ca rogaś ca maraṇaṃ ca ādayaḥ yasya sa bhāvaḥ): flat dvandva block A = janma·roga·maraṇa, mirrored head B = [A]+ādiḥ. II часть at ādiḥ (asked). Drawn for the H982 comparison."
+}

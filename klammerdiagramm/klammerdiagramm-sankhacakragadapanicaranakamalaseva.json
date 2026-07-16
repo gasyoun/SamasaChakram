@@ -1,0 +1,15 @@
+{
+  "tokens": ["śaṅkha", "cakra", "gadā", "pāṇi", "caraṇa", "kamala", "sevā"],
+  "II_START": 4,
+  "trailing_hyphen": false,
+  "style": {"FS": 39},
+  "nodes": [
+    ["A", [0, 1, 2], null, 210, 0],
+    ["C", 4, 5, 590, 0],
+    ["B", "A", 3, 348, 1],
+    ["D", "B", "C", 469, 2],
+    ["E", "D", 6, 697, 3]
+  ],
+  "title": "Klammerdiagramm — śaṅkhacakragadāpāṇicaraṇakamalasevā",
+  "desc": "German-Indological bracket diagram of the seven-member compound śaṅkha-cakra-gadā-pāṇi-caraṇa-kamala-sevā mixing all three samāsa kinds: flat dvandva A = śaṅkha·cakra·gadā (coordinate, one shared band), mirrored B = [A]+pāṇi — the bahuvrīhi śaṅkhacakragadāpāṇi (exocentric in meaning, right-to-left in structure), standalone karmadhāraya pair C = caraṇa+kamala, directed join D = [B]→[C] (the foot-lotus OF the conch-discus-mace-handed), mirrored E = [D]+sevā — service to the lotus-feet of Viṣṇu. II часть begins at caraṇa (asked). Unsandhied segmented members, full word form."
+}

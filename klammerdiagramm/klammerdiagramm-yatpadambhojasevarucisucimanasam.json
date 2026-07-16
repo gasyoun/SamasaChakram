@@ -1,0 +1,16 @@
+{
+  "tokens": ["yat", "pāda", "ambhoja", "sevā", "ruci", "śuci", "manasām"],
+  "II_START": 4,
+  "trailing_hyphen": false,
+  "style": {"FS": 38},
+  "nodes": [
+    ["A", 1, 2, 208, 0],
+    ["B", 0, "A", 126, 1],
+    ["C", "B", 3, 330, 2],
+    ["D", "C", 4, 415, 3],
+    ["E", "D", 5, 493, 4],
+    ["F", "E", 6, 601, 5]
+  ],
+  "title": "Klammerdiagramm — yatpādāmbhojasevāruciśucimanasām (Leitan comparison)",
+  "desc": "The first half-compound of Leitan's Jalhaṇa stanza (Sūktimuktāvalī): yat-pāda-ambhoja-sevā-ruci-śuci-manasām — whose minds are pure through the light of service to the lotus-feet of whom — following Leitan's own right-to-left ladder: upamita pair A = pāda+ambhoja, chain B = yat+[A] (the deepest rung of his indentation), then mirrored accretions C–F: +sevā, +ruci, +śuci, +manasām. II часть at ruci (asked). Drawn for the H982 comparison."
+}

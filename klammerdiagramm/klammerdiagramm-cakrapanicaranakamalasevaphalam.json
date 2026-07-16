@@ -1,0 +1,15 @@
+{
+  "tokens": ["cakra", "pāṇi", "caraṇa", "kamala", "sevā", "phalam"],
+  "II_START": 4,
+  "trailing_hyphen": false,
+  "style": {"FS": 40},
+  "nodes": [
+    ["A", 0, 1, 146, 0],
+    ["B", 2, 3, 370, 0],
+    ["C", "A", "B", 258, 1],
+    ["D", "C", 4, 485, 2],
+    ["E", "D", 5, 591, 3]
+  ],
+  "title": "Klammerdiagramm — cakrapāṇicaraṇakamalasevāphalam",
+  "desc": "German-Indological bracket diagram of the six-member compound cakra-pāṇi-caraṇa-kamala-sevā-phalam: the bahuvrīhi A = cakra+pāṇi (the Discus-Handed, exocentric — semantics, not structure) and the karmadhāraya B = caraṇa+kamala (the foot-lotus) pre-form on one rung; the directed join C = [A]+[B] takes the head right-to-left (the foot-lotus OF the discus-handed); then D = [C]+sevā and E = [D]+phalam accrete the heads — the fruit of service to the lotus-feet of Viṣṇu. II часть begins at sevā (asked). Unsandhied segmented members, full word form."
+}

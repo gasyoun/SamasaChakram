@@ -1,0 +1,11 @@
+{
+  "tokens": ["śāka", "pārthivaḥ"],
+  "ghosts": [{"after": 0, "text": "priya"}],
+  "trailing_hyphen": false,
+  "style": {"FS": 46},
+  "nodes": [
+    ["A", 0, 1, 245]
+  ],
+  "title": "Klammerdiagramm — śākapārthivaḥ (madhyamapadalopin)",
+  "desc": "Leitan's madhyamapadalopin example śākapārthivaḥ (śākapriyaḥ pārthivaḥ — the vegetable-loving king): the elided middle member is RESTORED in the word line as [priya] in editorial brackets — no bar, no arrows, no node index (MG vote D4, 16-07-2026). Node A joins the two real members. I/II часть spans omitted (notation demo)."
+}

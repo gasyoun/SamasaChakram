@@ -1,0 +1,12 @@
+{
+  "tokens": ["pañca", "gava", "dhanaḥ"],
+  "II_START": 2,
+  "trailing_hyphen": false,
+  "style": {"FS": 46},
+  "nodes": [
+    ["A", 0, 1, 166, 0],
+    ["B", "A", 2, 285, 1]
+  ],
+  "title": "Klammerdiagramm — pañcagavadhanaḥ (Leitan comparison)",
+  "desc": "Leitan's dvigu-inside-bahuvrīhi example pañca-gava-dhanaḥ (his vigraha: pañca gāvo dhanaṃ yasya saḥ): dvigu pair A = pañca+gava (numeral-first karmadhāraya subtype, ordinary right-to-left pair), mirrored head B = [A]+dhanaḥ — whose wealth is five cows. II часть at dhanaḥ (asked). Drawn for the H982 comparison."
+}

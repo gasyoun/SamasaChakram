@@ -1,11 +1,20 @@
 # SamasaChakram
 
-_Created: 11-07-2026 · Last updated: 11-07-2026_
+_Created: 11-07-2026 · Last updated: 16-07-2026_
 
-> **Status: placeholder / early-stage.** This repository currently holds only the
-> project scaffolding (license and CI). There is no application, dataset, or
-> paper here yet — this README describes what the repository is *for*, not
-> shipped work.
+> **Status: live.** The samāsa programme consolidated here 16-07-2026 (H1010) from
+> claude-config: the /klammerdiagramm drawing system, its worked-example gallery,
+> the shared right-to-left reading method, and the Leitan conspectus crosswalk.
+
+## Contents
+
+| Path | What it is |
+|---|---|
+| [sanskrit-right-to-left-reading.md](https://github.com/gasyoun/SamasaChakram/blob/main/sanskrit-right-to-left-reading.md) | the canonical right-to-left (head-first) reading method + all MG samāsa-direction rulings; shared source for the `/sanskrit-parse`, `/klammeruebersetzung` and `/klammerdiagramm` skills (which live in [claude-config](https://github.com/gasyoun/claude-config)) |
+| [klammerdiagramm-worked-examples.md](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm-worked-examples.md) | the illustrated gallery — eleven compounds from the 2-lemma pair to the all-five-kinds capstone, each with diagram, config and what its run proved |
+| [KLAMMERDIAGRAMM_LEITAN_SAMASA_COMPARISON.md](https://github.com/gasyoun/SamasaChakram/blob/main/KLAMMERDIAGRAMM_LEITAN_SAMASA_COMPARISON.md) | the H982 crosswalk of the drawing system against Э. З. Лейтан's samāsa conspectus, with the six voted rulings (D1–D6) applied |
+| [klammerdiagramm/](https://github.com/gasyoun/SamasaChakram/tree/main/klammerdiagramm) | the generator ([build_klammerdiagramm.py](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/build_klammerdiagramm.py)), the OFL-renamed Charis 7.000 subset + licence, the printed reference plate, and every worked diagram (config JSON + SVG + embedded-font HTML + PNG) |
+| [leitan/](https://github.com/gasyoun/SamasaChakram/tree/main/leitan) | pinned text export of Э. З. Лейтан, «Сложные слова в санскрите» (from MG's «Общество ревнителей санскрита» webinar; publication here authorized by MG 16-07-2026) |
 
 ## What this is
 

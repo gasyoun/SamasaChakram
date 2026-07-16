@@ -1,0 +1,103 @@
+<svg viewBox="0 0 804 640" xmlns="http://www.w3.org/2000/svg" role="img" font-family="'Klammer Serif', 'Charis SIL', Charis, 'Gentium Plus', Georgia, serif">
+<title>Klammerdiagramm — yatpādāmbhojasevāruciśucimanasām (Leitan comparison)</title>
+<desc>The first half-compound of Leitan's Jalhaṇa stanza (Sūktimuktāvalī): yat-pāda-ambhoja-sevā-ruci-śuci-manasām — whose minds are pure through the light of service to the lotus-feet of whom — following Leitan's own right-to-left ladder: upamita pair A = pāda+ambhoja, chain B = yat+[A] (the deepest rung of his indentation), then mirrored accretions C–F: +sevā, +ruci, +śuci, +manasām. II часть at ruci (asked). Drawn for the H982 comparison.</desc>
+<defs>
+<pattern id="hatch" width="5.5" height="5.5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="5.5" stroke="currentColor" stroke-width="0.8"/></pattern>
+</defs>
+<line x1="44" y1="52" x2="154" y2="52" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.5 4.5"/>
+<line x1="270" y1="52" x2="379" y2="52" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.5 4.5"/>
+<line x1="499" y1="52" x2="565" y2="52" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.5 4.5"/>
+<line x1="689" y1="52" x2="754" y2="52" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.5 4.5"/>
+<path d="M379 52 C 413 54 433 70 439 96" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.5 4.5"/>
+<path d="M499 52 C 465 54 445 70 439 96" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.5 4.5"/>
+<text x="212" y="59" font-size="21" text-anchor="middle" fill="currentColor">I часть</text>
+<text x="627" y="59" font-size="21" text-anchor="middle" fill="currentColor">II часть</text>
+<text y="126" font-size="38" fill="currentColor">
+<tspan x="44.0">yat-</tspan>
+<tspan x="108.5">pāda-</tspan>
+<tspan x="202.0">ambhoja-</tspan>
+<tspan x="359.8">sevā-</tspan>
+<tspan x="445.2">ruci-</tspan>
+<tspan x="523.0">śuci-</tspan>
+<tspan x="601.1">manasām</tspan>
+</text>
+<rect x="113" y="162" width="73" height="84" fill="url(#hatch)"/>
+<rect x="186" y="198" width="5" height="48" fill="url(#hatch)"/>
+<path d="M113 146 L108 157 L117 157 Z" fill="currentColor"/>
+<path d="M186 146 L181 157 L190 157 Z" fill="currentColor"/>
+<line x1="113" y1="155" x2="113" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="186" y1="155" x2="186" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="186" y1="198" x2="191" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="113" y1="246" x2="191" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="191" y1="198" x2="191" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<rect x="229" y="162" width="92" height="36" fill="url(#hatch)"/>
+<rect x="225" y="198" width="96" height="48" fill="url(#hatch)"/>
+<path d="M229 146 L224 157 L233 157 Z" fill="currentColor"/>
+<path d="M321 146 L316 157 L325 157 Z" fill="currentColor"/>
+<line x1="229" y1="155" x2="229" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="321" y1="155" x2="321" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="225" y1="198" x2="229" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="225" y1="198" x2="225" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="225" y1="246" x2="321" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<text x="208" y="231" font-size="26" text-anchor="middle" fill="currentColor">A</text>
+<rect x="48" y="162" width="44" height="154" fill="url(#hatch)"/>
+<rect x="92" y="268" width="17" height="48" fill="url(#hatch)"/>
+<path d="M48 146 L44 157 L52 157 Z" fill="currentColor"/>
+<path d="M92 146 L88 157 L97 157 Z" fill="currentColor"/>
+<line x1="48" y1="155" x2="48" y2="316" stroke="currentColor" stroke-width="1.3"/>
+<line x1="92" y1="155" x2="92" y2="268" stroke="currentColor" stroke-width="1.3"/>
+<line x1="92" y1="268" x2="109" y2="268" stroke="currentColor" stroke-width="1.3"/>
+<line x1="48" y1="316" x2="109" y2="316" stroke="currentColor" stroke-width="1.3"/>
+<line x1="109" y1="268" x2="109" y2="316" stroke="currentColor" stroke-width="1.3"/>
+<line x1="143" y1="292" x2="208" y2="292" stroke="currentColor" stroke-width="1.3"/>
+<line x1="208" y1="292" x2="208" y2="248" stroke="currentColor" stroke-width="1.3"/>
+<text x="126" y="301" font-size="26" text-anchor="middle" fill="currentColor">B</text>
+<rect x="364" y="162" width="65" height="224" fill="url(#hatch)"/>
+<rect x="347" y="338" width="17" height="48" fill="url(#hatch)"/>
+<path d="M364 146 L359 157 L368 157 Z" fill="currentColor"/>
+<path d="M429 146 L425 157 L434 157 Z" fill="currentColor"/>
+<line x1="429" y1="155" x2="429" y2="386" stroke="currentColor" stroke-width="1.3"/>
+<line x1="364" y1="155" x2="364" y2="338" stroke="currentColor" stroke-width="1.3"/>
+<line x1="347" y1="338" x2="364" y2="338" stroke="currentColor" stroke-width="1.3"/>
+<line x1="347" y1="386" x2="429" y2="386" stroke="currentColor" stroke-width="1.3"/>
+<line x1="347" y1="338" x2="347" y2="386" stroke="currentColor" stroke-width="1.3"/>
+<line x1="313" y1="362" x2="126" y2="362" stroke="currentColor" stroke-width="1.3"/>
+<line x1="126" y1="362" x2="126" y2="318" stroke="currentColor" stroke-width="1.3"/>
+<text x="330" y="371" font-size="26" text-anchor="middle" fill="currentColor">C</text>
+<rect x="449" y="162" width="58" height="294" fill="url(#hatch)"/>
+<rect x="432" y="408" width="17" height="48" fill="url(#hatch)"/>
+<path d="M449 146 L445 157 L454 157 Z" fill="currentColor"/>
+<path d="M507 146 L502 157 L511 157 Z" fill="currentColor"/>
+<line x1="507" y1="155" x2="507" y2="456" stroke="currentColor" stroke-width="1.3"/>
+<line x1="449" y1="155" x2="449" y2="408" stroke="currentColor" stroke-width="1.3"/>
+<line x1="432" y1="408" x2="449" y2="408" stroke="currentColor" stroke-width="1.3"/>
+<line x1="432" y1="456" x2="507" y2="456" stroke="currentColor" stroke-width="1.3"/>
+<line x1="432" y1="408" x2="432" y2="456" stroke="currentColor" stroke-width="1.3"/>
+<line x1="398" y1="432" x2="330" y2="432" stroke="currentColor" stroke-width="1.3"/>
+<line x1="330" y1="432" x2="330" y2="388" stroke="currentColor" stroke-width="1.3"/>
+<text x="415" y="441" font-size="26" text-anchor="middle" fill="currentColor">D</text>
+<rect x="527" y="162" width="58" height="364" fill="url(#hatch)"/>
+<rect x="510" y="478" width="17" height="48" fill="url(#hatch)"/>
+<path d="M527 146 L523 157 L532 157 Z" fill="currentColor"/>
+<path d="M585 146 L580 157 L589 157 Z" fill="currentColor"/>
+<line x1="585" y1="155" x2="585" y2="526" stroke="currentColor" stroke-width="1.3"/>
+<line x1="527" y1="155" x2="527" y2="478" stroke="currentColor" stroke-width="1.3"/>
+<line x1="510" y1="478" x2="527" y2="478" stroke="currentColor" stroke-width="1.3"/>
+<line x1="510" y1="526" x2="585" y2="526" stroke="currentColor" stroke-width="1.3"/>
+<line x1="510" y1="478" x2="510" y2="526" stroke="currentColor" stroke-width="1.3"/>
+<line x1="476" y1="502" x2="415" y2="502" stroke="currentColor" stroke-width="1.3"/>
+<line x1="415" y1="502" x2="415" y2="458" stroke="currentColor" stroke-width="1.3"/>
+<text x="493" y="511" font-size="26" text-anchor="middle" fill="currentColor">E</text>
+<rect x="635" y="162" width="92" height="434" fill="url(#hatch)"/>
+<rect x="618" y="548" width="17" height="48" fill="url(#hatch)"/>
+<path d="M635 146 L630 157 L639 157 Z" fill="currentColor"/>
+<path d="M727 146 L722 157 L731 157 Z" fill="currentColor"/>
+<line x1="727" y1="155" x2="727" y2="596" stroke="currentColor" stroke-width="1.3"/>
+<line x1="635" y1="155" x2="635" y2="548" stroke="currentColor" stroke-width="1.3"/>
+<line x1="618" y1="548" x2="635" y2="548" stroke="currentColor" stroke-width="1.3"/>
+<line x1="618" y1="596" x2="727" y2="596" stroke="currentColor" stroke-width="1.3"/>
+<line x1="618" y1="548" x2="618" y2="596" stroke="currentColor" stroke-width="1.3"/>
+<line x1="584" y1="572" x2="493" y2="572" stroke="currentColor" stroke-width="1.3"/>
+<line x1="493" y1="572" x2="493" y2="528" stroke="currentColor" stroke-width="1.3"/>
+<text x="601" y="581" font-size="26" text-anchor="middle" fill="currentColor">F</text>
+</svg>

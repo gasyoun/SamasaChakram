@@ -1,0 +1,13 @@
+https://github.com/funderburkjim/MWderivations/blob/master/compounds/compounds.txt
+
+MW compounds
+The table shows data from Cologne digitization of Monier-Williams Sanskrit Dictionary of 1899. There are 12609 records in the table. Each corresponds to a headword which
+
+is marked as H1 or H2 (MW's first or second line of headwords)
+and has one or more H3 children.
+H3 headwords can also have H4 children, but this table ignores these
+The columns of the table are:
+number of children
+the 'parent' headword.
+The parent may be marked as a VERB -- 1247 of these. Clearly the children in such cases are not compounds, but the current (H3) markup of the children is the same as for samasas.
+the children (compounds) of the parent. In most cases, the child headword spelling in the 'key2' field of MW digitization is of the form 'X-Y', where X is the spelling of the parent. In such cases, the table shortens the child spelling to '+Y'.

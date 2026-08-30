@@ -1,0 +1,60 @@
+https://github.com/Jivnesh/ISCLS-19
+
+Deep Learning Based Approach for Compound Type Identification in Sanskrit
+
+
+jivneshsandhan@gmail.com
+
+https://sanskrit.uohyd.ac.in/cgi-bin/scl/skt_gen/compounds/showindex.cgi
+
+http://sanskrit.uohyd.ac.in/Corpus/
+
+Paper 9. Revisiting the Role of Feature Engineering for Compound Type Identification in Sanskrit, Jivnesh Sandhan,
+Amrith Krishna, Pawan Goyal and Laxmidhar Behera
+
+
+
+
+Словари https://drive.google.com/drive/folders/1iKfERunGDMGxTaEB6gJsV8Tzig4CF53H
+
+
+
+
+
+
+6th ISCLS
+
+Dear All,
+
+
+
+A few updates post the conference. Thanks Deepak and Amrith for helping with this.
+
+
+
+1. You can see the photos taken during the conference from the main website by clicking on "GALLERY"  https://iscls.github.io/
+
+
+The photos are available here for download: https://1drv.ms/u/s!AoBtr7-i8KtSakarkwMcpOfpNJo?e=TgfTeT
+
+
+2. We are creating a Youtube channel to upload the videos. Two videos are available as a playlist. https://www.youtube.com/channel/UCf_q0IiNxPFzz2-tw3tG0dQ
+
+We plan to add the Recordings of the keynote talks soon. 
+
+
+3. View only link to the slides: https://1drv.ms/u/s!AoBtr7-i8KtSaRFeQE5ODQbnxo0?e=emnwAN
+
+
+
+We do not have all the slides with us. Requesting the presenters to please share their slides if they have not already. Also, for the demo session presenters, please share your slides if you used slides. Otherwise, a brief document containing the url and any other instructions can be shared, which we will make available for all the participants.
+
+
+
+Also, if you have any good quality videos / photos etc., you may share a link via email on iscls@outlook.com
+
+
+
+Regards,
+
+Pawan

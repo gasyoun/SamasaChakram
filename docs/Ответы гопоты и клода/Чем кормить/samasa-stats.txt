@@ -1,0 +1,26 @@
+﻿1 	entry	10 padas	k2>.*[—-].*[—-].*[—-].*[—-].*[—-].*[—-].*[—-].*[—-].*[—-]	
+1 	entry	9 padas		k2>.*[—-].*[—-].*[—-].*[—-].*[—-].*[—-].*[—-].*[—-]		
+11 	entries	8 padas		k2>.*[—-].*[—-].*[—-].*[—-].*[—-].*[—-].*[—-]			
+28 	entries	7 padas		k2>.*[—-].*[—-].*[—-].*[—-].*[—-].*[—-]				
+122 	entries	6 padas		k2>.*[—-].*[—-].*[—-].*[—-].*[—-]				
+555 	entries	5 padas		k2>.*[—-].*[—-].*[—-].*[—-]					
+3532 	entries	4 padas		k2>.*[—-].*[—-].*[—-]						
+30591 	entries	3 padas		k2>.*[—-].*[—-]							
+182449 	entries	2 padas		k2>.*[—-]							
+
+217290 samāsas in MW out of 287425 entries (=<L>)
+
+Число 217290 от числа 287425 = 75,6%
+
+Подтверждаю данные https://yadi.sk/i/ySy6Nq9MQP3jzw (основанные на Оливере, который основан на MW), что 75,6% слов из словника MW сложные слова (число 217290 от числа 287425 = 75,6%)
+
+https://github.com/funderburkjim/MWderivations/issues/12 Longest samāsa in MW
+
+Кройцер, Максим и Лундышева выразили заинтересованность в 20 000 самасах
+
+
+https://sanskrit.uohyd.ac.in/Corpus/SHMT/Samaas-Tagging/JRRSU/Aakhyanvallari_Samaas.txt
+
+https://sanskrit.uohyd.ac.in/Corpus/SHMT/Samaas-Tagging/JRRSU/
+
+rājan-putrī: такого быть не может, только rājaputrī.

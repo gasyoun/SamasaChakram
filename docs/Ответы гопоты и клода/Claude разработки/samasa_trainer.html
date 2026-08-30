@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Самаса — тренажёр</title>
+<style>
+:root {
+  --bg: #f9f7f2; --card: #ffffff; --border: #d4c9a8;
+  --accent: #2e4057; --accent2: #3e6b8a;
+  --green: #2d6a4f; --red: #c0392b; --amber: #b7770d;
+  --shadow: 0 2px 14px rgba(0,0,0,0.09);
+  --r: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); font-family: 'Georgia', serif; color: #222; min-height: 100vh; }
+
+header { background: var(--accent); color: #fff; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+header h1 { font-size: 1.1rem; font-weight: normal; }
+header .sub { font-size: 0.77rem; opacity: 0.7; font-style: italic; }
+.score-badge { background: rgba(255,255,255,0.15); border-radius: 20px; padding: 4px 14px; font-size: 0.85rem; }
+
+nav { display: flex; gap: 0; border-bottom: 2px solid var(--border); background: #fff; }
+.tab { padding: 11px 22px; cursor: pointer; font-family: 'Georgia', serif; font-size: 0.9rem;
+       color: #777; border: none; background: none; border-bottom: 3px solid transparent;
+       margin-bottom: -2px; transition: all 0.2s; }
+.tab.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 500; }
+.tab:hover:not(.active) { color: var(--accent2); background: #f5f0e6; }
+
+main { max-width: 820px; margin: 0 auto; padding: 28px 16px 60px; }
+
+.panel { display: none; }
+.panel.active { display: block; }
+
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--r);
+        padding: 26px; box-shadow: var(--shadow); margin-bottom: 20px; animation: fade 0.3s ease; }
+@keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; } }
+
+.card-title { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: #999; margin-bottom: 10px; }
+.compound { font-size: 1.6rem; font-style: italic; color: var(--accent); margin-bottom: 6px; }
+.compound-devan { font-size: 1.1rem; color: #888; margin-bottom: 12px; }
+.prompt { font-size: 0.95rem; color: #444; margin-bottom: 16px; line-height: 1.6; }
+
+.options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+@media (max-width: 540px) { .options { grid-template-columns: 1fr; } }
+
+.opt-btn {
+  padding: 12px 14px; border-radius: 8px; border: 1.5px solid var(--border);
+  background: var(--card); cursor: pointer; font-family: 'Georgia', serif; font-size: 0.88rem;
+  text-align: left; transition: all 0.18s; line-height: 1.4;
+}
+.opt-btn:hover:not(:disabled) { background: #f0ecdf; border-color: var(--accent2); }
+.opt-btn.correct { background: #e6f4ec; border-color: var(--green); color: #1a4d35; }
+.opt-btn.wrong   { background: #fdecea; border-color: var(--red); color: #7a1e1e; }
+.opt-btn.reveal  { background: #e8f0e8; border-color: var(--green); opacity: 0.7; }
+.opt-btn:disabled { cursor: default; }
+
+.feedback { border-radius: 8px; padding: 14px 16px; margin-top: 8px; font-size: 0.9rem; line-height: 1.6; }
+.feedback.correct { background: #e6f4ec; border-left: 4px solid var(--green); color: #1a4a2a; }
+.feedback.wrong   { background: #fdecea; border-left: 4px solid var(--red); color: #7a1e1e; }
+.feedback em { font-style: italic; }
+.feedback strong { font-weight: bold; }
+
+.btn-next { margin-top: 14px; background: var(--accent); color: #fff; border: none;
+            padding: 10px 24px; border-radius: 6px; cursor: pointer;
+            font-family: 'Georgia', serif; font-size: 0.9rem; transition: background 0.2s; }
+.btn-next:hover { background: var(--accent2); }
+.btn-next:disabled { background: #ccc; cursor: default; }
+
+/* Vigraha trainer */
+.vigraha-input { width: 100%; padding: 10px 14px; border: 1.5px solid var(--border);
+                 border-radius: 6px; font-family: 'Georgia', serif; font-size: 1rem;
+                 font-style: italic; margin-bottom: 10px; transition: border-color 0.2s; }
+.vigraha-input:focus { outline: none; border-color: var(--accent2); }
+.btn-check { background: var(--accent); color: #fff; border: none; padding: 9px 20px;
+             border-radius: 6px; cursor: pointer; font-family: 'Georgia', serif; font-size: 0.88rem; }
+.answer-reveal { margin-top: 12px; padding: 12px 14px; background: #f5f0e6;
+                 border-radius: 6px; font-size: 0.9rem; line-height: 1.6; }
+.answer-reveal .canon { font-size: 1.05rem; font-style: italic; color: var(--accent); }
+.answer-reveal .trans { font-size: 0.85rem; color: #666; }
+
+/* Long compound */
+.long-cpd { font-size: 1.3rem; font-style: italic; color: var(--accent); line-height: 1.7;
+            margin-bottom: 8px; word-break: break-all; }
+.tree-area { font-family: 'Courier New', monospace; font-size: 0.85rem; color: #333;
+             background: #f5f0e6; padding: 14px; border-radius: 6px; margin: 12px 0;
+             white-space: pre; overflow-x: auto; }
+.step-panel { margin: 10px 0; padding: 12px 14px; background: #f0f4f8; border-radius: 6px; }
+.step-num { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: #999; }
+.step-content { font-size: 0.9rem; line-height: 1.6; margin-top: 4px; }
+
+/* Score panel */
+.score-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 20px; }
+.score-item { text-align: center; padding: 16px; background: var(--card); border: 1px solid var(--border);
+              border-radius: var(--r); }
+.score-item .num { font-size: 2.2rem; font-weight: bold; color: var(--accent); }
+.score-item .lbl { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 0.06em; }
+
+.progress-row { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 16px; }
+.prog-dot { width: 14px; height: 14px; border-radius: 50%; background: #ddd; }
+.prog-dot.ok { background: var(--green); }
+.prog-dot.fail { background: var(--red); }
+.prog-dot.cur { background: var(--amber); }
+
+/* Context exercise */
+.context-text { font-size: 0.95rem; font-style: italic; color: var(--accent2); margin: 10px 0 6px;
+                padding: 10px 14px; background: #f5f0e6; border-radius: 6px; line-height: 1.7; }
+.context-gloss { font-size: 0.8rem; color: #777; margin-bottom: 14px; line-height: 1.6; }
+.highlight { background: #ffe8a0; padding: 1px 4px; border-radius: 3px; }
+
+.mode-selector { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+.mode-btn { padding: 8px 18px; border-radius: 20px; border: 1.5px solid var(--border);
+            background: var(--card); cursor: pointer; font-family: 'Georgia', serif; font-size: 0.85rem;
+            color: var(--accent); transition: all 0.2s; }
+.mode-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>Samāsa — тренажёр</h1>
+    <div class="sub">Блоки 3, 4, 5: определение типа · виграха · длинные самасы · контекст</div>
+  </div>
+  <div class="score-badge" id="score-badge">0 / 0</div>
+</header>
+
+<nav>
+  <button class="tab active" onclick="showTab('t1')">1. Определи тип</button>
+  <button class="tab" onclick="showTab('t2')">2. Виграха</button>
+  <button class="tab" onclick="showTab('t3')">3. Длинные самасы</button>
+  <button class="tab" onclick="showTab('t4')">4. Контекст решает</button>
+  <button class="tab" onclick="showTab('t5')">Прогресс</button>
+</nav>
+
+<main>
+
+<!-- ══════════════════ TAB 1: Type identification ══════════════════ -->
+<div class="panel active" id="t1">
+  <div class="mode-selector">
+    <button class="mode-btn active" onclick="setMode('all',this)">Все типы</button>
+    <button class="mode-btn" onclick="setMode('tp',this)">Tatpuruṣa</button>
+    <button class="mode-btn" onclick="setMode('bv',this)">Bahuvrīhi</button>
+    <button class="mode-btn" onclick="setMode('km',this)">Karmadhāraya</button>
+    <button class="mode-btn" onclick="setMode('en',this)">Английские</button>
+    <button class="mode-btn" onclick="setMode('ru',this)">Русские</button>
+  </div>
+  <div id="q1-area"></div>
+</div>
+
+<!-- ══════════════════ TAB 2: Vigraha ══════════════════ -->
+<div class="panel" id="t2">
+  <div id="q2-area"></div>
+</div>
+
+<!-- ══════════════════ TAB 3: Long compounds ══════════════════ -->
+<div class="panel" id="t3">
+  <div id="q3-area"></div>
+</div>
+
+<!-- ══════════════════ TAB 4: Context ══════════════════ -->
+<div class="panel" id="t4">
+  <div id="q4-area"></div>
+</div>
+
+<!-- ══════════════════ TAB 5: Progress ══════════════════ -->
+<div class="panel" id="t5">
+  <div class="score-grid">
+    <div class="score-item"><div class="num" id="s-correct">0</div><div class="lbl">Верно</div></div>
+    <div class="score-item"><div class="num" id="s-total">0</div><div class="lbl">Всего</div></div>
+    <div class="score-item"><div class="num" id="s-pct">—</div><div class="lbl">% верных</div></div>
+  </div>
+  <div class="progress-row" id="progress-dots"></div>
+  <div id="mistakes-area"></div>
+</div>
+
+</main>
+
+<script>
+// ── SCORE ────────────────────────────────────────────────────────────────────
+let score = { correct: 0, total: 0, history: [] };
+function addScore(ok, item) {
+  score.total++; if (ok) score.correct++;
+  score.history.push({ ok, compound: item });
+  document.getElementById('score-badge').textContent = `${score.correct} / ${score.total}`;
+  updateProgress();
+}
+function updateProgress() {
+  const dots = document.getElementById('progress-dots');
+  dots.innerHTML = score.history.map(h => `<div class="prog-dot ${h.ok?'ok':'fail'}"></div>`).join('');
+  document.getElementById('s-correct').textContent = score.correct;
+  document.getElementById('s-total').textContent = score.total;
+  document.getElementById('s-pct').textContent = score.total ? Math.round(score.correct/score.total*100)+'%' : '—';
+  const mistakes = score.history.filter(h=>!h.ok);
+  document.getElementById('mistakes-area').innerHTML = mistakes.length
+    ? `<div class="card"><div class="card-title">Ошибки</div>${mistakes.map(m=>`<div style="margin-bottom:8px;font-style:italic;color:var(--red)">${m.compound}</div>`).join('')}</div>` : '';
+}
+
+// ── TAB SWITCHING ────────────────────────────────────────────────────────────
+function showTab(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ══════════════════════════════════════════════════════════════
+// DATASET
+// ══════════════════════════════════════════════════════════════
+
+const TYPE_QUESTIONS = [
+  // Tatpuruṣa
+  { compound:'rājasevakaḥ', devan:'राजसेवकः', type:'tatpuruṣa-ṣaṣṭhī', label:'ṣaṣṭhī-tatpuruṣa', hint:'Виграха: rājñaḥ sevakaḥ — слуга (gen.) царя. Самый частый тип.', para:'§4.1.6', group:'tp',
+    opts:['ṣaṣṭhī-tatpuruṣa','bahuvrīhi','karmadhāraya','dvandva'] },
+  { compound:'caurabhayam', devan:'चौरभयम्', type:'tatpuruṣa-pañcamī', label:'pañcamī-tatpuruṣa', hint:'Виграха: caurād bhayam. Правая часть — bhaya, сигнал аблатива.', para:'§4.1.5', group:'tp',
+    opts:['pañcamī-tatpuruṣa','tatpuruṣa-ṣaṣṭhī','avyayībhāva','bahuvrīhi'] },
+  { compound:'grāmagataḥ', devan:'ग्रामगतः', type:'tatpuruṣa-dvitīyā', label:'dvitīyā-tatpuruṣa', hint:'Виграха: grāmaṃ gataḥ. Правая часть — ktānta gata-, аккузатив слева.', para:'§4.1.2', group:'tp',
+    opts:['dvitīyā-tatpuruṣa','saptamī-tatpuruṣa','karmadhāraya','bahuvrīhi'] },
+  { compound:'pāṭhaśālā', devan:'पाठशाला', type:'tatpuruṣa-caturthī', label:'caturthī-tatpuruṣa', hint:'Виграха: pāṭhāya śālā — здание для (dat.) рецитации.', para:'§4.1.4', group:'tp',
+    opts:['caturthī-tatpuruṣa','ṣaṣṭhī-tatpuruṣa','avyayībhāva','dvandva'] },
+  { compound:'yuddhanipuṇaḥ', devan:'युद्धनिपुणः', type:'tatpuruṣa-saptamī', label:'saptamī-tatpuruṣa', hint:'Виграха: yuddhe nipuṇaḥ — искусный в (loc.) бою. nipuṇa — сигнал локатива.', para:'§4.1.7', group:'tp',
+    opts:['saptamī-tatpuruṣa','caturthī-tatpuruṣa','karmadhāraya','bahuvrīhi'] },
+  { compound:'abrāhmaṇaḥ', devan:'अब्राह्मणः', type:'tatpuruṣa-nañ', label:'nañ-tatpuruṣa', hint:'Виграха: na brāhmaṇaḥ. F=99.3% — наиболее точно идентифицируемый тип.', para:'§4.1.8', group:'tp',
+    opts:['nañ-tatpuruṣa','nañ-bahuvrīhi','karmadhāraya','avyayībhāva'] },
+  { compound:'vākkalahaḥ', devan:'वाक्कलहः', type:'tatpuruṣa-tṛtīyā', label:'tṛtīyā-tatpuruṣa', hint:'Виграха: vāgbhiḥ kalahaḥ — спор посредством (inst.) слов.', para:'§4.1.3', group:'tp',
+    opts:['tṛtīyā-tatpuruṣa','ṣaṣṭhī-tatpuruṣa','dvandva','bahuvrīhi'] },
+  // Karmadhāraya
+  { compound:'meghaśyāmaḥ', devan:'मेघश्यामः', type:'karmadhāraya-upamāna', label:'upamānapūrvapada-karmadhāraya', hint:'Виграха: megha iva śyāmaḥ [kṛṣṇaḥ]. Сравнение с iva — сигнал.', para:'§4.2.5', group:'km',
+    opts:['upamānapūrvapada-karmadhāraya','ṣaṣṭhī-tatpuruṣa','bahuvrīhi','avyayībhāva'] },
+  { compound:'mahārājaḥ', devan:'महाराजः', type:'karmadhāraya-adj', label:'viśeṣaṇapūrvapada-karmadhāraya', hint:'Виграха: mahāṃś ca asau rājā ca. Прилагательное mahā- описывает rāja-.', para:'§4.2.1', group:'km',
+    opts:['viśeṣaṇapūrvapada-karmadhāraya','ṣaṣṭhī-tatpuruṣa','dvandva','bahuvrīhi'] },
+  { compound:'vidyādhanam', devan:'विद्याधनम्', type:'karmadhāraya-rupaka', label:'avadhāraṇa-karmadhāraya (rūpaka)', hint:'Виграха: vidyā eva dhanam. Метафора с eva: знание — это богатство.', para:'§4.2.7', group:'km',
+    opts:['avadhāraṇa-karmadhāraya (rūpaka)','ṣaṣṭhī-tatpuruṣa','dvandva','avyayībhāva'] },
+  { compound:'śītoṣṇam', devan:'शीतोष्णम्', type:'karmadhāraya-ubhaya', label:'viśeṣaṇobhayapada-karmadhāraya', hint:'Оба компонента — прилагательные: śīta (холодный) + uṣṇa (горячий) = прохладный.', para:'§4.2.4', group:'km',
+    opts:['viśeṣaṇobhayapada-karmadhāraya','karmadhāraya-adj','dvandva','tatpuruṣa'] },
+  { compound:'rājarṣiḥ', devan:'राजर्षिः', type:'karmadhāraya-appos', label:'аппозиционная karmadhāraya', hint:'Виграха: rājā ca sa ṛṣiś ca — он и царь, и провидец. Два существительных.', para:'§4.2.2', group:'km',
+    opts:['аппозиционная karmadhāraya','ṣaṣṭhī-tatpuruṣa','bahuvrīhi','dvandva'] },
+  // Bahuvrīhi
+  { compound:'pītāmbaraḥ [hariḥ]', devan:'पीताम्बरः', type:'bahuvrīhi-ṣaṣṭhī', label:'bahuvrīhi (ṣaṣṭhyartha)', hint:'Весь композит — прилагательное (m.), но ambara- (ср. р.). Виграха: pītam ambaraṃ yasya saḥ.', para:'§5.1.5', group:'bv',
+    opts:['bahuvrīhi (ṣaṣṭhyartha)','ṣaṣṭhī-tatpuruṣa','karmadhāraya','dvandva'] },
+  { compound:'abhāryaḥ [devadattaḥ]', devan:'अभार्यः', type:'bahuvrīhi-nañ', label:'nañ-bahuvrīhi', hint:'Виграха: avidyamānā bhāryā yasya saḥ. (≠ nañ-tp.: «na bhāryā»)', para:'§5.1.7', group:'bv',
+    opts:['nañ-bahuvrīhi','nañ-tatpuruṣa','karmadhāraya','dvandva'] },
+  { compound:'cakrapāṇiḥ [hariḥ]', devan:'चक्रपाणिः', type:'bahuvrīhi-saptamī', label:'vyadhikaraṇa-bahuvrīhi (локатив)', hint:'Виграха: cakraṃ pāṇau yasya saḥ — чакра в (loc.) руке. Несогласованный bahuvrīhi.', para:'§5.2.1', group:'bv',
+    opts:['vyadhikaraṇa-bahuvrīhi (локатив)','saptamī-tatpuruṣa','karmadhāraya','dvandva'] },
+  { compound:'nirjitakāmaḥ [śivaḥ]', devan:'निर्जितकामः', type:'bahuvrīhi-tṛtīyā', label:'bahuvrīhi (tṛtīyārtha)', hint:'Виграха: nirjitaḥ kāmaḥ yena saḥ — тот, которым Кама побеждён.', para:'§5.1.2', group:'bv',
+    opts:['bahuvrīhi (tṛtīyārtha)','nañ-bahuvrīhi','tṛtīyā-tatpuruṣa','karmadhāraya'] },
+  // Dvandva
+  { compound:'rāmakṛṣṇau', devan:'रामकृष्णौ', type:'dvandva-itaretara', label:'itaretara-dvandva', hint:'Виграха: rāmaś ca kṛṣṇaś ca. Форма — du. (двое).', para:'§6.1.1', group:'dv',
+    opts:['itaretara-dvandva','samāhāra-dvandva','karmadhāraya','tatpuruṣa'] },
+  { compound:'pāṇipādamukham', devan:'पाणिपादमुखम्', type:'dvandva-samāhāra', label:'samāhāra-dvandva', hint:'Виграха: pāṇī ca pādau ca mukhaṃ ca. Форма — sg.nt. (совокупность: части тела).', para:'§6.2.2', group:'dv',
+    opts:['samāhāra-dvandva','itaretara-dvandva','bahuvrīhi','tatpuruṣa'] },
+  // Avyayībhāva
+  { compound:'upagaṅgam', devan:'उपगङ्गम्', type:'avyayībhāva', label:'avyayībhāva', hint:'Виграха: gaṅgāyāḥ samīpam. Первый компонент upa- (близость). Итог — наречие.', para:'§7.2', group:'av',
+    opts:['avyayībhāva','caturthī-tatpuruṣa','bahuvrīhi','dvandva'] },
+  { compound:'nirmakṣikam', devan:'निर्मक्षिकम्', type:'avyayībhāva', label:'avyayībhāva', hint:'Виграха: makṣikāṇām abhāvaḥ. nir- = отсутствие объектов.', para:'§7.5', group:'av',
+    opts:['avyayībhāva','nañ-tatpuruṣa','bahuvrīhi','karmadhāraya'] },
+  // English compounds
+  { compound:'treehouse', devan:'', type:'tatpuruṣa-saptamī', label:'tatpuruṣa (локатив)', hint:'house in a tree — локативные отношения. По Ruppel: dependent determinative.', para:'Ruppel p.139', group:'en',
+    opts:['tatpuruṣa (локатив)','karmadhāraya','bahuvrīhi','dvandva'] },
+  { compound:'blackbird', devan:'', type:'karmadhāraya-adj', label:'karmadhāraya (viśeṣaṇa)', hint:'a bird that is black — X описывает Y, один падеж. Descriptive determinative (Ruppel).', para:'Ruppel p.138', group:'en',
+    opts:['karmadhāraya (viśeṣaṇa)','tatpuruṣa','bahuvrīhi','dvandva'] },
+  { compound:'barefoot', devan:'', type:'bahuvrīhi', label:'bahuvrīhi (посессивный)', hint:'someone whose feet are bare — всегда прилагательное. Possessive compound (Ruppel). Ср. «длиннорукий».', para:'Ruppel p.140', group:'en',
+    opts:['bahuvrīhi (посессивный)','karmadhāraya','tatpuruṣa','dvandva'] },
+  { compound:'bitter-sweet', devan:'', type:'dvandva', label:'dvandva', hint:'Оба компонента равноправны. Coordinative compound (Ruppel). Ср. «хлеб-соль».', para:'Ruppel p.141', group:'en',
+    opts:['dvandva','karmadhāraya','bahuvrīhi','tatpuruṣa'] },
+  { compound:'cookbook', devan:'', type:'tatpuruṣa-caturthī', label:'tatpuruṣa (датив)', hint:'book for cooking — дативные отношения. Dependent determinative.', para:'Ruppel p.139', group:'en',
+    opts:['tatpuruṣa (датив)','karmadhāraya','bahuvrīhi','dvandva'] },
+  // Russian compounds
+  { compound:'маслозавод', devan:'', type:'tatpuruṣa-ṣaṣṭhī', label:'tatpuruṣa (gen.)', hint:'завод масла — генетивные отношения. Зализняк §193.', para:'Зализняк §193', group:'ru',
+    opts:['tatpuruṣa (gen.)','karmadhāraya','bahuvrīhi','dvandva'] },
+  { compound:'белоэмигрант', devan:'', type:'karmadhāraya-adj', label:'karmadhāraya', hint:'эмигрант, который белый — прилагательное + существительное. Зализняк §193.', para:'Зализняк §193', group:'ru',
+    opts:['karmadhāraya','tatpuruṣa','bahuvrīhi','dvandva'] },
+  { compound:'длиннорукий', devan:'', type:'bahuvrīhi', label:'bahuvrīhi', hint:'тот, чьи руки длинны — прилагательное, образованное от именного сочетания. Зализняк §194.', para:'Зализняк §194', group:'ru',
+    opts:['bahuvrīhi','karmadhāraya','tatpuruṣa','dvandva'] },
+  { compound:'хлеб-соль', devan:'', type:'dvandva', label:'dvandva', hint:'хлеб и соль — сочинительное сложение. Зализняк §192.', para:'Зализняк §192', group:'ru',
+    opts:['dvandva','karmadhāraya','bahuvrīhi','tatpuruṣa'] },
+];
+
+const VIGRAHA_QUESTIONS = [
+  { compound:'caurabhayam', trans:'страх перед вором', vigraha:'caurād bhayam', type:'pañcamī-tatpuruṣa', para:'§4.1.5', note:'Аблатив: от (abl.) вора — страх.' },
+  { compound:'rājaputraḥ', trans:'сын царя', vigraha:'rājñaḥ putraḥ', type:'ṣaṣṭhī-tatpuruṣa', para:'§4.1.6', note:'Генетив: сын царя (gen.).' },
+  { compound:'grāmagataḥ', trans:'пошедший в деревню', vigraha:'grāmaṃ gataḥ', type:'dvitīyā-tatpuruṣa', para:'§4.1.2', note:'Аккузатив: пошедший (ktānta) в деревню (acc.).' },
+  { compound:'pāṭhaśālā', trans:'школа', vigraha:'pāṭhāya śālā', type:'caturthī-tatpuruṣa', para:'§4.1.4', note:'Датив: здание для (dat.) рецитации.' },
+  { compound:'kākabaliḥ', trans:'приношение воронам', vigraha:'kākebhyaḥ baliḥ', type:'caturthī-tatpuruṣa', para:'§4.1.4', note:'Датив: bali — ключевое слово дативного типа.' },
+  { compound:'meghaśyāmaḥ', trans:'тёмный как туча [Кришна]', vigraha:'megha iva śyāmaḥ [kṛṣṇaḥ]', type:'upamānapūrvapada-karmadhāraya', para:'§4.2.5', note:'Сравнение с iva: объект сравнения в левой части.' },
+  { compound:'vidyādhanam', trans:'знание-богатство', vigraha:'vidyā eva dhanam', type:'avadhāraṇa-karmadhāraya', para:'§4.2.7', note:'Метафора с eva: знание = богатство.' },
+  { compound:'pītāmbaraḥ [hariḥ]', trans:'тот, у кого жёлтая одежда', vigraha:'pītam ambaraṃ yasya saḥ', type:'bahuvrīhi (ṣaṣṭhyartha)', para:'§5.1.5', note:'Баху врихи: Y yasya saḥ — формула посессивного композита.' },
+  { compound:'abhāryaḥ [devadattaḥ]', trans:'тот, у кого нет жены', vigraha:'avidyamānā bhāryā yasya saḥ', type:'nañ-bahuvrīhi', para:'§5.1.7', note:'≠ nañ-tp. (na bhāryā). Формула с avidyamāna.' },
+  { compound:'rāmakṛṣṇau', trans:'Рама и Кришна', vigraha:'rāmaś ca kṛṣṇaś ca', type:'itaretara-dvandva', para:'§6.1.1', note:'Двандва: X ca Y ca. Форма — du.' },
+  { compound:'pāṇipādamukham', trans:'руки, ноги и лицо', vigraha:'pāṇī ca pādau ca mukhaṃ ca', type:'samāhāra-dvandva', para:'§6.2.2', note:'Совокупность: sg.nt. Части тела.' },
+  { compound:'upagaṅgam', trans:'близ Ганги', vigraha:'gaṅgāyāḥ samīpam', type:'avyayībhāva', para:'§7.2', note:'Авьяибхава: upa- = samīpa (близость).' },
+  { compound:'nirmakṣikam', trans:'безмушно', vigraha:'makṣikāṇām abhāvaḥ', type:'avyayībhāva', para:'§7.5', note:'nir- = arthābhāva (отсутствие объектов).' },
+  { compound:'nagaḥ', trans:'неподвижное (гора, дерево)', vigraha:'na gacchati', type:'nañ-tatpuruṣa', para:'§4.1.8', note:'nañ-tp: виграха через «na + verb». F=99.3%.' },
+  { compound:'manujaḥ', trans:'(любой) человек', vigraha:'manoḥ jātaḥ', type:'upapada-tatpuruṣa', para:'§4.1.11', note:'Упапада: kṛdanta jātaḥ как uttarapada.' },
+];
+
+const LONG_QUESTIONS = [
+  {
+    compound:'janabandhuḥ',
+    devan:'',
+    parts:['jana-', 'bandhu-'],
+    types:['ṣaṣṭhī-tatpuruṣa'],
+    tree:'[jana- | bandhu-]ḥ\njanasya bandhuḥ\n«друг людей»',
+    steps:[
+      { num:1, text:'Выделить компоненты: jana- (люди) + bandhu- (друг)' },
+      { num:2, text:'Виграха: janasya bandhuḥ — генетив слева' },
+      { num:3, text:'Тип: ṣaṣṭhī-tatpuruṣa — «друг людей»' },
+    ],
+    para:'§4.1.6'
+  },
+  {
+    compound:'indriyanigrahaḥ',
+    devan:'इन्द्रियनिग्रहः',
+    parts:['indriya-', 'nigraha-'],
+    types:['ṣaṣṭhī-tatpuruṣa'],
+    tree:'[indriya- | nigraha-]ḥ\nindriyāṇāṃ nigrahaḥ\n«обуздание чувств»',
+    steps:[
+      { num:1, text:'Компоненты: indriya- (чувства, pl.) + nigraha- (обуздание)' },
+      { num:2, text:'Виграха: indriyāṇāṃ nigrahaḥ — генетив мн. числа' },
+      { num:3, text:'Тип: ṣaṣṭhī-tatpuruṣa. Самый частый тип (40.56%)' },
+    ],
+    para:'§4.1.6'
+  },
+  {
+    compound:'uṣṭra-kula-dharmāḥ',
+    devan:'',
+    parts:['uṣṭra-', 'kula-', 'dharma-'],
+    types:['karmadhāraya (внутри)', 'bahuvrīhi (снаружи)'],
+    tree:'[ uṣṭra- [ kula-dharma- ] ]āḥ\n│        └ karmadhāraya\n└──────── bahuvrīhi\n\n«чьи законы рода — верблюжьи»\n(Bhagavad-Gītā; Ruppel p.143)',
+    steps:[
+      { num:1, text:'kula-dharma- = karmadh.: «законы рода» (viśeṣ.+subs.)' },
+      { num:2, text:'uṣṭra-[kula-dharma-] = bahuvrīhi: «чьи законы рода — верблюжьи»' },
+      { num:3, text:'Внутренняя структура: [uṣṭra-[kula-dharma-]]āḥ' },
+    ],
+    para:'Ruppel p.143; §4.2.1'
+  },
+  {
+    compound:'rāja-sukha-lobhaḥ',
+    devan:'',
+    parts:['rāja-', 'sukha-', 'lobha-'],
+    types:['karmadhāraya (внутри)', 'tatpuruṣa (снаружи)'],
+    tree:'[ [ rāja-sukha- ] lobha- ]ḥ\n  └ karmadhāraya\n└──────── tatpuruṣa\n\n«жажда царского счастья»\n(Bhagavad-Gītā; Ruppel p.143)',
+    steps:[
+      { num:1, text:'rāja-sukha- = karmadhāraya: «царское счастье» (rājan-adj.)' },
+      { num:2, text:'[rāja-sukha-]-lobhaḥ = tatpuruṣa (gen./dat.): «жажда [царского счастья]»' },
+      { num:3, text:'Дерево: [[rāja-sukha-]lobha-]ḥ — кармадхарая внутри татпуруши' },
+    ],
+    para:'Ruppel p.143'
+  },
+  {
+    compound:'cakrapāṇiḥ [hariḥ]',
+    devan:'चक्रपाणिः',
+    parts:['cakra-', 'pāṇi-'],
+    types:['vyadhikaraṇa-bahuvrīhi (lokative)'],
+    tree:'[cakra- | pāṇi-]ḥ\ncakraṃ pāṇau yasya saḥ\n«тот, у кого чакра в руке» = Хари-Вишну',
+    steps:[
+      { num:1, text:'Компоненты: cakra- (диск) + pāṇi- (рука)' },
+      { num:2, text:'Весь композит — прилагательное (м.р.), но pāṇi- (м.р.) — совпадение рода' },
+      { num:3, text:'Виграха с локативом: cakraṃ pāṇau yasya saḥ → vyadhikaraṇa-bahuvrīhi' },
+    ],
+    para:'§5.2.1'
+  },
+];
+
+const CONTEXT_QUESTIONS = [
+  {
+    context:'ahaṃ ca tvaṃ ca rājendra <span class="highlight">lokanāthāv</span> ubhāv api / bahuvrīhir ahaṃ rājan ṣaṣṭhītatpuruṣo bhavān',
+    gloss:'«Я и ты, государь, мы оба — lokanāthāu. Но я (нищий) — bahuvrīhi, а ты (царь) — ṣaṣṭhī-tatpuruṣa»',
+    compound:'lokanāthaḥ',
+    question:'Как понимается lokanāthaḥ применительно к нищему?',
+    opts:[
+      { label:'bahuvrīhi: lokāḥ nāthāḥ yasya saḥ — «тот, чьи защитники — люди»', correct:true },
+      { label:'ṣaṣṭhī-tatpuruṣa: lokānāṃ nāthaḥ — «защитник людей»', correct:false },
+      { label:'karmadhāraya: loka eva nāthaḥ — «мир-защитник»', correct:false },
+    ],
+    feedback_ok:'Верно! Нищий = bahuvrīhi: его защитники — простые люди. Царь = tatpuruṣa: он сам защищает людей. Одно слово — два смысла (§9).',
+    feedback_fail:'Нет. Нищий (bahuvrīhi): «тот, чьи защитники — люди» (lokāḥ nāthāḥ yasya saḥ). Царь (tatpuruṣa): «защитник людей» (lokānāṃ nāthaḥ). (§9)',
+    para:'§9'
+  },
+  {
+    context:'nirmakṣikaṃ <span class="highlight">tad vanam</span>: avidyamānā makṣikā yasmin tad vanam',
+    gloss:'«Этот лес безмушен: лес, в котором отсутствуют мухи»',
+    compound:'nirmakṣikam',
+    question:'В каком значении здесь nirmakṣikam?',
+    opts:[
+      { label:'bahuvrīhi (прāди): «тот/та, у кого нет мух»', correct:true },
+      { label:'avyayībhāva: «безмушно» (наречие)', correct:false },
+      { label:'nañ-tatpuruṣa: «не-муха»', correct:false },
+    ],
+    feedback_ok:'Верно! С vanam (ср.р.) это прāди-bahuvrīhi: лес, в котором мух нет. (§7.5 + §5.1.8)',
+    feedback_fail:'Нет. Здесь с vanam — прāди-bahuvrīhi. Та же форма nirmakṣikam в другом контексте: «в этом лесу безмушно» — тогда это avyayībhāva. Контекст определяет! (§7.5)',
+    para:'§7.5 / §5.1.8'
+  },
+  {
+    context:'<span class="highlight">hato dvipo yena sa kesarī</span>: «лев, которым слон был убит»',
+    gloss:'Словосочетание hatadvipaḥ kesarī. Форма vigraha: hato dvipo yena sa.',
+    compound:'hatadvipaḥ',
+    question:'Какой тип самасы в данном контексте?',
+    opts:[
+      { label:'bahuvrīhi (tṛtīyārthaḥ): «лев, которым слон убит»', correct:true },
+      { label:'viśeṣaṇapūrvapada-karmadhāraya: «убитый слон»', correct:false },
+      { label:'ṣaṣṭhī-tatpuruṣa: «слон убитого»', correct:false },
+    ],
+    feedback_ok:'Верно! С внешним словом kesarī — это bahuvrīhi (tṛtīyārtha): виграха hato dvipo yena sa kesarī. Один состав — три возможных интерпретации (§9).',
+    feedback_fail:'Нет. В присутствии внешнего слова kesarī — это bahuvrīhi с tṛtīyā: «лев, которым слон убит». Без контекста возможны и karmadhāraya, и tatpuruṣa. (§9)',
+    para:'§9'
+  },
+  {
+    context:'sa kapiḥ <span class="highlight">aparāṃ striyam</span> dadarśa',
+    gloss:'Рамаяна 5.8.46: «Этот обезьян увидел женщину, [превосходнее которой ничего нет]»',
+    compound:'aparā strī',
+    question:'Как работает aparā в выражении «aparāṃ … striyam»?',
+    opts:[
+      { label:'nañ-bahuvrīhi: avidyamānaṃ paraṃ yasyāḥ tāṃ striyam', correct:true },
+      { label:'nañ-tatpuruṣa: na parā strī', correct:false },
+      { label:'avyayībhāva: «без равных»', correct:false },
+    ],
+    feedback_ok:'Верно! Nañ-bahuvrīhi: «женщина, превосходнее которой ничего нет» (avidyamānaṃ paraṃ yasyāḥ tāṃ striyam). (§5.1.7)',
+    feedback_fail:'Нет. Это nañ-bahuvrīhi: «женщина, превосходнее которой ничего нет». Виграха с avidyamāna. (§5.1.7; Рамаяна 5.8.46 crit. ed.)',
+    para:'§5.1.7'
+  },
+];
+
+// ══════════════════════════════════════════════════════════════
+// TAB 1: Type identification
+// ══════════════════════════════════════════════════════════════
+
+let t1Mode = 'all';
+let t1Pool = [], t1idx = 0, t1answered = false;
+
+function setMode(mode, btn) {
+  t1Mode = mode;
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  t1idx = 0; t1Pool = shufflePool(mode); t1answered = false;
+  renderQ1();
+}
+
+function shufflePool(mode) {
+  const pool = mode === 'all' ? TYPE_QUESTIONS : TYPE_QUESTIONS.filter(q => q.group === mode);
+  return [...pool].sort(() => Math.random() - 0.5);
+}
+
+function renderQ1() {
+  if (!t1Pool.length) t1Pool = shufflePool(t1Mode);
+  const q = t1Pool[t1idx % t1Pool.length];
+  const opts = [...q.opts].sort(() => Math.random() - 0.5);
+  const area = document.getElementById('q1-area');
+  t1answered = false;
+
+  area.innerHTML = `
+    <div class="card">
+      <div class="card-title">Задание ${(t1idx % t1Pool.length) + 1} / ${t1Pool.length} — Определи тип</div>
+      <div class="compound">${q.compound}</div>
+      ${q.devan ? `<div class="compound-devan">${q.devan}</div>` : ''}
+      <div class="prompt">Какому типу принадлежит это сложное слово?</div>
+      <div class="options" id="opts1">
+        ${opts.map(o => `<button class="opt-btn" onclick="checkQ1(this,'${o}','${q.label}','${q.hint.replace(/'/g,"\\'")}','${q.compound.replace(/'/g,"\\'")}','${q.para}')">${o}</button>`).join('')}
+      </div>
+      <div id="fb1"></div>
+      <button class="btn-next" id="next1" onclick="nextQ1()" disabled>Следующее →</button>
+    </div>`;
+}
+
+function checkQ1(btn, chosen, correct, hint, compound, para) {
+  if (t1answered) return;
+  t1answered = true;
+  const ok = chosen === correct;
+  document.querySelectorAll('#opts1 .opt-btn').forEach(b => {
+    b.disabled = true;
+    if (b.textContent.trim() === correct) b.classList.add('correct');
+    else if (b === btn && !ok) b.classList.add('wrong');
+  });
+  document.getElementById('fb1').innerHTML = `
+    <div class="feedback ${ok?'correct':'wrong'}">
+      <strong>${ok ? '✓ Верно!' : '✗ Нет.'}</strong><br>
+      Тип: <em>${correct}</em><br>
+      ${hint}<br>
+      <span style="font-size:0.78rem;opacity:0.7">Источник: ${para}</span>
+    </div>`;
+  document.getElementById('next1').disabled = false;
+  addScore(ok, compound);
+}
+
+function nextQ1() { t1idx++; renderQ1(); }
+
+// ══════════════════════════════════════════════════════════════
+// TAB 2: Vigraha
+// ══════════════════════════════════════════════════════════════
+
+let t2idx = 0, t2pool = [], t2shown = false;
+
+function renderQ2() {
+  if (!t2pool.length) t2pool = [...VIGRAHA_QUESTIONS].sort(() => Math.random() - 0.5);
+  const q = t2pool[t2idx % t2pool.length];
+  t2shown = false;
+  document.getElementById('q2-area').innerHTML = `
+    <div class="card">
+      <div class="card-title">Задание ${(t2idx % t2pool.length) + 1} / ${t2pool.length} — Восстанови виграху</div>
+      <div class="compound">${q.compound}</div>
+      ${q.devan ? `<div class="compound-devan">${q.devan}</div>` : ''}
+      <div class="prompt">Тип: <em>${q.type}</em> · Перевод: «${q.trans}»<br>Напиши формулу самаса-виграхи (IAST):</div>
+      <input class="vigraha-input" id="v-input" placeholder="напр. rājñaḥ putraḥ" autocomplete="off" spellcheck="false"
+             onkeydown="if(event.key==='Enter')checkV()">
+      <div>
+        <button class="btn-check" onclick="checkV()">Проверить</button>
+        <button class="btn-check" style="margin-left:8px;background:var(--accent2)" onclick="showAnswer()">Показать ответ</button>
+      </div>
+      <div id="fb2"></div>
+      <button class="btn-next" id="next2" onclick="nextQ2()" disabled>Следующее →</button>
+    </div>`;
+}
+
+function normalize(s) { return s.toLowerCase().replace(/[^a-zāīūṛḥṃśṣṭḍṇñṅ ]/g,'').replace(/\s+/g,' ').trim(); }
+
+function checkV() {
+  const q = t2pool[t2idx % t2pool.length];
+  const val = document.getElementById('v-input').value;
+  const ok = normalize(val) === normalize(q.vigraha);
+  const close = normalize(q.vigraha).split(' ').filter(w => normalize(val).includes(w)).length >= 1;
+  document.getElementById('fb2').innerHTML = `
+    <div class="answer-reveal">
+      <div class="ex-title">Канонический ответ</div>
+      <div class="canon">${q.vigraha}</div>
+      <div class="trans">«${q.trans}» — ${q.note}</div>
+      <div style="margin-top:6px;font-size:0.78rem;color:#888">Источник: ${q.para}</div>
+      ${ok ? '<div style="color:var(--green);margin-top:6px">✓ Отличное совпадение!</div>'
+           : close ? '<div style="color:var(--amber);margin-top:6px">Близко — сравни с каноническим ответом</div>'
+           : '<div style="color:var(--red);margin-top:6px">Отличается — изучи формулу виграхи</div>'}
+    </div>`;
+  document.getElementById('next2').disabled = false;
+  if (!t2shown) { addScore(ok, q.compound); t2shown = true; }
+}
+
+function showAnswer() {
+  document.getElementById('v-input').value = t2pool[t2idx % t2pool.length].vigraha;
+  checkV();
+}
+
+function nextQ2() { t2idx++; t2shown = false; renderQ2(); }
+
+// ══════════════════════════════════════════════════════════════
+// TAB 3: Long compounds
+// ══════════════════════════════════════════════════════════════
+
+let t3idx = 0, t3step = 0;
+
+function renderQ3() {
+  const q = LONG_QUESTIONS[t3idx % LONG_QUESTIONS.length];
+  document.getElementById('q3-area').innerHTML = `
+    <div class="card">
+      <div class="card-title">Задание ${(t3idx % LONG_QUESTIONS.length) + 1} / ${LONG_QUESTIONS.length} — Разбери длинную самасу</div>
+      <div class="long-cpd">${q.compound}</div>
+      ${q.devan ? `<div class="compound-devan">${q.devan}</div>` : ''}
+      <div class="prompt">Компоненты: ${q.parts.map(p=>`<em>${p}</em>`).join(' + ')}<br>Типы: ${q.types.join(' → ')}</div>
+      <div id="steps3"></div>
+      <button class="btn-check" onclick="nextStep3()">Следующий шаг →</button>
+      &nbsp;
+      <button class="btn-check" style="background:var(--green)" onclick="showTree3()">Показать дерево</button>
+      <div id="tree3" style="display:none" class="tree-area"></div>
+      <div style="margin-top:12px;font-size:0.78rem;color:#888">Источник: ${q.para}</div>
+      <button class="btn-next" onclick="nextQ3()" style="margin-top:14px">Следующая →</button>
+    </div>`;
+  t3step = 0;
+}
+
+function nextStep3() {
+  const q = LONG_QUESTIONS[t3idx % LONG_QUESTIONS.length];
+  if (t3step >= q.steps.length) return;
+  const s = q.steps[t3step];
+  const area = document.getElementById('steps3');
+  area.innerHTML += `<div class="step-panel"><div class="step-num">Шаг ${s.num}</div><div class="step-content">${s.text}</div></div>`;
+  t3step++;
+}
+
+function showTree3() {
+  const q = LONG_QUESTIONS[t3idx % LONG_QUESTIONS.length];
+  const el = document.getElementById('tree3');
+  el.textContent = q.tree;
+  el.style.display = 'block';
+}
+
+function nextQ3() { t3idx++; renderQ3(); }
+
+// ══════════════════════════════════════════════════════════════
+// TAB 4: Context
+// ══════════════════════════════════════════════════════════════
+
+let t4idx = 0, t4answered = false;
+
+function renderQ4() {
+  const q = CONTEXT_QUESTIONS[t4idx % CONTEXT_QUESTIONS.length];
+  t4answered = false;
+  document.getElementById('q4-area').innerHTML = `
+    <div class="card">
+      <div class="card-title">Задание ${(t4idx % CONTEXT_QUESTIONS.length) + 1} / ${CONTEXT_QUESTIONS.length} — Контекст решает</div>
+      <div class="compound">${q.compound}</div>
+      <div class="context-text">${q.context}</div>
+      <div class="context-gloss">${q.gloss}</div>
+      <div class="prompt">${q.question}</div>
+      <div id="opts4">
+        ${q.opts.map(o => `<button class="opt-btn" style="margin-bottom:8px;width:100%;display:block"
+          onclick="checkQ4(this,${o.correct},'${(o.correct?q.feedback_ok:q.feedback_fail).replace(/'/g,"\\'")}','${q.compound.replace(/'/g,"\\'")}','${q.para}')">${o.label}</button>`).join('')}
+      </div>
+      <div id="fb4"></div>
+      <button class="btn-next" id="next4" onclick="nextQ4()" disabled>Следующее →</button>
+    </div>`;
+}
+
+function checkQ4(btn, correct, feedback, compound, para) {
+  if (t4answered) return;
+  t4answered = true;
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  if (!correct) {
+    document.querySelectorAll('#opts4 .opt-btn').forEach(b => {
+      if (b !== btn) b.classList.add('reveal');
+    });
+  }
+  document.querySelectorAll('#opts4 .opt-btn').forEach(b => b.disabled = true);
+  document.getElementById('fb4').innerHTML = `
+    <div class="feedback ${correct?'correct':'wrong'}">
+      <strong>${correct ? '✓ Верно!' : '✗ Нет.'}</strong><br>${feedback}<br>
+      <span style="font-size:0.78rem;opacity:0.7">Источник: ${para}</span>
+    </div>`;
+  document.getElementById('next4').disabled = false;
+  addScore(correct, compound);
+}
+
+function nextQ4() { t4idx++; renderQ4(); }
+
+// ── INIT ─────────────────────────────────────────────────────
+t1Pool = shufflePool('all');
+renderQ1();
+t2pool = [...VIGRAHA_QUESTIONS].sort(() => Math.random() - 0.5);
+renderQ2();
+renderQ3();
+renderQ4();
+</script>
+</body>
+</html>

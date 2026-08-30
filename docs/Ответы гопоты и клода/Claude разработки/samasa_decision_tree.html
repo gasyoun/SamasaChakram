@@ -1,0 +1,2092 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Samāsa — Decision Tree</title>
+<style>
+:root{--bg:#f9f7f2;--card:#fff;--border:#d4c9a8;--accent:#2e4057;--accent2:#3e6b8a;
+--yes:#2d6a4f;--no:#7b3f20;--shadow:0 2px 12px rgba(0,0,0,.1);--r:10px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);font-family:'Georgia',serif;color:#222;min-height:100vh}
+header{background:var(--accent);color:#fff;padding:12px 18px;display:flex;align-items:center;flex-wrap:wrap;gap:8px;justify-content:space-between}
+header h1{font-size:1rem;font-weight:normal}
+.hdr-right{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.lang-toggle{display:flex;gap:4px}
+.lang-btn{padding:3px 10px;border-radius:10px;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;cursor:pointer;font-size:.77rem;transition:background .2s}
+.lang-btn.active{background:rgba(255,255,255,.25)}
+.admin-btn{padding:3px 10px;border-radius:10px;border:1px solid rgba(255,200,100,.5);background:rgba(255,200,100,.15);color:#ffe080;cursor:pointer;font-size:.77rem}
+.admin-btn.active{background:rgba(255,200,100,.35)}
+.prog-bar{width:100%;background:rgba(255,255,255,.2);height:3px;border-radius:2px;margin-top:6px}
+.prog-fill{height:100%;background:#e0c97a;border-radius:2px;transition:width .4s}
+.wrap{display:flex;gap:18px;max-width:1000px;margin:0 auto;padding:22px 14px 60px}
+.main-col{flex:1;min-width:0}
+.sidebar{width:220px;flex-shrink:0}
+/* Word input */
+.word-input-row{display:flex;gap:8px;margin-bottom:14px;align-items:center;flex-wrap:wrap}
+.word-wrap{position:relative;flex:1;min-width:120px}
+.word-input{width:100%;padding:8px 12px 8px 32px;border:1.5px solid var(--border);border-radius:6px;
+font-family:'Georgia',serif;font-size:1rem;font-style:italic;background:#fdfaf4;transition:border-color .2s}
+.word-input:focus{outline:none;border-color:var(--accent2)}
+.word-input::placeholder{font-style:normal;color:#bbb}
+.word-check-icon{position:absolute;left:9px;top:50%;transform:translateY(-50%);font-size:.95rem;pointer-events:none;transition:opacity .25s}
+.word-check-on{color:#2d6a4f;opacity:1}
+.word-check-off{color:#ccc;opacity:1}
+.word-lbl{font-size:.75rem;color:#999;white-space:nowrap}
+.clear-word{padding:7px 12px;border-radius:6px;border:1px solid var(--border);background:#f5f0e6;color:#888;cursor:pointer;font-size:.8rem}
+/* Card */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px;box-shadow:var(--shadow);animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1}}
+.step-label{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#999;margin-bottom:7px}
+.question{font-size:1.04rem;line-height:1.65;color:#1a1a1a;margin-bottom:6px}
+.hint{font-size:.81rem;color:#666;margin-top:7px;background:#f5f0e6;border-left:3px solid var(--border);padding:7px 11px;border-radius:4px;line-height:1.55;margin-bottom:8px}
+.freq-row{display:flex;gap:7px;flex-wrap:wrap;margin:5px 0 3px}
+.freq-badge{font-size:.68rem;padding:2px 8px;border-radius:11px;font-weight:500}
+.fh{background:#d4f0e0;color:#1a6b3a}.fm{background:#fef3cd;color:#7a5a00}.fl{background:#fde8e8;color:#8b2020}
+.ref-chips{display:flex;gap:4px;flex-wrap:wrap;margin:3px 0 10px}
+.ref-chip{font-size:.67rem;background:#eae4d8;color:#555;padding:2px 7px;border-radius:9px}
+.btn-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:7px}
+.btn{padding:9px 18px;border-radius:6px;border:none;cursor:pointer;font-family:'Georgia',serif;font-size:.91rem;transition:all .18s;flex:1;min-width:90px;text-align:center}
+.btn-yes{background:#eaf4ee;color:#2d6a4f;border:1.5px solid #a8d5b8}.btn-yes:hover{background:#c8e8d4}
+.btn-no{background:#fdf0e8;color:#7b3f20;border:1.5px solid #e0b898}.btn-no:hover{background:#f5d8c0}
+.opts-col{display:flex;flex-direction:column;gap:7px;margin-top:7px}
+.btn-opt{padding:10px 14px;border-radius:6px;border:1.5px solid #c0cdd8;background:#f0f4f8;color:var(--accent);cursor:pointer;font-family:'Georgia',serif;font-size:.87rem;text-align:left;transition:all .18s}
+.btn-opt:hover{background:#d8e4ee}
+.btn-restart{background:var(--accent);color:#fff;border:none;padding:9px 20px;border-radius:6px;cursor:pointer;font-family:'Georgia',serif;font-size:.87rem;margin-top:14px;transition:background .2s}
+.btn-restart:hover{background:var(--accent2)}
+/* Result */
+.result-card{border-radius:var(--r);padding:22px;box-shadow:var(--shadow);animation:fadeIn .35s ease}
+.result-type{font-size:1.32rem;font-weight:bold;margin-bottom:2px}
+.result-alt{font-size:.78rem;opacity:.75;margin-bottom:9px}
+.result-def{font-size:.91rem;line-height:1.65;margin-bottom:9px}
+.pat{font-size:.78rem;font-style:italic;background:rgba(0,0,0,.06);padding:3px 9px;border-radius:4px;display:inline-block;margin-bottom:9px}
+.form-lbl{font-size:.73rem;opacity:.63;margin-bottom:2px}
+.formula{font-size:.91rem;font-style:italic;background:rgba(0,0,0,.05);display:inline-block;padding:3px 9px;border-radius:4px;margin-bottom:10px}
+.ex-block{background:rgba(0,0,0,.05);border-radius:6px;padding:10px 12px;margin:9px 0}
+.ex-title{font-size:.67rem;letter-spacing:.1em;text-transform:uppercase;opacity:.6;margin-bottom:5px}
+.ex-row{display:flex;flex-wrap:wrap;gap:5px;align-items:baseline;margin-bottom:3px;font-size:.86rem}
+.ex-iast{font-style:italic;font-size:.95rem}.ex-comp{color:#777;font-size:.76rem}.ex-src{opacity:.43;font-size:.68rem}
+.pair-warn{font-size:.77rem;background:rgba(200,100,0,.08);border-radius:5px;padding:7px 10px;margin-top:7px;border-left:3px solid #e08030}
+.vigraha-ref{display:block;margin-top:9px;font-size:.73rem;color:var(--accent2);text-decoration:none;border-bottom:1px dotted var(--accent2)}
+.theme-tp{background:#eaf2f8;color:#0d3050;border:1.5px solid #a8cce0}
+.theme-km{background:#eaf4ea;color:#1a3d1a;border:1.5px solid #a0c8a0}
+.theme-bv{background:#f4eaf8;color:#3a1050;border:1.5px solid #c4a0d8}
+.theme-dv{background:#fdf5e6;color:#4a2800;border:1.5px solid #ddb870}
+.theme-av{background:#eaecf8;color:#1a204a;border:1.5px solid #a0a8d8}
+.bc{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:9px}
+.bc-item{background:#ede8dc;padding:2px 7px;border-radius:11px;color:#666;font-size:.68rem}
+.bc-link{cursor:pointer;transition:background .15s,color .15s}
+.bc-link:hover{background:#d8e4ee;color:var(--accent)}
+.bc-sep{color:#ccc;align-self:center;font-size:.68rem}
+/* Sidebar */
+.sidebar-section{margin-bottom:18px}
+.sb-title{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:#999;margin-bottom:7px}
+.hist-item{font-size:.74rem;color:#666;padding:4px 8px;border-left:2px solid #d4c9a8;margin-bottom:3px;line-height:1.38}
+.hi-yes{color:#2d6a4f}.hi-no{color:#7b3f20}
+/* Word log */
+.word-log-item{background:var(--card);border:1px solid var(--border);border-radius:7px;padding:8px 10px;margin-bottom:8px;font-size:.78rem;cursor:pointer;transition:box-shadow .2s}
+.word-log-item:hover{box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.wl-word{font-style:italic;font-size:.95rem;color:var(--accent);margin-bottom:3px}
+.wl-result{font-size:.74rem;font-weight:500}
+.wl-steps{font-size:.69rem;color:#999;margin-top:2px}
+.badge-correct{background:#d4f0e0;color:#1a6b3a;padding:1px 7px;border-radius:8px}
+.badge-wrong{background:#fde8e8;color:#8b2020;padding:1px 7px;border-radius:8px}
+.badge-pending{background:#f0e8d4;color:#7a5a00;padding:1px 7px;border-radius:8px}
+/* Admin panel */
+.admin-panel{background:#fdfaf4;border:1.5px solid #e0c97a;border-radius:var(--r);padding:18px;margin-bottom:16px;animation:fadeIn .3s}
+.admin-title{font-size:.85rem;font-weight:bold;color:#7a5a00;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.admin-row{display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.admin-row label{font-size:.77rem;color:#666;min-width:80px}
+.admin-input{padding:5px 9px;border:1px solid var(--border);border-radius:5px;font-family:'Georgia',serif;font-size:.85rem;font-style:italic;min-width:140px}
+.admin-select{padding:5px 9px;border:1px solid var(--border);border-radius:5px;font-family:'Georgia',serif;font-size:.82rem;background:#fff}
+.admin-verify-btn{padding:5px 12px;border-radius:5px;border:none;background:var(--accent);color:#fff;cursor:pointer;font-size:.8rem}
+.admin-log-table{width:100%;border-collapse:collapse;font-size:.78rem;margin-top:10px}
+.admin-log-table th{background:#2e4057;color:#fff;padding:5px 8px;text-align:left;font-weight:normal;font-size:.72rem}
+.admin-log-table td{padding:5px 8px;border-bottom:1px solid #e8e0d0;vertical-align:top}
+.admin-log-table tr:nth-child(even) td{background:#faf7f0}
+.mark-correct{background:#d4f0e0;color:#1a6b3a;border:none;border-radius:4px;padding:2px 7px;cursor:pointer;font-size:.72rem}
+.mark-wrong{background:#fde8e8;color:#8b2020;border:none;border-radius:4px;padding:2px 7px;cursor:pointer;font-size:.72rem}
+.export-btn{padding:5px 12px;border-radius:5px;border:1px solid var(--border);background:#f5f0e6;color:#555;cursor:pointer;font-size:.78rem;margin-top:8px}
+@media(max-width:700px){.wrap{flex-direction:column;padding:12px}.sidebar{width:100%}}
+/* Back & Quick Nav */
+.nav-row{display:flex;gap:8px;margin-bottom:10px;align-items:center;flex-wrap:wrap}
+.btn-back{padding:6px 14px;border-radius:6px;border:1.5px solid #c0cdd8;background:#f0f4f8;color:var(--accent);cursor:pointer;font-family:'Georgia',serif;font-size:.82rem;transition:all .18s;display:flex;align-items:center;gap:5px}
+.btn-back:hover{background:#d8e4ee}
+.btn-back:disabled{opacity:.35;cursor:not-allowed}
+.btn-jump{padding:6px 14px;border-radius:6px;border:1.5px solid #d4c9a8;background:#f5f0e6;color:#7a5a00;cursor:pointer;font-family:'Georgia',serif;font-size:.82rem;transition:all .18s;display:flex;align-items:center;gap:5px}
+.btn-jump:hover{background:#ece4d0}
+.quick-nav-panel{display:none;background:var(--card);border:1.5px solid var(--border);border-radius:var(--r);padding:14px;box-shadow:var(--shadow);margin-bottom:12px;animation:fadeIn .2s}
+.qn-group{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:#999;margin:8px 0 3px;padding-top:4px;border-top:1px solid #eae4d8}
+.qn-group:first-child{margin-top:0;border-top:none;padding-top:0}
+.qn-item{padding:5px 10px;border-radius:5px;font-size:.8rem;cursor:pointer;color:var(--accent);transition:background .15s;display:block;width:100%;text-align:left;border:none;background:transparent;font-family:'Georgia',serif}
+.qn-item:hover{background:#eaf2f8}
+.qn-item.qn-current{background:#eaf4ee;color:#2d6a4f;font-weight:600}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1 id="hdr-title">Samāsa — дерево решений</h1>
+    <div style="font-size:.72rem;opacity:.7" id="hdr-sub">Определение типа Sanskrit compound</div>
+  </div>
+  <div class="hdr-right">
+    <div class="lang-toggle">
+      <button class="lang-btn" id="btn-ru" onclick="setLang('ru')">RU</button>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+    <button class="admin-btn" id="admin-toggle" onclick="toggleAdmin()">⚙ Admin</button>
+  </div>
+  <div class="prog-bar" style="flex-basis:100%">
+    <div class="prog-fill" id="prog" style="width:0%"></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="main-col">
+    <div id="admin-area" style="display:none"></div>
+    <div id="word-input-area"></div>
+    <div id="main-area"></div>
+  </div>
+  <div class="sidebar">
+    <div class="sidebar-section">
+      <div class="sb-title" id="hist-lbl">Шаги</div>
+      <div id="step-history"></div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sb-title" id="log-lbl">Слова сессии</div>
+      <div id="word-log"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── STATE ─────────────────────────────────────────────────────────────────────
+var lang = 'ru';
+var stepHistory = [];   // steps in current analysis
+var nodeHistory = [];   // node IDs visited (for Back button)
+var current = 'start';
+var currentWord = '';   // word currently being analyzed
+var wordLog = [];       // [{word, result, steps, verdict}]  verdict: 'correct'|'wrong'|null
+var adminMode = false;
+var adminRefWord = '';
+var adminRefResult = '';
+
+// ── LANGUAGE ──────────────────────────────────────────────────────────────────
+function setLang(l) {
+  lang = l;
+  try { var u=new URL(location.href); u.searchParams.set('lang',l); history.replaceState(null,'',u); } catch(e) {}
+  document.getElementById('btn-ru').classList.toggle('active', l==='ru');
+  document.getElementById('btn-en').classList.toggle('active', l==='en');
+  document.getElementById('hdr-title').textContent = l==='ru' ? 'Samāsa — дерево решений' : 'Samāsa — decision tree';
+  document.getElementById('hdr-sub').textContent  = l==='ru' ? 'Определение типа Sanskrit compound' : 'Identify the type of a Sanskrit compound';
+  document.getElementById('hist-lbl').textContent = l==='ru' ? 'Шаги' : 'Steps';
+  document.getElementById('log-lbl').textContent  = l==='ru' ? 'Слова сессии' : 'Session log';
+  document.getElementById('admin-toggle').textContent = (l==='ru' ? '⚙ Адм.' : '⚙ Admin');
+  renderWordInput();
+  render();
+  renderWordLog();
+  if (adminMode) renderAdmin();
+}
+(function(){
+  try { var p=new URLSearchParams(location.search).get('lang'); if(p==='en') lang='en'; } catch(e) {}
+})();
+
+function L(ru, en) { return lang === 'en' ? (en || ru) : ru; }
+
+// ── ADMIN ─────────────────────────────────────────────────────────────────────
+function toggleAdmin() {
+  adminMode = !adminMode;
+  document.getElementById('admin-toggle').classList.toggle('active', adminMode);
+  if (adminMode) renderAdmin(); else document.getElementById('admin-area').style.display='none';
+}
+
+function renderAdmin() {
+  var el = document.getElementById('admin-area');
+  el.style.display = 'block';
+  var total = wordLog.length;
+  var correct = wordLog.filter(function(w){ return w.verdict === 'correct'; }).length;
+  var wrong   = wordLog.filter(function(w){ return w.verdict === 'wrong'; }).length;
+  var pending = total - correct - wrong;
+
+  var rows = wordLog.map(function(w, i) {
+    var stepsStr = w.steps.map(function(s){ return s.label; }).join(' › ');
+    var verdictBtn = '';
+    if (w.verdict === 'correct') {
+      verdictBtn = '<span class="badge-correct">✓ ' + (lang==='ru'?'верно':'correct') + '</span>'
+                + ' <button class="mark-wrong" onclick="setVerdict('+i+',\'wrong\')">' + (lang==='ru'?'✗ ошибка':'✗ wrong') + '</button>';
+    } else if (w.verdict === 'wrong') {
+      verdictBtn = '<span class="badge-wrong">✗ ' + (lang==='ru'?'ошибка':'wrong') + '</span>'
+                + ' <button class="mark-correct" onclick="setVerdict('+i+',\'correct\')">' + (lang==='ru'?'✓ верно':'✓ correct') + '</button>';
+    } else {
+      verdictBtn = '<button class="mark-correct" onclick="setVerdict('+i+',\'correct\')">' + (lang==='ru'?'✓ верно':'✓ correct') + '</button>'
+                + ' <button class="mark-wrong" onclick="setVerdict('+i+',\'wrong\')">' + (lang==='ru'?'✗ ошибка':'✗ wrong') + '</button>';
+    }
+    var ref = w.refResult ? ('<br><span style="font-size:.7rem;color:#888">' + (lang==='ru'?'Эталон: ':'Ref: ') + w.refResult + '</span>') : '';
+    return '<tr><td style="font-style:italic;color:var(--accent)">'
+         + (w.word || '—')
+         + '<br><span style="font-size:.65rem;color:#bbb">#' + w.id.substr(0,8)
+         + ' · ' + new Date(w.timestamp).toLocaleString() + '</span></td>'
+         + '<td>' + w.result + ref + '</td>'
+         + '<td style="color:#888;font-size:.72rem">' + stepsStr + '</td>'
+         + '<td>' + verdictBtn + '</td></tr>';
+  }).join('');
+
+  var refOptions = Object.keys(RESULTS).map(function(k){
+    return '<option value="' + k + '">' + RESULTS[k].type() + '</option>';
+  }).join('');
+
+  el.innerHTML = '<div class="admin-panel">'
+    + '<div class="admin-title">⚙ ' + (lang==='ru'?'Панель преподавателя':'Admin / Teacher Panel')
+    + ' &nbsp;<span style="font-size:.75rem;font-weight:normal;color:#888">'
+    + total + ' ' + (lang==='ru'?'слов':'words') + ' · '
+    + correct + ' ✓ · ' + wrong + ' ✗ · ' + pending + ' ' + (lang==='ru'?'не проверено':'unchecked')
+    + '</span></div>'
+    + '<div class="admin-row"><label>' + (lang==='ru'?'Слово:':'Word:') + '</label>'
+    + '<input class="admin-input" id="adm-word" placeholder="' + (lang==='ru'?'самаса для проверки':'compound to verify') + '" value="' + adminRefWord + '" oninput="adminRefWord=this.value">'
+    + '<label style="margin-left:8px">' + (lang==='ru'?'Эталон:':'Reference:') + '</label>'
+    + '<select class="admin-select" id="adm-ref" onchange="adminRefResult=this.value"><option value="">' + (lang==='ru'?'— выбрать —':'— select —') + '</option>' + refOptions + '</select>'
+    + '<button class="admin-verify-btn" onclick="applyRef()">' + (lang==='ru'?'Применить':'Apply') + '</button></div>'
+    + (rows ? '<table class="admin-log-table"><thead><tr>'
+      + '<th>' + (lang==='ru'?'Слово':'Word') + '</th>'
+      + '<th>' + (lang==='ru'?'Результат':'Result') + '</th>'
+      + '<th>' + (lang==='ru'?'Шаги':'Steps') + '</th>'
+      + '<th>' + (lang==='ru'?'Оценка':'Verdict') + '</th>'
+      + '</tr></thead><tbody>' + rows + '</tbody></table>' : '<div style="color:#999;font-size:.82rem;padding:8px 0">' + (lang==='ru'?'Журнал пуст. Начните анализировать слова.':'Log empty. Start analyzing words.') + '</div>')
+    + '<br><button class="export-btn" onclick="exportLog()">' + (lang==='ru'?'⬇ Экспорт JSON':'⬇ Export JSON') + '</button>'
+    + '</div>';
+}
+
+function setVerdict(i, verdict) {
+  wordLog[i].verdict = verdict;
+  renderAdmin();
+  renderWordLog();
+}
+
+function applyRef() {
+  var word = document.getElementById('adm-word').value.trim();
+  var ref  = document.getElementById('adm-ref').value;
+  if (!word || !ref) return;
+  // Find matching word in log and set refResult + auto-verdict
+  var found = false;
+  wordLog.forEach(function(w) {
+    if (w.word === word) {
+      w.refResult = RESULTS[ref] ? RESULTS[ref].type() : ref;
+      // auto-verdict: correct if result key matches
+      w.verdict = (w.resultKey === ref) ? 'correct' : 'wrong';
+      found = true;
+    }
+  });
+  if (!found) { alert(lang==='ru'?'Слово не найдено в журнале':'Word not found in log'); return; }
+  adminRefWord = ''; adminRefResult = '';
+  renderAdmin(); renderWordLog();
+}
+
+function exportLog() {
+  var data = JSON.stringify(wordLog, null, 2);
+  var blob = new Blob([data], {type:'application/json'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url; a.download = 'samasa_log.json'; a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ── WORD INPUT ────────────────────────────────────────────────────────────────
+function renderWordInput() {
+  var iconCls = currentWord ? 'word-check-on' : 'word-check-off';
+  document.getElementById('word-input-area').innerHTML =
+    '<div class="word-input-row">'
+    + '<span class="word-lbl">' + (lang==='ru'?'Слово для анализа:':'Word to analyze:') + '</span>'
+    + '<div class="word-wrap">'
+    + '<span class="word-check-icon ' + iconCls + '">✓</span>'
+    + '<input class="word-input" id="word-field" type="text" '
+    + 'placeholder="' + (lang==='ru'?'rājaputraḥ …':'rājaputraḥ …') + '" '
+    + 'value="' + currentWord + '" '
+    + 'oninput="onWordInput(this.value)">'
+    + '</div>'
+    + (currentWord ? '<button class="clear-word" onclick="clearWord()">✕</button>' : '')
+    + '</div>';
+}
+
+function onWordInput(val) {
+  var newWord = val.trim();
+  currentWord = newWord;
+  // Toggle checkmark class in-place without full re-render
+  var icon = document.querySelector('.word-check-icon');
+  if (icon) {
+    icon.className = 'word-check-icon ' + (newWord ? 'word-check-on' : 'word-check-off');
+  }
+  // Show/hide clear button in-place
+  var clr = document.querySelector('.clear-word');
+  if (newWord && !clr) {
+    var wrap = document.querySelector('.word-wrap');
+    if (wrap) {
+      var btn = document.createElement('button');
+      btn.className = 'clear-word'; btn.onclick = clearWord; btn.textContent = '✕';
+      wrap.parentNode.insertBefore(btn, wrap.nextSibling);
+    }
+  } else if (!newWord && clr) { clr.remove(); }
+  // If we're on a result screen and user typed a NEW word → auto-restart
+  if (isResultState && newWord && newWord !== lastAnalyzedWord) {
+    showAutoRestartNotice();
+  }
+}
+
+function showAutoRestartNotice() {
+  var notice = document.getElementById('auto-restart-notice');
+  if (!notice) {
+    notice = document.createElement('div');
+    notice.id = 'auto-restart-notice';
+    notice.style.cssText = 'font-size:.78rem;background:#f5f0e6;border-left:3px solid #e0c97a;padding:6px 10px;border-radius:4px;margin-bottom:8px;display:flex;align-items:center;gap:10px';
+    document.getElementById('word-input-area').appendChild(notice);
+  }
+  notice.innerHTML = '↺ ' + (lang==='ru'?'Введено новое слово — перезапуск анализа...':'New word detected — restarting...');
+  setTimeout(function() {
+    restart();
+  }, 900);
+}
+
+
+function clearWord() {
+  currentWord = '';
+  renderWordInput();
+}
+
+// ── CORE ──────────────────────────────────────────────────────────────────────
+function bcHtml() {
+  if (!stepHistory.length) return '';
+  return '<div class="bc">' + stepHistory.map(function(h, i){
+    return '<span class="bc-item bc-link" onclick="bcJump('+i+')" title="' + h.qShort.replace(/"/g,'&quot;') + '">' + h.label + '</span>';
+  }).join('<span class="bc-sep">›</span>') + '</div>';
+}
+
+function bcJump(idx) {
+  // Jump back to the node that was active at step idx
+  if (idx < 0 || idx >= nodeHistory.length) return;
+  current = nodeHistory[idx];
+  stepHistory = stepHistory.slice(0, idx);
+  nodeHistory = nodeHistory.slice(0, idx);
+  isResultState = false;
+  render();
+}
+
+function renderStepHistory() {
+  document.getElementById('step-history').innerHTML = stepHistory.map(function(h){
+    return '<div class="hist-item"><span>' + h.qShort + '</span><br>'
+      + '<span class="' + (h.yes?'hi-yes':'hi-no') + '">' + h.label + '</span></div>';
+  }).join('');
+}
+
+function renderWordLog() {
+  function sBtn(ord, lbl) {
+    var active = sortOrder === ord;
+    return '<button style="font-size:.68rem;padding:2px 7px;border-radius:8px;border:1px solid var(--border);cursor:pointer;background:'
+      +(active?'var(--accent)':'#f5f0e6')+';color:'+(active?'#fff':'#555')
+      +'" onclick="setSortOrder(\'' + ord + '\')">' + lbl + '</button>';
+  }
+  var sortBtns = '<div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px">'
+    +'<span style="font-size:.68rem;color:#999;align-self:center">' + L('Сортировка:','Sort:') + '</span>'
+    + sBtn('desc', L('Новые','Newest'))
+    + sBtn('asc',  L('Старые','Oldest'))
+    + sBtn('alpha','A–Z')
+    +'</div>';
+
+  var sorted = wordLog.slice();
+  if (sortOrder === 'desc')  sorted.sort(function(a,b){return b.timestamp - a.timestamp;});
+  else if (sortOrder === 'asc') sorted.sort(function(a,b){return a.timestamp - b.timestamp;});
+  else sorted.sort(function(a,b){return (a.word||'').localeCompare(b.word||'');});
+
+  var items = sorted.map(function(w) {
+    var vcls = w.verdict === 'correct' ? 'badge-correct' : w.verdict === 'wrong' ? 'badge-wrong' : 'badge-pending';
+    var vlbl = w.verdict === 'correct' ? '✓' : w.verdict === 'wrong' ? '✗' : '?';
+    var origIdx = wordLog.indexOf(w);
+    var dt = new Date(w.timestamp);
+    var timeStr = dt.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+    var dateStr = dt.toLocaleDateString([], {day:'2-digit', month:'2-digit'});
+    return '<div class="word-log-item" onclick="reviewWord('+origIdx+')">'
+      +'<div class="wl-word">' + (w.word || '('+L('без слова','no word')+')') + ' <span class="'+vcls+'">'+vlbl+'</span>'
+      +'<span style="font-size:.65rem;color:#aaa;float:right">#'+w.id.substr(0,6)+'</span></div>'
+      +'<div class="wl-result" style="font-size:.76rem">'+w.result+'</div>'
+      +'<div class="wl-steps" style="display:flex;justify-content:space-between">'
+      +'<span>'+w.steps.length+' '+(lang==='ru'?'шагов':'steps')+'</span>'
+      +'<span style="font-size:.65rem;color:#bbb">'+dateStr+' '+timeStr+'</span>'
+      +'</div>'
+      +'</div>';
+  }).join('');
+
+  document.getElementById('word-log').innerHTML = sortBtns
+    + (items || '<div style="font-size:.75rem;color:#bbb">' + L('Пока пусто','Empty so far') + '</div>');
+}
+
+function setSortOrder(order) {
+  sortOrder = order;
+  renderWordLog();
+}
+
+
+function reviewWord(i) {
+  var w = wordLog[i];
+  var el = document.getElementById('main-area');
+  var dt = new Date(w.timestamp);
+  var dtStr = dt.toLocaleString([], {day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
+  el.innerHTML = '<div class="card">'
+    + '<div style="text-align:right;font-size:.65rem;color:#aaa;margin-bottom:4px">#' + w.id + ' · ' + dtStr + '</div>'
+    + '<div class="step-label">' + (lang==='ru'?'Просмотр записи':'Review entry') + '</div>'
+    + '<div class="question" style="font-style:italic">' + (w.word || '(' + (lang==='ru'?'без слова':'no word') + ')') + '</div>'
+    + '<div style="font-size:.9rem;margin:8px 0">' + (lang==='ru'?'Результат:':'Result:') + ' <strong>' + w.result + '</strong></div>'
+    + (w.refResult ? '<div style="font-size:.82rem;color:#888">' + (lang==='ru'?'Эталон:':'Reference:') + ' ' + w.refResult
+      + ' <span class="' + (w.verdict==='correct'?'badge-correct':'badge-wrong') + '">' + (w.verdict==='correct'?'✓':'✗') + '</span></div>' : '')
+    + '<div style="font-size:.78rem;color:#888;margin-top:10px">' + (lang==='ru'?'Шаги:':'Steps:') + '</div>'
+    + '<div style="font-size:.78rem;color:#666;margin-top:4px">' + w.steps.map(function(s,j){
+        return (j+1) + '. <em>' + s.qShort + '</em> → <span class="' + (s.yes?'hi-yes':'hi-no') + '">' + s.label + '</span>';
+      }).join('<br>') + '</div>'
+    + '<button class="btn-restart" onclick="restart()">' + (lang==='ru'?'↺ Новое слово':'↺ New word') + '</button></div>';
+}
+
+
+// ── CANONICAL DATABASE ────────────────────────────────────────────────────────
+// Keys: lowercase IAST (no case ending variants), value: {key, src, note?}
+var CANONICAL_DB = {
+  // AVYAYĪBHĀVA
+  'upagaṅgam': {key:'r_avyayibhava', src:'Leitan §7.2', trans:'gaṅgāyāḥ samīpam — близ Ганги'},
+  'nirmakṣikam': {key:'r_avyayibhava', src:'Leitan §7.5', trans:'makṣikāṇām abhāvaḥ — безмушно: нет мух'},
+  'yathāśakti':       {key:'r_avyayibhava', src:'Leitan §7.10'},
+  'anugaṅgam':        {key:'r_avyayibhava', src:'Leitan §7.9'},
+  'pratiagniṣṭomam':  {key:'r_avyayibhava', src:'Leitan §7.3'},
+  'adhihari':         {key:'r_avyayibhava', src:'Leitan §7.1'},
+  // DVANDVA — itaretara
+  'rāmakṛṣṇau': {key:'r_dv_itaretara', src:'Leitan §6.1.1', trans:'rāmaś ca kṛṣṇaś ca — Рама и Кришна'},
+  'sūryacandrou':     {key:'r_dv_itaretara', src:'Zaliznyak §192'},
+  'hastyaśvāḥ':       {key:'r_dv_itaretara', src:'Zaliznyak §192'},
+  'mātāpitarau':      {key:'r_dv_itaretara', src:'Ruppel p.141'},
+  'rāmalakṣmaṇau':    {key:'r_dv_itaretara', src:'Sandhan 2019'},
+  'dharmārthakāmamokṣāḥ': {key:'r_dv_itaretara', src:'Leitan §6.1.4'},
+  'indraviṣṇū':       {key:'r_dv_itaretara', src:'Ruppel p.141 (Vedic)'},
+  // DVANDVA — samāhāra
+  'pāṇipādamukham': {key:'r_dv_samahara', src:'Leitan §6.2.2', trans:'pāṇī ca pādau ca mukhaṃ ca — руки, ноги и лицо'},
+  'candratārakam':    {key:'r_dv_samahara', src:'Zaliznyak §192'},
+  'vākyapadīyam':     {key:'r_dv_samahara', src:'standard example'},
+  // BAHUVRĪHI
+  'pītāmbaraḥ': {key:'r_bahuvrishi', src:'Leitan §5.1.5', trans:'pītam ambaraṃ yasya saḥ — тот, чья одежда жёлтая'},
+  'pītāmbaram':       {key:'r_bahuvrishi', src:'Leitan §5.1.5', note:'same compound, neuter form'},
+  'dīrghabāhuḥ': {key:'r_bahuvrishi', src:'Zaliznyak §194', trans:'dīrghāḥ bāhavo yasya saḥ — длиннорукий'},
+  'abhāryaḥ':         {key:'r_bahuvrishi', src:'Leitan §5.1.7 (nañ-bv)'},
+  'cakrapāṇiḥ':       {key:'r_bahuvrishi', src:'Leitan §5.2.1'},
+  'gataprāṇaḥ':       {key:'r_bahuvrishi', src:'Zaliznyak §194'},
+  'nirjitakāmaḥ':     {key:'r_bahuvrishi', src:'Leitan §5.1.2'},
+  'mahābāhuḥ':        {key:'r_bahuvrishi', src:'Ruppel p.140'},
+  'caturānanaḥ':      {key:'r_bahuvrishi', src:'Leitan §5.1 (Brahmā)'},
+  'pācikābhāryaḥ':    {key:'r_bahuvrishi', src:'Sandhan 2019'},
+  'aputraḥ':          {key:'r_bahuvrishi', src:'Leitan §5.1.7', note:'context-dependent: also nañ-tp possible'},
+  'nīlotpalam':       {key:'r_bahuvrishi', src:'Leitan §4.2', note:'also karmadhāraya — context decides'},
+  // KARMADHĀRAYA — viśeṣaṇapūrvapada
+  'meghaśyāmaḥ': {key:'r_km_adj', src:'Leitan §4.2.5', trans:'megha iva śyāmaḥ — тёмный как туча'},
+  'mahārājaḥ': {key:'r_km_adj', src:'Leitan §4.2.1', trans:'mahāṃś cāsau rājā ca — великий царь'},
+  'mahāvīraḥ':        {key:'r_km_adj', src:'Zaliznyak §193'},
+  'kṛṣṇasarpaḥ':      {key:'r_km_adj', src:'Leitan §4.2.1', trans:'kṛṣṇaś cāsau sarpaś ca — чёрная змея (особый вид кобры)'},
+  'nīlameghaḥ':       {key:'r_km_adj', src:'Ruppel p.138'},
+  'śītoṣṇam': {key:'r_km_adj', src:'Leitan §4.2.4 (ubhayapada)', trans:'śītaṃ ca tad uṣṇaṃ ca — тёплый-холодный'},
+  'priyadattaḥ':      {key:'r_km_adj', src:'Leitan §4.2.1'},
+  // KARMADHĀRAYA — apposition
+  'rājarṣiḥ': {key:'r_km_appos', src:'Leitan §4.2.2', trans:'rājā ca sa ṛṣiś ca — царь-провидец'},
+  'vīrapuruṣaḥ':      {key:'r_km_appos', src:'Zaliznyak §193'},
+  'rājalakṣmīḥ':      {key:'r_km_appos', src:'Leitan §4.2.2'},
+  // KARMADHĀRAYA — upamāna
+  'candramukham':     {key:'r_km_upamana', src:'Leitan §4.2.5'},
+  'puruṣavyāghraḥ':   {key:'r_km_upamana', src:'Ruppel p.139'},
+  'padmanābhaḥ':      {key:'r_km_upamana', src:'Leitan §4.2.5', note:'lotus-navel'},
+  // KARMADHĀRAYA — rūpaka
+  'vidyādhanam': {key:'r_km_rupaka', src:'Leitan §4.2.7', trans:'vidyā eva dhanam — знание есть богатство'},
+  'saṃsārārṇavaḥ':    {key:'r_km_rupaka', src:'Leitan §4.2.7', trans:'saṃsāra eva arṇavaḥ — бытие есть океан', note:'rūpaka: X eva Y — отождествление через eva, НЕ координация'},
+  // TATPURUṢA — ṣaṣṭhī (T6, 40.56%)
+  'rājaputraḥ': {key:'r_tp_gen', src:'Leitan §4.1.6', trans:'rājñaḥ putraḥ — сын царя'},
+  'himālayaḥ': {key:'r_tp_gen', src:'Leitan §4.1.6', trans:'himasya ālayaḥ — обитель снега'},
+  'devadattaḥ':       {key:'r_tp_gen', src:'Zaliznyak §193'},
+  'rājapuruṣaḥ':      {key:'r_tp_gen', src:'Leitan §4.1.6 (also ambig. bv)'},
+  'śivabhaktaḥ':      {key:'r_tp_gen', src:'standard example: śivasya bhaktaḥ'},
+  'śivābhaktaḥ': {key:'r_tp_gen', src:'standard example: śivasya bhaktaḥ', trans:'śivasya bhaktaḥ — почитатель Шивы', trans:'śivasya bhaktaḥ — почитатель Шивы'},
+  'indriyanigrahaḥ':  {key:'r_tp_gen', src:'Leitan §4.1.6'},
+  'daśarathaputraḥ':  {key:'r_tp_gen', src:'Sandhan 2019'},
+  'devapūjā':         {key:'r_tp_gen', src:'Leitan §4.1.6'},
+  'mūrtipūjā':        {key:'r_tp_gen', src:'Leitan §4.1.6'},
+  'devamandiram':     {key:'r_tp_gen', src:'Leitan §4.1.6'},
+  'vidyālayaḥ':       {key:'r_tp_gen', src:'Leitan §4.1.6: vidyāyāḥ ālayaḥ'},
+  'kulaguruḥ':        {key:'r_tp_gen', src:'Leitan §4.1.6'},
+  'kulapatiḥ':        {key:'r_tp_gen', src:'Leitan §4.1.6'},
+  'yūthapatiḥ':       {key:'r_tp_gen', src:'Leitan §4.1.6'},
+  'sureśaḥ':          {key:'r_tp_gen', src:'Leitan §4.1.6: surāṇām īśaḥ'},
+  'gaṇeśaḥ':          {key:'r_tp_gen', src:'Leitan §4.1.6: gaṇānām īśaḥ'},
+  'rājasevakaḥ':      {key:'r_tp_gen', src:'Leitan §4.1.6: rājñaḥ sevakaḥ'},
+  'rāmadūtaḥ':        {key:'r_tp_gen', src:'Leitan §4.1.6'},
+  'rājaparicārakaḥ':  {key:'r_tp_gen', src:'Leitan §4.1.6'},
+  'rāmavacanam':      {key:'r_tp_gen', src:'Leitan §4.1.6'},
+  'arthopārjanam':    {key:'r_tp_gen', src:'Leitan §4.1.6'},
+  'kaṇṭhābharaṇam':   {key:'r_tp_gen', src:'Leitan §4.1.6'},
+  'dharmalakṣaṇam':   {key:'r_tp_gen', src:'Leitan §4.1.6'},
+  'pūrvakāyaḥ':       {key:'r_tp_gen', src:'Leitan §prathamā: pūrvaṃ kāyasya'},
+  'ardhapippalī':     {key:'r_tp_gen', src:'Leitan §prathamā: ardhaṃ pippalyāḥ'},
+  // TATPURUṢA dvitīyā
+  'duḥkhātītaḥ':      {key:'r_tp_acc', src:'Leitan §4.1.2: duḥkham atītaḥ'},
+  'kṛṣṇaśritaḥ':      {key:'r_tp_acc', src:'Leitan §4.1.2: kṛṣṇaṃ śritaḥ'},
+  'muhūrtasukham':    {key:'r_tp_acc', src:'Leitan §4.1.2: muhūrtaṃ sukham'},
+  'svargagataḥ':      {key:'r_tp_acc', src:'Leitan §4.1.2'},
+  // TATPURUṢA tṛtīyā
+  'haritrātaḥ':       {key:'r_tp_inst', src:'Leitan §4.1.3: hariṇā trātaḥ'},
+  // TATPURUṢA caturthī
+  'yūpadāruḥ':        {key:'r_tp_dat', src:'Leitan §4.1.4: yūpāya dāruḥ'},
+  'kumbhamṛttikā':    {key:'r_tp_dat', src:'Leitan §4.1.4: kumbhāya mṛttikā'},
+  'snānārtham':       {key:'r_tp_dat', src:'Leitan §4.1.4: snānāya idam'},
+  'bhūtabaliḥ':       {key:'r_tp_dat', src:'Leitan §4.1.4: bhūtebhyaḥ baliḥ'},
+  'gosukham':         {key:'r_tp_dat', src:'Leitan §4.1.4: gave sukham'},
+  'nṛpahitam':        {key:'r_tp_dat', src:'Leitan §4.1.4: nṛpāya hitam'},
+  'gorakṣitam':       {key:'r_tp_dat', src:'Leitan §4.1.4: gobhyaḥ rakṣitam'},
+  'yogaśālā':         {key:'r_tp_dat', src:'Leitan §4.1.4: yogāya śālā'},
+  'dhanalobhaḥ':      {key:'r_tp_dat', src:'Leitan §4.1.4: dhanāya lobhaḥ'},
+  // TATPURUṢA pañcamī
+  'vyāghrabhītaḥ':    {key:'r_tp_abl', src:'Leitan §4.1.5: vyāghrād bhītaḥ'},
+  'vṛkabhītiḥ':       {key:'r_tp_abl', src:'Leitan §4.1.5'},
+  'nṛpabhītiḥ':       {key:'r_tp_abl', src:'Leitan §4.1.5'},
+  'sukāpetaḥ':        {key:'r_tp_abl', src:'Leitan §4.1.5: sukhād apetaḥ'},
+  'kalpanāpoḍhaḥ':    {key:'r_tp_abl', src:'Leitan §4.1.5'},
+  'saṃkaṭamuktaḥ':    {key:'r_tp_abl', src:'Leitan §4.1.5'},
+  'vṛkṣapatitaḥ':     {key:'r_tp_abl', src:'Leitan §4.1.5'},
+  'dharmabhraṣṭaḥ':   {key:'r_tp_abl', src:'Leitan §4.1.5'},
+  // TATPURUṢA saptamī
+  'premadhūrtaḥ':     {key:'r_tp_loc', src:'Leitan §4.1.7: premṇi dhūrtaḥ'},
+  'akṣadhūrtaḥ':      {key:'r_tp_loc', src:'Leitan §4.1.7'},
+  'vidyāpraṇītaḥ':    {key:'r_tp_loc', src:'Leitan §4.1.7'},
+  'kalāpravīṇaḥ':     {key:'r_tp_loc', src:'Leitan §4.1.7'},
+  'kāryacaturaḥ':     {key:'r_tp_loc', src:'Leitan §4.1.7'},
+  'vākpaṭuḥ':         {key:'r_tp_loc', src:'Leitan §4.1.7'},
+  'kāryadakṣaḥ':      {key:'r_tp_loc', src:'Leitan §4.1.7'},
+  'nītinipuṇaḥ':      {key:'r_tp_loc', src:'Leitan §4.1.7'},
+  'nyāyapaṇḍitaḥ':    {key:'r_tp_loc', src:'Leitan §4.1.7'},
+  'ātapaśuṣkaḥ':      {key:'r_tp_loc', src:'Leitan §4.1.7'},
+  'jalamagnaḥ':       {key:'r_tp_loc', src:'Leitan §4.1.7'},
+  'sthālīpakvaḥ':     {key:'r_tp_loc', src:'Leitan §4.1.7'},
+  'yogasiddhiḥ':      {key:'r_tp_loc', src:'Leitan §4.1.7'},
+  'vanavāsaḥ':        {key:'r_tp_loc', src:'Leitan §4.1.7'},
+  'īśvarādhīnaḥ':     {key:'r_tp_loc', src:'Leitan §4.1.7'},
+  // KARMADHĀRAYA
+  'sundarakanyā': {key:'r_km_adj', src:'Leitan §4.2.1: sundarā ca asau kanyā ca', trans:'sundarā ca asau kanyā ca — красивая девушка'},
+  'tuṅgavṛkṣaḥ': {key:'r_km_adj', src:'Leitan §4.2.1: tuṅgaś ca asau vṛkṣaś ca', trans:'tuṅgaś ca asau vṛkṣaś ca — высокое дерево'},
+  'raktalatā': {key:'r_km_adj', src:'Leitan §4.2.1: raktā cāsau latā ca', trans:'raktā cāsau latā ca — красная лиана'},
+  'brahmarṣiḥ':       {key:'r_km_appos', src:'Leitan §4.2.2: brahmā ca ṛṣiś ca'},
+  'śītoṣṇam':         {key:'r_km_ubhaya', src:'Leitan §4.2.4: śītaṃ ca tad uṣṇaṃ ca'},
+  'haritāruṇam':      {key:'r_km_ubhaya', src:'Leitan §4.2.4'},
+  'guṇabuddhiḥ': {key:'r_km_sambhavana', src:'Leitan §sambhāvanā: guṇa iti buddhiḥ', trans:'guṇa iti buddhiḥ — познание качества (вайшешика)'},
+  'śākapārthivaḥ': {key:'r_km_madhyama', src:'Leitan §madhyamapada: śākapriyaḥ pārthivaḥ', trans:'śākapriyaḥ pārthivaḥ — царь-любитель овощей'},
+  'devabrāhmaṇaḥ':    {key:'r_km_madhyama', src:'Leitan §madhyamapada: devapūjako brāhmaṇaḥ'},
+  // DVIGU
+  'trilokaḥ': {key:'r_km_dvigu', src:'Leitan §I.3', trans:'trayāṇāṃ lokānāṃ samāhāraḥ — три мира'},
+  'saptarṣayaḥ':      {key:'r_km_dvigu', src:'Leitan §I.3'},
+  // BAHUVRĪHI saha
+  'saputraḥ': {key:'r_bv_saha', src:'Leitan §5.1.4: saha putreṇa', trans:'saha putreṇa iti — пребывающий с сыном'},
+  'sakṛṣṇaḥ': {key:'r_bv_saha', src:'Leitan §5.1.4', trans:'saha kṛṣṇena iti — пребывающий с Кришной'},
+  'sarāmaḥ':          {key:'r_bv_saha', src:'Leitan §5.1.4'},
+  // BAHUVRĪHI prādi
+  'prāñjaliḥ':        {key:'r_bv_pradi', src:'Leitan §5.1.3'},
+  'praparṇaḥ':        {key:'r_bv_pradi', src:'Leitan §5.1.3'},
+  // BAHUVRĪHI
+  'puraḥphalaḥ':      {key:'r_bahuvrishi', src:'Leitan §5: pratyāsannāni phalāni yasya'},
+  'caturānanaḥ':      {key:'r_bahuvrishi', src:'Leitan §5 (Brahmā, four-faced)'},
+  'mahābāhuḥ':        {key:'r_bahuvrishi', src:'Leitan §5.1'},
+  // DVANDVA
+  'rāmalakṣmaṇau':    {key:'r_dv_itaretara', src:'Sandhan 2019'},
+  'indraviṣṇū':       {key:'r_dv_itaretara', src:'Ruppel p.141 (Vedic natural pair)'},
+
+  'lokanāthaḥ':       {key:'r_tp_gen', src:'Leitan §9 (ambig. bv)', note:'also bahuvrīhi — context decides'},
+  'rāmadūtaḥ':        {key:'r_tp_gen', src:'Leitan §4.1.6'},
+  'vanadevī':         {key:'r_tp_gen', src:'Leitan §4.1.6'},
+  'kumbhakāraḥ': {key:'r_tp_gen', src:'Leitan §4.1.11 (upapada)', trans:'kuṃbhaṃ karoti iti — горшечник'},
+  // TATPURUṢA — dvitīyā
+  'grāmagataḥ':       {key:'r_tp_acc', src:'Leitan §4.1.2'},
+  'gṛhajātaḥ':        {key:'r_tp_acc', src:'Zaliznyak §193'},
+  'svargagataḥ':      {key:'r_tp_acc', src:'Leitan §4.1.2'},
+  // TATPURUṢA — tṛtīyā
+  'vākkalahaḥ':       {key:'r_tp_inst', src:'Leitan §4.1.3'},
+  'dhānyārthaḥ':      {key:'r_tp_inst', src:'Leitan §4.1.3'},
+  // TATPURUṢA — caturthī
+  'pāṭhaśālā':        {key:'r_tp_dat', src:'Leitan §4.1.4'},
+  'brāhmaṇahitam':    {key:'r_tp_dat', src:'Leitan §4.1.4'},
+  'kākabaliḥ':        {key:'r_tp_dat', src:'Leitan §4.1.4'},
+  // TATPURUṢA — pañcamī
+  'caurabhayam': {key:'r_tp_abl', src:'Leitan §4.1.5', trans:'caurād bhayam — страх перед вором'},
+  'svargapatitaḥ':    {key:'r_tp_abl', src:'Leitan §4.1.5'},
+  'siṃhabhayam':      {key:'r_tp_abl', src:'Leitan §4.1.5'},
+  // TATPURUṢA — saptamī
+  'yuddhanipuṇaḥ': {key:'r_tp_loc', src:'Leitan §4.1.7', trans:'yuddhe nipuṇaḥ — искусный в бою'},
+  'akṣaśauṇḍaḥ':      {key:'r_tp_loc', src:'Leitan §4.1.7'},
+  'śāstrakuśalaḥ':    {key:'r_tp_loc', src:'Leitan §4.1.7'},
+  // TATPURUṢA — nañ (F=99.3%!)
+  'abrāhmaṇaḥ': {key:'r_tp_nan', src:'Leitan §4.1.8', trans:'na brāhmaṇaḥ — не-брахман'},
+  'nagaḥ':            {key:'r_tp_nan', src:'Leitan §4.1.8'},
+  'ajñānam':          {key:'r_tp_nan', src:'Sandhan 2019'},
+  'akāraṇam':         {key:'r_tp_nan', src:'Sandhan 2019 (ambig. nañ-bv)'},
+  // UPAPADA
+  'kumbhakāraḥ':      {key:'r_tp_upapada', src:'Leitan §4.1.11: kuṃbhaṃ karoti iti'},
+  'manujaḥ': {key:'r_tp_upapada', src:'Leitan §4.1.11: manoḥ jātaḥ', trans:'manoḥ jātaḥ iti manujaḥ — человек (рождённый от Ману)'},
+  'nagaragāmī': {key:'r_tp_upapada', src:'Leitan §4.1.11', trans:'nagaraṃ gacchati iti — идущий в город'},
+  'śmaśānaḥ':         {key:'r_tp_upapada', src:'Leitan §aluk/upapada: śavāḥ śerate atra'},
+  'grāmevāsī': {key:'r_tp_aluk',    src:'Leitan §aluk: grāme vasati', trans:'grāme vasati iti — живущий в деревне'},
+  // ALUK-SAMĀSA
+  'yudhiṣṭhiraḥ': {key:'r_tp_aluk', src:'Leitan §aluk: yudhi sthiraḥ', trans:'yudhi sthiraḥ — стойкий в битве'},
+  'divijaḥ': {key:'r_tp_aluk', src:'Leitan §aluk: divi jātaḥ', trans:'divi jātaḥ — рождённый на небе'},
+  // PRĀDI-tatpuruṣa (preposition first component)
+  // Note: in our 5-node tree, prādi-tp is reached via:
+  //   step1=No (user misses that pra- IS avyaya) → ... → ask_tp_case
+  //   OR step1=Yes, step2=No (not adverb), dvandva_2=No → ask_bv_role...
+  // Canonical key is r_tp_gen as closest; note explains prādi
+  'pravātaḥ': {key:'r_tp_pradi', src:'Leitan §4.1.9: prakṛṣṭaḥ vātaḥ', trans:'prakṛṣṭaḥ vātaḥ — сильный ветер'},
+  'prācāryaḥ':        {key:'r_tp_pradi', src:'Leitan §4.1.9: pragataḥ ācāryaḥ'},
+  'samadhvaḥ':        {key:'r_tp_pradi', src:'Leitan §4.1.9: saṃgataḥ adhvānam'},
+  'prapitāmahaḥ': {key:'r_tp_pradi', src:'Leitan §4.1.9: pragataḥ pitāmahaḥ', trans:'pragataḥ pitāmahaḥ — прадед'},
+  'anumānam':         {key:'r_tp_pradi', src:'Leitan §4.1.9: [arthasya] paścān mānam'},
+  'vijñānam': {key:'r_tp_pradi', src:'Leitan §4.1.10 (gati): viśiṣṭaṃ jñānam', trans:'viśiṣṭaṃ jñānam — особое знание'},
+  'pravrājitaḥ':      {key:'r_tp_gen', src:'prādi-tatpuruṣa'},
+  'upaviṣṭaḥ':        {key:'r_tp_gen', src:'prādi-tatpuruṣa: upa- + viṣṭa-'},
+  'nirjitaḥ':         {key:'r_tp_gen', src:'prādi-tatpuruṣa: nir- + jita-'},
+  'saṃjñā':           {key:'r_tp_gen', src:'prādi-tatpuruṣa: sam- + jñā-'},
+};
+
+// ── FORMAL STATUS CHECK ───────────────────────────────────────────────────────
+// Returns {status:'ok'|'impossible'|'unlikely', reason: string}
+function getFormalStatus(optionKey, word) {
+  if (!word || word.length < 2) return {status:'ok'};
+  var w = word.trim().toLowerCase();
+
+  if (optionKey === 'r_tp_nan') {
+    // nañ requires word to start with a- or an-
+    if (!/^an?[bcdfghjklmnpqrstvwyzāīūṛśṣṭḍṇñṅḥṃ]/.test(w) && !/^a[^aāiīuūṛe]/.test(w)) {
+      return {status:'impossible',
+        reason: L('Слово не начинается с a-/an- → nañ формально невозможен',
+                  'Word does not start with a-/an- → nañ formally excluded')};
+    }
+  }
+  if (optionKey === 'r_avyayibhava') {
+    if (!w.match(/am$|m$/)) {
+      return {status:'unlikely',
+        reason: L('Авьяибхава — всегда acc.sg.nt. (-am); это слово может не подходить',
+                  'Avyayībhāva is always acc.sg.nt. (-am); this word may not qualify')};
+    }
+  }
+  if (optionKey === 'r_dv_samahara') {
+    if (!w.match(/am$|m$/)) {
+      return {status:'unlikely',
+        reason: L('Samāhāra-dvandva — sg.nt. (-am); форма не совпадает',
+                  'Samāhāra-dvandva is sg.nt. (-am); form does not match')};
+    }
+  }
+  if (optionKey === 'r_dv_itaretara') {
+    if (w.match(/am$|aḥ$/) && !w.match(/au$/)) {
+      return {status:'unlikely',
+        reason: L('Itaretara-dvandva — обычно du. (-au) или pl. (-āḥ)',
+                  'Itaretara-dvandva is usually du. (-au) or pl. (-āḥ)')};
+    }
+  }
+  return {status:'ok'};
+}
+
+// ── WORD ANALYSIS HINTS ───────────────────────────────────────────────────────
+// Returns array of hint strings about the word's morphological signals
+function getWordHints(word) {
+  if (!word || word.length < 2) return [];
+  var w = word.trim().toLowerCase();
+  var hints = [];
+
+  // Prefix analysis
+  var preverbs = [
+    ['pra','pra- (prefix: forth, away, very) → likely prādi-tatpuruṣa or avyayībhāva'],
+    ['upa','upa- (prefix: near, toward) → likely avyayībhāva'],
+    ['nir','nir- (prefix: out, without) → likely avyayībhāva'],
+    ['sam','sam- (prefix: together, fully) → likely prādi/gati-tatpuruṣa'],
+    ['ati','ati- (prefix: over, very) → avyayībhāva OR prādi-tatpuruṣa'],
+    ['adhi','adhi- (prefix: above, over) → likely avyayībhāva'],
+    ['anu','anu- (prefix: along, after) → likely avyayībhāva'],
+    ['abhi','abhi- (prefix: toward, against) → avyayībhāva or prādi'],
+    ['pari','pari- (prefix: around, fully) → avyayībhāva or prādi'],
+    ['vi','vi- (prefix: apart, without) → prādi-tatpuruṣa'],
+    ['su','su- (prefix: good, well) → karmadhāraya or avyayībhāva'],
+    ['dur','dur-/duḥ- (prefix: bad, hard) → karmadhāraya'],
+    ['niḥ','niḥ-/nis- (prefix: without) → avyayībhāva or nañ-like'],
+  ];
+  var nañ = /^an?[^aāiīuūṛ]/.test(w) || /^a[bcdfghjklmnpqrstvwyzśṣṭḍṇñṅ]/.test(w);
+  if (nañ) hints.push(L('Начинается с a-/an- → возможен nañ-tatpuruṣa или nañ-bahuvrīhi',
+                         'Starts with a-/an- → possible nañ-tatpuruṣa or nañ-bahuvrīhi'));
+  else {
+    for (var i=0; i<preverbs.length; i++) {
+      if (w.startsWith(preverbs[i][0])) { hints.push(preverbs[i][1]); break; }
+    }
+  }
+
+  // Ending analysis
+  var endings = [
+    [/am$/,  L('Оканч. -am → acc.sg.nt. или adverb → возможна avyayībhāva',
+               'Ends -am → acc.sg.nt. / adverb → possible avyayībhāva')],
+    [/aḥ$/,  L('Оканч. -aḥ → nom.sg.m. → не avyayībhāva',
+               'Ends -aḥ → nom.sg.m. → not avyayībhāva')],
+    [/au$/,  L('Оканч. -au → nom./acc. du. → возможна itaretara-dvandva',
+               'Ends -au → nom./acc. du. → possible itaretara-dvandva')],
+    [/āḥ$/,  L('Оканч. -āḥ → nom.pl.m. или nom.sg.f. → возможна dvandva (pl.)',
+               'Ends -āḥ → nom.pl.m. or nom.sg.f. → possible dvandva (pl.)')],
+    [/iḥ$/,  L('Оканч. -iḥ → nom.sg.m. (i-основа) → скорее всего существительное',
+               'Ends -iḥ → nom.sg.m. (i-stem) → likely noun')],
+  ];
+  for (var j=0; j<endings.length; j++) {
+    if (endings[j][0].test(w)) { hints.push(endings[j][1]); break; }
+  }
+
+  return hints;
+}
+
+
+// Sort state
+var sortOrder = 'desc';
+// Result state tracking
+var isResultState = false;
+var lastAnalyzedWord = ''; // 'desc'=newest first, 'asc'=oldest first, 'alpha'=A-Z
+
+// Generate short unique ID
+function genId() {
+  return Date.now().toString(36) + Math.random().toString(36).substr(2, 4);
+}
+
+// Lookup word in canonical DB (try exact + strip endings)
+function iastNormalize(s) {
+  // Normalize IAST: map diacritics to base letters, remove ḥ (visarga)
+  return s.toLowerCase()
+    .replace(/ṛ/g,'r').replace(/ḥ/g,'').replace(/ṃ/g,'m')
+    .replace(/ś/g,'s').replace(/ṣ/g,'s').replace(/ñ/g,'n').replace(/ṅ/g,'n').replace(/ṇ/g,'n')
+    .replace(/ṭ/g,'t').replace(/ḍ/g,'d')
+    .replace(/ā/g,'a').replace(/ī/g,'i').replace(/ū/g,'u')
+    .replace(/[^a-z]/g,'');
+}
+
+function lookupCanonical(word) {
+  if (!word) return null;
+  var w = word.trim().toLowerCase();
+
+  // 1. Exact match
+  if (CANONICAL_DB[w]) return CANONICAL_DB[w];
+
+  // 2. Strip common case endings and retry exact
+  var endings = [
+    /[ḥṃ]$/, /am$/, /au$/, /āḥ$/, /iḥ$/, /uḥ$/, /āḥ$/, /ā$/, /aḥ$/, /iṃ$/, /im$/
+  ];
+  for (var i = 0; i < endings.length; i++) {
+    var stem = w.replace(endings[i], '');
+    if (stem && CANONICAL_DB[stem]) return CANONICAL_DB[stem];
+    if (stem && CANONICAL_DB[stem+'ḥ']) return CANONICAL_DB[stem+'ḥ'];
+    if (stem && CANONICAL_DB[stem+'aḥ']) return CANONICAL_DB[stem+'aḥ'];
+  }
+
+  // 3. Normalized fuzzy match (ignores diacritics)
+  var wNorm = iastNormalize(w);
+  if (wNorm.length < 3) return null;
+  var keys = Object.keys(CANONICAL_DB);
+  for (var k = 0; k < keys.length; k++) {
+    if (iastNormalize(keys[k]) === wNorm) return CANONICAL_DB[keys[k]];
+  }
+  // 4. Fuzzy with endings stripped
+  var wStem = w.replace(/[aeiouāīū]ḥ$|ḥ$|m$|ṃ$/,'');
+  var wStemNorm = iastNormalize(wStem);
+  if (wStemNorm.length >= 3) {
+    for (var k = 0; k < keys.length; k++) {
+      var kStemNorm = iastNormalize(keys[k].replace(/[aeiouāīū]ḥ$|ḥ$|m$|ṃ$/,''));
+      if (kStemNorm === wStemNorm) return CANONICAL_DB[keys[k]];
+    }
+  }
+  // 5. Consonant-skeleton match (handles vowel diacritic variants: kraṣṇa / kṛṣṇa)
+  function consOnly(s) { return iastNormalize(s).replace(/[aeiou]/g,''); }
+  var wCons = consOnly(w);
+  if (wCons.length >= 3) {
+    for (var k = 0; k < keys.length; k++) {
+      if (consOnly(keys[k]) === wCons) return CANONICAL_DB[keys[k]];
+    }
+  }
+  return null;
+}
+
+// ── NODES ─────────────────────────────────────────────────────────────────────
+var NODES = {
+  start:{
+    q:function(){return L('Первый компонент (pūrvapada) — неизменяемое слово (<em>avyaya</em>)?',
+                          'Is the first member (pūrvapada) an indeclinable (<em>avyaya</em>)?')},
+    hint:function(){
+      var p = detectPrefix(currentWord);
+      var detected = p
+        ? L('Обнаружен префикс <strong>' + p.label + '</strong>'
+              + (p.note ? ' (' + p.note + ')' : '') + '.',
+            'Detected prefix <strong>' + p.label + '</strong>'
+              + (p.note ? ' (' + p.note + ')' : '') + '.')
+        : L('Avyaya-слова: <em>upa-, adhi-, anu-, yathā-, prati-, su-, dur-, nir-, iti-, ā-, ati-</em>. Итог = наречие → сильный сигнал.',
+            'Avyaya words: <em>upa-, adhi-, anu-, yathā-, prati-, su-, dur-, nir-, iti-, ā-, ati-</em>. Compound functions as adverb → strong signal.');
+      return detected;
+    },
+    freq:[['~2.4% corpus','fh'],['MW: 75.6% entries = samāsas','fm']],
+    refs:{ru:['Пан. 2.1.6','Лейтан §§1–3','Зализняк §191','Ruppel p.142'],
+          en:['Pāṇ. 2.1.6','Leitan §§1–3','Zaliznyak §191','Ruppel p.142']},
+    yes:'check_avyayi', no:'ask_dvandva', step:1, total:6
+  },
+  check_avyayi:{
+    q:function(){return L('Итог стоит в acc.sg.nt. и используется как наречие?',
+                          'Does the compound stand in acc.sg.nt. and function as an adverb?')},
+    hint:function(){return L('Типично: <em>upagaṅgam</em>, <em>nirmakṣikam</em>, <em>yathāśakti</em>. Всегда ср.р. вин.пад. ед.ч. Если нет → prādi-tatpuruṣa (<em>ativanam</em>).',
+                             'Typical: <em>upagaṅgam</em>, <em>nirmakṣikam</em>, <em>yathāśakti</em>. Always acc.sg.nt. If not → prādi-tatpuruṣa (e.g. <em>ativanam</em>).')},
+    freq:[['A1 F-score: 93.1%','fh'],['Differs from prādi-tatpuruṣa!','fm']],
+    refs:{ru:['Пан. 2.1.6','Лейтан §7','Ruppel p.142'],en:['Pāṇ. 2.1.6','Leitan §7','Ruppel p.142']},
+    yes:'r_avyayibhava', no:'ask_dvandva_2', step:2, total:6
+  },
+  ask_dvandva_2:{
+    q:function(){return L(
+      'Обе части — самостоятельные равноправные члены, сочиняемые (не отождествляемые) друг с другом?',
+      'Are both members coordinated as independent equals — neither identified with nor predicated of the other?')},
+    hint:function(){return L(
+      'Dvandva: оба компонента — разные самостоятельные объекты (<em>X ca Y ca</em>).'
+      + ' Если левая часть отождествляется с правой через <em>eva</em> → это rūpaka-karmadhāraya, НЕ dvandva.'
+      + ' Если не dvandva и не avyayībhāva → tatpuruṣa с превербом.',
+      'Dvandva: both members are independent objects (<em>X ca Y ca</em>).'
+      + ' If the left member is identified with the right via <em>eva</em> → rūpaka-karmadhāraya, NOT dvandva.'
+      + ' If not dvandva and not avyayībhāva → tatpuruṣa with preverb.')},
+    freq:[['prādi-tatpuruṣa: avyaya modifies right member','fm']],
+    refs:{ru:['Пан. 1.4.58','Лейтан §4.1.9'],en:['Pāṇ. 1.4.58','Leitan §4.1.9']},
+    yes:'ask_dvandva_or_ubhaya', no:'ask_bv_role', step:3, total:6
+  },
+  ask_dvandva:{
+    q:function(){return L(
+      'Обе части — самостоятельные равноправные члены, <strong>сочиняемые</strong> (не отождествляемые, не приравниваемые)?',
+      'Are both members <strong>coordinated</strong> as independent equals — neither identified with nor predicated of the other?')},
+    hint:function(){return L(
+      '<strong>Dvandva</strong> (Пан. 2.2.29): оба компонента существуют независимо и перечисляются рядом. Виграха: <em>X ca Y ca</em>.'
+      + '<br>❌ <strong>Нет</strong>, если левая часть <em>отождествляется</em> с правой:'
+      + '<br>  • rūpaka: <em>vidyā <strong>eva</strong> dhanam</em> — знание <em>есть</em> богатство (eva = именно, отождествление)'
+      + '<br>  • karmadhāraya adj: <em>mahāṃś ca asau rājā</em> — [он же] великий и [он же] царь'
+      + '<br>❌ <strong>Нет</strong>, если оба — прилагательные одного предмета (ubhayapada): <em>haritam ca tad aruṇaṃ ca</em>',
+      '<strong>Dvandva</strong> (Pāṇ. 2.2.29): both members exist independently and are listed side by side. Vigraha: <em>X ca Y ca</em>.'
+      + '<br>❌ <strong>No</strong> if the left member is <em>identified</em> with the right:'
+      + '<br>  • rūpaka: <em>vidyā <strong>eva</strong> dhanam</em> — knowledge <em>is</em> wealth (eva = identification, equation)'
+      + '<br>  • karmadhāraya adj: <em>mahāṃś ca asau rājā</em> — [the same one who is] great is [also] king'
+      + '<br>❌ <strong>No</strong> if both are adjectives of one thing (ubhayapada): <em>haritam ca tad aruṇaṃ ca</em>')},
+        freq:[['D = 11.8% dataset','fm'],['Never confused with avyayībhāva','fh']],
+    refs:{ru:['Пан. 2.2.29','Лейтан §6','Зализняк §192','Ruppel p.141'],
+          en:['Pāṇ. 2.2.29','Leitan §6','Zaliznyak §192','Ruppel p.141']},
+    yes:'ask_dvandva_or_ubhaya', no:'ask_bv_role', step:2, total:6
+  },
+  ask_dvandva_or_ubhaya:{
+    q:function(){return L(
+      'Оба компонента — <strong>прилагательные</strong>, описывающие <strong>одну и ту же</strong> вещь?',
+      'Are both members <strong>adjectives</strong> describing <strong>the same</strong> thing?')},
+    hint:function(){return L(
+      '<strong>Если да → viśeṣaṇobhayapada-karmadhāraya</strong>, а не dvandva. Формула: <em>X ca tad Y ca</em> (слово «tad» = «тот же самый»).'
+      + ' Пример: <em>śītoṣṇam</em> (тёплый-холодный), <em>haritāruṇam</em> (зелёно-красный).'
+      + '<br><strong>Если нет → dvandva</strong>: обе части — существительные или имена, обозначающие разные предметы/лица.',
+      '<strong>If yes → viśeṣaṇobhayapada-karmadhāraya</strong>, NOT dvandva. Formula: <em>X ca tad Y ca</em> ("tad" = that same thing).'
+      + ' Examples: <em>śītoṣṇam</em> (warm-cold), <em>haritāruṇam</em> (green-red).'
+      + '<br><strong>If no → dvandva</strong>: both members are nouns or names denoting different entities.')},
+    freq:[['viśeṣaṇobhayapada-km: оба = прилагательные','fm'],['dvandva: оба = существительные/имена','fm']],
+    refs:{ru:['Пан. 2.1.69 varṇo varṇena','Лейтан §4.2.4'],en:['Pāṇ. 2.1.69 varṇo varṇena','Leitan §4.2.4']},
+    yes:'r_km_ubhaya', no:'ask_samahara', step:3, total:6
+  },
+  ask_samahara:{
+    q:function(){return L('Итог — ед. число, средний род (собирательное значение)?',
+                          'Does the compound stand in sg.nt. with collective meaning?')},
+    hint:function(){return L('<em>Samāhāra</em>: части тела, войско → sg.nt. Пример: <em>pāṇipādamukham</em>. <em>Itaretara</em>: du. или pl.',
+                             '<em>Samāhāra</em>: body parts, army → sg.nt. Example: <em>pāṇipādamukham</em>. <em>Itaretara</em>: du. or pl.')},
+    freq:[['Samāhāra rare','fl'],['Itaretara = default dvandva','fh']],
+    refs:{ru:['Пан. 2.4.2','Лейтан §§6.1–6.2','Зализняк §192'],
+          en:['Pāṇ. 2.4.2','Leitan §§6.1–6.2','Zaliznyak §192']},
+    yes:'r_dv_samahara', no:'r_dv_itaretara', step:3, total:6
+  },
+  ask_bv_role:{
+    q:function(){return L('Весь композит — прилагательное (род ≠ роду правого компонента)?',
+                          'Does the compound function as an adjective (gender ≠ gender of final member)?')},
+    hint:function(){return L('Критерий Ruppel (p.141): <em>mukha-</em> (ср.р.), но <em>aśvamukhāḥ narāḥ</em> (м.р.) → bahuvrīhi. Ср. «⁠длиннорукий⁠», «⁠barefoot⁠».',
+                             'Ruppel\'s key (p.141): <em>mukha-</em> (nt.), but <em>aśvamukhāḥ narāḥ</em> (m.) → bahuvrīhi. Cf. "barefoot".')},
+    freq:[['B = 42.9% dataset','fm'],['Main conflict with T: 600+ shared components','fl']],
+    refs:{ru:['Пан. 2.2.23–24','Лейтан §5','Зализняк §194','Ruppel pp.139–141'],
+          en:['Pāṇ. 2.2.23–24','Leitan §5','Zaliznyak §194','Ruppel pp.139–141']},
+    yes:'ask_bv_sub', no:'ask_same_case', step:3, total:6
+  },
+  ask_same_case:{
+    q:function(){return L('При виграхе обе части — в одном падеже (номинатив)?',
+                          'In the vigraha, do both members stand in the same case (nominative)?')},
+    hint:function(){return L('<em>samānādhikaraṇa-tatpuruṣa</em> = karmadhāraya. Виграха: «⁠X ca asau Y ca⁠». Если нет — вибхакти-татпуруша.',
+                             '<em>samānādhikaraṇa-tatpuruṣa</em> = karmadhāraya. Vigraha: «⁠X ca asau Y ca⁠». If not — vibhakti-tatpuruṣa.')},
+    freq:[['K1 = 12.29% corpus (2nd most frequent)','fh'],['Pāṇini rules: F=46.5%','fm']],
+    refs:{ru:['Пан. 2.1.49–72','Лейтан §4.2','Зализняк §193','Ruppel p.138'],
+          en:['Pāṇ. 2.1.49–72','Leitan §4.2','Zaliznyak §193','Ruppel p.138']},
+    yes:'ask_km_type', no:'ask_tp_special', step:4, total:6
+  },
+  ask_km_type:{
+    q:function(){return L('Выберите подтип karmadhāraya:','Select the karmadhāraya subtype:')},
+    hint:function(){return L('K1 = 12.29% — наиболее частый. Пан. 2.1.49–72.',
+                             'K1 = 12.29% — most frequent. Pāṇ. 2.1.49–72.')},
+    freq:[['K1 = 12.29% ★','fh'],['Metaphor (rūpaka) frequent in kāvya','fm']],
+    refs:{ru:['Пан. 2.1.51–69','Лейтан §§4.2.1–4.2.8'],en:['Pāṇ. 2.1.51–69','Leitan §§4.2.1–4.2.8']},
+    options:[
+      {label:function(){return L('Прилаг. + сущ. (X описывает Y) ★ 12.29%','Adj. + noun (X describes Y) ★ 12.29%')}, next:'r_km_adj'},
+      {label:function(){return L('Сущ. + сущ. в аппозиции','Noun + noun in apposition')}, next:'r_km_appos'},
+      {label:function(){return L('Сравнение (iva) — upamāna','Comparison (iva) — upamāna')}, next:'r_km_upamana'},
+      {label:function(){return L('Метафора (eva) — rūpaka','Metaphor (eva) — rūpaka')}, next:'r_km_rupaka'},
+      {label:function(){return L('Оба прилагательных (X и Y) — viśeṣaṇobhayapada','Both adj. (X and Y) — viśeṣaṇobhayapada')}, next:'r_km_ubhaya'},
+      {label:function(){return L('Предположение (iti) — sambhāvanā','Supposition (iti) — sambhāvanā')}, next:'r_km_sambhavana'},
+      {label:function(){return L('С выпавшим средним элементом — madhyamapadalopi','Elided middle element — madhyamapadalopi')}, next:'r_km_madhyama'},
+    ],
+    step:5, total:6
+  },
+
+  ask_tp_special:{
+    q:function(){return L(
+      'Правая часть — первичное отглагольное образование (kṛdanta: √gam→gāmin, √kṛ→kāra, √jan→ja…), смысл которого раскрывается только вместе с левой частью?',
+      'Is the right member a primary verbal noun (kṛdanta: √gam→gāmin, √kṛ→kāra, √jan→ja…) whose meaning completes only with the left member?')},
+    hint:function(){return L(
+      'Сигнал: правая часть образована от корня глагола (+kṛt-суффикс), а левая — его обязательное дополнение. Примеры: <em>kumbha-kāra</em> (делающий горшки), <em>manu-ja</em> (рождённый от Ману), <em>nagara-gāmin</em> (идущий в город). Слово нельзя понять из двух частей без дополнительного описания.',
+      'Signal: right member derived from verbal root (+kṛt suffix), left is its required complement. Examples: <em>kumbha-kāra</em> (pot-maker), <em>manu-ja</em> (born of Manu), <em>nagara-gāmin</em> (city-goer). Meaning requires extra context.')},
+    freq:[['upapada-tp: ~4.3% corpus; upapadamatiṅ Pāṇ. 2.2.19','fm']],
+    refs:{ru:['Пан. 2.2.19','Лейтан §4.1.11'],en:['Pāṇ. 2.2.19','Leitan §4.1.11']},
+    yes:'r_tp_upapada', no:'ask_tp_numeral', step:5, total:6
+  },
+  ask_tp_numeral:{
+    q:function(){return L(
+      'Первая часть — числительное (eka-, dvi-, tri-, catur-, pañca-, ṣaṣ-, sapta-…)?',
+      'Is the first member a numeral (eka-, dvi-, tri-, catur-, pañca-, ṣaṣ-, sapta-…)?')},
+    hint:function(){return L(
+      'Dvigu (Pāṇ. 2.1.52) — особый подтип karmadhāraya. Результат обозначает совокупность или цену. Ср. <em>trilokaḥ</em> «⁠три мира⁠», <em>pañcaśarāḥ</em> «⁠пять стрел⁠», <em>saptarṣayaḥ</em> «⁠семь мудрецов⁠».',
+      'Dvigu (Pāṇ. 2.1.52) — special subtype of karmadhāraya. Refers to a collection or price. Cf. <em>trilokaḥ</em> "three worlds", <em>saptarṣayaḥ</em> "seven sages".')},
+    freq:[['Dvigu — подтип karmadhāraya, Pāṇ. 2.1.52','fm']],
+    refs:{ru:['Пан. 2.1.52','Лейтан §I.3'],en:['Pāṇ. 2.1.52','Leitan §I.3']},
+    yes:'r_km_dvigu', no:'ask_tp_prefix', step:5, total:6
+  },
+  ask_tp_prefix:{
+    q:function(){return L(
+      'Первая часть — это превербальный префикс (prādi: pra-, parā-, apa-, sam-, anu-; или gati: vi-, ut-, nis-…)?',
+      'Is the first member a preverb/prefix (prādi: pra-, parā-, apa-, sam-, anu-; or gati: vi-, ut-, nis-…)?')},
+    hint:function(){return L(
+      'Prādi (Пан. 1.4.58): pra-, parā-, apa-, sam-, anu-, ava-, nis-, dur-, vi-, pari-, abhi-, prati-… Если результат = наречие → шаг 1 был Да (avyayībhāva). Если нет → prādi/gati-tatpuruṣa. Примеры: <em>pravātaḥ</em> (сильный ветер), <em>vijñānam</em> (особое знание), <em>prapitāmahaḥ</em> (прадед).',
+      'Prādi (Pāṇ. 1.4.58): pra-, parā-, apa-, sam-, anu-, ava-, nis-, dur-, vi-, pari-, abhi-, prati-… If result = adverb → step 1 should have been Yes (avyayībhāva). If noun → prādi/gati-tatpuruṣa. Examples: <em>pravātaḥ</em> (strong wind), <em>vijñānam</em> (special knowledge), <em>prapitāmahaḥ</em> (great-grandfather).')},
+    freq:[['prādi-tp: preposition modifies uttarapada','fm'],['gati-tp: Pāṇ. 1.4.60–79','fm']],
+    refs:{ru:['Пан. 1.4.58–79','Лейтан §§4.1.9–4.1.10'],en:['Pāṇ. 1.4.58–79','Leitan §§4.1.9–4.1.10']},
+    yes:'r_tp_pradi', no:'ask_tp_aluk', step:5, total:6
+  },
+  ask_tp_aluk:{
+    q:function(){return L(
+      'Первая часть сохраняет падежное окончание внутри композита (aluk-samāsa)?',
+      'Does the first member retain its case ending inside the compound (aluk-samāsa)?')},
+    hint:function(){return L(
+      'В обычной самасе первая часть теряет окончание. В aluk-samāsa оно сохраняется: <em>yudhi-ṣṭhiraḥ</em> (yudhi = loc. sg. «⁠в битве⁠»), <em>divi-jaḥ</em> (divi = loc. sg. «⁠на небе⁠»), <em>grāme-vāsī</em> (grāme = loc. sg. «⁠в деревне⁠»).',
+      'Normally first members lose case endings. In aluk-samāsa the ending is preserved: <em>yudhi-ṣṭhiraḥ</em> (yudhi = loc. sg. "in battle"), <em>divi-jaḥ</em> (divi = loc. "in heaven"), <em>grāme-vāsī</em> (grāme = loc.).')},
+    freq:[['Aluk-samāsa редок','fl'],['Главный признак: видимое падежное окончание слева','fh']],
+    refs:{ru:['Пан. 6.3.1','Лейтан §aluk'],en:['Pāṇ. 6.3.1','Leitan §aluk']},
+    yes:'r_tp_aluk', no:'ask_tp_case', step:6, total:6
+  },
+  ask_bv_sub:{
+    q:function(){return L(
+      'Первая часть — sa- (= «⁠совместно с⁠»), или прикладной префикс из группы prādi?',
+      'Is the first member sa- (= "together with"), or a prādi preposition?')},
+    hint:function(){return L(
+      '<em>saha-bahuvrīhi</em>: sa- + X = «⁠пребывающий вместе с X⁠». Пр.: <em>saputraḥ</em> (вместе с сыном), <em>sakṛṣṇaḥ</em> (вместе с Кришной). <em>prādi-bahuvrīhi</em>: превербальный префикс + компонент. Пр.: <em>prāñjaliḥ</em>, <em>praparṇaḥ</em>. Если нет — обычный bahuvrīhi.',
+      '<em>saha-bahuvrīhi</em>: sa- + X = "one who is together with X". Cf. <em>saputraḥ</em> (with his son), <em>sakṛṣṇaḥ</em> (with Kṛṣṇa). <em>prādi-bahuvrīhi</em>: preverb + component. Cf. <em>prāñjaliḥ</em>, <em>praparṇaḥ</em>.')},
+    freq:[['saha-bv + prādi-bv — менее частые подтипы','fm']],
+    refs:{ru:['Пан. 2.2.24','Лейтан §5.1.3–5.1.4'],en:['Pāṇ. 2.2.24','Leitan §5.1.3–5.1.4']},
+    options:[
+      {label:function(){return L('sa- (saha-bahuvrīhi): «⁠пребывающий вместе с X⁠»','sa- (saha-bahuvrīhi): "one together with X"')}, next:'r_bv_saha'},
+      {label:function(){return L('Прикладной префикс (prādi-bahuvrīhi)','Prādi prefix (prādi-bahuvrīhi)')}, next:'r_bv_pradi'},
+      {label:function(){return L('Обычный bahuvrīhi (без sa- и prādi)','Regular bahuvrīhi (no sa- or prādi)')}, next:'r_bahuvrishi'},
+    ],
+    step:4, total:6
+  },
+  ask_tp_case:{
+    q:function(){return L('Какой падеж принимает левая часть при виграхе?',
+                          'What case does the first member take in the vigraha?')},
+    hint:function(){return L('<strong>Генетив (ṣaṣṭhī) = 40.56% — НАИБОЛЕЕ ЧАСТЫЙ!</strong> Tṛtīyā/saptamī < 2% — правила не работают без семантики (F &lt; 5%).',
+                             '<strong>Genitive (ṣaṣṭhī) = 40.56% — MOST FREQUENT!</strong> Tṛtīyā/saptamī < 2% — rules fail without semantics (F &lt; 5%).')},
+    freq:[['T6 ṣaṣṭhī = 40.56% ★★','fh'],['T3 tṛtīyā: F=5%','fl'],['Tn nañ: F=99%','fh']],
+    refs:{ru:['Пан. 2.1.24–48; 2.2.6–22','Лейтан §§4.1.1–4.1.13','Зализняк §193','Ruppel p.139'],
+          en:['Pāṇ. 2.1.24–48; 2.2.6–22','Leitan §§4.1.1–4.1.13','Zaliznyak §193','Ruppel p.139']},
+    options:[
+      {label:function(){return L('Генетив (-asya/-āṇām) ★ 40.56%','Genitive (-asya/-āṇām) ★ 40.56%')}, next:'r_tp_gen'},
+      {label:function(){return L('Аккузатив (-am) — ktānta (p.p.p.) справа','Accusative (-am) — ktānta (p.p.p.) on right')}, next:'r_tp_acc'},
+      {label:function(){return L('Инструменталис (-ena/-bhiḥ)','Instrumental (-ena/-bhiḥ)')}, next:'r_tp_inst'},
+      {label:function(){return L('Датив (-āya) — artha/hita/bali ★ F=87%','Dative (-āya) — artha/hita/bali ★ F=87%')}, next:'r_tp_dat'},
+      {label:function(){return L('Аблатив (-āt) — bhaya/mukta','Ablative (-āt) — bhaya/mukta')}, next:'r_tp_abl'},
+      {label:function(){return L('Локатив (-e/-ṣu) — kuśala/nipuṇa','Locative (-e/-ṣu) — kuśala/nipuṇa')}, next:'r_tp_loc'},
+      {label:function(){return L('Отрицание a-/an- (nañ) ★★ F=99%','Negation a-/an- (nañ) ★★ F=99%')}, next:'r_tp_nan'},
+    ],
+    step:6, total:6
+  }
+};
+
+
+// ── REMAINING STEPS LOOKUP ────────────────────────────────────────────────────
+// (min, max steps remaining INCLUDING current node)
+var REMAINING = {
+  'start':         {min:2, max:10},
+  'check_avyayi':  {min:1, max:9},
+  'ask_dvandva_2': {min:2, max:8},
+  'ask_dvandva':   {min:2, max:8},
+  'ask_dvandva_or_ubhaya': {min:1, max:1},
+  'ask_samahara':  {min:1, max:1},
+  'ask_bv_role':   {min:2, max:7},
+  'ask_bv_sub':    {min:1, max:1},
+  'ask_same_case': {min:2, max:6},
+  'ask_km_type':   {min:1, max:1},
+  'ask_tp_special':{min:1, max:5},
+  'ask_tp_numeral':{min:1, max:4},
+  'ask_tp_prefix': {min:1, max:3},
+  'ask_tp_aluk':   {min:1, max:2},
+  'ask_tp_case':   {min:1, max:1}
+};
+function getStepLabel(nodeId, stepNum) {
+  var r = REMAINING[nodeId];
+  var base = L('Шаг','Step') + ' ' + stepNum;
+  if (!r) return base;
+  if (r.min === 1 && r.max === 1) {
+    return base + ' <span style="font-size:.67rem;color:#2d6a4f;font-style:normal;margin-left:4px">('
+      + L('последний','final') + ')</span>';
+  }
+  if (r.min === r.max) {
+    return base + ' <span style="font-size:.67rem;color:#888;font-style:normal;margin-left:4px">('
+      + r.min + ' ' + L('шага','steps') + ')</span>';
+  }
+  // Show range only when it narrows to ≤3 options remaining
+  if (r.max <= 3) {
+    return base + ' <span style="font-size:.67rem;color:#888;font-style:normal;margin-left:4px">('
+      + L('осталось','left') + ' ' + r.min + (r.min !== r.max ? '–' + r.max : '') + ')</span>';
+  }
+  return base;
+}
+
+// ── RESULTS ───────────────────────────────────────────────────────────────────
+var RESULTS = {
+  r_avyayibhava:{theme:'theme-av',
+    type:function(){return 'AVYAYĪBHĀVA'},
+    alt:function(){return L('indeclinable compound · левая часть главная','indeclinable compound · first member is head')},
+    pat:'pūrvapadārthapradhānaḥ',
+    def:function(){return L('Первая часть (avyaya) — смысловой центр. Итог — наречие (acc.sg.nt.). В MW: «⁠indecl.⁠».',
+                            'The first member (avyaya) is the semantic head. The result is an adverb (acc.sg.nt.). Marked «⁠indecl.⁠» in MW.')},
+    formula:function(){return 'avyaya + X → acc.sg.nt.'},
+    freq:function(){return L('~2.4% датасета; F правил = 93.1%','~2.4% dataset; rule F = 93.1%')},
+    fdiff:'fh',
+    examples:[
+      {iast:'upagaṅgam',comp:function(){return L('upa (рядом) + gaṅgā','upa (near) + gaṅgā')},v:'gaṅgāyāḥ samīpam',t:function(){return L('близ Ганги','near the Ganges')},src:'§7.2'},
+      {iast:'nirmakṣikam',comp:function(){return L('nir (без) + makṣikā (муха)','nir (without) + makṣikā (fly)')},v:'makṣikāṇām abhāvaḥ',t:function(){return L('безмушно','fly-free')},src:'§7.5'},
+      {iast:'yathāśakti',comp:function(){return L('yathā (согласно) + śakti (сила)','yathā (according to) + śakti (strength)')},v:'śaktim anatikramya',t:function(){return L('по силам','according to ability')},src:'§7.10'},
+    ],
+    pairs:[{with:'prādi-tatpuruṣa',note:function(){return L('<em>ativanam</em>: avyayībhāva = «⁠vanasya atyayaḥ⁠» / tatpuruṣa = «⁠vanam atikrāntaḥ⁠».',
+                                                            '<em>ativanam</em>: avyayībhāva = «⁠vanasya atyayaḥ⁠» / tatpuruṣa = «⁠vanam atikrāntaḥ⁠».')}}],
+    refs:{ru:['Пан. 2.1.6','Лейтан §§7.1–7.11','Ruppel p.142'],en:['Pāṇ. 2.1.6','Leitan §§7.1–7.11','Ruppel p.142']}},
+
+  r_dv_itaretara:{theme:'theme-dv',
+    type:function(){return 'DVANDVA — itaretara'},
+    alt:function(){return L('coordinative compound · du./pl.','coordinative compound · du./pl.')},
+    pat:'ubhayapadārthapradhānaḥ',
+    def:function(){return L('Обе части равноправны. Форма: du. (2) или pl. (3+). Ср. «⁠хлеб-соль⁠» (Зализняк §192), «⁠bitter-sweet⁠» (Ruppel).',
+                            'Both members coordinate. Form: du. (2) or pl. (3+). Cf. "bitter-sweet" (Ruppel), "хлеб-соль" (Zaliznyak §192).')},
+    formula:function(){return 'X ca Y ca → X-Y (du./pl.)'},
+    freq:function(){return 'D = 11.8% dataset'},
+    fdiff:'fm',
+    examples:[
+      {iast:'rāmakṛṣṇau',comp:function(){return L('rāma + kṛṣṇa (два имени)','rāma + kṛṣṇa (two names)')},v:'rāmaś ca kṛṣṇaś ca',t:function(){return L('Рама и Кришна (du.)','Rāma and Kṛṣṇa (du.)')},src:'§6.1.1'},
+      {iast:'sūryacandrou',comp:function(){return L('sūrya (солнце) + candra (луна)','sūrya (sun) + candra (moon)')},v:'sūryaś ca candraś ca',t:function(){return L('Солнце и Луна (Зализняк §192)','sun and moon (Zaliznyak §192)')},src:'Zal.§192'},
+    ],
+    pairs:[],refs:{ru:['Пан. 2.2.29','Лейтан §6.1','Зализняк §192','Ruppel p.141'],en:['Pāṇ. 2.2.29','Leitan §6.1','Zaliznyak §192','Ruppel p.141']}},
+
+  r_dv_samahara:{theme:'theme-dv',
+    type:function(){return 'DVANDVA — samāhāra'},
+    alt:function(){return L('collective · sg.nt.','collective · sg.nt.')},
+    pat:'ubhayapadārthapradhānaḥ (samāhāre)',
+    def:function(){return L('Элементы — смысловая общность (части тела, войско). Форма: sg.nt.','Members form a semantic unity (body parts, army). Form: sg.nt.')},
+    formula:function(){return 'X ca Y ca → X-Y-m sg.nt.'},
+    freq:function(){return L('Редкий подтип dvandva','Rare dvandva subtype')},
+    fdiff:'fh',
+    examples:[
+      {iast:'pāṇipādamukham',comp:function(){return L('pāṇi (рука) + pāda (нога) + mukha (лицо)','pāṇi (hand) + pāda (foot) + mukha (face)')},v:'pāṇī ca pādau ca mukhaṃ ca',t:function(){return L('руки, ноги и лицо (sg.nt.)','hands, feet and face (sg.nt.)')},src:'§6.2.2'},
+    ],
+    pairs:[],refs:{ru:['Пан. 2.4.2','Лейтан §6.2','Зализняк §192'],en:['Pāṇ. 2.4.2','Leitan §6.2','Zaliznyak §192']}},
+
+
+  r_tp_upapada:{theme:'theme-tp',
+    type:function(){return 'TATPURUṢA — upapada'},
+    alt:function(){return L('kṛdanta в правой части + upapada слева','kṛdanta right + upapada left')},
+    pat:'uttarapadārthapradhānaḥ (upapadamatiṅ)',
+    def:function(){return L(
+      'Правая часть — первичное отглагольное образование (kṛdanta), левая — необходимое дополнение (upapada). Виграха строится с iti: «⁠X karoti iti⁠». Нельзя понять из компонентов без контекста.',
+      'Right member is a kṛdanta (verbal noun); left is the required upapada. Vigraha uses iti: «⁠X karoti iti⁠». Cannot be understood from components alone.')},
+    formula:function(){return 'X [√verb]-kṛt iti → «⁠one who [verbs] X⁠»'},
+    freq:function(){return 'upapada-tp: ~4.3% corpus (U-tag); Pāṇ. 2.2.19'},
+    fdiff:'fm',
+    examples:[
+      {iast:'kumbhakāraḥ',comp:function(){return L('kumbha (горшок) + kāra (√kṛ, делающий)','kumbha (pot) + kāra (√kṛ, maker)')},
+       v:'kuṃbhaṃ karoti iti kumbhakāraḥ',t:function(){return L('горшечник: тот, кто делает горшки','potter: one who makes pots')},src:'§4.1.11'},
+      {iast:'manujaḥ',comp:function(){return L('manu (первочеловек Ману) + ja (√jan, рождённый)','manu (Manu, progenitor) + ja (√jan, born)')},
+       v:'manoḥ jātaḥ iti manujaḥ',t:function(){return L('рождённый от Ману = человек','born of Manu = human being')},src:'§4.1.11'},
+      {iast:'nagaragāmī',comp:function(){return L('nagara (город) + gāmin (√gam, идущий)','nagara (city) + gāmin (√gam, going)')},
+       v:'nagaraṃ gacchati iti nagaragāmī',t:function(){return L('идущий в город','one who goes to the city')},src:'§4.1.11'},
+    ],
+    pairs:[],
+    refs:{ru:['Пан. 2.2.19','Лейтан §4.1.11'],en:['Pāṇ. 2.2.19','Leitan §4.1.11']}},
+
+  r_tp_pradi:{theme:'theme-tp',
+    type:function(){return 'TATPURUṢA — prādi / gati'},
+    alt:function(){return L('превербальный префикс + основа','preposition/prefix + noun stem')},
+    pat:'uttarapadārthapradhānaḥ',
+    def:function(){return L(
+      'Первая часть — превербальный префикс из группы prādi (Пан. 1.4.58: pra-, parā-, apa-, sam-, anu-…) или gati (vi-, ut-…). Виграха: prefix заменяется описательным прилагательным или наречием.',
+      'First member is a prādi preposition (Pāṇ. 1.4.58: pra-, parā-, apa-, sam-, anu-…) or gati prefix (vi-, ut-…). Vigraha: prefix replaced by descriptive adjective or adverb.')},
+    formula:function(){return 'pra-/vi-/sam- + X → «⁠intensified/directed X⁠»'},
+    freq:function(){return L('prādi-tp: преверб модифицирует uttarapada','prādi-tp: preverb modifies uttarapada')},
+    fdiff:'fm',
+    examples:[
+      {iast:'pravātaḥ',comp:function(){return L('pra- (интенсив) + vāta (ветер)','pra- (intensive) + vāta (wind)')},
+       v:'prakṛṣṭaḥ vātaḥ',t:function(){return L('сильный ветер','strong wind')},src:'§4.1.9 (Leitan)'},
+      {iast:'vijñānam',comp:function(){return L('vi- (особый, специфический) + jñāna (знание)','vi- (specific, special) + jñāna (knowledge)')},
+       v:'viśiṣṭaṃ jñānam',t:function(){return L('особое/специфическое знание','special/specific knowledge')},src:'§4.1.10'},
+      {iast:'prapitāmahaḥ',comp:function(){return L('pra- (предшествующий) + pitāmaha (дед)','pra- (preceding) + pitāmaha (grandfather)')},
+       v:'pragataḥ pitāmahaḥ',t:function(){return L('предшествующий дед = прадед','preceding grandfather = great-grandfather')},src:'§4.1.9'},
+    ],
+    pairs:[{with:'avyayībhāva',note:function(){return L(
+      'Оба: avyaya в первой части. Если результат = наречие (acc.sg.nt.) → avyayībhāva. Если существительное/прилагательное → prādi-tatpuruṣa.',
+      'Both have avyaya first. If result = adverb (acc.sg.nt.) → avyayībhāva. If noun/adjective → prādi-tatpuruṣa.')}}],
+    refs:{ru:['Пан. 1.4.58; 1.4.60–79','Лейтан §§4.1.9–4.1.10'],en:['Pāṇ. 1.4.58; 1.4.60–79','Leitan §§4.1.9–4.1.10']}},
+
+  r_tp_aluk:{theme:'theme-tp',
+    type:function(){return 'TATPURUṢA — aluk-samāsa'},
+    alt:function(){return L('сохранившееся падежное окончание слева','preserved case ending in first member')},
+    pat:'uttarapadārthapradhānaḥ (a-luk = no-deletion)',
+    def:function(){return L(
+      'В обычной самасе левая часть теряет падежное окончание. Aluk-samāsa — исключение: окончание сохраняется (aluk = «⁠без элизии⁠»). Нередко локативная связь.',
+      'Normally the case ending of the first member is deleted (luk). In aluk-samāsa the ending is preserved (a-luk = "no deletion"). Often locative relation.')},
+    formula:function(){return 'X[case] + Y → «⁠Y in/at/of X⁠» (ending preserved)'},
+    freq:function(){return L('Редко; Пан. 6.3.1 и далее','Rare; Pāṇ. 6.3.1 and seq.')},
+    fdiff:'fl',
+    examples:[
+      {iast:'yudhiṣṭhiraḥ',comp:function(){return L('yudhi (loc. «⁠в битве⁠») + sthira (стойкий)','yudhi (loc. "in battle") + sthira (steady)')},
+       v:'yudhi sthiraḥ',t:function(){return L('стойкий в битве — Юдхиштхира','steady in battle — Yudhiṣṭhira')},src:'§aluk (Leitan)'},
+      {iast:'divijaḥ',comp:function(){return L('divi (loc. «⁠на небе⁠») + ja (√jan, рождённый)','divi (loc. "in heaven") + ja (√jan, born)')},
+       v:'divi jātaḥ',t:function(){return L('рождённый на небе','born in heaven')},src:'§aluk (Leitan)'},
+    ],
+    pairs:[],
+    refs:{ru:['Пан. 6.3.1','Лейтан §aluk'],en:['Pāṇ. 6.3.1','Leitan §aluk']}},
+
+  r_km_dvigu:{theme:'theme-km',
+    type:function(){return 'KARMADHĀRAYA — dvigu'},
+    alt:function(){return L('числительное в первой части · подтип karmadhāraya','numeral first member · karmadhāraya subtype')},
+    pat:'samānādhikaraṇa-tatpuruṣaḥ (dvigu)',
+    def:function(){return L(
+      'Первая часть — числительное (Пан. 2.1.52: saṃkhyāpūrvo dviguḥ). Результат обозначает совокупность (samāhāra) или имеет значение таддхиты. Ср. «⁠семиглавый⁠», «⁠двурогий⁠».',
+      'First member is a numeral (Pāṇ. 2.1.52: saṃkhyāpūrvo dviguḥ). Denotes a collection (samāhāra) or has taddhita meaning. Cf. "seven-headed", "two-horned".')},
+    formula:function(){return 'numeral + X → «⁠collection/set of X⁠»'},
+    freq:function(){return L('Особый подтип karmadhāraya; Пан. 2.1.52','Special karmadhāraya subtype; Pāṇ. 2.1.52')},
+    fdiff:'fm',
+    examples:[
+      {iast:'trilokaḥ',comp:function(){return L('tri (три) + loka (мир)','tri (three) + loka (world)')},
+       v:'trayāṇāṃ lokānāṃ samāhāraḥ',t:function(){return L('три мира (совокупность)','the three worlds (collection)')},src:'§I.3 (Leitan)'},
+      {iast:'saptarṣayaḥ',comp:function(){return L('sapta (семь) + ṛṣi (провидец)','sapta (seven) + ṛṣi (sage)')},
+       v:'saptānāṃ ṛṣīṇāṃ samāhāraḥ',t:function(){return L('семь провидцев','seven sages')},src:'§I.3 (Leitan)'},
+    ],
+    pairs:[{with:'dvandva-samāhāra',note:function(){return L(
+      'Оба = sg.nt. Dvandva: X ca Y ca (равноправие). Dvigu: числительное + существительное (иерархия).',
+      'Both sg.nt. Dvandva: X ca Y ca (coordination). Dvigu: numeral + noun (hierarchy).')}}],
+    refs:{ru:['Пан. 2.1.52','Лейтан §I.3'],en:['Pāṇ. 2.1.52','Leitan §I.3']}},
+
+  r_bv_saha:{theme:'theme-bv',
+    type:function(){return 'BAHUVRĪHI — saha-pūrvapada'},
+    alt:function(){return L('sahapūrvapada-bahuvrīhi · «⁠пребывающий вместе с⁠»','sahapūrvapada-bahuvrīhi · "one together with"')},
+    pat:'anyapadārthapradhānaḥ',
+    def:function(){return L(
+      'Первая часть sa- (= saha «⁠вместе с⁠»). Виграха: saha X-ena iti. Результат — прилагательное.',
+      'First member sa- (= saha "together with"). Vigraha: saha X-ena iti. Result is an adjective.')},
+    formula:function(){return 'sa- + X → saha X-ena (inst.) iti'},
+    freq:function(){return L('Менее частый подтип bahuvrīhi','Less frequent bahuvrīhi subtype')},
+    fdiff:'fm',
+    examples:[
+      {iast:'saputraḥ',comp:function(){return L('sa- (вместе с) + putra (сын)','sa- (together with) + putra (son)')},
+       v:'saha putreṇa vartate iti saputraḥ',t:function(){return L('тот, кто пребывает вместе с сыном','one who is together with his son')},src:'§5.1.4 (Leitan)'},
+      {iast:'sakṛṣṇaḥ',comp:function(){return L('sa- (вместе с) + kṛṣṇa (Кришна)','sa- (together with) + kṛṣṇa (Kṛṣṇa)')},
+       v:'saha kṛṣṇena vartate iti sakṛṣṇaḥ',t:function(){return L('тот, кто пребывает вместе с Кришной','one who is with Kṛṣṇa')},src:'§5.1.4 (Leitan)'},
+    ],
+    pairs:[],
+    refs:{ru:['Пан. 2.2.28','Лейтан §5.1.4'],en:['Pāṇ. 2.2.28','Leitan §5.1.4']}},
+
+  r_bv_pradi:{theme:'theme-bv',
+    type:function(){return 'BAHUVRĪHI — prādi-bahuvrīhi'},
+    alt:function(){return L('превербальный префикс + компонент','preposition prefix + component')},
+    pat:'anyapadārthapradhānaḥ',
+    def:function(){return L(
+      'Первая часть — превербальный префикс из группы prādi. Виграха: префикс заменяется причастием p.p.p. Результат — прилагательное.',
+      'First member is a prādi preposition. Vigraha: prefix replaced by p.p.p. Result is always an adjective.')},
+    formula:function(){return 'pra-/nir-/ut- + X → prefix-ktānta X yasya saḥ'},
+    freq:function(){return L('Менее частый подтип bahuvrīhi','Less frequent bahuvrīhi subtype')},
+    fdiff:'fm',
+    examples:[
+      {iast:'prāñjaliḥ',comp:function(){return L('pra- (сложен/простёрт) + añjali (сложенные руки)','pra- (extended) + añjali (cupped hands)')},
+       v:'prabaddho\u2019ñjalir yena saḥ',t:function(){return L('тот, у кого сложены руки (в жест приветствия)','one whose hands are folded in greeting')},src:'§5.1.3 (Leitan)'},
+      {iast:'praparṇaḥ [vṛkṣaḥ]',comp:function(){return L('pra- (прочь опавший) + parṇa (листья)','pra- (fallen away) + parṇa (leaves)')},
+       v:'prapatitāni parṇāni yasya saḥ vṛkṣaḥ',t:function(){return L('дерево, у которого облетели листья','tree whose leaves have fallen off')},src:'§5.1.3 (Leitan)'},
+    ],
+    pairs:[{with:'prādi-tatpuruṣa',note:function(){return L(
+      'Оба: prādi в первой части. prādi-tp = существительное; prādi-bv = прилагательное.',
+      'Both have prādi first. prādi-tp = noun; prādi-bv = adjective.')}}],
+    refs:{ru:['Лейтан §5.1.3','Пан. 2.2.18'],en:['Leitan §5.1.3','Pāṇ. 2.2.18']}},
+
+  r_bahuvrishi:{theme:'theme-bv',
+    type:function(){return 'BAHUVRĪHI'},
+    alt:function(){return L('possessive/exocentric · ВСЕГДА прилагательное','possessive/exocentric · ALWAYS an adjective')},
+    pat:'anyapadārthapradhānaḥ',
+    def:function(){return L('Главное — внешнее слово. Весь композит = прилагательное. Род итога ≠ роду правого компонента (Ruppel p.141). Ср. «⁠длиннорукий⁠», «⁠barefoot⁠».',
+                            'The head is an external word. Always an adjective. Gender of compound ≠ gender of final member (Ruppel p.141). Cf. "barefoot".')},
+    formula:function(){return 'Y yasya/yasyāḥ saḥ/sā'},
+    freq:function(){return L('B = 42.9% датасета; 600+ общих компонентов с T','B = 42.9% dataset; 600+ shared components with T')},
+    fdiff:'fl',
+    examples:[
+      {iast:'pītāmbaraḥ',comp:function(){return L('pīta (жёлтый) + ambara (одежда)','pīta (yellow) + ambara (garment)')},v:'pītam ambaraṃ yasya saḥ',t:function(){return L('тот, чья одежда жёлтая = Хари','one whose garment is yellow = Hari')},src:'§5.1.5'},
+      {iast:'dīrghabāhuḥ',comp:function(){return L('dīrgha (длинный) + bāhu (рука)','dīrgha (long) + bāhu (arm)')},v:'dīrghāḥ bāhavo yasya saḥ',t:function(){return L('длиннорукий (Зализняк §194)','long-armed (Zaliznyak §194)')},src:'Zal.§194'},
+      {iast:'abhāryaḥ',comp:function(){return L('a- (нет) + bhāryā (жена)','a- (no) + bhāryā (wife)')},v:'avidyamānā bhāryā yasya saḥ',t:function(){return L('тот, у кого нет жены','one who has no wife')},src:'§5.1.7'},
+    ],
+    pairs:[
+      {with:'ṣaṣṭhī-tatpuruṣa',note:function(){return L('rājapuruṣaḥ: tp.=«⁠слуга царя⁠» (сущ.); bv.=«⁠тот, чьи слуги — цари⁠» (прил.).','rājapuruṣaḥ: tp.=king\'s man (noun); bv.=one whose men are kings (adj.).')}},
+      {with:'nañ-tatpuruṣa',note:function(){return L('aputraḥ: nañ-tp.=«⁠na putraḥ⁠»; nañ-bv.=«⁠avidyamānaḥ putraḥ yasya saḥ⁠». 13/14 ошибок nañ-bv→tp.','aputraḥ: nañ-tp.=«⁠na putraḥ⁠»; nañ-bv.=«⁠avidyamānaḥ putraḥ yasya saḥ⁠». 13/14 errors: nañ-bv→tp.')}}
+    ],refs:{ru:['Пан. 2.2.23–28','Лейтан §§5.1–5.7','Зализняк §194','Ruppel pp.139–141'],
+           en:['Pāṇ. 2.2.23–28','Leitan §§5.1–5.7','Zaliznyak §194','Ruppel pp.139–141']}},
+
+  r_km_adj:{theme:'theme-km',
+    type:function(){return 'KARMADHĀRAYA — viśeṣaṇapūrvapada'},
+    alt:function(){return L('прилаг.+сущ. ★ 12.29%','adj.+noun ★ 12.29%')},
+    pat:'samānādhikaraṇa-tatpuruṣaḥ',
+    def:function(){return L('Прилагательное описывает существительное; оба в одном падеже. Ср. «⁠белоэмигрант⁠» (Зализняк), «⁠blackbird⁠» (Ruppel).',
+                            'Adjective describes the noun; both in same case. Cf. "blackbird" (Ruppel), "белоэмигрант" (Zaliznyak).')},
+    formula:function(){return 'X ca asau Y ca'},
+    freq:function(){return L('K1 = 12.29% — 2-й по частоте; правила: F=46.5%','K1 = 12.29% — 2nd most frequent; rules: F=46.5%')},
+    fdiff:'fm',
+    examples:[
+      {iast:'meghaśyāmaḥ',comp:function(){return L('megha (туча) + śyāma (тёмносиний)','megha (cloud) + śyāma (dark blue)')},v:'megha iva śyāmaḥ',t:function(){return L('тёмный как туча','dark as a cloud')},src:'§4.2.5'},
+      {iast:'mahārājaḥ',comp:function(){return L('mahā- (великий) + rāja (царь)','mahā- (great) + rāja (king)')},v:'mahāṃś ca asau rājā ca',t:function(){return L('великий царь','great king')},src:'§4.2.1'},
+    ],
+    pairs:[{with:'bahuvrīhi',note:function(){return L('nīlotpalam: km.=«⁠синий лотос⁠» / bv.=«⁠тот, чей лотос синий⁠». Контекст + род.','nīlotpalam: km.=«⁠blue lotus⁠» / bv.=«⁠one whose lotus is blue⁠». Context + gender.')}}],
+    refs:{ru:['Пан. 2.1.56','Лейтан §4.2.1','Зализняк §193','Ruppel p.138'],en:['Pāṇ. 2.1.56','Leitan §4.2.1','Zaliznyak §193','Ruppel p.138']}},
+
+  r_km_appos:{theme:'theme-km',
+    type:function(){return 'KARMADHĀRAYA — apposition'},
+    alt:function(){return L('сущ.+сущ. · редко','noun+noun · rare')},
+    pat:'samānādhikaraṇa-tatpuruṣaḥ',
+    def:function(){return L('Два существительных в аппозиции. Ср. «⁠царь-пушка⁠» (Зализняк), «⁠city-state⁠» (Ruppel).','Two nouns in apposition. Cf. "city-state" (Ruppel).')},
+    formula:function(){return 'X ca sa Y ca'},
+    freq:function(){return L('Менее частый','Less frequent')},
+    fdiff:'fm',
+    examples:[
+      {iast:'rājarṣiḥ',comp:function(){return L('rājan (царь) + ṛṣi (провидец)','rājan (king) + ṛṣi (seer)')},v:'rājā ca sa ṛṣiś ca',t:function(){return L('царь-провидец','king-seer')},src:'§4.2.2'},
+    ],
+    pairs:[],refs:{ru:['Пан. 2.1.65–67','Лейтан §4.2.2','Зализняк §193','Ruppel p.138'],en:['Pāṇ. 2.1.65–67','Leitan §4.2.2','Zaliznyak §193','Ruppel p.138']}},
+
+  r_km_upamana:{theme:'theme-km',
+    type:function(){return 'KARMADHĀRAYA — upamānapūrvapada'},
+    alt:function(){return L('сравнение с iva · часто в кāвье','comparison with iva · frequent in kāvya')},
+    pat:'samānādhikaraṇa-tatpuruṣaḥ',
+    def:function(){return L('Левая часть — эталон сравнения (iva). Ср. «⁠ruby-red, crystal-clear⁠» (Ruppel).',
+                            'First member = standard of comparison (iva). Cf. "ruby-red, crystal-clear" (Ruppel).')},
+    formula:function(){return 'X iva Y → Y like X'},
+    freq:function(){return L('Частый в поэзии','Frequent in kāvya poetry')},
+    fdiff:'fh',
+    examples:[
+      {iast:'candramukham',comp:function(){return L('candra (луна) + mukha (лицо)','candra (moon) + mukha (face)')},v:'candra-van mukhaṃ',t:function(){return L('луноподобный лик','moon-like face')},src:'§4.2.5'},
+    ],
+    pairs:[],refs:{ru:['Пан. 2.1.51','Лейтан §4.2.5','Ruppel p.139'],en:['Pāṇ. 2.1.51','Leitan §4.2.5','Ruppel p.139']}},
+
+  r_km_rupaka:{theme:'theme-km',
+    type:function(){return 'KARMADHĀRAYA — rūpaka-samāsa'},
+    alt:function(){return L('метафора с eva','metaphor with eva')},
+    pat:'samānādhikaraṇa-tatpuruṣaḥ (avadhāraṇā)',
+    def:function(){return L('Левая часть — образ метафоры. Формула: X eva Y.','First member is metaphorical image. Formula: X eva Y.')},
+    formula:function(){return 'X eva Y → Y which is X'},
+    freq:function(){return L('Частый в религ./филос. текстах','Frequent in religious/philosophical texts')},
+    fdiff:'fm',
+    examples:[
+      {iast:'vidyādhanam',comp:function(){return L('vidyā (знание) + dhana (богатство)','vidyā (knowledge) + dhana (wealth)')},v:'vidyā eva dhanam',t:function(){return L('знание есть богатство','knowledge is wealth')},src:'§4.2.7'},
+    ],
+    pairs:[],refs:{ru:['Пан. 2.1.56','Лейтан §4.2.7'],en:['Pāṇ. 2.1.56','Leitan §4.2.7']}},
+
+
+  r_km_ubhaya:{theme:'theme-km',
+    type:function(){return 'KARMADHĀRAYA — viśeṣaṇobhayapada'},
+    alt:function(){return L('оба компонента — прилагательные','both members are adjectives')},
+    pat:'samānādhikaraṇa-tatpuruṣaḥ',
+    def:function(){return L('Оба компонента — прилагательные. Ср. «⁠тёплый-холодный⁠», «⁠горько-сладкий⁠».','Both members are adjectives. Cf. "warm-cold", "bitter-sweet".')},
+    formula:function(){return 'X ca tad Y ca [neut.] → «⁠something that is both X and Y⁠»'},
+    freq:function(){return L('Менее частый','Less frequent')},fdiff:'fm',
+    examples:[
+      {iast:'śītoṣṇam [udakam]',comp:function(){return L('śīta (холодный) + uṣṇa (горячий/тёплый)','śīta (cold) + uṣṇa (hot/warm)')},
+       v:'śītaṃ ca tad uṣṇaṃ ca udakam',t:function(){return L('[вода] прохладная и тёплая одновременно','[water] that is both cool and warm')},src:'§4.2.4'},
+      {iast:'haritāruṇam',comp:function(){return L('harita (зелёный) + aruṇa (красный/оранжевый)','harita (green) + aruṇa (red/orange)')},
+       v:'haritam ca tad aruṇaṃ ca',t:function(){return L('зелёный и красный','green and red')},src:'§4.2.4'},
+    ],
+    pairs:[],refs:{ru:['Пан. 2.1.69','Лейтан §4.2.4'],en:['Pāṇ. 2.1.69','Leitan §4.2.4']}},
+
+  r_km_sambhavana:{theme:'theme-km',
+    type:function(){return 'KARMADHĀRAYA — sambhāvanāpūrvapada'},
+    alt:function(){return L('предположение / гипотеза в левой части','supposition in first member')},
+    pat:'samānādhikaraṇa-tatpuruṣaḥ',
+    def:function(){return L('Левая часть — уточняющее предположение или гипотеза. Виграха: X iti Y.','First member is a qualifying supposition. Vigraha: X iti Y.')},
+    formula:function(){return 'X iti Y → «⁠Y called/designated X⁠»'},
+    freq:function(){return L('Редко; в философских текстах','Rare; in philosophical texts')},fdiff:'fl',
+    examples:[
+      {iast:'guṇabuddhiḥ',comp:function(){return L('guṇa (качество, вайшешика) + buddhi (познавательный акт)','guṇa (quality, Vaiśeṣika) + buddhi (cognition)')},
+       v:'guṇa iti buddhiḥ',t:function(){return L('познание «⁠качества⁠» (категория вайшешики)','the cognition that is "quality" (Vaiśeṣika category)')},src:'§4.2 (Leitan)'},
+    ],
+    pairs:[],refs:{ru:['Лейтан §sambhāvanā'],en:['Leitan §sambhāvanā']}},
+
+  r_km_madhyama:{theme:'theme-km',
+    type:function(){return 'KARMADHĀRAYA — madhyamapadalopi'},
+    alt:function(){return L('выпавший средний элемент','elided middle element')},
+    pat:'samānādhikaraṇa-tatpuruṣaḥ',
+    def:function(){return L('Особый подтип: из трёхчленной самасы выпал средний элемент, который нужно восстановить при анализе.','Special subtype: the middle element of a three-part compound has been elided and must be supplied in analysis.')},
+    formula:function(){return 'X-[Y]-Z → X-Z (Y mentally supplied)'},
+    freq:function(){return L('Редко','Rare')},fdiff:'fl',
+    examples:[
+      {iast:'śākapārthivaḥ',comp:function(){return L('śāka (овощи) + pārthiva (царь)','śāka (vegetables) + pārthiva (king)')},
+       v:'śākapriyaḥ pārthivaḥ',t:function(){return L('царь, [любящий] овощи — царь-вегетарианец','the king [who loves] vegetables')},src:'§madhyamapada (Leitan)'},
+      {iast:'devabrāhmaṇaḥ',comp:function(){return L('deva (бог) + brāhmaṇa (брахман)','deva (god) + brāhmaṇa (brahmin)')},
+       v:'devapūjako brāhmaṇaḥ',t:function(){return L('брахман, [почитатель] богов','brahmin [who worships] gods')},src:'§madhyamapada (Leitan)'},
+    ],
+    pairs:[],refs:{ru:['Лейтан §madhyamapada'],en:['Leitan §madhyamapada']}},
+
+  r_tp_gen:{theme:'theme-tp',
+    type:function(){return 'TATPURUṢA — ṣaṣṭhī'},
+    alt:function(){return L('★ НАИБОЛЕЕ ЧАСТЫЙ ПОДТИП · 40.56%','★ MOST FREQUENT subtype · 40.56%')},
+    pat:'uttarapadārthapradhānaḥ',
+    def:function(){return L('При виграхе левая часть в генетиве. T6 = 40.56% корпуса! Ср. «⁠маслозавод⁠» (Зализняк), «⁠treehouse⁠» (Ruppel).',
+                            'First member in genitive. T6 = 40.56% corpus! Cf. "treehouse" (Ruppel).')},
+    formula:function(){return 'X gen. Y → Y of/belonging-to X'},
+    freq:function(){return 'T6 = 40.56% — MOST FREQUENT!'},
+    fdiff:'fm',
+    examples:[
+      {iast:'rājaputraḥ',comp:function(){return L('rājan (царь) + putra (сын)','rājan (king) + putra (son)')},v:'rājñaḥ putraḥ',t:function(){return L('сын царя','son of the king')},src:'§4.1.6'},
+      {iast:'himālayaḥ',comp:function(){return L('hima (снег) + ālaya (жилище)','hima (snow) + ālaya (abode)')},v:'himasya ālayaḥ',t:function(){return L('обитель снега','abode of snow')},src:'§4.1.6'},
+    ],
+    pairs:[{with:'bahuvrīhi',note:function(){return L('lokanāthaḥ: tp.=«⁠защитник людей⁠»; bv.=«⁠тот, чьи защитники — люди⁠». §9.','lokanāthaḥ: tp.=protector of people; bv.=one whose protectors are people. §9.')}}],
+    refs:{ru:['Пан. 2.2.8','Лейтан §4.1.6','Зализняк §193','Ruppel p.139'],en:['Pāṇ. 2.2.8','Leitan §4.1.6','Zaliznyak §193','Ruppel p.139']}},
+
+  r_tp_acc:{theme:'theme-tp',
+    type:function(){return 'TATPURUṢA — dvitīyā'},
+    alt:function(){return L('аккузатив · ktānta справа','accusative · ktānta on right')},
+    pat:'uttarapadārthapradhānaḥ',
+    def:function(){return L('Левая часть в аккузативе. Правая — часто ktānta (p.p.p.).','First member in accusative. Right often ktānta (p.p.p.).')},
+    formula:function(){return 'X acc. Y → Y going-to/reaching X'},
+    freq:function(){return L('T2 ~2.6%; F=20% (нужна семантика)','T2 ~2.6%; F=20% (semantics needed)')},
+    fdiff:'fm',
+    examples:[
+      {iast:'grāmagataḥ',comp:function(){return L('grāma (деревня) + gata (ушедший)','grāma (village) + gata (gone)')},v:'grāmaṃ gataḥ',t:function(){return L('пошедший в деревню','gone to the village')},src:'§4.1.2'},
+    ],
+    pairs:[],refs:{ru:['Пан. 2.1.24','Лейтан §4.1.2','Зализняк §193'],en:['Pāṇ. 2.1.24','Leitan §4.1.2','Zaliznyak §193']}},
+
+  r_tp_inst:{theme:'theme-tp',
+    type:function(){return 'TATPURUṢA — tṛtīyā'},
+    alt:function(){return L('инструменталис · ⚠ F=5%','instrumental · ⚠ F=5%')},
+    pat:'uttarapadārthapradhānaḥ',
+    def:function(){return L('Левая часть в инструменталисе. F=5% — правила практически бесполезны без семантики!',
+                            'First member in instrumental. F=5% — rules nearly useless without semantics!')},
+    formula:function(){return 'X inst. Y → Y by-means-of X'},
+    freq:function(){return L('T3 ~3.6%; F=5% ⚠','T3 ~3.6%; F=5% ⚠')},
+    fdiff:'fl',
+    examples:[
+      {iast:'vākkalahaḥ',comp:function(){return L('vāc (речь) + kalaha (спор)','vāc (speech) + kalaha (quarrel)')},v:'vāgbhiḥ kalahaḥ',t:function(){return L('словесный спор','verbal quarrel')},src:'§4.1.3'},
+    ],
+    pairs:[],refs:{ru:['Пан. 2.1.30–31','Лейтан §4.1.3'],en:['Pāṇ. 2.1.30–31','Leitan §4.1.3']}},
+
+  r_tp_dat:{theme:'theme-tp',
+    type:function(){return 'TATPURUṢA — caturthī'},
+    alt:function(){return L('датив · artha/hita/bali ★ F=87%','dative · artha/hita/bali ★ F=87%')},
+    pat:'uttarapadārthapradhānaḥ',
+    def:function(){return L('Левая часть в дативе. Правая: artha, bali, hita, sukha, rakṣita. F=87%.','First member in dative. Right: artha, bali, hita, sukha, rakṣita. F=87%.')},
+    formula:function(){return 'X dat. Y → Y for/intended-for X'},
+    freq:function(){return L('T4 ~1.6%; F=87% ★','T4 ~1.6%; F=87% ★')},
+    fdiff:'fh',
+    examples:[
+      {iast:'pāṭhaśālā',comp:function(){return L('pāṭha (рецитация) + śālā (здание)','pāṭha (recitation) + śālā (hall)')},v:'pāṭhāya śālā',t:function(){return L('здание для рецитации','hall for recitation')},src:'§4.1.4'},
+    ],
+    pairs:[],refs:{ru:['Пан. 2.1.36','Лейтан §4.1.4'],en:['Pāṇ. 2.1.36','Leitan §4.1.4']}},
+
+  r_tp_abl:{theme:'theme-tp',
+    type:function(){return 'TATPURUṢA — pañcamī'},
+    alt:function(){return L('аблатив · bhaya/mukta','ablative · bhaya/mukta')},
+    pat:'uttarapadārthapradhānaḥ',
+    def:function(){return L('Левая часть в аблативе. Правая: bhaya, mukta, cyuta, patita, apeta.','First member in ablative. Right: bhaya, mukta, cyuta, patita, apeta.')},
+    formula:function(){return 'X abl. Y → Y from/away-from X'},
+    freq:function(){return L('T5 ~0.5%; F=22%','T5 ~0.5%; F=22%')},
+    fdiff:'fm',
+    examples:[
+      {iast:'caurabhayam',comp:function(){return L('caura (вор) + bhaya (страх)','caura (thief) + bhaya (fear)')},v:'caurād bhayam',t:function(){return L('страх перед вором','fear of a thief')},src:'§4.1.5'},
+    ],
+    pairs:[],refs:{ru:['Пан. 2.1.36–38','Лейтан §4.1.5'],en:['Pāṇ. 2.1.36–38','Leitan §4.1.5']}},
+
+  r_tp_loc:{theme:'theme-tp',
+    type:function(){return 'TATPURUṢA — saptamī'},
+    alt:function(){return L('локатив · ⚠ F=1%','locative · ⚠ F=1%')},
+    pat:'uttarapadārthapradhānaḥ',
+    def:function(){return L('Левая часть в локативе. Правая: śauṇḍa, kuśala, nipuṇa, paṇḍita. F=1% — без лексикона!',
+                            'First member in locative. Right: śauṇḍa, kuśala, nipuṇa, paṇḍita. F=1% — no lexicon!')},
+    formula:function(){return 'X loc. Y → Y in/at/skilled-in X'},
+    freq:function(){return L('T7 ~1.9%; F=1% ⚠','T7 ~1.9%; F=1% ⚠')},
+    fdiff:'fl',
+    examples:[
+      {iast:'yuddhanipuṇaḥ',comp:function(){return L('yuddha (бой) + nipuṇa (искусный)','yuddha (battle) + nipuṇa (skilled)')},v:'yuddhe nipuṇaḥ',t:function(){return L('искусный в бою','skilled in battle')},src:'§4.1.7'},
+    ],
+    pairs:[],refs:{ru:['Пан. 2.1.40–42','Лейтан §4.1.7'],en:['Pāṇ. 2.1.40–42','Leitan §4.1.7']}},
+
+  r_tp_nan:{theme:'theme-tp',
+    type:function(){return 'TATPURUṢA — nañ'},
+    alt:function(){return L('★★ F=99.3% — ЛУЧШИЙ РЕЗУЛЬТАТ','★★ F=99.3% — BEST RESULT')},
+    pat:'uttarapadārthapradhānaḥ (nañ-)',
+    def:function(){return L('Первая часть: a-/an-. Виграха: «⁠na Y⁠». F=99.3% — наиболее точно идентифицируемый тип!',
+                            'First member: a-/an-. Vigraha: «⁠na Y⁠». F=99.3% — most accurately identified type!')},
+    formula:function(){return 'a(n)- + X → na X'},
+    freq:function(){return 'Tn = 5.9% corpus; F=99.3% ★★'},
+    fdiff:'fh',
+    examples:[
+      {iast:'abrāhmaṇaḥ',comp:function(){return L('a- (не) + brāhmaṇa (брахман)','a- (not) + brāhmaṇa (brahmin)')},v:'na brāhmaṇaḥ',t:function(){return L('не-брахман','non-brahmin')},src:'§4.1.8'},
+      {iast:'nagaḥ',comp:function(){return L('na + ga (идущий, √gam)','na + ga (going, √gam)')},v:'na gacchati',t:function(){return L('неподвижное: гора или дерево','non-moving: mountain or tree')},src:'§4.1.8'},
+    ],
+    pairs:[{with:'nañ-bahuvrīhi',note:function(){return L('nañ-tp: «⁠na Y⁠». nañ-bv: «⁠avidyamānaḥ Y yasya saḥ⁠». 13/14 ошибок nañ-bv→tp.',
+                                                          'nañ-tp: «⁠na Y⁠». nañ-bv: «⁠avidyamānaḥ Y yasya saḥ⁠». 13/14 errors: nañ-bv→tp.')}}],
+    refs:{ru:['Пан. 2.2.6','Лейтан §4.1.8'],en:['Pāṇ. 2.2.6','Leitan §4.1.8']}}
+};
+
+// ── RENDER ENGINE ─────────────────────────────────────────────────────────────
+function freqHtml(arr) {
+  if (!arr) return '';
+  return '<div class="freq-row">' + arr.map(function(x){
+    return '<span class="freq-badge '+x[1]+'">'+x[0]+'</span>';
+  }).join('') + '</div>';
+}
+function refHtml(node) {
+  var refs = node.refs ? (node.refs[lang] || node.refs.ru) : [];
+  if (!refs.length) return '';
+  return '<div class="ref-chips">' + refs.map(function(s){
+    return '<span class="ref-chip">'+s+'</span>';
+  }).join('') + '</div>';
+}
+function updateSideHistory() {
+  document.getElementById('step-history').innerHTML = stepHistory.map(function(h){
+    return '<div class="hist-item"><span>'+h.qShort+'</span><br>'
+      +'<span class="'+(h.yes?'hi-yes':'hi-no')+'">'+h.label+'</span></div>';
+  }).join('');
+}
+
+
+
+// ── AVYAYA WORD LIST ──────────────────────────────────────────────────────────
+// Lookup set of known avyaya words (uninflected indeclinables).
+// Stored as stems (without ḥ/m endings). User can extend by editing AVYAYA_WORDS.
+// Current count: ~120 core avyaya. Structure ready for 3000+ entries.
+var AVYAYA_WORDS = (function() {
+  var words = [
+    // Conjunctions and particles
+    'ca','vā','iti','api','tu','eva','hi','ha','tathā','atha','atho','nu',
+    'khalu','nanu','nūnam','kila','iva','yathā','tathāhi','yathāpi','tadvat',
+    'yadā','tadā','kadā','sarvadā','sadā','ekadā','kadācit','kadācana',
+    'nitya','nityam','satata','satatam','muhur','muhurmuhuḥ',
+    // Spatial avyaya
+    'atra','tatra','kutra','kva','amutra','anyatra','sarvatra',
+    'iha','ihā','tatas','kutoḥ','ataḥ','etaḥ',
+    // Preverbs used as avyaya in avyayībhāva
+    'upa','adhi','anu','abhi','apa','ati','yathā','yatha',
+    'prati','pari','parā','para','sam','pra','vi','ud','ut','ni',
+    'nir','niḥ','nis','dur','duḥ','su','ā',
+    // Common indeclinable adverbs
+    'saha','vinā','ṛte','prāk','paścāt','purā','tadā','idānīm',
+    'adya','śvaḥ','hyaḥ','samprati','etarhi','itthaṃ','tathaiva','nahi',
+    // Negatives
+    'na','mā','no','nahi','natu',
+    // Directional/spatial
+    'uttarataḥ','dakṣiṇataḥ','pūrvataḥ','paścimataḥ','upariṣṭāt','adhastāt',
+    'abhitaḥ','paritaḥ','samantataḥ','antataḥ','agre','paścāt','puraḥ',
+    // Degree/manner
+    'alam','bāḍham','bāḍha','kṣipram','śīghram','tūrṇam','bhṛśam',
+    'atīva','ativela','atimātra','atyartham','bahutaram','kiñcit',
+    // Indeclinables from Sanskrit grammar tradition (nipāta)
+    'khalv','kha','ha','he','bhoḥ','are','ambho','re','hanta','diṣṭyā',
+    'svasti','svāhā','vaṣaṭ','namaḥ','svadha','śraddhā',
+    // Common in compounds (avyayībhāva first members)
+    'antar','antas','bahis','tiryak','udak','adas','itara','para',
+    'apara','ubhaya','sarva','viśva','ubh',
+    // Indeclinable participles (ktvā, ya forms)
+    'ārabhya','upādāya','śrutvā','dṛṣṭvā','gatvā','āgamya','prapya',
+    'labdhvā','kṛtvā','uktva','jñātvā','dattvā','hatvā',
+  ];
+  var set = {};
+  for (var i = 0; i < words.length; i++) {
+    set[words[i]] = true;
+    // Also store without final vowel (for sandhi variants)
+    var w = words[i].replace(/[aāiīuū]$/, '');
+    if (w.length > 1) set[w] = true;
+  }
+  return set;
+})();
+
+// Check if a word stem is a known avyaya (indeclinable)
+function isKnownAvyaya(word) {
+  if (!word) return false;
+  var w = word.trim().toLowerCase();
+  // Direct lookup
+  if (AVYAYA_WORDS[w]) return true;
+  // Strip case endings and retry
+  var stems = [
+    w.replace(/[ḥṃ]$/, ''), w.replace(/am$/, ''), w.replace(/ā$/, ''),
+    w.replace(/āt$/, ''), w.replace(/e$/, ''), w.replace(/āṃ$/, '')
+  ];
+  for (var i = 0; i < stems.length; i++) {
+    if (stems[i].length > 1 && AVYAYA_WORDS[stems[i]]) return true;
+  }
+  return false;
+}
+
+// ── PREFIX AUTO-DETECTION ─────────────────────────────────────────────────────
+// Returns {prefix, type, certainty} or null
+// Handles sandhi: e.g. "ny" from "ni+a", "ūp" from "upa+", etc.
+var PREVERB_LIST = [
+  // avyayībhāva-strong (listed most→least specific to avoid false matches)
+  {pre:'adhi',  type:'avyaya', label:'adhi-', note:null},
+  {pre:'antar', type:'avyaya', label:'antar-', note:null},
+  {pre:'anuṣ',  type:'avyaya', label:'anuṣ-', note:null},
+  {pre:'anu',   type:'avyaya', label:'anu-', note:null},
+  {pre:'apari', type:'avyaya', label:'apari-', note:null},
+  {pre:'abhi',  type:'avyaya', label:'abhi-', note:null},
+  {pre:'apa',   type:'avyaya', label:'apa-', note:null},
+  {pre:'ati',   type:'avyaya', label:'ati-', note:null},
+  {pre:'yathā', type:'avyaya', label:'yathā-', note:null},
+  {pre:'yatha', type:'avyaya', label:'yathā-', note:null},
+  {pre:'prati', type:'avyaya', label:'prati-', note:null},
+  {pre:'pary',  type:'avyaya', label:'pari-', note:'sandhi: pari+a→parya'},
+  {pre:'pari',  type:'avyaya', label:'pari-', note:null},
+  {pre:'parā',  type:'avyaya', label:'parā-', note:null},
+  {pre:'para',  type:'avyaya', label:'parā-', note:null},
+  {pre:'upary', type:'avyaya', label:'upari-', note:null},
+  {pre:'upāṅg', type:'avyaya', label:'upa-', note:'sandhi'},
+  {pre:'upa',   type:'avyaya', label:'upa-', note:null},
+  {pre:'āṅg',   type:'avyaya', label:'ā-', note:'sandhi: ā+g'},
+  {pre:'āc',    type:'avyaya', label:'ā-', note:'sandhi'},
+  // ā- is tricky: very short, only flag if 2+ chars follow
+  {pre:'niṣ',  type:'avyaya', label:'nis-/nir-', note:'sandhi niḥ+k/p/t→niṣ'},
+  {pre:'nir',  type:'avyaya', label:'nir-', note:null},
+  {pre:'niḥ',  type:'avyaya', label:'niḥ-', note:null},
+  {pre:'nir',  type:'avyaya', label:'nir-', note:null},
+  {pre:'ni',   type:'avyaya', label:'ni-', note:null},
+  {pre:'sam',  type:'avyaya', label:'sam-/saṃ-', note:null},
+  {pre:'saṃ',  type:'avyaya', label:'saṃ-', note:null},
+  {pre:'pra',  type:'avyaya', label:'pra-', note:null},
+  {pre:'vi',   type:'avyaya', label:'vi-', note:null},
+  {pre:'ut',   type:'avyaya', label:'ut-/ud-', note:null},
+  {pre:'ud',   type:'avyaya', label:'ud-', note:null},
+  // su- / duḥ- / dur-: karmadhāraya OR avyayībhāva
+  {pre:'suṣ',  type:'su_dur', label:'su-', note:'sandhi'},
+  {pre:'sūṣ',  type:'su_dur', label:'su-', note:'sandhi'},
+  {pre:'svā',  type:'su_dur', label:'su-', note:'sandhi su+ā→svā'},
+  {pre:'sva',  type:'su_dur', label:'su-', note:'sandhi su+a→sva'},
+  {pre:'sū',   type:'su_dur', label:'su-', note:'sandhi su+u→sū'},
+  {pre:'so',   type:'su_dur', label:'su-', note:'sandhi su+o'},
+  {pre:'su',   type:'su_dur', label:'su-', note:null},
+  {pre:'duṣ',  type:'su_dur', label:'dur-/duṣ-', note:'sandhi'},
+  {pre:'dur',  type:'su_dur', label:'dur-', note:null},
+  {pre:'duḥ',  type:'su_dur', label:'duḥ-', note:null},
+  // nañ (a-/an-): separate category
+  {pre:'an',   type:'nan',  label:'an-', note:'nañ before vowel'},
+];
+
+function detectPrefix(word) {
+  if (!word || word.length < 3) return null;
+  var w = word.trim().toLowerCase();
+  for (var i = 0; i < PREVERB_LIST.length; i++) {
+    var p = PREVERB_LIST[i];
+    if (w.startsWith(p.pre) && w.length > p.pre.length + 1) {
+      return p;
+    }
+  }
+  // nañ: a- before consonant (not before vowel — those are sandhi of other prefixes)
+  if (/^a[^aāiīuūṛeēo]/.test(w) && w.length > 2) {
+    return {pre:'a', type:'nan', label:'a-', note:L('nañ перед согласной','nañ before consonant')};
+  }
+  return null;
+}
+
+// Given current node and detected prefix, should we auto-suggest an answer?
+function getAutoSuggestion(nodeId, word) {
+  if (!word) return null;
+  var p = detectPrefix(word);
+  if (!p) return null;
+
+  if (nodeId === 'start') {
+    // Check avyaya wordlist first (definitive)
+    if (isKnownAvyaya(word)) {
+      // But if it also has a preverb → it's really being used as a compound prefix
+      var isPreverb = p && (p.type === 'avyaya' || p.type === 'su_dur');
+      return {
+        suggest: 'yes',
+        certainty: 'definite',
+        msg: L(
+          (isPreverb
+            ? 'Слово начинается с <strong>' + p.label + '</strong> и является avyaya. '
+            : 'Слово <strong>«⁠' + word + '⁠»</strong> присутствует в списке avyaya. ')
+          + '<strong>Первый компонент — неизменяемое слово.</strong> Ответ: <strong>Да</strong>.',
+          (isPreverb
+            ? 'Word starts with <strong>' + p.label + '</strong> and is an avyaya. '
+            : 'Word <strong>«⁠' + word + '⁠»</strong> is in the avyaya list. ')
+          + '<strong>First member is an indeclinable.</strong> Answer: <strong>Yes</strong>.'
+        )
+      };
+    }
+    if (p) {
+      if (p.type === 'avyaya') {
+        return {
+          suggest: 'yes',
+          certainty: 'likely',
+          msg: L(
+            'Слово начинается с <strong>' + p.label + '</strong>'
+            + (p.note ? ' (' + p.note + ')' : '')
+            + ' — это avyaya-преверб. Вероятный ответ: <strong>Да</strong>.',
+            'Word starts with <strong>' + p.label + '</strong>'
+            + (p.note ? ' (' + p.note + ')' : '')
+            + ' — an avyaya preverb. Likely answer: <strong>Yes</strong>.'
+          )
+        };
+      }
+      if (p.type === 'su_dur') {
+        return {
+          suggest: 'ambiguous',
+          certainty: 'check',
+          msg: L(
+            'Слово начинается с <strong>' + p.label + '</strong>'
+            + ' — может быть karmadhāraya ИЛИ avyayībhāva. Проверьте: итог = наречие?',
+            'Word starts with <strong>' + p.label + '</strong>'
+            + ' — could be karmadhāraya OR avyayībhāva. Check: is the result an adverb?'
+          )
+        };
+      }
+      if (p.type === 'nan') {
+        return {
+          suggest: 'no',
+          certainty: 'definite',
+          msg: L(
+            'Слово начинается с <strong>' + p.label + '</strong> (nañ — отрицание). '
+            + 'Это НЕ avyayībhāva. Ответ: <strong>Нет</strong> → tatpuruṣa или bahuvrīhi.',
+            'Word starts with <strong>' + p.label + '</strong> (nañ — negation). '
+            + 'NOT avyayībhāva. Answer: <strong>No</strong> → tatpuruṣa or bahuvrīhi.'
+          )
+        };
+      }
+    }
+    // No prefix detected and not in avyaya list: definitive No
+    if (word && word.length > 2) {
+      return {
+        suggest: 'no',
+        certainty: 'likely',
+        msg: L(
+          'Слово <strong>«⁠' + word + '⁠»</strong> не начинается с известного авьяя-префикса и не найдено в списке avyaya. Вероятный ответ: <strong>Нет</strong>.',
+          'Word <strong>«⁠' + word + '⁠»</strong> does not start with a known avyaya prefix and is not in the avyaya list. Likely answer: <strong>No</strong>.'
+        )
+      };
+    }
+  }
+  return null;
+}
+
+function render() {
+  isResultState = false;
+  updateSideHistory();
+  var node = NODES[current];
+  if (!node) { renderResult(current); return; }
+  var pct = node.total ? Math.round((node.step-1)/node.total*100) : 0;
+  document.getElementById('prog').style.width = pct+'%';
+
+  // Word analysis hints
+  var wordHints = getWordHints(currentWord);
+  var hintHtml = wordHints.length
+    ? '<div style="margin:6px 0 8px;padding:6px 10px;background:#eaf2f8;border-left:3px solid #a8cce0;border-radius:4px;font-size:.76rem;color:#2e4057">'
+      + '<strong>' + L('Анализ слова','Word analysis') + (currentWord ? ' «⁠' + currentWord + '⁠»' : '') + ':</strong> '
+      + wordHints.join(' · ') + '</div>'
+    : '';
+
+  // Auto-suggestion for the current step
+  var autoSug = getAutoSuggestion(current, currentWord);
+  var autoSugHtml = '';
+  if (autoSug) {
+    var sugColor = autoSug.suggest === 'yes' ? '#d4f0e0' : autoSug.suggest === 'no' ? '#fde8e8' : '#fef3cd';
+    var sugBorder = autoSug.suggest === 'yes' ? '#a8d5b8' : autoSug.suggest === 'no' ? '#e0b898' : '#e0c97a';
+    var sugTextColor = autoSug.suggest === 'yes' ? '#1a6b3a' : autoSug.suggest === 'no' ? '#7b3f20' : '#7a5a00';
+    autoSugHtml = '<div style="margin:6px 0 8px;padding:7px 11px;background:' + sugColor
+      + ';border-left:3px solid ' + sugBorder + ';border-radius:4px;font-size:.79rem;color:' + sugTextColor + '">'
+      + '⚡ ' + autoSug.msg + '</div>';
+  }
+
+  var html = '';
+
+  // Navigation row: Back + Quick Nav
+  var backDisabled = nodeHistory.length === 0;
+  html += '<div class="nav-row">'
+    + '<button class="btn-back" onclick="goBack()"' + (backDisabled ? ' disabled' : '') + '>'
+    + '← ' + L('Назад','Back') + (backDisabled ? '' : ' <span style="font-size:.65rem;color:#999">(B)</span>') + '</button>'
+    + '<button class="btn-jump" onclick="toggleQuickNav()">⤳ ' + L('Перейти к…','Jump to…') + '</button>'
+    + (current !== 'start' ? '<button class="btn-back" onclick="restart(true)" style="margin-left:auto">↺ ' + L('С начала','Restart') + '</button>' : '')
+    + '</div>';
+
+  // Quick Nav panel (hidden by default)
+  html += '<div class="quick-nav-panel" id="quick-nav-panel">'
+    + '<div style="font-size:.78rem;color:#888;margin-bottom:8px">' + L('Прямой переход к любому узлу дерева:','Jump directly to any tree node:') + '</div>';
+  var lastGroup = null;
+  JUMP_TARGETS.forEach(function(t) {
+    var grp = typeof t.group === 'function' ? t.group() : t.group;
+    if (grp && grp !== lastGroup) {
+      html += '<div class="qn-group">' + grp + '</div>';
+      lastGroup = grp;
+    }
+    var isCurrent = (t.id === current);
+    html += '<button class="qn-item' + (isCurrent ? ' qn-current' : '') + '" onclick="jumpTo(\'' + t.id + '\')">'
+      + t.label() + (isCurrent ? ' ◄' : '') + '</button>';
+  });
+  html += '</div>';
+
+  html += '<div class="card">'+bcHtml()
+    +'<div class="step-label">'
+    +getStepLabel(current, node.step)+'</div>'
+    +'<div class="question">'+node.q()+'</div>'
+    +'<div class="hint">'+node.hint()+'</div>'
+    +freqHtml(node.freq)+refHtml(node)+hintHtml+autoSugHtml;
+
+  if (node.options) {
+    html += '<div class="opts-col">';
+    node.options.forEach(function(opt, idx){
+      var fs = getFormalStatus(opt.next, currentWord);
+      var disabled = fs.status === 'impossible';
+      var extraStyle = disabled
+        ? 'opacity:.45;cursor:not-allowed;text-decoration:line-through;background:#f8f0f0;border-color:#e0b8b8;color:#888'
+        : fs.status === 'unlikely'
+          ? 'border-color:#e0c97a;background:#fefaed'
+          : '';
+      var badge = disabled
+        ? ' <span style="font-size:.68rem;background:#fde8e8;color:#8b2020;padding:1px 6px;border-radius:8px;vertical-align:middle">' + L('⛔ невозможно','⛔ impossible') + '</span>'
+        : fs.status === 'unlikely'
+          ? ' <span style="font-size:.68rem;background:#fef3cd;color:#7a5a00;padding:1px 6px;border-radius:8px;vertical-align:middle">' + L('⚠ маловероятно','⚠ unlikely') + '</span>'
+          : '';
+      var reasonTip = fs.reason ? ' title="' + fs.reason.replace(/"/g,'&quot;') + '"' : '';
+      var shortcut = '<span style="float:right;font-size:.65rem;color:#bbb;margin-left:8px">' + (idx+1) + '</span>';
+      html += '<button class="btn-opt"' + reasonTip
+        + (disabled ? ' disabled onclick="return false"' : ' onclick="goResult(\''+opt.next+'\',\''+opt.label().replace(/'/g,'&#39;').replace(/"/g,'&quot;')+'\')"')
+        + ' style="' + extraStyle + '">'
+        + shortcut + opt.label() + badge + '</button>';
+    });
+    html += '<div style="font-size:.68rem;color:#bbb;margin-top:4px">'
+      + L('Клавиши 1–7 для выбора','Keys 1–7 to select') + '</div>';
+    html += '</div>';
+  } else {
+    var yl = L('Да →','Yes →') + '<span style="float:right;font-size:.65rem;color:rgba(255,255,255,.6);margin-left:8px">Enter / →</span>';
+    var nl = L('Нет →','No →') + '<span style="float:right;font-size:.65rem;color:rgba(120,50,0,.5);margin-left:8px">Backspace / ←</span>';
+    html += '<div class="btn-row">'
+      +'<button class="btn btn-yes" id="btn-yes-main" onclick="goNode(\''+node.yes+'\',\''+L('Да →','Yes →')+'\',true)">'+yl+'</button>'
+      +'<button class="btn btn-no"  id="btn-no-main"  onclick="goNode(\''+node.no+'\',\''+L('Нет →','No →')+'\',false)">'+nl+'</button>'
+      +'</div>';
+  }
+  html += '</div>';
+  document.getElementById('main-area').innerHTML = html;
+}
+
+function recordStep(qFull, label, isYes) {
+  var qShort = qFull.replace(/<[^>]+>/g,'').substring(0,50)+'…';
+  stepHistory.push({qShort:qShort, label:label, yes:isYes});
+}
+
+function goNode(nextId, label, isYes) {
+  var node = NODES[current];
+  recordStep(node.q(), label, isYes);
+  nodeHistory.push(current);
+  if (nextId.startsWith('r_')) { renderResult(nextId); }
+  else if (NODES[nextId]) { current = nextId; render(); }
+  else { renderResult(nextId); }
+}
+
+function goResult(id, label) {
+  var node = NODES[current];
+  recordStep(node.q(), label, true);
+  nodeHistory.push(current);
+  renderResult(id);
+}
+
+function goBack() {
+  if (!nodeHistory.length) return;
+  current = nodeHistory.pop();
+  stepHistory.pop();
+  isResultState = false;
+  render();
+}
+
+// Quick navigation: jump directly to any node
+var JUMP_TARGETS = [
+  {group:function(){return L('── Начало ──','── Start ──')}, id:'start', label:function(){return L('⓪ Начало: avyaya?','⓪ Start: avyaya?')}},
+  {group:function(){return L('── Avyayībhāva ──','── Avyayībhāva ──')}, id:'check_avyayi', label:function(){return L('① Avyayībhāva: acc.sg.nt.?','① Avyayībhāva: acc.sg.nt.?')}},
+  {group:function(){return L('── Dvandva ──','── Dvandva ──')}, id:'ask_dvandva', label:function(){return L('② Dvandva: равноправные?','② Dvandva: co-equal?')}},
+  {group:'', id:'ask_dvandva_or_ubhaya', label:function(){return L('  → Оба прилагательных?','  → Both adjectives?')}},
+  {group:'', id:'ask_samahara', label:function(){return L('  → Samāhāra vs itaretara','  → Samāhāra vs itaretara')}},
+  {group:function(){return L('── Bahuvrīhi ──','── Bahuvrīhi ──')}, id:'ask_bv_role', label:function(){return L('③ Bahuvrīhi: прилагательное?','③ Bahuvrīhi: adjective?')}},
+  {group:'', id:'ask_bv_sub', label:function(){return L('  → sa-/prādi-/обычный bv','  → sa-/prādi-/regular bv')}},
+  {group:function(){return L('── Karmadhāraya ──','── Karmadhāraya ──')}, id:'ask_same_case', label:function(){return L('④ Одинаковый падеж?','④ Same case?')}},
+  {group:'', id:'ask_km_type', label:function(){return L('  → Подтип karmadhāraya','  → Karmadhāraya subtype')}},
+  {group:function(){return L('── Tatpuruṣa ──','── Tatpuruṣa ──')}, id:'ask_tp_special', label:function(){return L('⑤ Upapada (kṛdanta)?','⑤ Upapada (kṛdanta)?')}},
+  {group:'', id:'ask_tp_numeral', label:function(){return L('  → Числительное (dvigu)?','  → Numeral (dvigu)?')}},
+  {group:'', id:'ask_tp_prefix', label:function(){return L('  → Prādi-префикс?','  → Prādi prefix?')}},
+  {group:'', id:'ask_tp_aluk', label:function(){return L('  → Aluk-samāsa?','  → Aluk-samāsa?')}},
+  {group:'', id:'ask_tp_case', label:function(){return L('  → Падеж татпуруши','  → Tatpuruṣa case')}},
+];
+
+function jumpTo(nodeId) {
+  if (!NODES[nodeId]) return;
+  // Record a special "jump" step in history
+  stepHistory.push({qShort: L('⤳ Переход к','⤳ Jump to') + ' ' + nodeId, label: '⤳ jump', yes: null});
+  nodeHistory.push(current);
+  current = nodeId;
+  isResultState = false;
+  render();
+  // close the nav panel
+  var panel = document.getElementById('quick-nav-panel');
+  if (panel) panel.style.display = 'none';
+}
+
+function toggleQuickNav() {
+  var panel = document.getElementById('quick-nav-panel');
+  if (!panel) return;
+  panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+}
+
+function findWrongStep(userResultKey, canonKey, steps) {
+  // Results where step 1 should be 'Yes' (first member IS an avyaya/preverb)
+  var startYesResults = {
+    'r_avyayibhava':1, 'r_tp_pradi':1, 'r_bv_pradi':1
+  };
+
+  // DFS to find path from 'start' to canonKey
+  // preferNoAtStart: for most results, the correct path starts with No at step 1
+  function pathTo(target, nodeId, path, preferNo) {
+    if (nodeId === target) return path;
+    if (!nodeId || nodeId.startsWith('r_')) return null;
+    var node = NODES[nodeId];
+    if (!node) return null;
+    if (node.options) {
+      for (var i = 0; i < node.options.length; i++) {
+        var opt = node.options[i];
+        if (opt.next === target) return path.concat([{nodeId:nodeId, choice:opt.label(), isOption:true}]);
+      }
+      return null;
+    }
+    if (node.yes === target) return path.concat([{nodeId:nodeId, choice:L('Да →','Yes →'), isYes:true}]);
+    if (node.no  === target) return path.concat([{nodeId:nodeId, choice:L('Нет →','No →'), isYes:false}]);
+    // At 'start': respect the semantic preference
+    var tryYesFirst = (nodeId === 'start') ? !preferNo : true;
+    var first  = tryYesFirst ? node.yes : node.no;
+    var second = tryYesFirst ? node.no  : node.yes;
+    var firstLabel  = tryYesFirst ? L('Да →','Yes →') : L('Нет →','No →');
+    var secondLabel = tryYesFirst ? L('Нет →','No →') : L('Да →','Yes →');
+    var fromFirst = pathTo(target, first,  path.concat([{nodeId:nodeId, choice:firstLabel,  isYes:tryYesFirst}]), preferNo);
+    if (fromFirst) return fromFirst;
+    return pathTo(target, second, path.concat([{nodeId:nodeId, choice:secondLabel, isYes:!tryYesFirst}]), preferNo);
+  }
+  if (!steps || !steps.length) return null;
+  // Use No-first at start for most results; Yes-first for avyaya-type results
+  var preferNo = !startYesResults[canonKey];
+  var correctPath = pathTo(canonKey, 'start', [], preferNo);
+  if (!correctPath) return null;
+  for (var i = 0; i < Math.min(correctPath.length, steps.length); i++) {
+    var cStep = correctPath[i];
+    var uStep = steps[i];
+    if (!uStep) break;
+    // Compare choices
+    var correctChoice = cStep.choice;
+    if (uStep.label !== correctChoice) {
+      return {
+        stepNum: i + 1,
+        userLabel: uStep.label,
+        correctLabel: correctChoice,
+        questionText: uStep.qShort   // the question that was asked at this step
+      };
+    }
+  }
+  return null;
+}
+
+function renderResult(id) {
+  var r = RESULTS[id];
+  updateSideHistory();
+  document.getElementById('prog').style.width = '100%';
+
+  // Log this word
+  var resultLabel = r ? r.type() : id;
+  var canon = lookupCanonical(currentWord);
+  var autoVerdict = null, autoRef = null, autoRefKey = null;
+  var wordWasTyped = currentWord && currentWord.trim().length > 0;
+  var canonNotFound = wordWasTyped && !canon;  // typed but not in DB
+  if (canon) {
+    autoRefKey = canon.key;
+    autoRef = RESULTS[canon.key] ? RESULTS[canon.key].type() + ' — ' + canon.src : canon.src;
+    if (canon.note) autoRef += ' [' + canon.note + ']';
+    autoVerdict = (id === canon.key) ? 'correct' : 'wrong';
+  }
+  var entryId = genId();
+  var entryTs = Date.now();
+  lastAnalyzedWord = currentWord;
+  isResultState = true;
+  wordLog.push({
+    id: entryId,
+    timestamp: entryTs,
+    word: currentWord,
+    result: resultLabel,
+    resultKey: id,
+    steps: stepHistory.slice(),
+    verdict: autoVerdict,
+    refResult: autoRef,
+    refKey: autoRefKey,
+    canonNotFound: canonNotFound
+  });
+  renderWordLog();
+  if (adminMode) renderAdmin();
+
+  if (!r) {
+    document.getElementById('main-area').innerHTML =
+      '<div class="card">'+bcHtml()+'<p>'+L('Неизвестный тип','Unknown type')+': '+id+'</p>'
+      +'<button class="btn-restart" onclick="restart()">'+L('↺ Новое слово','↺ New word')+'</button></div>';
+    return;
+  }
+
+  var refs = r.refs[lang] || r.refs.ru;
+  var exRows = r.examples.map(function(e){
+    return '<div class="ex-row"><span class="ex-iast">'+e.iast+'</span>'
+      +'<span class="ex-comp">('+e.comp()+')</span>'
+      +' : '+e.v+' — «⁠<em>'+e.t()+'</em>⁠» <span class="ex-src">'+e.src+'</span></div>';
+  }).join('');
+  var pairRows = r.pairs.map(function(p){
+    return '<div class="pair-warn"><strong>⚠ '+L('Конфликт с','Conflict with')+' '+p.with+':</strong> '+p.note()+'</div>';
+  }).join('');
+
+  var dtStr = new Date(entryTs).toLocaleString([], {day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
+  var idBadge = '<div style="text-align:right;font-size:.65rem;color:#aaa;margin-bottom:4px;font-style:normal">#'+entryId+' · '+dtStr+'</div>';
+  document.getElementById('main-area').innerHTML =
+    '<div class="result-card '+r.theme+'">'+idBadge+bcHtml()
+    +'<div class="result-type">'+r.type()+'</div>'
+    +'<div class="result-alt">'+r.alt()+'</div>'
+    +'<div class="pat">'+L('Патанджали','Patañjali')+': <em>'+r.pat+'</em></div>'
+    +'<div class="result-def">'+r.def()+'</div>'
+    +'<div class="freq-row"><span class="freq-badge '+r.fdiff+'">'+r.freq()+'</span></div>'
+    +'<div class="form-lbl">'+L('Формула виграхи','Vigraha formula')+':</div>'
+    +'<div class="formula">'+r.formula()+'</div>'
+    +'<div class="ex-block"><div class="ex-title">'+L('Примеры','Examples')+'</div>'+exRows+'</div>'
+    +pairRows
+    +'<div class="ref-chips" style="margin-top:9px">'+refs.map(function(s){return'<span class="ref-chip">'+s+'</span>'}).join('')+'</div>'
+    +(function(){
+      if (!canon) {
+        if (!canonNotFound) return '';
+        // Word was typed but not found in canonical DB
+        return '<div style="margin-top:10px;padding:7px 10px;border-radius:6px;font-size:.79rem;'
+          + 'border:1.5px solid #d4c9a8;background:#f5f0e6;color:#7a5a00">'
+          + '⚐ ' + L('Слово «⁠'+currentWord+'⁠» не найдено в базе эталонов — результат не проверен.',
+                      'Word «⁠'+currentWord+'⁠» not in reference database — result unverified.')
+          + '</div>';
+      }
+      var correct = autoVerdict === 'correct';
+      var borderColor = correct ? '#a8d5b8' : '#e0b898';
+      var bgColor     = correct ? '#eaf4ee' : '#fdf0e8';
+      var icon        = correct ? '✓' : '✗';
+      var headline    = correct
+        ? icon + ' ' + L('Верно — совпадает с эталоном', 'Correct — matches reference')
+        : icon + ' ' + L('Расхождение с эталоном', 'Does not match reference');
+      var refType   = RESULTS[canon.key] ? RESULTS[canon.key].type() : canon.key;
+      var transHtml = canon.trans
+        ? '<br><span style="font-size:.79rem;font-style:italic;color:#444">' + canon.trans + '</span>' : '';
+      var noteHtml  = canon.note
+        ? '<br><span style="color:#888;font-size:.75rem">' + L('Прим.','Note') + ': ' + canon.note + '</span>' : '';
+      var wrongStepHtml = '';
+      if (!correct) {
+        var lastEntry = wordLog.length ? wordLog[wordLog.length-1] : null;
+        var stepsToCheck = lastEntry ? lastEntry.steps : stepHistory;
+        var ws = findWrongStep(id, canon.key, stepsToCheck);
+        if (ws) {
+          var qText = ws.questionText ? '<div style="color:#888;font-size:.72rem;margin-bottom:2px">' + ws.questionText + '</div>' : '';
+          // For rūpaka: add explanation of WHY step 2 should be No
+          var extraExplain = '';
+          if (canon && (canon.key === 'r_km_rupaka') && ws.stepNum === 2) {
+            extraExplain = '<div style="margin-top:4px;font-size:.74rem;color:#555;font-style:italic">'
+              + L('Пояснение: vidyā и dhana действительно разные понятия. Но вопрос шага 2 спрашивает не о различии, а о <strong>типе отношения</strong>: dvandva = X и Y <em>перечисляются</em> рядом; rūpaka = X <strong>отождествляется</strong> с Y через eva (X есть Y). В rūpaka нет координации — есть идентификация.',
+                'Explanation: vidyā and dhana are indeed different concepts. But step 2 asks not about difference, but about the <strong>type of relation</strong>: dvandva = X and Y are <em>enumerated</em> as co-equals; rūpaka = X is <strong>identified</strong> with Y via eva (X is Y). No coordination — only identification.')
+              + '</div>';
+          }
+          wrongStepHtml = '<div style="margin-top:6px;padding:6px 9px;background:rgba(0,0,0,.06);border-radius:4px;font-size:.76rem;line-height:1.55">'
+            + qText
+            + L('↳ Ошибка на шаге','↳ Error at step') + ' <strong>' + ws.stepNum + '</strong>: '
+            + L('вы ответили','you chose') + ' <span style="color:#8b2020;font-weight:500">' + ws.userLabel + '</span>'
+            + ' — ' + L('нужно было','should have been') + ' <span style="color:#1a6b3a;font-weight:500">' + ws.correctLabel + '</span>'
+            + extraExplain
+            + '</div>';
+        }
+      }
+      return '<div style="margin-top:10px;padding:9px 11px;border-radius:6px;font-size:.82rem;border:2px solid '+borderColor+';background:'+bgColor+'">'
+        + '<strong>' + headline + '</strong><br>'
+        + '<em>' + refType + '</em>'
+        + ' <span style="font-size:.74rem;color:#777">— ' + canon.src + '</span>'
+        + transHtml + noteHtml + wrongStepHtml + '</div>';
+    })()
+    +'<a class="vigraha-ref" href="#vigraha-table">→ '+L('Таблица всех формул виграхи (§§ 4–7)','All vigraha formulae (§§ 4–7)')+'</a>'
+    +'<br><button class="btn-restart" onclick="restart()">'+L('↺ Новое слово','↺ New word')+'</button>'
+    +'</div>';
+}
+
+function restart(keepWord) {
+  stepHistory = [];
+  nodeHistory = [];
+  if (!keepWord) currentWord = '';
+  current = 'start';
+  isResultState = false;
+  document.getElementById('prog').style.width = '0%';
+  var notice = document.getElementById('auto-restart-notice');
+  if (notice) notice.remove();
+  renderWordInput();
+  render();
+  updateSideHistory();
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+document.getElementById('btn-'+lang).classList.add('active');
+renderWordInput();
+render();
+
+// Global keyboard shortcuts
+document.addEventListener('keydown', function(e) {
+  // Don't fire when typing in the word input
+  if (document.activeElement && document.activeElement.id === 'word-field') return;
+
+  // B = Back (works in any state, including results)
+  if (e.key === 'b' || e.key === 'B') {
+    if (nodeHistory.length) { e.preventDefault(); goBack(); }
+    return;
+  }
+
+  if (isResultState) return;
+
+  var node = NODES[current];
+  if (!node) return;
+
+  if (node.options) {
+    // Digit keys 1-7 select options
+    var num = parseInt(e.key);
+    if (num >= 1 && num <= node.options.length) {
+      var opt = node.options[num-1];
+      var fs = getFormalStatus(opt.next, currentWord);
+      if (fs.status !== 'impossible') goResult(opt.next, opt.label());
+    }
+  } else {
+    // Yes: Enter, ArrowRight, Y
+    if (e.key === 'Enter' || e.key === 'ArrowRight' || e.key === 'y' || e.key === 'Y') {
+      e.preventDefault();
+      goNode(node.yes, L('Да →','Yes →'), true);
+    }
+    // No: Backspace, ArrowLeft, N, Escape
+    if (e.key === 'Backspace' || e.key === 'ArrowLeft' || e.key === 'n' || e.key === 'N' || e.key === 'Escape') {
+      e.preventDefault();
+      goNode(node.no, L('Нет →','No →'), false);
+    }
+  }
+});
+</script>
+</body>
+</html>

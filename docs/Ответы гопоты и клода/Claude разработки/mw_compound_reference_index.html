@@ -1,0 +1,314 @@
+
+<style>
+.tab-bar{display:flex;gap:4px;margin-bottom:18px;flex-wrap:wrap}
+.tab{padding:6px 14px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);cursor:pointer;font-size:13px;color:var(--color-text-secondary);background:transparent}
+.tab.active{background:var(--color-background-secondary);color:var(--color-text-primary);border-color:var(--color-border-primary);font-weight:500}
+.panel{display:none}.panel.active{display:block}
+.search-row{display:flex;gap:8px;margin-bottom:14px}
+.search-row input{flex:1;padding:7px 12px;font-size:13px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);background:var(--color-background-primary);color:var(--color-text-primary)}
+.entry{display:flex;align-items:baseline;gap:10px;padding:7px 0;border-bottom:0.5px solid var(--color-border-tertiary);font-size:13px}
+.entry:last-child{border-bottom:none}
+.wd{min-width:160px;font-weight:500;color:var(--color-text-primary);font-family:var(--font-mono);font-size:12px}
+.cnt{min-width:36px;text-align:right;color:var(--color-text-tertiary);font-size:11px}
+.bar-bg{flex:0 0 80px;background:var(--color-border-tertiary);border-radius:2px;height:6px}
+.bar-fill{height:6px;border-radius:2px}
+.gloss{color:var(--color-text-secondary);font-size:12px;flex:1}
+.badge{display:inline-block;font-size:10px;padding:1px 6px;border-radius:3px;margin-left:4px;vertical-align:middle}
+.badge-t{background:#EEEDFE;color:#3C3489}
+.badge-a{background:#E1F5EE;color:#085041}
+.badge-d{background:#FAEEDA;color:#633806}
+.badge-x{background:#FAECE7;color:#4A1B0C}
+.list-wrap{max-height:480px;overflow-y:auto}
+.section-lbl{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:var(--color-text-tertiary);margin:14px 0 6px}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.col-head{font-size:12px;font-weight:500;color:var(--color-text-secondary);margin-bottom:8px;padding-bottom:6px;border-bottom:0.5px solid var(--color-border-secondary)}
+.chip{display:inline-block;font-family:var(--font-mono);font-size:11px;padding:2px 7px;border-radius:3px;margin:2px;border:0.5px solid var(--color-border-tertiary);color:var(--color-text-secondary)}
+.chip.hi{border-color:#534AB7;color:#534AB7;background:#EEEDFE}
+.note{font-size:11px;color:var(--color-text-tertiary);margin-top:12px;line-height:1.6}
+.metric-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:18px}
+.metric{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 12px}
+.metric .lbl{font-size:11px;color:var(--color-text-secondary);margin-bottom:2px}
+.metric .val{font-size:18px;font-weight:500;color:var(--color-text-primary)}
+</style>
+
+<div style="padding:1rem 0">
+<div class="metric-row">
+  <div class="metric"><div class="lbl">Записей в MW</div><div class="val">12 609</div></div>
+  <div class="metric"><div class="lbl">Соединений (+Y)</div><div class="val">87 188</div></div>
+  <div class="metric"><div class="lbl">Уникальных правых</div><div class="val">~12 000</div></div>
+  <div class="metric"><div class="lbl">Уникальных левых</div><div class="val">12 609</div></div>
+</div>
+
+<div class="tab-bar">
+  <button class="tab active" onclick="showTab('right')">Правая часть →</button>
+  <button class="tab" onclick="showTab('left')">← Левая часть</button>
+  <button class="tab" onclick="showTab('compare')">Сравнение текстов</button>
+  <button class="tab" onclick="showTab('guide')">Инструкция</button>
+</div>
+
+<!-- PANEL: RIGHT MEMBERS -->
+<div class="panel active" id="panel-right">
+  <p style="font-size:12px;color:var(--color-text-secondary);margin-bottom:10px">Видишь слово в <b>правой части</b> соединения (финальный член) — используй этот список как указатель. Фильтруй по начальным буквам.</p>
+  <div class="search-row"><input id="rsearch" oninput="filterRight()" placeholder="поиск... (напр. tva, pati, ja)"></div>
+  <div class="list-wrap" id="rlist"></div>
+</div>
+
+<!-- PANEL: LEFT MEMBERS -->
+<div class="panel" id="panel-left">
+  <p style="font-size:12px;color:var(--color-text-secondary);margin-bottom:10px">Видишь слово в <b>левой части</b> соединения (пурвапада) — это чаще всего родительная / определяющая часть. Самые продуктивные основы.</p>
+  <div class="search-row"><input id="lsearch" oninput="filterLeft()" placeholder="поиск... (напр. su, deva, brahma)"></div>
+  <div class="list-wrap" id="llist"></div>
+</div>
+
+<!-- PANEL: COMPARE -->
+<div class="panel" id="panel-compare">
+  <div class="compare-grid">
+    <div>
+      <div class="col-head">MW — топ правые члены</div>
+      <div class="section-lbl">Абстрактные суффиксы</div>
+      <span class="chip hi">-tva</span><span class="chip hi">-tā</span><span class="chip hi">-maya</span><span class="chip hi">-rūpa</span>
+      <div class="section-lbl">Посессивные</div>
+      <span class="chip hi">-vat</span><span class="chip hi">-mat</span><span class="chip hi">-in</span>
+      <div class="section-lbl">Деятели</div>
+      <span class="chip hi">-kara</span><span class="chip hi">-kṛt</span><span class="chip hi">-kārin</span><span class="chip hi">-karaṇa</span>
+      <div class="section-lbl">Рождён / происходит</div>
+      <span class="chip hi">-ja</span><span class="chip hi">-jāta</span><span class="chip hi">-bhava</span><span class="chip hi">-bhūta</span>
+      <div class="section-lbl">Властители</div>
+      <span class="chip hi">-pati</span><span class="chip hi">-rāja</span><span class="chip hi">-nātha</span><span class="chip hi">-pāla</span>
+      <div class="section-lbl">Место</div>
+      <span class="chip hi">-stha</span><span class="chip hi">-sthāna</span><span class="chip hi">-pura</span><span class="chip hi">-ālaya</span>
+    </div>
+    <div>
+      <div class="col-head">Ākhyānavallari — топ правые члены</div>
+      <div class="section-lbl">Временны́е коннекторы</div>
+      <span class="chip">-anantaram</span><span class="chip">-samaye</span><span class="chip">-kāle</span><span class="chip">-kālam</span>
+      <div class="section-lbl">Дейктические</div>
+      <span class="chip">-idam</span><span class="chip">-upari</span><span class="chip">-artham</span><span class="chip">-ādi</span>
+      <div class="section-lbl">Числовые группы</div>
+      <span class="chip">-dvayam</span><span class="chip">-trayam</span>
+      <div class="section-lbl">Предметы нарратива</div>
+      <span class="chip">-bhāṣā</span><span class="chip">-patnī</span><span class="chip">-patram</span><span class="chip">-gṛham</span>
+      <div class="section-lbl">Личные местоимения</div>
+      <span class="chip">mat-</span><span class="chip">tat-</span><span class="chip">asmat-</span><span class="chip">sva-</span>
+      <div class="section-lbl">Пересечение с MW</div>
+      <span class="chip hi">-deśa</span><span class="chip hi">-kāla</span><span class="chip" style="color:var(--color-text-tertiary)">только 2 из топ-50!</span>
+    </div>
+  </div>
+  <div class="note">
+    Вывод: MW индексирует <em>лексические</em> правые члены (деятель, место, качество, происхождение). Ākhyānavallari использует <em>дискурсивные</em> правые члены: временны́е наречия, дейктики, числовые группы, падежные формы. Почти нулевое пересечение топ-50 — это принципиально разные «словари соединений» одного языка.
+  </div>
+  <div style="margin-top:18px">
+    <div class="col-head">MW — топ левые члены (пурвапада)</div>
+    <div class="section-lbl">Превосходные / оценочные префиксы</div>
+    <span class="chip hi">su-</span><span class="chip hi">mahā-</span><span class="chip hi">dur-</span><span class="chip hi">ku-</span><span class="chip hi">ati-</span>
+    <div class="section-lbl">Местоименные / числительные</div>
+    <span class="chip hi">sarva-</span><span class="chip hi">viśva-</span><span class="chip hi">eka-</span><span class="chip hi">tri-</span><span class="chip hi">pañca-</span><span class="chip hi">dvi-</span><span class="chip hi">śata-</span>
+    <div class="section-lbl">Тематические боги / культура</div>
+    <span class="chip hi">deva-</span><span class="chip hi">brahma-</span><span class="chip hi">śrī-</span><span class="chip hi">kṛṣṇa-</span><span class="chip hi">soma-</span>
+    <div class="section-lbl">Природа</div>
+    <span class="chip hi">go-</span><span class="chip hi">jala-</span><span class="chip hi">madhu-</span>
+    <div class="section-lbl">Ākhyānavallari — топ левые члены</div>
+    <span class="chip">tat-</span><span class="chip">na-</span><span class="chip">mat-</span><span class="chip">sva-</span><span class="chip">sa-</span><span class="chip">su-</span><span class="chip">saṃskṛta-</span><span class="chip">prati-</span><span class="chip">gṛha-</span><span class="chip">vivāha-</span>
+    <div class="note">В тексте <em>saṃskṛta-</em> стоит на 7 месте (56 токенов) — тематический маркер мемуара о Sanskrit. В MW его нет в топ-30.</div>
+  </div>
+</div>
+
+<!-- PANEL: GUIDE -->
+<div class="panel" id="panel-guide">
+  <div class="section-lbl">Если вижу слово в ЛЕВОЙ части</div>
+  <table style="width:100%;font-size:12px;border-collapse:collapse">
+    <thead><tr style="border-bottom:0.5px solid var(--color-border-secondary)">
+      <th style="text-align:left;padding:6px 8px;color:var(--color-text-secondary)">Левый член</th>
+      <th style="text-align:left;padding:6px 8px;color:var(--color-text-secondary)">Тип</th>
+      <th style="text-align:left;padding:6px 8px;color:var(--color-text-secondary)">Вывод / действие</th>
+    </tr></thead>
+    <tbody id="guide-left-body"></tbody>
+  </table>
+  <div class="section-lbl" style="margin-top:20px">Если вижу слово в ПРАВОЙ части</div>
+  <table style="width:100%;font-size:12px;border-collapse:collapse">
+    <thead><tr style="border-bottom:0.5px solid var(--color-border-secondary)">
+      <th style="text-align:left;padding:6px 8px;color:var(--color-text-secondary)">Правый член</th>
+      <th style="text-align:left;padding:6px 8px;color:var(--color-text-secondary)">Тип</th>
+      <th style="text-align:left;padding:6px 8px;color:var(--color-text-secondary)">Вывод / действие</th>
+    </tr></thead>
+    <tbody id="guide-right-body"></tbody>
+  </table>
+</div>
+</div>
+
+<script>
+const rightData = [
+  {w:'tva',c:1266,g:'абстр. качество (существительность)',cl:'badge-t'},
+  {w:'tā',c:1069,g:'абстр. качество (женский вариант)',cl:'badge-t'},
+  {w:'vat',c:1186,g:'обладающий X-ом (посессив)',cl:'badge-a'},
+  {w:'mat',c:291,g:'обладающий X-ом (кр. форма)',cl:'badge-a'},
+  {w:'maya',c:421,g:'состоящий из / полный X-а',cl:'badge-t'},
+  {w:'ja',c:464,g:'рождённый из / порождённый X-ом',cl:'badge-d'},
+  {w:'jāta',c:222,g:'возникший из X-а',cl:'badge-d'},
+  {w:'bhava',c:165,g:'происходящий из X-а',cl:'badge-d'},
+  {w:'bhūta',c:165,g:'ставший X-ом',cl:'badge-d'},
+  {w:'pati',c:360,g:'господин / владелец X-а',cl:'badge-x'},
+  {w:'nātha',c:165,g:'повелитель X-а',cl:'badge-x'},
+  {w:'rāja',c:244,g:'царь X-а / царский',cl:'badge-x'},
+  {w:'pāla',c:184,g:'хранитель / пастырь X-а',cl:'badge-x'},
+  {w:'kara',c:336,g:'делающий X / вызывающий X',cl:'badge-a'},
+  {w:'kṛt',c:247,g:'создающий / производящий X',cl:'badge-a'},
+  {w:'kārin',c:136,g:'совершающий X',cl:'badge-a'},
+  {w:'karaṇa',c:186,g:'средство / орган действия X',cl:'badge-a'},
+  {w:'kṛta',c:222,g:'сделанный из X / снабжённый X',cl:'badge-a'},
+  {w:'karman',c:277,g:'дело / действие, связанное с X',cl:'badge-a'},
+  {w:'mukha',c:258,g:'лицо / рот / начало X-а (тж. метаф.)',cl:'badge-t'},
+  {w:'stha',c:198,g:'пребывающий в X / на X',cl:'badge-t'},
+  {w:'sthāna',c:156,g:'место / положение X-а',cl:'badge-t'},
+  {w:'pura',c:223,g:'город / крепость X-а',cl:'badge-t'},
+  {w:'putra',c:185,g:'сын X-а',cl:'badge-d'},
+  {w:'deva',c:229,g:'бог X / относящийся к богу',cl:'badge-x'},
+  {w:'sāra',c:225,g:'суть / сущность X-а',cl:'badge-t'},
+  {w:'phala',c:238,g:'плод / результат X-а',cl:'badge-d'},
+  {w:'vrata',c:177,g:'обет / обряд, связанный с X',cl:'badge-x'},
+  {w:'dhara',c:175,g:'несущий / держащий X',cl:'badge-a'},
+  {w:'sūtra',c:174,g:'нить / правило / текст X-а',cl:'badge-t'},
+  {w:'rūpa',c:173,g:'имеющий форму X / образ X',cl:'badge-t'},
+  {w:'da',c:167,g:'дающий X',cl:'badge-a'},
+  {w:'nātha',c:165,g:'повелитель X-а',cl:'badge-x'},
+  {w:'pada',c:162,g:'стопа / стих / место X-а',cl:'badge-t'},
+  {w:'datta',c:155,g:'данный / подаренный X-ом',cl:'badge-a'},
+  {w:'tara',c:153,g:'сравнит. степень / пересекающий X',cl:'badge-t'},
+  {w:'sena',c:152,g:'войско X-а / военачальник',cl:'badge-x'},
+  {w:'bhṛt',c:150,g:'несущий / содержащий X',cl:'badge-a'},
+  {w:'kāla',c:149,g:'время X-а',cl:'badge-t'},
+  {w:'ga',c:147,g:'идущий к X / в X',cl:'badge-a'},
+  {w:'priya',c:146,g:'любящий X / дорогой X-у',cl:'badge-t'},
+  {w:'vṛtti',c:142,g:'поведение / образ жизни, связанный с X',cl:'badge-t'},
+  {w:'tantra',c:138,g:'система / управление X-ом',cl:'badge-t'},
+  {w:'karṇa',c:135,g:'ухо / слышащий X',cl:'badge-a'},
+  {w:'graha',c:135,g:'схватывающий / планета X',cl:'badge-a'},
+  {w:'tama',c:135,g:'превосходная степень',cl:'badge-t'},
+  {w:'pa',c:134,g:'пьющий / охраняющий X',cl:'badge-a'},
+  {w:'vāda',c:134,g:'учение / теория о X',cl:'badge-t'},
+  {w:'kāma',c:133,g:'желание / любовь к X',cl:'badge-t'},
+  {w:'puṣpa',c:163,g:'цветок X-а',cl:'badge-d'},
+  {w:'pattra',c:188,g:'лист / крыло / грамота X-а',cl:'badge-d'},
+  {w:'tas',c:255,g:'наречный отыменной суффикс',cl:'badge-t'},
+];
+
+const leftData = [
+  {w:'su-',c:1723,g:'хороший, благой, полностью'},
+  {w:'mahā-',c:912,g:'великий'},
+  {w:'sa-',c:897,g:'с-, снабжённый'},
+  {w:'vi-',c:540,g:'раз-, без-, отдельно'},
+  {w:'nir-',c:473,g:'без-, вне-, бес-'},
+  {w:'sarva-',c:471,g:'всё-, весь'},
+  {w:'dur-',c:453,g:'дурной, трудный'},
+  {w:'tri-',c:433,g:'три-, трой-'},
+  {w:'deva-',c:409,g:'бог, божественный'},
+  {w:'go-',c:392,g:'корова, скот, луч'},
+  {w:'brahma-',c:356,g:'Брахма / брахман / священное'},
+  {w:'prati-',c:355,g:'против, к, каждый'},
+  {w:'rāja-',c:340,g:'царь, царский'},
+  {w:'pañca-',c:329,g:'пять-'},
+  {w:'eka-',c:321,g:'один-, единый'},
+  {w:'bahu-',c:316,g:'много-, обильный'},
+  {w:'dharma-',c:295,g:'закон, долг, дхарма'},
+  {w:'yathā-',c:287,g:'как, согласно'},
+  {w:'dvi-',c:279,g:'два-, двой-'},
+  {w:'śata-',c:276,g:'сто, сотня'},
+  {w:'viśva-',c:268,g:'все, всемирный'},
+  {w:'śrī-',c:258,g:'Шри, счастливый, священный'},
+  {w:'ku-',c:252,g:'земля / плохой (уничижит.)'},
+  {w:'sva-',c:252,g:'свой, само-'},
+  {w:'jala-',c:250,g:'вода, водяной'},
+  {w:'soma-',c:245,g:'Сома (ритуальный напиток / луна)'},
+  {w:'madhu-',c:243,g:'мёд, сладкий'},
+  {w:'ati-',c:242,g:'сверх-, чрезмерно'},
+  {w:'kāla-',c:232,g:'время, чёрный, Кала'},
+  {w:'kṛṣṇa-',c:226,g:'Кришна / чёрный'},
+  {w:'a- / an-',c:0,g:'отрицание (не-, без-) — в MW отдельные записи'},
+  {w:'na-',c:138,g:'[в тексте] отрицание в соединении (Tn)'},
+];
+
+const guideLeftRows = [
+  ['su-, mahā-, ati-','Степень','Слово усиливает признак: ищи в словаре базовую основу (правый член)'],
+  ['a-/an-, nir-, dur-, ku-, vi-','Отрицание/лишение','Nañ-samāsa или tatpuruṣa с отрицанием: значение = «лишённый X»'],
+  ['sarva-, viśva-, eka-, tri-...','Числовое / охватное','Уточняет количество/охват: три X, все X, единственный X'],
+  ['deva-, brahma-, rāja-, śrī-','Тематическое','Определяет сферу: «относящийся к богам/царю/Брахме»'],
+  ['go-, jala-, agni-, vāyu-','Природный элемент','Левый = вещество/стихия; правый уточняет объект'],
+  ['sva-, mat-, tat-, asmat-','Местоименное','Притяжательный детерминатив; часто tatpuruṣa T6'],
+  ['sa-, pra-, prati-, anu-','Глагольный префикс','Не самāса, а префиксальное слово — ищи в глагольных статьях'],
+  ['dharma-, karma-, jñāna-','Абстрактная концепция','Культурно-философская сфера; правый уточняет аспект'],
+];
+
+const guideRightRows = [
+  ['-tva, -tā',     'Абстр. сущ.',     'Compound = «состояние / свойство X» (напр. śūra-tva = храбрость)'],
+  ['-vat, -mat, -in','Посессив',        'Compound = «обладающий X» (bahuvrihi или tatpuruṣa)'],
+  ['-maya',          'Состав',          'Compound = «сделанный из / полный X»'],
+  ['-ja, -jāta, -bhava','Происхождение','Compound = «рождённый / возникший из X»'],
+  ['-kara, -kṛt, -da','Агенс',          'Compound = «делающий X / дающий X»'],
+  ['-pati, -nātha, -rāja, -pāla','Властитель','Compound = «господин / хранитель X»'],
+  ['-stha, -sthāna, -pura, -ālaya','Место','Compound = «находящийся в X / место X»'],
+  ['-mukha',         'Метафора лица',   'Compound = «начало X» или «обращённый к X» (тж. буквально)'],
+  ['-sāra, -rūpa',   'Суть/форма',      'Compound = «суть X» или «имеющий форму X»'],
+  ['-vāda, -tantra, -sūtra','Учение',   'Compound = «теория / система / текст о X»'],
+  ['-tara, -tama',   'Степень сравн.',  'Comparative / superlative от основы X'],
+  ['-tas',           'Наречие',         'Отыменной наречный суффикс: «из X», «по X»'],
+  ['-kāma, -priya',  'Желание/любовь',  'Compound = «любящий X» или «желающий X»'],
+  ['-phala, -vṛtti', 'Результат',       'Compound = «плод X» или «образ жизни по X»'],
+];
+
+function buildList(id, data, maxVal, colorFn) {
+  const el = document.getElementById(id);
+  el.innerHTML = data.map(d => {
+    const pct = Math.round(d.c / maxVal * 100);
+    return `<div class="entry">
+      <span class="wd">${d.w}</span>
+      <span class="cnt">${d.c}</span>
+      <div class="bar-bg"><div class="bar-fill" style="width:${pct}%;background:${colorFn(d)}"></div></div>
+      <span class="gloss">${d.g}${d.cl?`<span class="badge ${d.cl}">${d.cl==='badge-t'?'качество':d.cl==='badge-a'?'деятель':d.cl==='badge-d'?'происх.':'власть'}</span>`:''}</span>
+    </div>`;
+  }).join('');
+}
+
+function buildGuide(bodyId, rows) {
+  document.getElementById(bodyId).innerHTML = rows.map(r=>`<tr style="border-bottom:0.5px solid var(--color-border-tertiary)">
+    <td style="padding:6px 8px;font-family:var(--font-mono);color:var(--color-text-primary)">${r[0]}</td>
+    <td style="padding:6px 8px;color:var(--color-text-secondary)">${r[1]}</td>
+    <td style="padding:6px 8px;color:var(--color-text-primary)">${r[2]}</td>
+  </tr>`).join('');
+}
+
+buildList('rlist', rightData, 1266, d=>['#534AB7','#1D9E75','#EF9F27','#D85A30'][['badge-t','badge-a','badge-d','badge-x'].indexOf(d.cl)]||'#888780');
+buildList('llist', leftData, 1723, ()=>'#534AB7');
+buildGuide('guide-left-body', guideLeftRows);
+buildGuide('guide-right-body', guideRightRows);
+
+let allRight = [...rightData];
+let allLeft = [...leftData];
+
+function filterRight() {
+  const q = document.getElementById('rsearch').value.toLowerCase();
+  const filtered = allRight.filter(d => d.w.toLowerCase().includes(q) || d.g.toLowerCase().includes(q));
+  const maxV = Math.max(...filtered.map(d=>d.c), 1);
+  document.getElementById('rlist').innerHTML = filtered.map(d => {
+    const pct = Math.round(d.c / maxV * 100);
+    const col = ['#534AB7','#1D9E75','#EF9F27','#D85A30'][['badge-t','badge-a','badge-d','badge-x'].indexOf(d.cl)]||'#888780';
+    return `<div class="entry"><span class="wd">${d.w}</span><span class="cnt">${d.c}</span><div class="bar-bg"><div class="bar-fill" style="width:${pct}%;background:${col}"></div></div><span class="gloss">${d.g}${d.cl?`<span class="badge ${d.cl}">${d.cl==='badge-t'?'качество':d.cl==='badge-a'?'деятель':d.cl==='badge-d'?'происх.':'власть'}</span>`:''}</span></div>`;
+  }).join('') || '<div style="padding:12px;color:var(--color-text-tertiary);font-size:13px">не найдено</div>';
+}
+
+function filterLeft() {
+  const q = document.getElementById('lsearch').value.toLowerCase();
+  const filtered = allLeft.filter(d => d.w.toLowerCase().includes(q) || d.g.toLowerCase().includes(q));
+  const maxV = Math.max(...filtered.map(d=>d.c), 1);
+  document.getElementById('llist').innerHTML = filtered.map(d => {
+    const pct = Math.round(d.c / maxV * 100);
+    return `<div class="entry"><span class="wd">${d.w}</span><span class="cnt">${d.c}</span><div class="bar-bg"><div class="bar-fill" style="width:${pct}%;background:#534AB7"></div></div><span class="gloss">${d.g}</span></div>`;
+  }).join('') || '<div style="padding:12px;color:var(--color-text-tertiary);font-size:13px">не найдено</div>';
+}
+
+function showTab(id) {
+  const ids = ['right','left','compare','guide'];
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',ids[i]===id));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+}
+</script>

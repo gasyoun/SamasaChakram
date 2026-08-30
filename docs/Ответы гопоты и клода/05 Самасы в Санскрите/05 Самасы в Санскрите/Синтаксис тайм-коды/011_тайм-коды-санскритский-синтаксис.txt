@@ -1,0 +1,71 @@
+﻿Занятие 11
+
+00:00 Начало 23/05/2021
+01:30 Мангала шлока 
+03:00 Композиты. Классификация Бахуврихи
+05:30 I. samānādhikaraṇa-bahuvrīhi
+07:00 I.1. Простые аппозиционные бахуврихи
+09:20 1. dvitīyarthaḥ. prāptam udakam yam asau prāptodako grāmaḥ
+12:20 2. tṛtīyārthaḥ. ūḍhaḥ rathaḥ yena asau ūḍharathaḥ anaḍvān
+14:25 3. caturtharthaḥ. upahataḥ paśuḥ yasmai sa upahatapaśuḥ rudraḥ
+15:20 4. pañcamyarthaḥ. 2 uddhṛtaḥ odanaḥ yasyāḥ sā uddhṛtaudanaḥ sthālī
+16:25 5. ṣaṣṭhyarthaḥ. pītam ambaraṃ yasya sa pītāmbaraḥ hariḥ
+17:20 6. saptamyarthaḥ. vīrāḥ puruṣā yasmin sa vīrapuruṣaḥ grāmaḥ
+18:00 I.2. Отрицательные бахуврихи (nañ-bahuvrīhiḥ)
+18:30 avidyamānā bhāryā yasya sa abhāryaḥ devadattaḥ
+19:10 avidyamānaḥ putraḥ yasyāḥ sā aputrā vṛddhā
+20:30 I.3. prādi-bahuvrīhiḥ
+21:25 Prapatitāni parṇāni yasya sa prapatitaparṇaḥ vṛkṣaḥ
+22:05 puraḥphalaḥ taruḥ, purogatāni pratyāsannāni phalāni yasya sa taruḥ
+23:30 I.4. saha-bahuvrīhi, sahapūrvapadaḥ bahuvrīhiḥ
+23:40 saha kṛṣṇena vartata iti sakṛṣṇaḥ
+23:45 saha putreṇeti saputraḥ
+23:55 rāmeṇa saha vartata iti sarāmaḥ
+II. vyadhikaraṇa-bahuvrīhi ("не согласованные по падежу ")
+25:15 II.1. Локатив во втором члене.
+25:30 cakraṃ pāṇau yasya sa cakrapāṇiḥ hariḥ
+25:50 śaśī śekhare yasya asau śaśiśekharaḥ rudraḥ
+26:30 II.2. Генетив в первом члене (upamāna-pūrvapada-bahuvrīhi)
+26:50 candrasya iva kāntir yasya sa cāndrakāntiḥ rāmaḥ
+27:45 uṣṭrasya iva mukhaḥ yasya sa uṣṭramukhaḥ yakṣaḥ
+28:40 I.tadguṇasaṃvijñāna-bahuvrīhi vs. atadguṇasaṃvijñāna-bahivrīhi
+29:15 pītāmbaraṃ harim āhvayapītāmbaraṃ harim āhvaya
+29:45 II. atadguṇasaṃvijñāna-bahuvrīhi
+30:00 citraguṃ gopam ānaya
+31:00 I. dvipadabahuvrīhi, в состава бахуврихи два элемента
+34:00 II. bahupadaḥ/anekapadaḥ bahuvrīhiḥ
+34:20 adhika unnato ʼṃso yasya so ʼdhikonnatāṃsaḥ
+35:10 I. Бахуврихи с числительными (sāṃkhya-bahuvrīhiḥ)
+35:20 I.1. Числительное — второй элемент
+35:25 daśānām āsannāḥ āsannadaśāḥ vṛkṣāḥ
+35:35 daśānāṃ adhikāni adhikadaśāni kusumāni
+35:45 daśānāṃ samīpe ye santi te upadaśāḥ narāḥ
+36:05 II.2. Оба члена числительные (saṃkhyobhayapadaḥ bahuvrīhiḥ)
+36:15 dvau vā trayo vā dvitrāḥ payobindavaḥ
+37:00 II.3. Оба члена числительные: перемножение. dviḥ āvṛttāḥ daśa dvidaśāḥ pakṣiṇaḥ
+37:30 II. dig-bahuvrīhiḥ, бахуврихи направлений 
+37:40 dakṣiṇasyāḥ pūrvasyāś ca diśor yad antarālaṃ sā dakṣiṇapūrvā dik
+38:45  III. Взаимное сражение, драка или схватка (grahaṇaviṣayaka-, praharaṇaviṣayaka)
+39:00 keśeṣu keśeṣu gṛhītvā idaṃ yuddhaṃ pravṛttaṃ keśākeśi
+39:20 daṇḍair daṇḍaiś ca prahṛtya idaṃ yuddhaṃ vṛttam daṇḍādaṇḍi
+39:40 IV. Бахуврихи с особыми окончаниями женского рода
+40:00 sundaram aṅgaṃ yasyāḥ sā sundarāṅgī
+40:15 śobhanaṃ gātraṃ yasyāḥ sā sugātrī
+40:30 indīvare iva akṣiṇī yasyāḥ sā indīvarākṣī
+41:00 V. Нерегулярные/нетипичные бахуврихи
+41:10 dehabaddhaṃ baddhadehaṃ [baddho deho yena tad] hayaratnam [hayo ratnam iva]
+42:10 ahitagi gana.
+42:50 bhavasya netrāj janma yasya sa bhavanetrajanmā
+43:40 #1 Вопрос о бахуврихи женского рода.
+45:15 #2 Вопрос о двипада бахуврихи. Если внутри бахуврихи не 2 а 20, то становиться ли она двипада бахуврихи, или же там должны быть связи через тат пуруши.
+45:35 Ответ: Не важно сколько внутри композита частей, в любом случае он должен разложиться на 2 части (обе части имели один и тот же падеж)
+48:30 Зачастую поэты составляют самасы не опираясь на Панини
+50:20 Еще немного о композитах подобных dehabaddham
+51:30 #3Вопрос - чем отличаются tadgunasamvijnana & atadgunasamvijnana
+52:00 Ответ: в первом случае - у обьекта композита есть какие то атрибуты и он приносит их с собой. Во втором случае у обьекта есть атрибуты, но нам нужен именно сам обьект  без его атрибутов.
+58:50 32) rājovāca — tatas taiḥ pakṣibhiḥ kiṃ kṛtam
+1:12:50 33) bakaḥ kathayati — tatas taiḥ pakṣibhiḥ kopād uktam — kenāsau rājahaṃso rājā kṛtaḥ
+1:28:30 34) tato mayopajātakopenoktam — ayaṃ yuṣmadīyo mayūraḥ kena rājā kṛtaḥ
+1:48:05 35) etac chrutvā te pakṣiṇo māṃ hantum udyatāḥ
+1:56:35 36) tato mayāpi svavikramo darśitaḥ
+2:06:40 Заключительная мангала шлока

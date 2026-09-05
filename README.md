@@ -1,6 +1,6 @@
 # SamasaChakram
 
-_Created: 11-07-2026 · Last updated: 16-07-2026_
+_Created: 11-07-2026 · Last updated: 05-09-2026_
 
 > **Status: live.** The samāsa programme consolidated here 16-07-2026 (H1010) from
 > claude-config: the /klammerdiagramm drawing system, its worked-example gallery,
@@ -8,7 +8,7 @@ _Created: 11-07-2026 · Last updated: 16-07-2026_
 
 ## The wheel
 
-![samāsa-cakra — the wheel of Sanskrit compounds](samasacakra/samasacakra-wheel.png)
+![samāsa-cakra — the wheel of Sanskrit compounds](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/samasacakra-wheel.png)
 
 **Live:** [gasyoun.github.io/SamasaChakram](https://gasyoun.github.io/SamasaChakram/) —
 the wheel on GitHub Pages. **Interactive source:** [samasacakra/samasacakra-wheel.html](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/samasacakra-wheel.html)

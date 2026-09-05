@@ -1,3 +1,5 @@
+_Created: 16-07-2026 · Last updated: 05-09-2026_
+
 _Created: 15-07-2026 · Last updated: 16-07-2026 (rev 12 — §11 ghost-member notation added per the corrected D4 vote; rev 11 recut §1 to Leitan per D5/H997)_
 
 # Klammerdiagramm — worked examples (compounds the skill has been tested on)
@@ -28,7 +30,7 @@ reproducible as the *historical* reading below — nothing signed off was discar
 
 The canonical render (Leitan's constituency, v0.1.30):
 
-![Generated Klammerdiagramm of the uddāma compound in Leitan's constituency](klammerdiagramm/klammerdiagramm-uddama-example.png)
+![Generated Klammerdiagramm of the uddāma compound in Leitan's constituency](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-uddama-example.png)
 
 - Files: [SVG](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-uddama-example.svg) ·
   [embedded-font HTML](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-uddama-example.html) ·
@@ -52,9 +54,9 @@ faithful right-branching render (chain **A–G**, `A = soma+svabhāvā`, II ча
 remain the geometry-calibration reference and are reproducible via
 [klammerdiagramm-uddama-plate-historical.json](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-uddama-plate-historical.json):
 
-![Original printed plate of the uddāma compound](klammerdiagramm/klammerdiagramm-target-plate.png)
+![Original printed plate of the uddāma compound](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-target-plate.png)
 
-![Historical right-branching render (superseded by D5)](klammerdiagramm/klammerdiagramm-uddama-plate-historical.png)
+![Historical right-branching render (superseded by D5)](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-uddama-plate-historical.png)
 
 - Files: [plate scan PNG](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-target-plate.png) ·
   [historical SVG](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-uddama-plate-historical.svg) ·
@@ -65,7 +67,7 @@ remain the geometry-calibration reference and are reproducible via
 The short case — two lemmas combined (for all its twenty letters): Kālidāsa's title
 compound, first non-plate run (v0.1.15, 15-07-2026).
 
-![Generated Klammerdiagramm of abhijñāna-śākuntalam](klammerdiagramm/klammerdiagramm-abhijnanasakuntalam-example.png)
+![Generated Klammerdiagramm of abhijñāna-śākuntalam](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-abhijnanasakuntalam-example.png)
 
 - Files: [SVG](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-abhijnanasakuntalam-example.svg) ·
   [embedded-font HTML](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-abhijnanasakuntalam-example.html) ·
@@ -89,7 +91,7 @@ fuse first (deepest node **A** — *rājarṣi*, the king-sage), and only then t
 (right-branching *rāja-(ṛṣi-vaṃśaḥ)* — «the king's sage-lineage» — is grammatically
 possible but semantically the weaker reading).
 
-![Generated Klammerdiagramm of rāja-ṛṣi-vaṃśaḥ](klammerdiagramm/klammerdiagramm-rajarsivamsah-example.png)
+![Generated Klammerdiagramm of rāja-ṛṣi-vaṃśaḥ](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-rajarsivamsah-example.png)
 
 - Files: [SVG](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-rajarsivamsah-example.svg) ·
   [embedded-font HTML](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-rajarsivamsah-example.html) ·
@@ -114,7 +116,7 @@ band with a single label **A** — no internal head, no internal hierarchy — a
 does the head take it, right-to-left: mirrored **B** = `[A] + ghoṣaḥ` — «the din of
 elephants, horses and chariots». The I/II часть spans are omitted (asked; a valid answer).
 
-![Generated Klammerdiagramm of hasti-aśva-ratha-ghoṣaḥ with a flat dvandva block](klammerdiagramm/klammerdiagramm-hastyasvarathaghosah-example.png)
+![Generated Klammerdiagramm of hasti-aśva-ratha-ghoṣaḥ with a flat dvandva block](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-hastyasvarathaghosah-example.png)
 
 - Files: [SVG](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-hastyasvarathaghosah-example.svg) ·
   [embedded-font HTML](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-hastyasvarathaghosah-example.html) ·
@@ -138,7 +140,7 @@ flat at every level, no internal head anywhere — and only then does the upapad
 the whole block right-to-left: mirrored **D** = `[C] + dāḥ`. **II часть begins at `dāḥ`**
 (asked).
 
-![Generated Klammerdiagramm of śīta-uṣṇa-sukha-duḥkha-dāḥ with two coordinated dvandva pairs](klammerdiagramm/klammerdiagramm-sitosnasukhaduhkhadah-example.png)
+![Generated Klammerdiagramm of śīta-uṣṇa-sukha-duḥkha-dāḥ with two coordinated dvandva pairs](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-sitosnasukhaduhkhadah-example.png)
 
 - Files: [SVG](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-sitosnasukhaduhkhadah-example.svg) ·
   [embedded-font HTML](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-sitosnasukhaduhkhadah-example.html) ·
@@ -165,7 +167,7 @@ foot-lotus OF the discus-handed) — a node with no lemma material of its own, t
 to both children. Finally `sevā` and `phalam` accrete as mirrored **D** and **E**.
 **II часть begins at `sevā`** (asked): possessor-object block vs action-and-fruit.
 
-![Generated Klammerdiagramm of cakra-pāṇi-caraṇa-kamala-sevā-phalam with a bahuvrīhi sub-compound](klammerdiagramm/klammerdiagramm-cakrapanicaranakamalasevaphalam-example.png)
+![Generated Klammerdiagramm of cakra-pāṇi-caraṇa-kamala-sevā-phalam with a bahuvrīhi sub-compound](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-cakrapanicaranakamalasevaphalam-example.png)
 
 - Files: [SVG](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-cakrapanicaranakamalasevaphalam-example.svg) ·
   [embedded-font HTML](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-cakrapanicaranakamalasevaphalam-example.html) ·
@@ -191,7 +193,7 @@ meaning, right-to-left in structure); standalone **karmadhāraya pair C** =
 mirrored **E** = `[D] + sevā`. **II часть begins at `caraṇa`** (asked): the possessor vs
 what is served.
 
-![Generated Klammerdiagramm of śaṅkha-cakra-gadā-pāṇi-caraṇa-kamala-sevā mixing dvandva, bahuvrīhi and tatpuruṣa](klammerdiagramm/klammerdiagramm-sankhacakragadapanicaranakamalaseva-example.png)
+![Generated Klammerdiagramm of śaṅkha-cakra-gadā-pāṇi-caraṇa-kamala-sevā mixing dvandva, bahuvrīhi and tatpuruṣa](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-sankhacakragadapanicaranakamalaseva-example.png)
 
 - Files: [SVG](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-sankhacakragadapanicaranakamalaseva-example.svg) ·
   [embedded-font HTML](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-sankhacakragadapanicaranakamalaseva-example.html) ·
@@ -215,7 +217,7 @@ coordinate); mirrored **B** = `[A]+nāda` and **D** = `[C]+ghoṣa` (rung 1, the
 **F** = `[E]+pūrṇa` and **G** = `[F]+nagaram` (rungs 3–4). **II часть begins at `pūrṇa`**
 (asked): the sound-coordination vs the filled city.
 
-![Generated Klammerdiagramm of śaṅkha-bherī-nāda-hasti-aśva-ghoṣa-pūrṇa-nagaram with two dvandva blocks](klammerdiagramm/klammerdiagramm-sankhabherinadahastyasvaghosapurnanagaram-example.png)
+![Generated Klammerdiagramm of śaṅkha-bherī-nāda-hasti-aśva-ghoṣa-pūrṇa-nagaram with two dvandva blocks](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-sankhabherinadahastyasvaghosapurnanagaram-example.png)
 
 - Files: [SVG](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-sankhabherinadahastyasvaghosapurnanagaram-example.svg) ·
   [embedded-font HTML](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-sankhabherinadahastyasvaghosapurnanagaram-example.html) ·
@@ -241,7 +243,7 @@ flat dvandva **C** = `anna·pāna` with mirrored **D** = `[C]+dāna`; join **E**
 (the gift so given); karmadhāraya pair **F** = `puṇya+phala`; join **G** = `[E]→[F]` (the
 merit-fruit of it); head **H** = `[G]+bhāgī`. **II часть begins at `puṇya`** (asked).
 
-![Generated Klammerdiagramm of yathā-śakti-datta-anna-pāna-dāna-puṇya-phala-bhāgī with an avyayībhāva](klammerdiagramm/klammerdiagramm-yathasaktidattannapanadanapunyaphalabhagi-example.png)
+![Generated Klammerdiagramm of yathā-śakti-datta-anna-pāna-dāna-puṇya-phala-bhāgī with an avyayībhāva](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-yathasaktidattannapanadanapunyaphalabhagi-example.png)
 
 - Files: [SVG](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-yathasaktidattannapanadanapunyaphalabhagi-example.svg) ·
   [embedded-font HTML](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-yathasaktidattannapanadanapunyaphalabhagi-example.html) ·
@@ -274,7 +276,7 @@ The spine: **E** = `[C]→[D]` (the foot-lotus OF the Blue-Throated), **F** = `[
 according-to-rule), **I** = `[H]+phalam`. **II часть begins at `nīla`** (asked): the
 manner-and-offering block vs the deity, worship and fruit.
 
-![Generated Klammerdiagramm of yathā-vidhi-gandha-puṣpa-nīla-kaṇṭha-pāda-padma-pūjā-phalam mixing all five samāsa kinds](klammerdiagramm/klammerdiagramm-yathavidhigandhapuspanilakanthapadapadmapujaphalam-example.png)
+![Generated Klammerdiagramm of yathā-vidhi-gandha-puṣpa-nīla-kaṇṭha-pāda-padma-pūjā-phalam mixing all five samāsa kinds](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-yathavidhigandhapuspanilakanthapadapadmapujaphalam-example.png)
 
 - Files: [SVG](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-yathavidhigandhapuspanilakanthapadapadmapujaphalam-example.svg) ·
   [embedded-font HTML](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-yathavidhigandhapuspanilakanthapadapadmapujaphalam-example.html) ·
@@ -295,7 +297,7 @@ elided middle member is **restored in the word line in editorial brackets** — 
 measured into the run but carrying **no bar, no arrows, no node index**; node **A** joins
 the two real members. I/II часть spans omitted (notation demo).
 
-![Generated Klammerdiagramm of śāka-priya-pārthivaḥ with the ghost member restored](klammerdiagramm/klammerdiagramm-sakapriyaparthivah-example.png)
+![Generated Klammerdiagramm of śāka-priya-pārthivaḥ with the ghost member restored](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-sakapriyaparthivah-example.png)
 
 - Files: [SVG](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-sakapriyaparthivah-example.svg) ·
   [embedded-font HTML](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-sakapriyaparthivah-example.html) ·

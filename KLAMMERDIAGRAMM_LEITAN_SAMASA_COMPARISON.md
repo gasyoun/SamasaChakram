@@ -1,4 +1,4 @@
-_Created: 15-07-2026 · Last updated: 16-07-2026_
+_Created: 15-07-2026 · Last updated: 05-09-2026_
 
 # Klammerdiagramm × Leitan — the samāsa-conspectus crosswalk (H982)
 
@@ -59,7 +59,7 @@ all are now resolved by MG vote — see §4.
 His vigraha: *janma ca rogaś ca maraṇaṃ ca ādayaḥ yasya sa bhāvaḥ*. Flat dvandva
 **A** = `janma·roga·maraṇa`, mirrored head **B** = `[A]+ādiḥ`. II часть at `ādiḥ` (asked).
 
-![janma-roga-maraṇa-ādiḥ](klammerdiagramm/klammerdiagramm-janmarogamaranadi-example.png)
+![janma-roga-maraṇa-ādiḥ](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-janmarogamaranadi-example.png)
 
 [SVG](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-janmarogamaranadi-example.svg) ·
 [HTML](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-janmarogamaranadi-example.html) ·
@@ -71,7 +71,7 @@ His vigraha: *pañca gāvo dhanaṃ yasya saḥ*. Dvigu pair **A** = `pañca+gav
 karmadhāraya subtype → ordinary right-to-left pair, per D1), mirrored head
 **B** = `[A]+dhanaḥ`. II часть at `dhanaḥ` (asked).
 
-![pañca-gava-dhanaḥ](klammerdiagramm/klammerdiagramm-pancagavadhana-example.png)
+![pañca-gava-dhanaḥ](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-pancagavadhana-example.png)
 
 [SVG](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-pancagavadhana-example.svg) ·
 [HTML](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-pancagavadhana-example.html) ·
@@ -85,7 +85,7 @@ indentation ladder exactly (his deepest rung = `yat`): upamita pair **A** = `pā
 chain **B** = `yat+[A]` (the classic token-left bracket), then mirrored accretions
 **C–F**: `+sevā`, `+ruci`, `+śuci`, `+manasām`. II часть at `ruci` (asked).
 
-![yat-pāda-ambhoja-sevā-ruci-śuci-manasām](klammerdiagramm/klammerdiagramm-yatpadambhojasevarucisucimanasam-example.png)
+![yat-pāda-ambhoja-sevā-ruci-śuci-manasām](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-yatpadambhojasevarucisucimanasam-example.png)
 
 [SVG](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-yatpadambhojasevarucisucimanasam-example.svg) ·
 [HTML](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-yatpadambhojasevarucisucimanasam-example.html) ·

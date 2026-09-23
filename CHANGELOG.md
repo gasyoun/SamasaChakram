@@ -6,6 +6,20 @@ _Created: 16-07-2026 · Last updated: 16-07-2026_
 
 ## [Unreleased]
 
+### Added — 24-09-2026 · H5278 Jev choice probe over the samāsa subtypes
+
+- `samasacakra/samasa_subtype_jev_choice_probe.py` — choice probe of all 58
+  taxonomy leaf subtypes on the 18 gold gallery compounds (state = leak-free
+  compound + glosses + context; one question per compound; dry-run default,
+  live `--run`, ×3 retry; transport reused from Uprava `jev_probe.py`,
+  H5275).
+- `samasacakra/jev-subtype-choice-results.json` — raw per-compound
+  predictions, confidences, probabilities, usage and cost ($0.0034 total).
+- `JEV_SAMASA_SUBTYPE_CHOICE_PROBE_24-09-2026.md` — dated note: 61.1 %
+  leaf accuracy at n = 18 → DEFER verdict; perfect confidence separation
+  (all hits conf ≥ 0.60, all misses < 0.60) recorded as a gated-classifier
+  lead; full per-subtype confusion table.
+
 ## [0.7.3] - 2026-07-16
 
 ### Fixed — 16-07-2026 · the published wheel was inert: no rotation, no click

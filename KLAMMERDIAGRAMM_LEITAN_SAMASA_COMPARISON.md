@@ -14,7 +14,7 @@ Sources: [live Google Doc](https://docs.google.com/document/d/1-jrfXUzgusB9lrST8
 comments [a]–[eu], which are excluded from this comparison; the text export drops any
 figures). **Publication in SamasaChakram authorized by MG 16-07-2026** (the conspectus stems from
 MG's own webinar programme; consent responsibility is MG's — the earlier internal-only
-NO-GO is superseded by that ruling). Handoff: [H982](https://github.com/gasyoun/Uprava/blob/main/handoffs/H982-Fable_claude-config_klammerdiagramm-leitan-samasa-konspekt-comparison_15.07.26.md).
+NO-GO is superseded by that ruling). Handoff: [H982](https://github.com/gasyoun/Uprava/blob/main/handoffs/archive/H982-Fable_claude-config_klammerdiagramm-leitan-samasa-konspekt-comparison_15.07.26.md).
 
 ## 1 · Where the two systems agree — the load-bearing principles
 

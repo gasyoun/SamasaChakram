@@ -1,0 +1,44 @@
+{
+  "handoff": "H8028",
+  "captured": "2026-11-11",
+  "method": "Chromium (Playwright MCP) — browser viewport PNG + emulateMedia(print) PNG + page.pdf A4",
+  "source_base": "teaching-pack / klammerdiagramm example HTMLs as committed",
+  "canaries": [
+    {
+      "browser_png": "C-D4-ghost-browser.png",
+      "browser_png_bytes": 19787,
+      "print_png": "C-D4-ghost-print.png",
+      "print_png_bytes": 19787,
+      "pdf": "C-D4-ghost.pdf",
+      "pdf_bytes": 33922,
+      "id": "C-D4-ghost"
+    },
+    {
+      "browser_png": "C-D5-uddama-leitan-browser.png",
+      "browser_png_bytes": 38091,
+      "print_png": "C-D5-uddama-leitan-print.png",
+      "print_png_bytes": 38091,
+      "pdf": "C-D5-uddama-leitan.pdf",
+      "pdf_bytes": 138711,
+      "id": "C-D5-uddama-leitan"
+    },
+    {
+      "browser_png": "C-D5-uddama-historical-browser.png",
+      "browser_png_bytes": 47966,
+      "print_png": "C-D5-uddama-historical-print.png",
+      "print_png_bytes": 47966,
+      "pdf": "C-D5-uddama-historical.pdf",
+      "pdf_bytes": 149490,
+      "id": "C-D5-uddama-historical"
+    },
+    {
+      "browser_png": "C-ACCDUAL-browser.png",
+      "browser_png_bytes": 72279,
+      "print_png": "C-ACCDUAL-print.png",
+      "print_png_bytes": 72386,
+      "pdf": "C-ACCDUAL.pdf",
+      "pdf_bytes": 131642,
+      "id": "C-ACCDUAL"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>C-ACCDUAL — Acc. dual canary (H8028)</title>
+<style>
+  body { font-family: "Charis SIL", "Times New Roman", serif; margin: 2.5rem auto; max-width: 46rem;
+         line-height: 1.55; color: #141414; background: #fdfdfb; padding: 0 1.25rem; }
+  h1 { font-size: 1.5rem; } h2 { font-size: 1.15rem; margin-top: 1.8rem; }
+  .form { font-size: 1.35rem; margin: .6rem 0; }
+  .label { display: inline-block; background: #0b5fff; color: #fff; border-radius: 4px;
+           padding: .1rem .55rem; font-size: .95rem; font-family: system-ui, sans-serif; }
+  .wrong { background: #ffe3e3; border-left: 4px solid #d33; padding: .4rem .7rem; }
+  .right { background: #e6f6e6; border-left: 4px solid #2a7; padding: .4rem .7rem; }
+  .meta { font-family: system-ui, sans-serif; font-size: .85rem; color: #555; }
+  table { border-collapse: collapse; margin-top: .5rem; }
+  td, th { border: 1px solid #bbb; padding: .35rem .7rem; text-align: left; }
+  @media print { body { margin: 1rem; } }
+</style>
+</head>
+<body>
+<h1>C-ACCDUAL — dual в <i>abhijñānaśākuntale</i>: Nom./Acc., не локатив</h1>
+<p class="meta">H8028 correction canary · ruling: <code>sanskrit-right-to-left-reading.md</code> §Discipline
+(updated 05-09-2026) · printed mini-example of the worked sentence</p>
+
+<h2>Форма в мини-примере</h2>
+<p class="form">…iti <b>abhijñānaśākuntale</b> …</p>
+<p><span class="label">Acc. dual</span>
+<i>abhijñānaśākuntale</i> — dual в <b>-e</b>: это именительный-винительный падеж двойственного числа
+(Nom./Acc. dual), <b>not locative</b> (локатив двойственного был бы формой на <b>-yoḥ</b>:
+<i>tayoḥ / manasī / …layoḥ</i>).</p>
+
+<h2>Почему это важно</h2>
+<table>
+  <tr><th>Чтение</th><th>Падеж</th><th>Формальный маркер</th></tr>
+  <tr><td class="right">Nom./Acc. dual <span class="label">Acc. dual</span></td><td>им./вин. дв.</td><td><b>-e</b></td></tr>
+  <tr><td class="wrong">~~locative (локатив)~~</td><td>местный дв. (только косвенное указание мест/отношений)</td><td><b>-yoḥ</b></td></tr>
+</table>
+
+<h2>Правило (из RTL-дисциплины)</h2>
+<p>В двойственном числе окончание <b>-e</b> соответствует именительному-винительному падежу
+(Nom./Acc. dual — прямой участник пары: <i>abhijñānam ca śākuntalā ca</i>), а не локативу.
+Грамматический разбор мини-примера обязан подписывать форму как <b>Acc. dual</b>; подпись
+«locative» для этой формы является ошибкой исправления и блокируется автоматической проверкой
+<code>scripts/check_example_pack.py</code> (canary C-ACCDUAL).</p>
+
+<p class="meta">Границы видимости: одна исправленная форма одного мини-примера — не языковое решение
+по всем -e-двойственным. Открытый вопрос Q2/Q3 — в <code>teaching-pack/example_pack_manifest.json</code>.</p>
+</body>
+</html>

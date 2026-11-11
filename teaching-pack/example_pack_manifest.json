@@ -1,0 +1,663 @@
+{
+  "pack_id": "H8028-reviewed-reading-example-pack",
+  "version": "0.1.0",
+  "created": "2026-11-11",
+  "spec": "Uprava handoff H8028 (class: data, gate: none) — source-linked reviewed compound teaching pack for the first reading pilot",
+  "required_fields": [
+    "source_text",
+    "source_anchor",
+    "constituent_groups",
+    "category",
+    "analytical_expansion",
+    "aligned_translation",
+    "provenance",
+    "review_status",
+    "reviewer_provenance"
+  ],
+  "review_status_vocabulary": ["approved", "withheld"],
+  "scope": {
+    "includes": "All 20 committed klammerdiagramm render configs (config + SVG + HTML + PNG) as the rendered reading subset, cross-linked to their samasacakra-taxonomy.json leaves where the leaf example matches the rendered compound.",
+    "coverage": {
+      "rendered_examples": 20,
+      "taxonomy_leaves": 58,
+      "taxonomy_leaves_with_diagram_link": 17,
+      "family_illustration_links": 8,
+      "correction_canaries": 3
+    },
+    "exclusions": [
+      "41 taxonomy leaves without a rendered diagram — wheel examples only, not yet drawn; not part of the rendered reading subset.",
+      "klammerdiagramm-uddama-plate-historical — superseded reading (MG vote D5, 16-07-2026); retained as geometry-calibration reference, withheld from the lesson subset.",
+      "Taxonomy diagram links whose linked render does not contain the leaf's example word (family/type illustrations) — recorded as audit findings under `taxonomy_link_audit`, not treated as example provenance."
+    ],
+    "no_quota": "No example count, lesson count or effectiveness threshold is invented here; coverage is exactly what the repository already renders (20) and what the wheel already carries (58 leaves)."
+  },
+  "examples": [
+    {
+      "id": "uddama-leitan",
+      "source_text": "uddāma-ajñāna-rūpa-prabalatama-tamaḥ-stoma-soma-svabhāvā-",
+      "source_anchor": "Jalhaṇa, Sūktimuktāvalī 13 c. (strophe reproduced with full RU translation in leitan/leitan-samasa-konspekt-export-15-07-2026.txt, lines 631-660)",
+      "constituent_groups": [
+        "P = uddāma·ajñāna (∪, flat dvandva block)",
+        "Q = P + rūpa (mirrored, the braced {uddāma-ajñāna-rūpa} block)",
+        "A = soma·svabhāvā (∪, deepest)",
+        "B = stoma + A, C = tamaḥ + B, D = prabalatama + C (right tail)",
+        "R = Q + D (directed join, head = the tail)",
+        "II часть begins at svabhāvā (II_START=7); ‖-mark before svabhāvā"
+      ],
+      "category": "mixed — braced block {uddāma-ajñāna-rūpa} + right-branching tatpuruṣa tail (D5 Leitan reading)",
+      "analytical_expansion": "{uddāma-ajñāna-rūpa} = «имея в качестве формы — неведение безграничное», joined to the prabalatama-tamaḥ-stoma-soma-svabhāvā tail (Leitan conspectus, дословный разбор)",
+      "aligned_translation": {
+        "lang": "ru",
+        "text": "природа которой подобна [природе] Луны для массы тьмы, который является чрезвычайно могучим, имея в качестве формы — неведение безграничное (фрагмент перевода строфы)",
+        "source": "leitan/leitan-samasa-konspekt-export-15-07-2026.txt lines 648-656"
+      },
+      "provenance": {
+        "config": "klammerdiagramm/klammerdiagramm-uddama-leitan.json",
+        "renders": {
+          "svg": "klammerdiagramm/klammerdiagramm-uddama-example.svg",
+          "html": "klammerdiagramm/klammerdiagramm-uddama-example.html",
+          "png": "klammerdiagramm/klammerdiagramm-uddama-example.png"
+        },
+        "ruling": "D5 — MG vote 16-07-2026 (H997): DO AS LEITAN, plate recut; KLAMMERDIAGRAMM_LEITAN_SAMASA_COMPARISON.md §4"
+      },
+      "review_status": "approved",
+      "reviewer_provenance": "MG vote D5, 16-07-2026 (H997); gallery §1 (klammerdiagramm-worked-examples.md)"
+    },
+    {
+      "id": "uddama-plate-historical",
+      "source_text": "uddāma-ajñāna-rūpa-prabalatama-tamaḥ-stoma-soma-svabhāvā- (plate reading: pure right-branching chain)",
+      "source_anchor": "Printed reference plate recovered from the H814 session transcript (MG 12-07-2026 upload); klammerdiagramm/klammerdiagramm-target-plate.png",
+      "constituent_groups": [
+        "A = soma·svabhāvā … G = the whole compound — chain A–G, II часть at tamaḥ (II_START=4)"
+      ],
+      "category": "pure right-branching chain (superseded by D5)",
+      "analytical_expansion": "faithful 1:1 trace of the printed plate's chain analysis",
+      "aligned_translation": {
+        "lang": "ru",
+        "text": "(same strophe as uddama-leitan — translation rides on the canonical Leitan entry)",
+        "source": "leitan/leitan-samasa-konspekt-export-15-07-2026.txt"
+      },
+      "provenance": {
+        "config": "klammerdiagramm/klammerdiagramm-uddama-plate-historical.json",
+        "renders": {
+          "svg": "klammerdiagramm/klammerdiagramm-uddama-plate-historical.svg",
+          "html": "klammerdiagramm/klammerdiagramm-uddama-plate-historical.html",
+          "png": "klammerdiagramm/klammerdiagramm-uddama-plate-historical.png"
+        },
+        "ruling": "superseded by MG vote D5, 16-07-2026 — kept reproducible as the historical reading (gallery §1)"
+      },
+      "review_status": "withheld",
+      "withheld_reason": "superseded constituency (D5) — geometry reference only, not an approved lesson example",
+      "reviewer_provenance": "plate signed off 15-07-2026 (1:1); superseded by MG vote D5, 16-07-2026 (H997)"
+    },
+    {
+      "id": "abhijnanasakuntalam",
+      "source_text": "abhijñāna-śākuntalam",
+      "source_anchor": "Kālidāsa, Abhijñānaśākuntalam title; worked sentence in sanskrit-right-to-left-reading.md §Worked mini-example",
+      "constituent_groups": [
+        "A = abhijñāna + śākuntalam (∪, single deepest node; first member unpacks as dvandva abhijñānam ca śākuntalā ca)",
+        "II часть begins at śākuntalam (II_START=1)"
+      ],
+      "category": "tatpuruṣa title compound (first member = dvandva)",
+      "analytical_expansion": "abhijñānam ca śākuntalā ca (dvandva behind the first member) + śākuntalam as head",
+      "aligned_translation": {
+        "lang": "ru",
+        "text": "узнавание и Шакунтала («Абхиджняна-Шакунтала»)",
+        "source": "sanskrit-right-to-left-reading.md §Worked mini-example (iti-unfold line)"
+      },
+      "provenance": {
+        "config": "klammerdiagramm/klammerdiagramm-abhijnanasakuntalam.json",
+        "renders": {
+          "svg": "klammerdiagramm/klammerdiagramm-abhijnanasakuntalam-example.svg",
+          "html": "klammerdiagramm/klammerdiagramm-abhijnanasakuntalam-example.html",
+          "png": "klammerdiagramm/klammerdiagramm-abhijnanasakuntalam-example.png"
+        },
+        "ruling": "correction canary C-ACCDUAL — the -e dual in the worked sentence is Nom./Acc., labelled Acc. dual (sanskrit-right-to-left-reading.md §Discipline)"
+      },
+      "case_label": "Acc. dual (abhijñānaśākuntale in the worked sentence — NOT locative; loc. dual would be tayoḥ/…layoḥ)",
+      "review_status": "approved",
+      "reviewer_provenance": "gallery §2 (asked — degenerate but confirmed); case-label correction documented in sanskrit-right-to-left-reading.md §Discipline (updated 05-09-2026)"
+    },
+    {
+      "id": "rajarsivamsah",
+      "source_text": "rāja-ṛṣi-vaṃśaḥ",
+      "source_anchor": "Leitan conspectus karmadhāraya appositional example (rājarṣi); comparison §2 row karmadhāraya",
+      "constituent_groups": [
+        "A = rāja + ṛṣi (∪, deepest — the king-sage)",
+        "B = A + vaṃśaḥ (mirrored, left-nested head)",
+        "II часть begins at vaṃśaḥ (II_START=2)"
+      ],
+      "category": "karmadhāraya (appositional) inside tatpuruṣa — LEFT-nested",
+      "analytical_expansion": "rājā ca sa ṛṣiś ca (appositional vigraha), then vaṃśaḥ takes the pair",
+      "aligned_translation": {
+        "lang": "ru",
+        "text": "царь-провидец",
+        "source": "samasacakra-taxonomy.json leaf appositional.ru"
+      },
+      "provenance": {
+        "config": "klammerdiagramm/klammerdiagramm-rajarsivamsah.json",
+        "renders": {
+          "svg": "klammerdiagramm/klammerdiagramm-rajarsivamsah-example.svg",
+          "html": "klammerdiagramm/klammerdiagramm-rajarsivamsah-example.html",
+          "png": "klammerdiagramm/klammerdiagramm-rajarsivamsah-example.png"
+        },
+        "ruling": "mirrored-node encoding (left-nested draw) — gallery §3"
+      },
+      "review_status": "approved",
+      "reviewer_provenance": "gallery §3 (nesting ASKED and confirmed); taxonomy leaf appositional"
+    },
+    {
+      "id": "hastyasvarathaghosah",
+      "source_text": "hasti-aśva-ratha-ghoṣaḥ",
+      "source_anchor": "epic scene compound; comparison §2 dvandva family; gallery §4",
+      "constituent_groups": [
+        "A = hasti·aśva·ratha (flat dvandva block, one shared band)",
+        "B = A + ghoṣaḥ (mirrored head)",
+        "I/II часть spans omitted (asked)"
+      ],
+      "category": "dvandva block + tatpuruṣa head",
+      "analytical_expansion": "hastīnāṃ aśvānāṃ rathānāṃ ca ghoṣaḥ (flat block, no internal head)",
+      "aligned_translation": {
+        "lang": "en",
+        "text": "the din of elephants, horses and chariots",
+        "source": "klammerdiagramm-worked-examples.md §4"
+      },
+      "provenance": {
+        "config": "klammerdiagramm/klammerdiagramm-hastyasvarathaghosah.json",
+        "renders": {
+          "svg": "klammerdiagramm/klammerdiagramm-hastyasvarathaghosah-example.svg",
+          "html": "klammerdiagramm/klammerdiagramm-hastyasvarathaghosah-example.html",
+          "png": "klammerdiagramm/klammerdiagramm-hastyasvarathaghosah-example.png"
+        },
+        "ruling": "flat-dvandva ruling (MG 15-07-2026) — gallery §4"
+      },
+      "review_status": "approved",
+      "reviewer_provenance": "gallery §4 (II часть asked — a valid answer); MG dvandva law 15-07-2026"
+    },
+    {
+      "id": "sitosnasukhaduhkhadah",
+      "source_text": "śīta-uṣṇa-sukha-duḥkha-dāḥ",
+      "source_anchor": "BG 2.14 — mātrāsparśās tu kaunteya śītoṣṇasukhaduḥkhadāḥ",
+      "constituent_groups": [
+        "A = śīta·uṣṇa and B = sukha·duḥkha (sibling flat pairs, rung 0)",
+        "C = A·B (dvandva of dvandvas, one rung lower)",
+        "D = C + dāḥ (mirrored upapada head)",
+        "II часть begins at dāḥ (II_START=4)"
+      ],
+      "category": "dvandva of dvandvas + upapada-tatpuruṣa head",
+      "analytical_expansion": "śītaṃ ca uṣṇaṃ ca sukhaṃ ca duḥkhaṃ ca dāḥ (two coordinated opposite pairs, then the head)",
+      "aligned_translation": {
+        "lang": "en",
+        "text": "giving cold-and-heat, pleasure-and-pain",
+        "source": "klammerdiagramm-worked-examples.md §5 (BG 2.14)"
+      },
+      "provenance": {
+        "config": "klammerdiagramm/klammerdiagramm-sitosnasukhaduhkhadah.json",
+        "renders": {
+          "svg": "klammerdiagramm/klammerdiagramm-sitosnasukhaduhkhadah-example.svg",
+          "html": "klammerdiagramm/klammerdiagramm-sitosnasukhaduhkhadah-example.html",
+          "png": "klammerdiagramm/klammerdiagramm-sitosnasukhaduhkhadah-example.png"
+        },
+        "ruling": "blocks-of-blocks + levels (gallery §5); BG 2.14"
+      },
+      "review_status": "approved",
+      "reviewer_provenance": "gallery §5 (asked; flat four-member alternative recorded)"
+    },
+    {
+      "id": "cakrapanicaranakamalasevaphalam",
+      "source_text": "cakra-pāṇi-caraṇa-kamala-sevā-phalam",
+      "source_anchor": "bhakti-idiom chain; Leitan conspectus vyadhikaraṇa-bahuvrīhi example cakrapāṇi (comparison §2); taxonomy leaf loc-bv",
+      "constituent_groups": [
+        "A = cakra·pāṇi (bahuvrīhi ∪ pair), B = caraṇa·kamala (karmadhāraya ∪ pair), rung 0",
+        "C = A → B (directed join, head right)",
+        "D = C + sevā, E = D + phalam (mirrored accretions)",
+        "II часть begins at sevā (II_START=4)"
+      ],
+      "category": "bahuvrīhi (locative vyadhikaraṇa) + karmadhāraya + tatpuruṣa spine",
+      "analytical_expansion": "cakraṃ pāṇau yasya (whose hand holds the discus) + caraṇaṃ kamalaṃ (the foot-lotus) + sevā-phalam",
+      "aligned_translation": {
+        "lang": "ru",
+        "text": "с диском в руке (Вишну) — [плод] служения лотос-стопам",
+        "source": "samasacakra-taxonomy.json leaf loc-bv.ru + gallery §6 analysis"
+      },
+      "provenance": {
+        "config": "klammerdiagramm/klammerdiagramm-cakrapanicaranakamalasevaphalam.json",
+        "renders": {
+          "svg": "klammerdiagramm/klammerdiagramm-cakrapanicaranakamalasevaphalam-example.svg",
+          "html": "klammerdiagramm/klammerdiagramm-cakrapanicaranakamalasevaphalam-example.html",
+          "png": "klammerdiagramm/klammerdiagramm-cakrapanicaranakamalasevaphalam-example.png"
+        },
+        "ruling": "directed-join + standalone ∪ pair (gallery §6)"
+      },
+      "review_status": "approved",
+      "reviewer_provenance": "gallery §6 (nesting ASKED); taxonomy leaf loc-bv"
+    },
+    {
+      "id": "sankhacakragadapanicaranakamalaseva",
+      "source_text": "śaṅkha-cakra-gadā-pāṇi-caraṇa-kamala-sevā",
+      "source_anchor": "built on the attested Viṣṇu epithet śaṅkhacakragadāpāṇiḥ; gallery §7",
+      "constituent_groups": [
+        "A = śaṅkha·cakra·gadā (flat dvandva), C = caraṇa·kamala (∪ pair), rung 0",
+        "B = A + pāṇi (bahuvrīhi, mirrored)",
+        "D = B → C (directed join)",
+        "E = D + sevā (mirrored)",
+        "II часть begins at caraṇa (II_START=4)"
+      ],
+      "category": "dvandva + bahuvrīhi + karmadhāraya + tatpuruṣa in one word",
+      "analytical_expansion": "śaṅkha-ca-cakra-ca-gadā-ca pāṇi (whose hands [hold] conch, discus, mace) + caraṇa-kamala + sevā",
+      "aligned_translation": {
+        "lang": "en",
+        "text": "service to the lotus-feet of the Conch-Discus-Mace-Handed",
+        "source": "klammerdiagramm-worked-examples.md §7"
+      },
+      "provenance": {
+        "config": "klammerdiagramm/klammerdiagramm-sankhacakragadapanicaranakamalaseva.json",
+        "renders": {
+          "svg": "klammerdiagramm/klammerdiagramm-sankhacakragadapanicaranakamalaseva-example.svg",
+          "html": "klammerdiagramm/klammerdiagramm-sankhacakragadapanicaranakamalaseva-example.html",
+          "png": "klammerdiagramm/klammerdiagramm-sankhacakragadapanicaranakamalaseva-example.png"
+        },
+        "ruling": "node-grammar composition capstone (gallery §7)"
+      },
+      "review_status": "approved",
+      "reviewer_provenance": "gallery §7 (nesting ASKED)"
+    },
+    {
+      "id": "sankhabherinadahastyasvaghosapurnanagaram",
+      "source_text": "śaṅkha-bherī-nāda-hasti-aśva-ghoṣa-pūrṇa-nagaram",
+      "source_anchor": "epic-style scene compound; taxonomy leaf sasthi links this render as the ṣaṣṭhī-family illustration",
+      "constituent_groups": [
+        "A = śaṅkha·bherī, C = hasti·aśva (sibling flat pairs, rung 0)",
+        "B = A + nāda, D = C + ghoṣa (mirrored, rung 1)",
+        "E = B·D (dvandva of tatpuruṣas, rung 2)",
+        "F = E + pūrṇa, G = F + nagaram (rungs 3-4)",
+        "II часть begins at pūrṇa (II_START=6)"
+      ],
+      "category": "two dvandva blocks + dvandva-of-tatpuruṣas + tatpuruṣa chain",
+      "analytical_expansion": "śaṅkha-bherī-nāda (conch-kettle-drum sound) · hasti-aśva-ghoṣa (elephant-horse din) → pūrṇa-nagaram",
+      "aligned_translation": {
+        "lang": "en",
+        "text": "the city filled with the sound of conches-and-kettledrums and the din of elephants-and-horses",
+        "source": "klammerdiagramm-worked-examples.md §8"
+      },
+      "provenance": {
+        "config": "klammerdiagramm/klammerdiagramm-sankhabherinadahastyasvaghosapurnanagaram.json",
+        "renders": {
+          "svg": "klammerdiagramm/klammerdiagramm-sankhabherinadahastyasvaghosapurnanagaram-example.svg",
+          "html": "klammerdiagramm/klammerdiagramm-sankhabherinadahastyasvaghosapurnanagaram-example.html",
+          "png": "klammerdiagramm/klammerdiagramm-sankhabherinadahastyasvaghosapurnanagaram-example.png"
+        },
+        "ruling": "two-dvandva composition (gallery §8)"
+      },
+      "review_status": "approved",
+      "reviewer_provenance": "gallery §8 (nesting ASKED)"
+    },
+    {
+      "id": "yathasaktidattannapanadanapunyaphalabhagi",
+      "source_text": "yathā-śakti-datta-anna-pāna-dāna-puṇya-phala-bhāgī",
+      "source_anchor": "avyayībhāva teaching chain; taxonomy leaf yatha links this render; gallery §9",
+      "constituent_groups": [
+        "A = yathā·śakti (∪ avyayībhāva), C = anna·pāna (flat dvandva), F = puṇya·phala (∪), rung 0",
+        "B = A + datta, D = C + dāna (mirrored, rung 1)",
+        "E = B → D, G = E → F (directed joins, rungs 2-3)",
+        "H = G + bhāgī (upapada head, rung 4)",
+        "II część begins at puṇya (II_START=6)"
+      ],
+      "category": "avyayībhāva + dvandva + karmadhāraya + tatpuruṣa + upapada head",
+      "analytical_expansion": "yathā śakti (по силам) datta-anna-pāna-dāna (given food-drink-gift) → puṇya-phala → bhāgī",
+      "aligned_translation": {
+        "lang": "ru",
+        "text": "по силам",
+        "source": "samasacakra-taxonomy.json leaf yatha.ru; full EN gloss in gallery §9"
+      },
+      "provenance": {
+        "config": "klammerdiagramm/klammerdiagramm-yathasaktidattannapanadanapunyaphalabhagi.json",
+        "renders": {
+          "svg": "klammerdiagramm/klammerdiagramm-yathasaktidattannapanadanapunyaphalabhagi-example.svg",
+          "html": "klammerdiagramm/klammerdiagramm-yathasaktidattannapanadanapunyaphalabhagi-example.html",
+          "png": "klammerdiagramm/klammerdiagramm-yathasaktidattannapanadanapunyaphalabhagi-example.png"
+        },
+        "ruling": "avyayībhāva right-to-left law (MG 15-07-2026) — gallery §9"
+      },
+      "review_status": "approved",
+      "reviewer_provenance": "gallery §9 (nesting and II часть ASKED); MG avyayībhāva ruling 15-07-2026"
+    },
+    {
+      "id": "yathavidhigandhapuspanilakanthapadapadmapujaphalam",
+      "source_text": "yathā-vidhi-gandha-puṣpa-nīla-kaṇṭha-pāda-padma-pūjā-phalam",
+      "source_anchor": "series capstone — all five classical kinds; gallery §10",
+      "constituent_groups": [
+        "A = yathā·vidhi (∪ avyayībhāva), B = gandha·puṣpa (flat dvandva), C = nīla·kaṇṭha (∪ bahuvrīhi), D = pāda·padma (∪ karmadhāraya) — rung 0",
+        "E = C → D, F = E + pūjā, G = B → F, H = A → G, I = H + phalam",
+        "II часть begins at nīla (II_START=4)"
+      ],
+      "category": "all five samāsa kinds — avyayībhāva, dvandva, bahuvrīhi, karmadhāraya, tatpuruṣa spine",
+      "analytical_expansion": "yathā-vidhi (according to rule) · gandha-puṣpa (incense-flowers) → nīla-kaṇṭha (Blue-Throated) → pāda-padma (lotus-feet) → pūjā → phalam",
+      "aligned_translation": {
+        "lang": "en",
+        "text": "the fruit of the worship, performed according to rule with incense-and-flowers, of the lotus-feet of the Blue-Throated (Śiva)",
+        "source": "klammerdiagramm-worked-examples.md §10"
+      },
+      "provenance": {
+        "config": "klammerdiagramm/klammerdiagramm-yathavidhigandhapuspanilakanthapadapadmapujaphalam.json",
+        "renders": {
+          "svg": "klammerdiagramm/klammerdiagramm-yathavidhigandhapuspanilakanthapadapadmapujaphalam-example.svg",
+          "html": "klammerdiagramm/klammerdiagramm-yathavidhigandhapuspanilakanthapadapadmapujaphalam-example.html",
+          "png": "klammerdiagramm/klammerdiagramm-yathavidhigandhapuspanilakanthapadapadmapujaphalam-example.png"
+        },
+        "ruling": "five-kind composition capstone (gallery §10)"
+      },
+      "review_status": "approved",
+      "reviewer_provenance": "gallery §10 (nesting and II часть ASKED per contract)"
+    },
+    {
+      "id": "yatpadambhojasevarucisucimanasam",
+      "source_text": "yat-pāda-ambhoja-sevā-ruci-śuci-manasām",
+      "source_anchor": "Jalhaṇa, Sūktimuktāvalī 13 c., first half-compound of the founding uddāma strophe (comparison §3.3; Leitan conspectus lines 631-646)",
+      "constituent_groups": [
+        "A = pāda·ambhoja (upamita ∪ pair)",
+        "B = yat + A (token-left chain), C = B + sevā, D = C + ruci, E = D + śuci, F = E + manasām",
+        "II часть begins at ruci (II_START=4)"
+      ],
+      "category": "upamita pair inside a right-branching chain (bahuvrīhi protasis, yat-)",
+      "analytical_expansion": "yat = «которой» (относится к богине Шараде); pāda-ambhoja = лотосным стопам; sevā-ruci-śuci-manasām — служения светом чистые умы (Leitan дословный разбор)",
+      "aligned_translation": {
+        "lang": "ru",
+        "text": "за счёт светa служения стопам-лотосам которой чистотой воссиявают умы у лебедей-Хамс",
+        "source": "leitan/leitan-samasa-konspekt-export-15-07-2026.txt lines 636-646"
+      },
+      "provenance": {
+        "config": "klammerdiagramm/klammerdiagramm-yatpadambhojasevarucisucimanasam.json",
+        "renders": {
+          "svg": "klammerdiagramm/klammerdiagramm-yatpadambhojasevarucisucimanasam-example.svg",
+          "html": "klammerdiagramm/klammerdiagramm-yatpadambhojasevarucisucimanasam-example.html",
+          "png": "klammerdiagramm/klammerdiagramm-yatpadambhojasevarucisucimanasam-example.png"
+        },
+        "ruling": "Leitan's own stanza ladder, drawn zero-code (comparison §3.3)"
+      },
+      "review_status": "approved",
+      "reviewer_provenance": "comparison §3.3 (II часть asked); source strophe pinned in the Leitan snapshot"
+    },
+    {
+      "id": "janmarogamaranadi",
+      "source_text": "janma-roga-maraṇa-ādiḥ",
+      "source_anchor": "Leitan conspectus X-ādi bahuvrīhi (line 605 of the pinned snapshot); comparison §3.1",
+      "constituent_groups": [
+        "A = janma·roga·maraṇa (flat dvandva block)",
+        "B = A + ādiḥ (mirrored head)",
+        "II часть begins at ādiḥ (II_START=3)"
+      ],
+      "category": "X-ādi bahuvrīhi over a dvandva block",
+      "analytical_expansion": "janma ca rogaś ca maraṇaṃ ca ādayaḥ yasya sa bhāvaḥ",
+      "aligned_translation": {
+        "lang": "ru",
+        "text": "такое бытие, начальные элементы которого — это рождение, болезнь и смерть",
+        "source": "leitan/leitan-samasa-konspekt-export-15-07-2026.txt line 605"
+      },
+      "provenance": {
+        "config": "klammerdiagramm/klammerdiagramm-janmarogamaranadi.json",
+        "renders": {
+          "svg": "klammerdiagramm/klammerdiagramm-janmarogamaranadi-example.svg",
+          "html": "klammerdiagramm/klammerdiagramm-janmarogamaranadi-example.html",
+          "png": "klammerdiagramm/klammerdiagramm-janmarogamaranadi-example.png"
+        },
+        "ruling": "X-ādi covered, drawn zero-code (comparison §2/§3.1)"
+      },
+      "review_status": "approved",
+      "reviewer_provenance": "comparison §3.1 (II часть asked); Leitan conspectus vigraha + RU translation pinned"
+    },
+    {
+      "id": "pancagavadhana",
+      "source_text": "pañca-gava-dhanaḥ",
+      "source_anchor": "Leitan conspectus dvigu (uttarapade condition); comparison §2 dvigu row, §3.2",
+      "constituent_groups": [
+        "A = pañca·gava (dvigu ∪ pair, numeral first)",
+        "B = A + dhanaḥ (mirrored head)",
+        "II часть begins at dhanaḥ (II_START=2)"
+      ],
+      "category": "dvigu (karmadhāraya subtype) inside tatpuruṣa — D1",
+      "analytical_expansion": "pañca gāvo dhanaṃ yasya saḥ",
+      "aligned_translation": {
+        "lang": "ru",
+        "text": "чьё богатство — пять коров",
+        "source": "samasacakra-taxonomy.json leaf uttarapade.ru"
+      },
+      "provenance": {
+        "config": "klammerdiagramm/klammerdiagramm-pancagavadhana.json",
+        "renders": {
+          "svg": "klammerdiagramm/klammerdiagramm-pancagavadhana-example.svg",
+          "html": "klammerdiagramm/klammerdiagramm-pancagavadhana-example.html",
+          "png": "klammerdiagramm/klammerdiagramm-pancagavadhana-example.png"
+        },
+        "ruling": "D1 — dvigu = ordinary right-to-left pair (MG vote 16-07-2026)"
+      },
+      "review_status": "approved",
+      "reviewer_provenance": "MG vote D1, 16-07-2026 (H997); comparison §3.2; gallery §3.2"
+    },
+    {
+      "id": "tribhuvana",
+      "source_text": "tri-bhuvanam",
+      "source_anchor": "Leitan conspectus dvigu (samāhāre condition); comparison §2 dvigu row; taxonomy leaf samahare-dvigu",
+      "constituent_groups": [
+        "A = tri·bhuvanam (dvigu ∪ pair)"
+      ],
+      "category": "dvigu samāhāre (collective) — D1",
+      "analytical_expansion": "trayāṇāṃ bhuvanānāṃ samāhāraḥ",
+      "aligned_translation": {
+        "lang": "ru",
+        "text": "троемирье",
+        "source": "samasacakra-taxonomy.json leaf samahare-dvigu.ru"
+      },
+      "provenance": {
+        "config": "klammerdiagramm/klammerdiagramm-tribhuvana.json",
+        "renders": {
+          "svg": "klammerdiagramm/klammerdiagramm-tribhuvana-example.svg",
+          "html": "klammerdiagramm/klammerdiagramm-tribhuvana-example.html",
+          "png": "klammerdiagramm/klammerdiagramm-tribhuvana-example.png"
+        },
+        "ruling": "D1 — dvigu = ordinary right-to-left pair (MG vote 16-07-2026)"
+      },
+      "review_status": "approved",
+      "reviewer_provenance": "MG vote D1, 16-07-2026 (H997); taxonomy leaf samahare-dvigu"
+    },
+    {
+      "id": "panipadamukha",
+      "source_text": "pāṇi-pāda-mukham",
+      "source_anchor": "Leitan conspectus samāhāra-dvandva example; comparison §2 itaretara/samāhāra row; taxonomy leaf samahara-dv",
+      "constituent_groups": [
+        "A = pāṇi·pāda·mukham (flat samāhāra-dvandva, one shared band)"
+      ],
+      "category": "samāhāra-dvandva (collective) — D2, no visual mark",
+      "analytical_expansion": "pāṇī ca pādau ca mukhaṃ ca",
+      "aligned_translation": {
+        "lang": "ru",
+        "text": "руки, ноги и лицо (вместе)",
+        "source": "samasacakra-taxonomy.json leaf samahara-dv.ru"
+      },
+      "provenance": {
+        "config": "klammerdiagramm/klammerdiagramm-panipadamukha.json",
+        "renders": {
+          "svg": "klammerdiagramm/klammerdiagramm-panipadamukha-example.svg",
+          "html": "klammerdiagramm/klammerdiagramm-panipadamukha-example.html",
+          "png": "klammerdiagramm/klammerdiagramm-panipadamukha-example.png"
+        },
+        "ruling": "D2 — no visual mark; subtype named in the analysis line (MG vote 16-07-2026)"
+      },
+      "review_status": "approved",
+      "reviewer_provenance": "MG vote D2, 16-07-2026 (H997); taxonomy leaf samahara-dv"
+    },
+    {
+      "id": "rajadanta",
+      "source_text": "rāja-dantaḥ",
+      "source_anchor": "Leitan conspectus ekadeśin/prathamā-tatpuruṣa example; comparison §2; taxonomy leaf ekadesin",
+      "constituent_groups": [
+        "A = rāja + dantaḥ (∪ pair, exceptionless right-to-left bracket)"
+      ],
+      "category": "ekadeśin / prathamā-tatpuruṣa — D3 (dominance = semantics footnote)",
+      "analytical_expansion": "dantānāṃ rājā (king of teeth = front tooth)",
+      "aligned_translation": {
+        "lang": "ru",
+        "text": "передний зуб",
+        "source": "samasacakra-taxonomy.json leaf ekadesin.ru"
+      },
+      "provenance": {
+        "config": "klammerdiagramm/klammerdiagramm-rajadanta.json",
+        "renders": {
+          "svg": "klammerdiagramm/klammerdiagramm-rajadanta-example.svg",
+          "html": "klammerdiagramm/klammerdiagramm-rajadanta-example.html",
+          "png": "klammerdiagramm/klammerdiagramm-rajadanta-example.png"
+        },
+        "ruling": "D3 — bracket stays exceptionless (MG vote 16-07-2026)"
+      },
+      "review_status": "approved",
+      "reviewer_provenance": "MG vote D3, 16-07-2026 (H997); taxonomy leaf ekadesin"
+    },
+    {
+      "id": "vanantara",
+      "source_text": "vana-antaram",
+      "source_anchor": "Leitan conspectus mayūravyaṃsakādi / X-antara example; comparison §2; taxonomy leaf mayura",
+      "constituent_groups": [
+        "A = vana + antaram (∪ pair, exceptionless right-to-left bracket)"
+      ],
+      "category": "mayūravyaṃsakādi / X-antara bahuvrīhi — D3",
+      "analytical_expansion": "anyad vanam (another forest)",
+      "aligned_translation": {
+        "lang": "ru",
+        "text": "другой лес",
+        "source": "samasacakra-taxonomy.json leaf mayura.ru"
+      },
+      "provenance": {
+        "config": "klammerdiagramm/klammerdiagramm-vanantara.json",
+        "renders": {
+          "svg": "klammerdiagramm/klammerdiagramm-vanantara-example.svg",
+          "html": "klammerdiagramm/klammerdiagramm-vanantara-example.html",
+          "png": "klammerdiagramm/klammerdiagramm-vanantara-example.png"
+        },
+        "ruling": "D3 — bracket stays exceptionless (MG vote 16-07-2026)"
+      },
+      "review_status": "approved",
+      "reviewer_provenance": "MG vote D3, 16-07-2026 (H997); taxonomy leaf mayura"
+    },
+    {
+      "id": "sitosna",
+      "source_text": "śīta-uṣṇam",
+      "source_anchor": "Leitan conspectus viśeṣaṇobhayapada-karmadhāraya (śītoṣṇa-type); comparison §2; taxonomy leaf ubhayapada",
+      "constituent_groups": [
+        "A = śīta + uṣṇam (directed ∪ pair — class wins over the dvandva-like vigraha)"
+      ],
+      "category": "viśeṣaṇobhayapada-karmadhāraya — D6 (directed pair + note)",
+      "analytical_expansion": "śītaṃ ca tad uṣṇaṃ ca (the ca…ca is the vigraha idiom, not coordination of the compound)",
+      "aligned_translation": {
+        "lang": "ru",
+        "text": "тепло-холодная [вода]",
+        "source": "samasacakra-taxonomy.json leaf ubhayapada.ru"
+      },
+      "provenance": {
+        "config": "klammerdiagramm/klammerdiagramm-sitosna.json",
+        "renders": {
+          "svg": "klammerdiagramm/klammerdiagramm-sitosna-example.svg",
+          "html": "klammerdiagramm/klammerdiagramm-sitosna-example.html",
+          "png": "klammerdiagramm/klammerdiagramm-sitosna-example.png"
+        },
+        "ruling": "D6 — directed pair, class wins (MG vote 16-07-2026)"
+      },
+      "review_status": "approved",
+      "reviewer_provenance": "MG vote D6, 16-07-2026 (H997); taxonomy leaf ubhayapada"
+    },
+    {
+      "id": "sakapriyaparthivah",
+      "source_text": "śāka-[priya]-pārthivaḥ (surface: śākapārthivaḥ)",
+      "source_anchor": "Leitan conspectus madhyamapadalopin example (śākapārthivaḥ, vigraha śākapriyaḥ pārthivaḥ); comparison §2/§4 D4",
+      "constituent_groups": [
+        "A = śāka + pārthivaḥ (∪ pair, the two real members)",
+        "ghost [priya] — measured into the word line after token 0, NO bar, NO arrows, NO node index (editorial restoration)"
+      ],
+      "category": "tatpuruṣa · madhyamapadalopin (elided middle member) — D4 ghost notation",
+      "analytical_expansion": "śākapriyaḥ pārthivaḥ (the vegetable-loving king) — middle member elided in the surface form, restored editorially",
+      "aligned_translation": {
+        "lang": "ru",
+        "text": "царь-любитель овощей",
+        "source": "samasacakra-taxonomy.json leaf madhyamapadalopin.ru"
+      },
+      "provenance": {
+        "config": "klammerdiagramm/klammerdiagramm-sakapriyaparthivah.json",
+        "renders": {
+          "svg": "klammerdiagramm/klammerdiagramm-sakapriyaparthivah-example.svg",
+          "html": "klammerdiagramm/klammerdiagramm-sakapriyaparthivah-example.html",
+          "png": "klammerdiagramm/klammerdiagramm-sakapriyaparthivah-example.png"
+        },
+        "ruling": "D4 — OVERRIDE: build the ghost notation (MG vote 16-07-2026; «одной только сноски недостаточно») — comparison §4, gallery §11"
+      },
+      "review_status": "approved",
+      "reviewer_provenance": "MG vote D4, 16-07-2026 (H997, corrected same day); gallery §11"
+    }
+  ],
+  "correction_canaries": [
+    {
+      "id": "C-D4-ghost",
+      "assertion": "The supplied [priya] of D4 is visibly editorial: rendered in square brackets in the word line, measured into the run, with no bar, no arrows and no node index — not an ordinary constituent, not footnote-only.",
+      "targets": ["klammerdiagramm/klammerdiagramm-sakapriyaparthivah.json", "klammerdiagramm/klammerdiagramm-sakapriyaparthivah-example.svg", "klammerdiagramm/klammerdiagramm-sakapriyaparthivah-example.html"],
+      "ruling": "D4 (MG 16-07-2026, H997)"
+    },
+    {
+      "id": "C-D5-uddama",
+      "assertion": "The canonical uddama grouping is Leitan's {uddāma-ajñāna-rūpa} block + tail with the ‖-mark/II-часть before svabhāvā; the signed-off plate reading stays reproducible as klammerdiagramm-uddama-plate-historical.",
+      "targets": ["klammerdiagramm/klammerdiagramm-uddama-leitan.json", "klammerdiagramm/klammerdiagramm-uddama-example.svg", "klammerdiagramm/klammerdiagramm-uddama-plate-historical.json", "klammerdiagramm/klammerdiagramm-uddama-plate-historical.svg"],
+      "ruling": "D5 (MG 16-07-2026, H997)"
+    },
+    {
+      "id": "C-ACCDUAL",
+      "assertion": "The -e dual of the worked sentence (abhijñānaśākuntale) is labelled Acc. dual (Nom./Acc.), never locative — the documented correction in sanskrit-right-to-left-reading.md §Discipline — and the label survives browser and print rendering of the canary.",
+      "targets": ["sanskrit-right-to-left-reading.md", "teaching-pack/canaries/acc-dual-canary.html"],
+      "ruling": "documented correction, sanskrit-right-to-left-reading.md §Discipline (updated 05-09-2026)"
+    }
+  ],
+  "taxonomy_link_audit": {
+    "method": "For each of the 17 samasacakra-taxonomy.json leaves carrying a `diagram` link: file must exist (hard check); the linked render must contain the leaf's example word (soft check — a miss means the link is a family/type illustration, not this example's own render).",
+    "family_illustration_links": [
+      {"leaf": "sasthi", "ex": "rājaputraḥ", "render": "klammerdiagramm-sankhabherinadahastyasvaghosapurnanagaram-example.svg"},
+      {"leaf": "upapada", "ex": "kumbhakāraḥ", "render": "klammerdiagramm-sitosnasukhaduhkhadah-example.svg"},
+      {"leaf": "madhyamapadalopin", "ex": "śāka-[priya]-pārthivaḥ", "render": "klammerdiagramm-abhijnanasakuntalam-example.svg"},
+      {"leaf": "upamita", "ex": "puruṣavyāghraḥ", "render": "klammerdiagramm-sankhacakragadapanicaranakamalaseva-example.svg"},
+      {"leaf": "rupaka", "ex": "saṃsārārṇavaḥ", "render": "klammerdiagramm-yathavidhigandhapuspanilakanthapadapadmapujaphalam-example.svg"},
+      {"leaf": "sasthyartha", "ex": "pītāmbaraḥ", "render": "klammerdiagramm-uddama-example.svg"},
+      {"leaf": "adi", "ex": "rāgādayaḥ", "render": "klammerdiagramm-janmarogamaranadi-example.svg"},
+      {"leaf": "itaretara", "ex": "rāmakṛṣṇau", "render": "klammerdiagramm-hastyasvarathaghosah-example.svg"}
+    ],
+    "verdict": "Recorded, not corrected — whether these links are deliberate family illustrations or stale pointers is an editorial question for MG (see unresolved Q1)."
+  },
+  "corrections_applied": [
+    {
+      "id": "R1",
+      "target": "klammerdiagramm/klammerdiagramm-uddama-example.{svg,html}",
+      "what": "stale render metadata — the committed SVG/HTML carried the pre-D5 generic <desc> while klammerdiagramm-uddama-leitan.json carried the post-D5 Leitan description; geometry was already correct (metadata-only drift, caught by scripts/check_example_pack.py parity).",
+      "fix": "regenerated from klammerdiagramm-uddama-leitan.json with the committed builder, CRLF->LF normalised to the repo's .gitattributes policy; PNG untouched (desc/title are not painted)."
+    },
+    {
+      "id": "R2",
+      "target": "klammerdiagramm/klammerdiagramm-uddama-plate-historical.{svg,html}",
+      "what": "stale render metadata — the committed render carried the generic default description while klammerdiagramm-uddama-plate-historical.json carried the HISTORICAL/superseded-reading provenance description.",
+      "fix": "regenerated from klammerdiagramm-uddama-plate-historical.json the same way; geometry unchanged."
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "Q1",
+      "question": "Are the 8 taxonomy `diagram` links whose render does not contain the leaf's own example word deliberate family/type illustrations, or stale pointers? (taxonomy_link_audit.family_illustration_links)",
+      "status": "open — recorded, not resolved by guess (H8028 stop-budget)",
+      "route": "editorial decision (@DECIDE class) before any taxonomy edit"
+    },
+    {
+      "id": "Q2",
+      "question": "aligned_translation language mix: 6 approved examples currently carry an EN gloss (gallery-sourced) rather than a RU translation — hastyasvarathaghosah, sitosnasukhaduhkhadah, sankhabheri, sankhacakragada, yathavidhi, abhijnanasakuntalam (partial RU). Is EN acceptable for the pilot lessons, or must every approved example be RU-aligned first?",
+      "status": "open — no language quota invented (H8028: no invented quota)",
+      "route": "methodolog/pilot decision before lesson publication"
+    },
+    {
+      "id": "Q3",
+      "question": "The H1298 attested gold ladder (30 corpus-attested compounds, SanskritGrammar) is not yet cross-linked into this pack — reuse requires a provenance-mapped join (gold-ladder id ↔ pack example id), not a copy.",
+      "status": "open — pending the SanskritGrammar-side registry (H1298 archive)",
+      "route": "follow-up handoff; do not copy gold rows without provenance"
+    }
+  ]
+}

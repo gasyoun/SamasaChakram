@@ -2,10 +2,12 @@
 
 Dates are `DD-MM-YYYY` per the house convention.
 
-_Created: 16-07-2026 · Last updated: 16-07-2026_
+_Created: 16-07-2026 · Last updated: 18-11-2026_
 
 ## [Unreleased]
+<!-- entries land in changelog_queue/ -- appended via tools/changelog_queue_consume.py, consumed by cut_release.py at release-cut (H3355); direct bullets here are hook-blocked -->
 
+## [0.7.4] - 2026-11-18
 ### Added — 24-09-2026 · H5278 Jev choice probe over the samāsa subtypes
 
 - `samasacakra/samasa_subtype_jev_choice_probe.py` — choice probe of all 58

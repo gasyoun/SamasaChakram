@@ -7,8 +7,11 @@ sys.stdout.reconfigure(encoding="utf-8")
 # deepest node (A); each member to the LEFT accretes onto the accumulated right
 # group; the outermost node (last letter) spans the whole word.
 #
-# PLATE-FIDELITY MODE (H814, 12-07-2026) — geometry traced 1:1 from the printed
-# reference plate (assets/klammerdiagramm-target-plate.png):
+# PLATE-CALIBRATED HOUSE MODE (H814, 12-07-2026) — geometry calibrated to the printed
+# reference plate (assets/klammerdiagramm-target-plate.png): the H814 pass fitted the
+# plate's label grid and proportions in THIS house style; it was not the 1:1 trace the
+# earlier prose claimed (misleading claim corrected H8424, 18-11-2026 — the plate's
+# own pair-band graphic language is reproduced only by the opt-in plate mode below):
 #   * every hatched bar carries TWO up-arrows, one on each vertical edge, tips
 #     just under the compound line
 #   * each node is an L-shaped hatched bracket: the LEFT member's vertical bar
@@ -35,6 +38,21 @@ sys.stdout.reconfigure(encoding="utf-8")
 # per-member (min(BW, advance-8)), and the I/II split cusp sits exactly on the
 # hyphen after the last I-часть member. A config WITH explicit "cx" keeps the
 # legacy spaced layout (centered members, hyphens floating in the gaps).
+#
+# HISTORICAL PAIR-BAND MODE (H8424, 18-11-2026) — opt-in via a "plate" object in
+# the config JSON (see klammerdiagramm-uddama-plate-historical.json). Renders the
+# printed plate's OWN graphic language, verbatim from scan-measured coordinates
+# carried by the JSON (they are scan parameters, not derivable): four hatched PAIR
+# BANDS (node A a rectangle spanning its two members; C, E, G L polygons whose
+# vertical arm runs between the pair-member centres and whose foot ends at the
+# next-deeper label), 2px stems with OPEN (unfilled) arrowheads at each pair-member
+# centre, 13px slash hatch from the band top to the band bottom, band bottoms
+# gapped around their labels, and bare elbow labels B/D/F connected right of the
+# label to the next-deeper label's x, then up to its gap. The compound stays the
+# tight-run measured line (all Sanskrit, the I/II split hyphen, the trailing stem
+# hyphen), globally translated so the split hyphen sits under the plate cusp
+# (cusp_x), with a short dashed drop from the cusp to drop_y. Configs without
+# "plate" render exactly as before — legacy/default output stays byte-identical.
 #
 # CANONICAL TOOL OF /klammerdiagramm (H792, 14-07-2026) — CLI:
 #   python build_klammerdiagramm.py                    # committed uddāma example
@@ -110,7 +128,236 @@ def _measure(s, fs):
     return sum(hmtx[cmap[ord(c)]][0] for c in s) / upm * fs
 
 
+_CHANNEL_KEYS = {"token-row", "part-i", "part-ii"} | {f"label-{c}" for c in "ABCDEFG"}
+_PATH_RE = re.compile(r"[MLZ0-9.\- ]+")
+
+def _load_plate_lettering(filename, base_dir):
+    """Load validated contour layers from an optional sibling JSON asset."""
+    if filename is None:
+        return {}
+    if not isinstance(filename, str) or os.path.basename(filename) != filename or not filename.endswith(".json"):
+        raise ValueError("lettering_file must be a sibling JSON basename")
+    with open(os.path.join(base_dir, filename), encoding="utf-8") as fh:
+        data = json.load(fh)
+    if not isinstance(data, dict) or data.get("format") != 2:
+        raise ValueError("expected format 2 lettering asset")
+    opacities = data.get("opacities")
+    if not isinstance(opacities, list) or len(opacities) != 3 or not all(
+        type(opacity) in (int, float) and 0 < opacity <= 1 for opacity in opacities
+    ):
+        raise ValueError("expected three lettering layer opacities")
+    channels = data.get("channels")
+    if not isinstance(channels, dict) or set(channels) != _CHANNEL_KEYS:
+        raise ValueError("lettering asset must contain all ten text groups")
+    colors = ("cyan", "magenta", "yellow")
+    lettering = {}
+    for cid, plates in channels.items():
+        if not isinstance(plates, list) or len(plates) != 3:
+            raise ValueError(f"{cid}: expected three color planes")
+        entries = []
+        for ci, plate in enumerate(plates):
+            if not isinstance(plate, list) or len(plate) != 3:
+                raise ValueError(f"{cid}: expected three contour layers per plane")
+            for opacity, d in zip(opacities, plate):
+                if not isinstance(d, str) or not _PATH_RE.fullmatch(d) or not d.startswith("M") or not d.endswith("Z"):
+                    raise ValueError(f"{cid}: invalid SVG contour path")
+                entries.append((colors[ci], opacity, d))
+        lettering[cid] = tuple(entries)
+    return lettering
+
+
+def _plate_lettering_element(markup, element_id, lettering):
+    """Wrap text markup with outlined color-plate <g> when lettering exists."""
+    plates = lettering.get(element_id)
+    if not plates:
+        return markup
+    parts = ['<g id="outlined-%s" aria-hidden="true">' % element_id]
+    for color, opacity, d in plates:
+        parts.append(
+            '<path d="%s" fill="%s" opacity="%s" fill-rule="evenodd" '
+            'style="mix-blend-mode:multiply"/>' % (d, color, opacity)
+        )
+    parts.append("</g>")
+    return "".join(parts) + markup.replace("<text", '<text opacity="0"', 1)
+
+
+def _build_historical_plate(cfg):
+    """Reconstruct the 1213x723 printed Sanskrit plate as pure-vector SVG.
+
+    Every coordinate below is a typed-in default collected in D and can be
+    overridden piecewise through the optional cfg["plate"] measurement dict.
+    """
+    from xml.sax.saxutils import escape as _esc
+
+    D = {
+        "width": 1213, "height": 723, "font_size": 40, "font_stroke": 0, "baseline": 128,
+        "token_xs": [51, 202, 329, 421, 657, 776, 892, 999], "hyphen": "-",
+        "captions": ("I часть", "II часть"), "caption_xs": (360, 918),
+        "caption_y": 60, "caption_fs": 23, "sans": "Arial",
+        "dash_y": 56, "dash_segs": [(51, 307), (414, 590), (710, 862), (975, 1166)],
+        "dash_pat": "4 3", "rail_dash": None, "thin_w": 1.0,
+        "wing_x": (590, 710), "cusp": (650, 96), "drop_y2": 114,
+        "brace_controls": ((633.17, 55.16, 649.15, 90), (669.48, 54.19, 650.1, 88.66)),
+        "top": 154.0, "arrow_tip_y": 155, "arrow_leg_y": 162,
+        "arrow_half": 6, "arrow_w": 1.5,
+        "rect_a": (943, 1076, 154, 222),
+        "ells": {"C": (709, 833, 917, 293, 364), "E": (371, 531, 667, 434, 505),
+                 "G": (126, 263, 387, 575, 644)},
+        "labels": {"A": (1012, 222), "C": (810, 364), "E": (516, 505), "G": (256, 644),
+                   "B": (918, 293), "D": (667, 434), "F": (387, 575)},
+        "elbows": {"B": (935, 293, 1012, 240), "D": (683, 434, 810, 381),
+                   "F": (404, 575, 516, 523)},
+        "gap": 17, "label_fs": 21, "label_dy": 8, "label_offsets": {},
+        "hatch_step": 13.057, "hatch_slope": 0.899, "hatch_w": 0.82,
+        "phase": {"A": 12.84, "C": 12.84, "E": 12.84, "G": 10.39},
+        "edge_w": 2.0, "foot_skip": 15,
+    }
+    D.update(cfg.get("plate") or {})
+    lettering = _load_plate_lettering(D.get("lettering_file"), HERE)
+    TOP, GAP = float(D["top"]), float(D["gap"])
+    LBS, ELS = D["labels"], D["ells"]
+    ELBOW_OF = {"C": "B", "E": "D", "G": "F"}
+
+    def pts(poly):
+        return " ".join("%.2f,%.2f" % (p[0], p[1]) for p in poly)
+
+    def line(ident, a, b, wid, dash=None, offset=0):
+        extra = ' stroke-dasharray="%s"' % dash if dash else ""
+        if dash and offset:
+            extra += ' stroke-dashoffset="%s"' % offset
+        return ('<line id="%s" x1="%.2f" y1="%.2f" x2="%.2f" y2="%.2f" '
+                'stroke="black" stroke-width="%s"%s/>' % (ident, a[0], a[1], b[0], b[1], wid, extra))
+
+    shapes = {}
+    ax0, ax1, ay0, ay1 = D["rect_a"]
+    la = LBS["A"]
+    shapes["A"] = {"poly": [(ax0, ay0), (ax1, ay0), (ax1, ay1), (ax0, ay1)],
+                   "bbox": (ax0, ax1, ay0, ay1), "labels": ["A"],
+                   "edges": [(ax0, ay0, ax0, ay1), (ax1, ay0, ax1, ay1),
+                             (ax0, ay1, la[0] - GAP, ay1), (la[0] + GAP, ay1, ax1, ay1)]}
+    for nm in ("C", "E", "G"):
+        left, inner, footend, shy, bot = ELS[nm]
+        lb, le = LBS[nm], LBS[ELBOW_OF[nm]]
+        shapes[nm] = {"poly": [(left, TOP), (inner, TOP), (inner, shy), (footend, shy),
+                               (footend, bot), (left, bot)],
+                      "bbox": (left, footend, TOP, bot), "labels": [nm, ELBOW_OF[nm]],
+                      "edges": [(left, TOP, left, bot), (inner, TOP, inner, shy),
+                                (inner, shy, le[0] - GAP, shy),
+                                (footend, shy + D["foot_skip"], footend, bot),
+                                (left, bot, lb[0] - GAP, bot),
+                                (lb[0] + GAP, bot, footend, bot)]}
+
+    def hatch(bbox, phase):
+        xlo, xhi, ylo, yhi = bbox
+        slope, step = D["hatch_slope"], D["hatch_step"]
+        k0 = int((xlo + slope * ylo - phase) // step)
+        k1 = int((xhi + slope * yhi - phase) // step) + 1
+        out = []
+        for k in range(k0, k1 + 1):
+            c = phase + k * step
+            out.append("M%.2f %.2fL%.2f %.2f" % (c - slope * ylo, ylo, c - slope * yhi, yhi))
+        return "".join(out)
+
+    s = ['<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 %d %d" width="%d" height="%d" role="img">'
+         % (D["width"], D["height"], D["width"], D["height"]),
+         '<title>%s</title>' % _esc(cfg.get("title", "")),
+         '<desc>%s</desc>' % _esc(cfg.get("desc", "")),
+         '<rect id="plate-bg" x="0" y="0" width="%d" height="%d" fill="white"/>'
+         % (D["width"], D["height"])]
+    row = "".join('<tspan x="%s">%s%s</tspan>' % (x, _esc(t), D["hyphen"])
+                  for x, t in zip(D["token_xs"], cfg.get("tokens") or ()))
+    token_markup = ('<text id="token-row" font-family="%s" font-size="%s" y="%s" '
+             'stroke="white" stroke-width="%s">%s</text>'
+             % (FONT, D["font_size"], D["baseline"], D["font_stroke"], row))
+    s.append(_plate_lettering_element(token_markup, "token-row", lettering))
+    for i, cap in enumerate(D["captions"]):
+        ident = ("part-i", "part-ii")[i]
+        markup = ('<text id="%s" x="%s" y="%s" text-anchor="middle" font-family="%s" '
+                 'font-size="%s" fill="black">%s</text>'
+                 % (ident, D["caption_xs"][i], D["caption_y"],
+                    D["sans"], D["caption_fs"], _esc(cap)))
+        s.append(_plate_lettering_element(markup, ident, lettering))
+    if D.get("rail_rects"):
+        for i, rectangles in enumerate(D["rail_rects"], 1):
+            dashes = "".join('<rect x="%s" y="%s" width="%s" height="%s"/>' % tuple(r)
+                             for r in rectangles)
+            s.append('<g id="span-%d" fill="black">%s</g>' % (i, dashes))
+    else:
+        for i, (dx1, dx2) in enumerate(D["dash_segs"]):
+            dash, offset = D["rail_dash"][i] if D["rail_dash"] else (D["dash_pat"], 0)
+            s.append(line("span-%d" % (i + 1), (dx1, D["dash_y"]), (dx2, D["dash_y"]),
+                          D["thin_w"], dash, offset))
+    cx, cy = D["cusp"]
+    dash, offset, weight = D.get("brace_dash", (D["dash_pat"], 0, D["thin_w"]))
+    for name, wx, controls in zip(("left", "right"), D["wing_x"], D["brace_controls"]):
+        s.append('<path id="brace-%s" d="M%.2f %.2f C%.2f %.2f %.2f %.2f %.2f %.2f" fill="none" '
+                 'stroke="black" stroke-width="%s" stroke-dasharray="%s" stroke-dashoffset="%s"/>'
+                 % (name, wx, D["dash_y"], *controls, cx, cy, weight, dash, offset))
+    if D.get("drop_segments"):
+        for i, (start_y, end_y) in enumerate(D["drop_segments"]):
+            s.append(line(f"hyphen-drop-{i}", (cx, start_y), (cx, end_y), D["edge_w"]))
+    else:
+        s.append(line("hyphen-drop", (cx, cy), (cx, D["drop_y2"]), D["thin_w"], D["dash_pat"]))
+    for nm in ("A", "C", "E", "G"):
+        shp = shapes[nm]
+        s.append('<clipPath id="clip-%s"><polygon points="%s"/></clipPath>'
+                 % (nm.lower(), pts(shp["poly"])))
+        s.append('<mask id="mask-%s"><polygon points="%s" fill="white"/>'
+                 % (nm.lower(), pts(shp["poly"])))
+        for label in shp["labels"]:
+            lx, ly = LBS[label]
+            half, up, bevel = D.get("label_mask_profiles", {}).get(label, (GAP, 15, 0))
+            left, right, top, bottom = lx-half, lx+half, ly-up, ly+14
+            outline = ((left, top+bevel), (left+bevel, top), (right-bevel, top),
+                       (right, top+bevel), (right, bottom), (left, bottom))
+            s.append('<polygon points="%s" fill="black"/>' % pts(outline))
+        s.append('</mask>')
+        hatch_path = hatch(shp["bbox"], D["phase"][nm])
+        transform = (' transform="translate(%s,0)"' % D["hatch_dx"]) if D.get("hatch_dx") else ""
+        hatch_layers = D.get("hatch_layers", ((D["hatch_w"], 1),))
+        strokes = "".join('<path d="%s" fill="none" stroke="black" stroke-width="%s" opacity="%s"%s/>'
+                          % (hatch_path, width, opacity, transform) for width, opacity in hatch_layers)
+        s.append('<g id="hatch-%s" clip-path="url(#clip-%s)" mask="url(#mask-%s)">%s</g>'
+                 % (nm.lower(), nm.lower(), nm.lower(), strokes))
+        for j, (a, b, c2, d2) in enumerate(shp["edges"]):
+            if abs(c2 - a) + abs(d2 - b) < 0.01 or c2 < a:
+                continue
+            s.append(line("edge-%s-%d" % (nm, j), (a, b), (c2, d2), D["edge_w"]))
+    stems = [D["rect_a"][0], D["rect_a"][1]]
+    for nm in ("C", "E", "G"):
+        stems += [ELS[nm][0], ELS[nm][1]]
+    right_edge = D["rect_a"][1]
+    s.append('<clipPath id="clip-a-arrow"><rect width="%s" height="%s"/></clipPath>'
+             % (right_edge, D["height"]))
+    for x in stems:
+        # The print trims the last arrow at the outer edge of band A.
+        clip = ' clip-path="url(#clip-a-arrow)"' if x == right_edge else ""
+        half = D["arrow_half"] + (2.5 if x == right_edge else 0)
+        tip = D.get("arrow_tip_overrides", {}).get(str(x), D["arrow_tip_y"])
+        leg = D.get("arrow_leg_overrides", {}).get(str(x), D["arrow_leg_y"])
+        dx, dh, dt, db, cap = D.get("arrow_detail", {}).get(str(x), (0, 0, 0, 0, "butt"))
+        cx_tip, half = x + dx, half + dh
+        s.append('<polyline id="arw-%d" points="%.2f,%.2f %.2f,%.2f %.2f,%.2f" fill="none" '
+                 'stroke="black" stroke-width="%s" stroke-linecap="%s"%s/>'
+                 % (x, cx_tip-half, leg+db, cx_tip, tip+dt, cx_tip+half, leg+db, D["arrow_w"], cap, clip))
+    for nm, (lx, ly) in LBS.items():
+        dx, dy = D["label_offsets"].get(nm, (0, 0))
+        ident = "label-" + nm
+        markup = ('<text id="%s" x="%.2f" y="%.2f" text-anchor="middle" font-family="%s" '
+                 'font-size="%s" fill="black">%s</text>'
+                 % (ident, lx + dx, ly + D["label_dy"] + dy, D["sans"], D["label_fs"], nm))
+        s.append(_plate_lettering_element(markup, ident, lettering))
+    for nm, (ex, ey, hx, hy2) in D["elbows"].items():
+        s.append('<polyline id="elbow-%s" points="%.2f,%.2f %.2f,%.2f %.2f,%.2f" fill="none" '
+                 'stroke="black" stroke-width="%s"/>'
+                 % (nm, ex, ey, hx, ey, hx, hy2, D["edge_w"]))
+    s.append('</svg>')
+    return "\n".join(s)
+
+
 def build_svg(cfg):
+    if "plate" in cfg:
+        return _build_historical_plate(cfg)
     st = dict(STYLE); st.update(cfg.get("style", {}))
     FS, FS_NODE, FS_PART = st["FS"], st["FS_NODE"], st["FS_PART"]
     BW, BH2 = st["BW"], st["BH2"]
@@ -374,6 +621,8 @@ def wrap_html(svg_markup, cfg):
     # display no larger than the diagram's natural size (small diagrams otherwise inflate)
     m = re.search(r'viewBox="0 0 (\d+)', svg_markup)
     max_w = min(1280, int(m.group(1)) + 32) if m else 1280
+    if "plate" in cfg and m:
+        max_w = int(m.group(1))
     return f"""<!doctype html>
 <html lang="sa">
 <head>

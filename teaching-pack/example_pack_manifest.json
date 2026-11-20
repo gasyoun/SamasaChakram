@@ -415,7 +415,7 @@
         "B = A + dhanaḥ (mirrored head)",
         "II часть begins at dhanaḥ (II_START=2)"
       ],
-      "category": "dvigu (karmadhāraya subtype) inside tatpuruṣa — D1",
+      "category": "dvigu (karmadhāraya subtype) inside bahuvrīhi — D1",
       "analytical_expansion": "pañca gāvo dhanaṃ yasya saḥ",
       "aligned_translation": {
         "lang": "ru",
@@ -638,6 +638,12 @@
       "target": "klammerdiagramm/klammerdiagramm-uddama-plate-historical.{svg,html}",
       "what": "stale render metadata — the committed render carried the generic default description while klammerdiagramm-uddama-plate-historical.json carried the HISTORICAL/superseded-reading provenance description.",
       "fix": "regenerated from klammerdiagramm-uddama-plate-historical.json the same way; geometry unchanged."
+    },
+    {
+      "id": "R3",
+      "target": "teaching-pack/example_pack_manifest.json (id pancagavadhana) + regenerated teaching-pack/EXAMPLE_PACK.md",
+      "what": "misclassified category — pañca-gava-dhanaḥ was recorded as 'dvigu (karmadhāraya subtype) inside tatpuruṣa' while its own vigraha (pañca gāvo dhanaṃ yasya saḥ) and the comparison §3.2 heading make the outer compound a bahuvrīhi ('whose wealth is five cows'); the config desc and comparison doc already said bahuvrīhi.",
+      "fix": "category corrected to 'dvigu (karmadhāraya subtype) inside bahuvrīhi — D1'; EXAMPLE_PACK.md regenerated via scripts/check_example_pack.py --render-md. Graph, tokens and lesson decisions unchanged (H8485, 20-11-2026)."
     }
   ],
   "unresolved": [

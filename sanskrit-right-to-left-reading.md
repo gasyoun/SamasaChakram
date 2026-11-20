@@ -1,4 +1,4 @@
-_Created: 12-07-2026 · Last updated: 05-09-2026_
+_Created: 12-07-2026 · Last updated: 20-11-2026_
 
 # Reading a Sanskrit sentence right-to-left — the case-question method
 
@@ -171,12 +171,15 @@ generated with the historical config —
 The historical reconstruction follows the printed plate's four hatched pairs, eight
 arrow tips and three connecting elbows. The general diagram style (H814, 12-07-2026,
 calibrated against the plate) uses `currentColor` (theme-safe) with a
-diagonal `<pattern>` hatch; every bar carries **two up-arrows**, one per vertical edge, tips just
-under the compound line; each node is an **L-shaped hatched bracket** — the left member's bar turns
+diagonal `<pattern>` hatch; every real member carries **one open (unfilled) up-arrow** aligned to
+its centre, its tail joined by a single stem into its hatched bar (H8485, 20-11-2026 — previously
+two filled up-arrows per bar, one per vertical edge, tips just under the compound line); each node is an **L-shaped hatched bracket** — the left member's bar turns
 at node depth into a horizontal hatched band running right, and the **node label sits at the band's
 end**; a **thin elbow connector** runs from the label rightward then up to the next-deeper node;
 the deepest node is a **∪** (both bars into one bottom band, label in a white gap near the right
-bar); the `I часть / II часть` captions sit **inline** with their dashed rules, which dip toward
+bar); the `I часть / II часть` captions sit **inline** with their dashed rules where the measured
+zone is wide enough, and on a raised aligned row above when a narrow part-split leaves no room
+(H8485); the dashed rules dip toward
 the part-split hyphen as mirrored ogee curves meeting in a cusp; the compound carries a trailing
 hyphen; `role="img"` + `<title>`/`<desc>`. To draw another compound, edit the `tokens`, `cx`, and
 `nodes` tables in the generator — the binary `nodes` list encodes the right-branching analysis, and

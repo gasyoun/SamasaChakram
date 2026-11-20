@@ -9,7 +9,7 @@
 <path d="M430 52 C 464 54 484 70 490 96" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.5 4.5"/>
 <path d="M550 52 C 516 54 496 70 490 96" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.5 4.5"/>
 <text x="237" y="59" font-size="21" text-anchor="middle" fill="currentColor">I часть</text>
-<text x="555" y="59" font-size="21" text-anchor="middle" fill="currentColor">II часть</text>
+<text x="555" y="35" font-size="21" text-anchor="middle" fill="currentColor">II часть</text>
 <text y="126" font-size="42" fill="currentColor">
 <tspan x="44.0">śīta-</tspan>
 <tspan x="122.5">uṣṇa-</tspan>
@@ -18,15 +18,11 @@
 <tspan x="496.8">dāḥ</tspan>
 </text>
 <rect x="48" y="162" width="57" height="36" fill="url(#hatch)"/>
-<path d="M48 146 L44 157 L52 157 Z" fill="currentColor"/>
-<path d="M105 146 L101 157 L110 157 Z" fill="currentColor"/>
-<line x1="48" y1="155" x2="48" y2="198" stroke="currentColor" stroke-width="1.3"/>
-<line x1="105" y1="155" x2="105" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<path d="M70 159 L77 146 L83 159" fill="none" stroke="currentColor" stroke-width="1.6"/>
+<line x1="77" y1="146" x2="77" y2="198" stroke="currentColor" stroke-width="1.3"/>
 <rect x="127" y="162" width="78" height="36" fill="url(#hatch)"/>
-<path d="M127 146 L122 157 L131 157 Z" fill="currentColor"/>
-<path d="M204 146 L200 157 L209 157 Z" fill="currentColor"/>
-<line x1="127" y1="155" x2="127" y2="198" stroke="currentColor" stroke-width="1.3"/>
-<line x1="204" y1="155" x2="204" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<path d="M159 159 L165 146 L172 159" fill="none" stroke="currentColor" stroke-width="1.6"/>
+<line x1="165" y1="146" x2="165" y2="198" stroke="currentColor" stroke-width="1.3"/>
 <rect x="48" y="198" width="61" height="48" fill="url(#hatch)"/>
 <rect x="143" y="198" width="61" height="48" fill="url(#hatch)"/>
 <line x1="48" y1="198" x2="48" y2="246" stroke="currentColor" stroke-width="1.3"/>
@@ -38,15 +34,11 @@
 <line x1="143" y1="198" x2="143" y2="246" stroke="currentColor" stroke-width="1.3"/>
 <text x="126" y="231" font-size="26" text-anchor="middle" fill="currentColor">A</text>
 <rect x="230" y="162" width="92" height="36" fill="url(#hatch)"/>
-<path d="M230 146 L226 157 L235 157 Z" fill="currentColor"/>
-<path d="M322 146 L318 157 L327 157 Z" fill="currentColor"/>
-<line x1="230" y1="155" x2="230" y2="198" stroke="currentColor" stroke-width="1.3"/>
-<line x1="322" y1="155" x2="322" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<path d="M270 159 L276 146 L283 159" fill="none" stroke="currentColor" stroke-width="1.6"/>
+<line x1="276" y1="146" x2="276" y2="198" stroke="currentColor" stroke-width="1.3"/>
 <rect x="368" y="162" width="92" height="36" fill="url(#hatch)"/>
-<path d="M368 146 L363 157 L372 157 Z" fill="currentColor"/>
-<path d="M460 146 L455 157 L464 157 Z" fill="currentColor"/>
-<line x1="368" y1="155" x2="368" y2="198" stroke="currentColor" stroke-width="1.3"/>
-<line x1="460" y1="155" x2="460" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<path d="M407 159 L414 146 L420 159" fill="none" stroke="currentColor" stroke-width="1.6"/>
+<line x1="414" y1="146" x2="414" y2="198" stroke="currentColor" stroke-width="1.3"/>
 <rect x="230" y="198" width="98" height="48" fill="url(#hatch)"/>
 <rect x="362" y="198" width="98" height="48" fill="url(#hatch)"/>
 <line x1="230" y1="198" x2="230" y2="246" stroke="currentColor" stroke-width="1.3"/>
@@ -73,10 +65,8 @@
 <text x="236" y="301" font-size="26" text-anchor="middle" fill="currentColor">C</text>
 <rect x="501" y="162" width="61" height="224" fill="url(#hatch)"/>
 <rect x="473" y="338" width="28" height="48" fill="url(#hatch)"/>
-<path d="M501 146 L496 157 L505 157 Z" fill="currentColor"/>
-<path d="M562 146 L557 157 L566 157 Z" fill="currentColor"/>
-<line x1="562" y1="155" x2="562" y2="386" stroke="currentColor" stroke-width="1.3"/>
-<line x1="501" y1="155" x2="501" y2="338" stroke="currentColor" stroke-width="1.3"/>
+<path d="M525 159 L531 146 L538 159" fill="none" stroke="currentColor" stroke-width="1.6"/>
+<line x1="531" y1="146" x2="531" y2="386" stroke="currentColor" stroke-width="1.3"/>
 <line x1="473" y1="338" x2="501" y2="338" stroke="currentColor" stroke-width="1.3"/>
 <line x1="473" y1="386" x2="562" y2="386" stroke="currentColor" stroke-width="1.3"/>
 <line x1="473" y1="338" x2="473" y2="386" stroke="currentColor" stroke-width="1.3"/>

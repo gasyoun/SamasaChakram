@@ -22,20 +22,14 @@
 <tspan x="731.2">sevā</tspan>
 </text>
 <rect x="58" y="162" width="92" height="36" fill="url(#hatch)"/>
-<path d="M58 146 L54 157 L63 157 Z" fill="currentColor"/>
-<path d="M150 146 L146 157 L155 157 Z" fill="currentColor"/>
-<line x1="58" y1="155" x2="58" y2="198" stroke="currentColor" stroke-width="1.3"/>
-<line x1="150" y1="155" x2="150" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<path d="M98 159 L104 146 L111 159" fill="none" stroke="currentColor" stroke-width="1.6"/>
+<line x1="104" y1="146" x2="104" y2="198" stroke="currentColor" stroke-width="1.3"/>
 <rect x="181" y="162" width="86" height="36" fill="url(#hatch)"/>
-<path d="M181 146 L177 157 L186 157 Z" fill="currentColor"/>
-<path d="M267 146 L262 157 L271 157 Z" fill="currentColor"/>
-<line x1="181" y1="155" x2="181" y2="198" stroke="currentColor" stroke-width="1.3"/>
-<line x1="267" y1="155" x2="267" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<path d="M217 159 L224 146 L230 159" fill="none" stroke="currentColor" stroke-width="1.6"/>
+<line x1="224" y1="146" x2="224" y2="198" stroke="currentColor" stroke-width="1.3"/>
 <rect x="287" y="162" width="74" height="36" fill="url(#hatch)"/>
-<path d="M287 146 L283 157 L292 157 Z" fill="currentColor"/>
-<path d="M362 146 L357 157 L366 157 Z" fill="currentColor"/>
-<line x1="287" y1="155" x2="287" y2="198" stroke="currentColor" stroke-width="1.3"/>
-<line x1="362" y1="155" x2="362" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<path d="M318 159 L325 146 L331 159" fill="none" stroke="currentColor" stroke-width="1.6"/>
+<line x1="325" y1="146" x2="325" y2="198" stroke="currentColor" stroke-width="1.3"/>
 <rect x="58" y="198" width="135" height="48" fill="url(#hatch)"/>
 <rect x="227" y="198" width="135" height="48" fill="url(#hatch)"/>
 <line x1="58" y1="198" x2="58" y2="246" stroke="currentColor" stroke-width="1.3"/>
@@ -49,29 +43,23 @@
 <text x="210" y="231" font-size="26" text-anchor="middle" fill="currentColor">A</text>
 <rect x="478" y="162" width="92" height="84" fill="url(#hatch)"/>
 <rect x="570" y="198" width="3" height="48" fill="url(#hatch)"/>
-<path d="M478 146 L473 157 L482 157 Z" fill="currentColor"/>
-<path d="M570 146 L565 157 L574 157 Z" fill="currentColor"/>
-<line x1="478" y1="155" x2="478" y2="246" stroke="currentColor" stroke-width="1.3"/>
-<line x1="570" y1="155" x2="570" y2="198" stroke="currentColor" stroke-width="1.3"/>
-<line x1="570" y1="198" x2="573" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<path d="M517 159 L524 146 L530 159" fill="none" stroke="currentColor" stroke-width="1.6"/>
+<line x1="524" y1="146" x2="524" y2="246" stroke="currentColor" stroke-width="1.3"/>
 <line x1="478" y1="246" x2="573" y2="246" stroke="currentColor" stroke-width="1.3"/>
-<line x1="573" y1="198" x2="573" y2="246" stroke="currentColor" stroke-width="1.3"/>
 <rect x="610" y="162" width="92" height="36" fill="url(#hatch)"/>
 <rect x="607" y="198" width="95" height="48" fill="url(#hatch)"/>
-<path d="M610 146 L606 157 L615 157 Z" fill="currentColor"/>
-<path d="M702 146 L698 157 L707 157 Z" fill="currentColor"/>
-<line x1="610" y1="155" x2="610" y2="198" stroke="currentColor" stroke-width="1.3"/>
-<line x1="702" y1="155" x2="702" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<path d="M650 159 L656 146 L663 159" fill="none" stroke="currentColor" stroke-width="1.6"/>
+<line x1="656" y1="146" x2="656" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="570" y1="198" x2="573" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="573" y1="198" x2="573" y2="246" stroke="currentColor" stroke-width="1.3"/>
 <line x1="607" y1="198" x2="610" y2="198" stroke="currentColor" stroke-width="1.3"/>
 <line x1="607" y1="198" x2="607" y2="246" stroke="currentColor" stroke-width="1.3"/>
 <line x1="607" y1="246" x2="702" y2="246" stroke="currentColor" stroke-width="1.3"/>
 <text x="590" y="231" font-size="26" text-anchor="middle" fill="currentColor">C</text>
 <rect x="382" y="162" width="68" height="154" fill="url(#hatch)"/>
 <rect x="365" y="268" width="17" height="48" fill="url(#hatch)"/>
-<path d="M382 146 L378 157 L387 157 Z" fill="currentColor"/>
-<path d="M450 146 L445 157 L454 157 Z" fill="currentColor"/>
-<line x1="450" y1="155" x2="450" y2="316" stroke="currentColor" stroke-width="1.3"/>
-<line x1="382" y1="155" x2="382" y2="268" stroke="currentColor" stroke-width="1.3"/>
+<path d="M409 159 L416 146 L422 159" fill="none" stroke="currentColor" stroke-width="1.6"/>
+<line x1="416" y1="146" x2="416" y2="316" stroke="currentColor" stroke-width="1.3"/>
 <line x1="365" y1="268" x2="382" y2="268" stroke="currentColor" stroke-width="1.3"/>
 <line x1="365" y1="316" x2="450" y2="316" stroke="currentColor" stroke-width="1.3"/>
 <line x1="365" y1="268" x2="365" y2="316" stroke="currentColor" stroke-width="1.3"/>
@@ -85,10 +73,8 @@
 <text x="469" y="371" font-size="26" text-anchor="middle" fill="currentColor">D</text>
 <rect x="735" y="162" width="67" height="294" fill="url(#hatch)"/>
 <rect x="714" y="408" width="21" height="48" fill="url(#hatch)"/>
-<path d="M735 146 L731 157 L740 157 Z" fill="currentColor"/>
-<path d="M802 146 L798 157 L807 157 Z" fill="currentColor"/>
-<line x1="802" y1="155" x2="802" y2="456" stroke="currentColor" stroke-width="1.3"/>
-<line x1="735" y1="155" x2="735" y2="408" stroke="currentColor" stroke-width="1.3"/>
+<path d="M762 159 L769 146 L775 159" fill="none" stroke="currentColor" stroke-width="1.6"/>
+<line x1="769" y1="146" x2="769" y2="456" stroke="currentColor" stroke-width="1.3"/>
 <line x1="714" y1="408" x2="735" y2="408" stroke="currentColor" stroke-width="1.3"/>
 <line x1="714" y1="456" x2="802" y2="456" stroke="currentColor" stroke-width="1.3"/>
 <line x1="714" y1="408" x2="714" y2="456" stroke="currentColor" stroke-width="1.3"/>

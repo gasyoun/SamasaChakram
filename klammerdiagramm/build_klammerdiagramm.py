@@ -13,7 +13,8 @@ sys.stdout.reconfigure(encoding="utf-8")
 # earlier prose claimed (misleading claim corrected H8424, 18-11-2026 — the plate's
 # own pair-band graphic language is reproduced only by the opt-in plate mode below):
 #   * every hatched bar carries TWO up-arrows, one on each vertical edge, tips
-#     just under the compound line
+#     just under the compound line (pre-H8485 member furniture — the current
+#     renderer draws ONE open arrow per member; see OPEN-ARROW MEMBER MODE below)
 #   * each node is an L-shaped hatched bracket: the LEFT member's vertical bar
 #     turns at node depth into a horizontal hatched band running right, ending
 #     at the node label; the label sits in line with the band
@@ -53,6 +54,17 @@ sys.stdout.reconfigure(encoding="utf-8")
 # hyphen), globally translated so the split hyphen sits under the plate cusp
 # (cusp_x), with a short dashed drop from the cusp to drop_y. Configs without
 # "plate" render exactly as before — legacy/default output stays byte-identical.
+#
+# OPEN-ARROW MEMBER MODE (H8485, 20-11-2026) — every real visible member carries
+# ONE OPEN (unfilled) arrow aligned to the member's centre, its tail joined by a
+# single stem to the member's hatched bar and on into the band; the legacy pair of
+# filled edge-arrows and the two border stems protruding on either side are gone.
+# Ghost members (madhyamapadalopin restorations) never draw arrows or stems. The
+# I/II часть captions are measured against their rule zones: inline where they fit
+# (legacy geometry byte-preserved), raised to their own aligned row above when a
+# narrow part-split leaves no room (śīta-uṣṇa-sukha-duḥkha-dāḥ, janma-roga-maraṇa-ādiḥ)
+# so the caption and the ogee never compete for the same space. PNG export:
+# klammerdiagramm/export_png.py (offline Chrome, SVG-bounds crop, 1× light).
 #
 # CANONICAL TOOL OF /klammerdiagramm (H792, 14-07-2026) — CLI:
 #   python build_klammerdiagramm.py                    # committed uddāma example
@@ -433,18 +445,44 @@ def build_svg(cfg):
     def line(x0, y0, x1, y1, w=1.3):
         svg.append(f'<line x1="{x0:.0f}" y1="{y0:.0f}" x2="{x1:.0f}" y2="{y1:.0f}" stroke="{INK}" stroke-width="{w}"/>')
 
-    def arrow(x):
-        # upward arrowhead, apex at (x, ARROW_TIP)
-        svg.append(f'<path d="M{x:.0f} {ARROW_TIP} L{x-4.5:.0f} {ARROW_TIP+11} L{x+4.5:.0f} {ARROW_TIP+11} Z" fill="{INK}"/>')
+    def arrow(x, y_band):
+        # ONE OPEN (unfilled) arrow per real visible member (H8485, 20-11-2026):
+        # apex just under the member, aligned to the member's centre, tail joined
+        # by a single stem that connects it to the member's hatched bar and on into
+        # the band — replacing the legacy pair of filled edge arrows and their two
+        # border stems protruding on either side. Ghost members never get here:
+        # nodes reference real token indices only, ghosts have no cx entry.
+        svg.append(f'<path d="M{x-6.5:.0f} {ARROW_TIP+13:.0f} L{x:.0f} {ARROW_TIP:.0f} L{x+6.5:.0f} {ARROW_TIP+13:.0f}" '
+                   f'fill="none" stroke="{INK}" stroke-width="1.6"/>')
+        svg.append(f'<line x1="{x:.0f}" y1="{ARROW_TIP:.0f}" x2="{x:.0f}" y2="{y_band:.0f}" stroke="{INK}" stroke-width="1.3"/>')
 
     # --- part captions: dashed rules, captions INLINE, ogee dip at the split ---
     # Omitted entirely when the config has no II_START (e.g. the part-division adds
     # nothing, or a human chose to drop the spans).
     if split is not None:
         Y_RULE, Y_DIP = 52, 96
+        Y_UP = Y_RULE - 24                # raised caption row for narrow split zones (H8485)
         DASH = 'stroke-dasharray="2.5 4.5"'
-        cap1 = (44 + split - 60) / 2                 # centre of the I-часть rule
-        cap2 = (split + 60 + W - 50) / 2             # centre of the II-часть rule
+        # Caption fit is MEASURED, not guessed (H8485): a caption sits inline with
+        # its rule only when its zone is wide enough for the real text; in a narrow
+        # part-split (śīta-uṣṇa-sukha-duḥkha-dāḥ, janma-roga-maraṇa-ādiḥ) the II
+        # caption would land on the ogee wing, so it moves to its own aligned row
+        # above — legacy inline geometry is byte-preserved wherever it fits.
+        zones = ((44, split - 60), (split + 60, W - 50))
+        caps = []
+        for part, (cap_text, (z0, z1)) in enumerate(zip(("I часть", "II часть"), zones)):
+            hw = _measure(cap_text, FS_PART) / 2 + 6
+            mid = (z0 + z1) / 2
+            if z1 - z0 >= 2 * hw + 8:
+                caps.append((cap_text, mid, Y_RULE + 7))          # inline, legacy geometry
+            elif part == 0:
+                lo, hi = hw + 8, split - hw
+                x = (lo + hi) / 2 if lo <= hi else lo
+                caps.append((cap_text, min(x, W - hw - 8), Y_UP + 7))
+            else:
+                lo, hi = max(z0, split + hw), W - hw - 8          # keep inside the canvas,
+                caps.append((cap_text, (lo + hi) / 2 if hi > lo else (split + W) / 2, Y_UP + 7))
+        cap1, cap2 = caps[0][1], caps[1][1]
         def rule_seg(x0, x1):
             if x1 - x0 < 4:                      # nothing left of the dash on tight layouts
                 return
@@ -458,8 +496,8 @@ def build_svg(cfg):
                    f'fill="none" stroke="{INK}" stroke-width="1.2" {DASH}/>')
         svg.append(f'<path d="M{split+60:.0f} {Y_RULE} C {split+26:.0f} {Y_RULE+2} {split+6:.0f} {Y_RULE+18} {split:.0f} {Y_DIP}" '
                    f'fill="none" stroke="{INK}" stroke-width="1.2" {DASH}/>')
-        svg.append(f'<text x="{cap1:.0f}" y="{Y_RULE+7}" font-size="{FS_PART}" text-anchor="middle" fill="{INK}">I часть</text>')
-        svg.append(f'<text x="{cap2:.0f}" y="{Y_RULE+7}" font-size="{FS_PART}" text-anchor="middle" fill="{INK}">II часть</text>')
+        for cap_text, x_cap, y_cap in caps:
+            svg.append(f'<text x="{x_cap:.0f}" y="{y_cap:.0f}" font-size="{FS_PART}" text-anchor="middle" fill="{INK}">{cap_text}</text>')
 
     # --- the compound ----------------------------------------------------------
     if tight:
@@ -524,9 +562,7 @@ def build_svg(cfg):
                 else:
                     e0, e1 = bx[m]
                     hatch_rect(e0, HATCH_TOP, e1, bt)            # bar above the band
-                    arrow(e0); arrow(e1)
-                    line(e0, ARROW_TIP + 9, e0, bt)              # bar edges stop at the band
-                    line(e1, ARROW_TIP + 9, e1, bt)
+                    arrow(cx[m], bt)                            # one open arrow, stem into the band
                     edges.append((e0, e1))
             bl0, brN = edges[0][0], edges[-1][1]
             hatch_rect(bl0, bt, lg0, bb)             # the shared band, split at the label
@@ -555,18 +591,14 @@ def build_svg(cfg):
             # deepest node ∪: both members' bars drop into one bottom band
             hatch_rect(bl, HATCH_TOP, br, bb)
             hatch_rect(br, bt, lg0, bb)
-            arrow(bl); arrow(br)
-            line(bl, ARROW_TIP + 9, bl, bb)          # outer (left) edge, arrow to band bottom
-            line(br, ARROW_TIP + 9, br, bt)          # inner (right) edge, arrow to band top
-            line(br, bt, lg0, bt)                    # band top edge
-            line(bl, bb, lg0, bb)                    # band bottom edge
-            line(lg0, bt, lg0, bb)                   # band end before the label
+            arrow(cx[li], bb)                                    # one open arrow per member
+            line(bl, bb, lg0, bb)                                # band bottom edge
             rl, rr = bx[ri]
             hatch_rect(rl, HATCH_TOP, rr, bt)
             hatch_rect(lg1, bt, rr, bb)          # band resumes after the label (full stretch)
-            arrow(rl); arrow(rr)
-            line(rl, ARROW_TIP + 9, rl, bt)          # inner (left) edge stops at the band
-            line(rr, ARROW_TIP + 9, rr, bb)          # outer (right) edge to band bottom
+            arrow(cx[ri], bt)
+            line(br, bt, lg0, bt)                                # band top edge
+            line(lg0, bt, lg0, bb)                               # band end before the label
             if lg1 < rl:
                 line(lg1, bt, rl, bt)
             line(lg1, bt, lg1, bb)                   # band resumes after the label
@@ -578,12 +610,10 @@ def build_svg(cfg):
             bl, br = bx[li]
             hatch_rect(bl, HATCH_TOP, br, bb)
             hatch_rect(br, bt, lg0, bb)
-            arrow(bl); arrow(br)
-            line(bl, ARROW_TIP + 9, bl, bb)          # outer (left) edge, arrow to band bottom
-            line(br, ARROW_TIP + 9, br, bt)          # inner (right) edge, arrow to band top
-            line(br, bt, lg0, bt)                    # band top edge
-            line(bl, bb, lg0, bb)                    # band bottom edge
-            line(lg0, bt, lg0, bb)                   # band end before the label
+            arrow(cx[li], bb)                                    # one open arrow, stem into the band
+            line(br, bt, lg0, bt)                                # band top edge
+            line(bl, bb, lg0, bb)                                # band bottom edge
+            line(lg0, bt, lg0, bb)                               # band end before the label
             # thin elbow connector: right from the label, then up to the deeper node
             line(lg1, y, lx[prev], y)
             line(lx[prev], y, lx[prev], y_c[prev] + BH2 + 2)
@@ -594,9 +624,7 @@ def build_svg(cfg):
             bl, br = bx[ri]
             hatch_rect(bl, HATCH_TOP, br, bb)
             hatch_rect(lg1, bt, bl, bb)              # band running LEFT to the label
-            arrow(bl); arrow(br)
-            line(br, ARROW_TIP + 9, br, bb)          # outer (right) edge, arrow to band bottom
-            line(bl, ARROW_TIP + 9, bl, bt)          # inner (left) edge, arrow to band top
+            arrow(cx[ri], bb)                                    # one open arrow, stem into the band
             line(lg1, bt, bl, bt)                    # band top edge
             line(lg1, bb, br, bb)                    # band bottom edge
             line(lg1, bt, lg1, bb)                   # band end after the label

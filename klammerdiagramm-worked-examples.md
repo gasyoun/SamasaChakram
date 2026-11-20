@@ -48,10 +48,10 @@ The canonical render (Leitan's constituency, v0.1.30):
   a directed join) draws zero-code from the existing grammar — a fresh (non-plate-reproduction)
   drawing, judgment-gated, not a 1:1 trace.
 
-**Historical — the MG-signed-off printed plate (🟢 1:1, 15-07-2026), superseded reading.**
-The original plate (recovered from the H814 session transcript, committed v0.1.13) and its
-faithful right-branching render (chain **A–G**, `A = soma+svabhāvā`, II часть at `tamaḥ`)
-remain the geometry-calibration reference and are reproducible via
+**Historical — the MG-signed-off printed plate (15-07-2026), superseded reading.**
+The original plate (recovered from the H814 session transcript, committed v0.1.13) is the
+geometry reference. Its right-branching SVG reconstruction (chain **A–G**,
+`A = soma+svabhāvā`, II часть at `tamaḥ`) is reproducible via
 [klammerdiagramm-uddama-plate-historical.json](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-uddama-plate-historical.json):
 
 ![Original printed plate of the uddāma compound](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-target-plate.png)

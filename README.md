@@ -1,135 +1,152 @@
-# SamasaChakram
+# SamasaChakram — колесо санскритских композитов
 
 _Created: 11-07-2026 · Last updated: 24-11-2026_
 
-> **Status: live.** The samāsa programme consolidated here 16-07-2026 (H1010) from
-> claude-config: the /klammerdiagramm drawing system, its worked-example gallery,
-> the shared right-to-left reading method, and the Leitan conspectus crosswalk.
+[![License: Apache 2.0](https://img.shields.io/badge/license-Apache--2.0-blue?style=flat-square)](https://github.com/gasyoun/SamasaChakram/blob/main/LICENSE)
+[![Pages: live](https://img.shields.io/badge/pages-live-2ea44f?style=flat-square)](https://gasyoun.github.io/SamasaChakram/)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/gasyoun/SamasaChakram/badge)](https://scorecard.dev/viewer/?uri=github.com/gasyoun/SamasaChakram)
 
-## The wheel
+![SamasaChakram — колесо сложных слов с разбором по виграхе](https://github.com/gasyoun/SamasaChakram/blob/main/assets/readme/hero.svg)
 
-![samāsa-cakra — the wheel of Sanskrit compounds](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/samasacakra-wheel.png)
+> **Живой проект.** Программа samāsa собрана здесь 16-07-2026 (H1010): система рисования
+> Klammerdiagramm, галерея разобранных примеров, общий метод чтения справа налево и
+> сличение с конспектом Э. З. Лейтан.
 
-**Live:** [gasyoun.github.io/SamasaChakram](https://gasyoun.github.io/SamasaChakram/) —
-the wheel on GitHub Pages. **Interactive source:** [samasacakra/samasacakra-wheel.html](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/samasacakra-wheel.html)
-(same page, open locally — drag to rotate, click a segment for the vigraha + Russian gloss — thirteen
-leaves embed their Klammerdiagramm from the gallery right in the panel — every drawn
-gallery compound is now reachable from the wheel, and every
-leaf links to the gallery; double-click to reset; **IAST ⇄ Devanāgarī script toggle**, embedded Klammer Serif + Klammer Deva
-(an OFL-renamed Noto Serif Devanagari subset — licence bundled), light/dark themes).
-**Embedded quiz:** the «Квиз» button in the legend opens a self-check over the very same 58-leaf
-taxonomy — two modes (class identification and vigraha → example), four options, immediate
-feedback and a `#k=` link straight to the answered leaf on the wheel; no second question bank to
-drift. Acceptance: `python samasacakra/check_quiz.py`. **Print/poster export:** [samasacakra/samasacakra-poster.pdf](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/samasacakra-poster.pdf)
-— a single A2 sheet (420×594 mm): dual-script title, the wheel full-width, and the complete
-58-subtype index in four class columns (term — example in both scripts — RU gloss), with
-the pradhāna line and MG structure rule heading each class. Built by
-[samasacakra/build_samasacakra.py](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/build_samasacakra.py)
-from [samasacakra/samasacakra-taxonomy.json](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/samasacakra-taxonomy.json) —
-4 classes (Patañjali's pradhāna scheme) · 10 families · 58 leaf subtypes, each with a
-canonical example from the Leitan conspectus; the MG structural rulings (right-to-left law,
-dvandva the sole flat exception, D1–D6) annotated per class and leaf.
+**Первый шаг:** [откройте колесо](https://gasyoun.github.io/SamasaChakram/) — поверните его,
+нажмите на лепесток и сразу увидите виграху и русский глосс. Кнопка «Квиз» в легенде
+проверяет те же 58 подтипов; переключатель IAST ⇄ деванагари и светлая/тёмная тема
+работают без перезагрузки.
 
-**H8573 pilot layer on the wheel:** every leaf carries a stable clockwise number
-(1–58 from 12 o'clock) drawn in its own layer, so switching the corpus-share mode
-never hides it. The share layer has ONE legend and three interchangeable encodings —
-traffic-light, hatching, outline — with four states: ≥ 5 %, 1–< 5 %, < 1 %, and
-«нет сопоставимой доли». The three bands are reserved for **measured** shares that
-match a leaf's corpus tag exactly (ADR 0002): five values from Kulkarni & Kumar
-2013, Table 5 — ṣaṣṭhī 40.56 %, viśeṣaṇapūrvapada 12.29 %, ṣaṣṭhyartha-bv 6.39 %,
-nañ- 5.9 %, upapada 4.32 %. Each of those cards also states its corpus rank and
-what the rank ranks among (the five measured tags, not all 58 subtypes); no measured
-tag falls below 1 %, so that band stays empty and the page says why. Conspectus § 14
-estimates (`~1,6 %`, `~9 %`, `~3 %`, `< 1 %`, the `~2,0 %` group value) are card
-notes only — no colour, no rank, never dressed as a share. `kevala-samāsa`
-(conspectus § 8) has no leaf and gets a separate entry beside the wheel. Cards have
-stable ids — `#k=<id>`, with the legacy `ekadesin` resolving to the merged
-`prathamā / ekadeśin` leaf. A Drumam visitor reaches all of it from the row at the
-top of [drumam/](https://gasyoun.github.io/SamasaChakram/drumam/).
+![samāsa-cakra — колесо санскритских композитов](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/samasacakra-wheel.png)
 
-## Five lessons and the paragraph index
+## Что это
 
-- [Five lessons](https://gasyoun.github.io/SamasaChakram/uroki/) — rāja-bhāryā,
-  nested dvandva, rāmeśvaraḥ, prathamā / ekadeśin, kevala-samāsa. Each shows the
-  vigraha and a teaching scheme immediately, keeps its formal diagrams collapsed
-  and labelled with model + source, and ends in a Drumam exercise with feedback and
-  a § link.
-- [Paragraph index](https://gasyoun.github.io/SamasaChakram/paragrafy/) — 67 §§ of
-  the Leitan conspectus, one permanent anchor each (`#p-4-1-1`), with links to the
-  related analysis (or an explicit «разбора в пилоте нет») and to the main DOCX.
-- Both are generated: `samasacakra/build_pilot.py` reads
-  [samasacakra/pilot_data.json](samasacakra/pilot_data.json) (all pilot content) and
-  the conspectus DOCX; `samasacakra/check_pilot.py` is the failing-closed acceptance
-  pass (223 checks). Evidence and residuals:
-  [reports/H8573_PILOT_DELIVERY.md](reports/H8573_PILOT_DELIVERY.md).
+*Samāsa cakra* («колесо композитов») — традиционное учебное средство: схема в форме
+колеса, на которой изучают классификацию и разбор (*vigraha*) санскритских сложных слов —
+*tatpuruṣa* (включая *karmadhāraya* и *dvigu*), *bahuvrīhi*, *dvandva*, *avyayībhāva*.
 
-## Drumam decision tree and trainer
+Этот репозиторий — цифровое воплощение: колесо, полностью воспроизводимое из
+одного файла таксономии, плюс система bracket-диаграмм Klammerdiagramm, метод чтения
+справа налево и научное сличение, на котором всё построено. Таксономия содержит
+**4 класса, 9 семейств и 58 подтипов**; канонический пример каждого подтипа взят из
+конспекта Лейтан. У **17 лепестков** есть собственная bracket-диаграмма (18 адресов SVG —
+у одного лепестка две), остальные связаны с галереей.
 
-- [Open the interactive Samāsa decision tree](https://gasyoun.github.io/SamasaChakram/drumam/)
-- [Open the Samāsa trainer](https://gasyoun.github.io/SamasaChakram/drumam/samasa_trainer.html)
-- [Browse the decision-tree diagrams](docs/drumam/diagrams) and [data, source, and earlier versions](drumam)
+## Что можно делать прямо сейчас
 
-## Leitan conspectus and supplements
+- **[Колесо](https://gasyoun.github.io/SamasaChakram/)** — вращение, клик по лепестку,
+  стабильные номера по часовой стрелке, переключение шрифтов и тем, ссылки вида `#k=<id>`
+  прямо на лепесток. Квиз работает на той же таксономии, без второго банка вопросов.
+- **[Пять уроков](https://gasyoun.github.io/SamasaChakram/uroki/)** — rāja-bhāryā,
+  вложенный dvandva, rāmeśvaraḥ, prathamā / ekadeśin, kevala-samāsa. Каждый сразу
+  показывает виграху и учебную схему, формальные диаграммы свёрнуты и подписаны
+  моделью и источником, а в конце — упражнение в Drumam с обратной связью.
+- **[Указатель параграфов](https://gasyoun.github.io/SamasaChakram/paragrafy/)** —
+  67 §§ конспекта Лейтан с постоянными якорями (`#p-4-1-1`) и ссылками на разбор
+  (или честной пометкой «разбора в пилоте нет»).
+- **[Дерево решений Drumam](https://gasyoun.github.io/SamasaChakram/drumam/) и
+  [тренажёр](https://gasyoun.github.io/SamasaChakram/drumam/samasa_trainer.html)** —
+  классификация по шагам и тренировка.
+- **[Постер A2](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/samasacakra-poster.pdf)** —
+  420 × 594 мм: двуязычный заголовок, колесо на всю ширину и полный указатель 58 подтипов
+  в четырёх колонках классов.
 
-The two Word editions are working inputs for a single consolidated edition.
+## Корпусный слой: измеренное и оценённое
 
-- [Complete working edition](docs/SAMASA_Leitan_COMPLETE.docx)
-- [Edited working edition](docs/SAMASA_Leitan_edited.docx)
-- [Additions to the conspectus](docs/samasa_additions.docx)
-- [Teaching checklists](docs/samasa_checklists.docx)
-- [Formal features of Sanskrit compounds (§ 12)](docs/samasa_formal_features.docx)
+Слой корпусных долей имеет **одну легенду и три взаимозаменяемые кодировки** — светофор,
+штриховку и контур — с четырьмя состояниями: ≥ 5 %, 1–< 5 %, < 1 % и «нет сопоставимой
+доли».
 
-## Contents
+- **Измеренные доли** — пять значений из таблицы 5 работы Kulkarni & Kumar (2013),
+  выборка ≈ 64 000 двучленных композитов: ṣaṣṭhī 40,56 %, viśeṣaṇapūrvapada 12,29 %,
+  ṣaṣṭhyartha-bv 6,39 %, nañ- 5,9 %, upapada 4,32 %. Каждая карточка указывает ранг и
+  поясняет, что ранжируются именно пять измеренных меток, а не все 58 подтипов.
+- **Оценки § 14 конспекта** (`~1,6 %`, `~9 %`, `~3 %`, `< 1 %`, `~2,0 %` для группы)
+  остаются примечаниями карточек: без цвета, без ранга, никогда не в виде доли.
+- Доля приписывается подтипу **только при точном совпадении корпусной метки**
+  ([ADR 0002](https://github.com/gasyoun/SamasaChakram/blob/main/docs/adr/0002-corpus-frequency-and-wheel-labels.md));
+  `kevala-samāsa` не имеет лепестка и показывается отдельной карточкой рядом с колесом.
 
-| Path | What it is |
+## Как это собрано
+
+Один источник → генератор → артефакты:
+
+- [samasacakra/samasacakra-taxonomy.json](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/samasacakra-taxonomy.json)
+  + [samasacakra/build_samasacakra.py](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/build_samasacakra.py)
+  → интерактивная HTML-страница колеса, SVG, PNG и постер; встроенный квиз строится из
+  того же `META`, что и карточки.
+- [samasacakra/pilot_data.json](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/pilot_data.json)
+  + [samasacakra/build_pilot.py](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/build_pilot.py)
+  → пять уроков и указатель параграфов; исходник — DOCX конспекта.
+- Приёмка fail-closed: [samasacakra/check_pilot.py](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/check_pilot.py)
+  (260 проверок), [samasacakra/check_quiz.py](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/check_quiz.py)
+  (7 маркеров в двух страницах, 58+ ответов) и
+  [scripts/check_example_pack.py](https://github.com/gasyoun/SamasaChakram/blob/main/scripts/check_example_pack.py)
+  (0 жёстких ошибок).
+
+### Быстрый старт для разработчика
+
+Нужны Python 3, `python-docx` и `indic-transliteration`: генераторы читают DOCX и
+транслитерируют IAST. Отдельного файла зависимостей в репозитории нет. Из корня клона:
+
+```bash
+python samasacakra/build_samasacakra.py   # колесо, страница и постер
+python samasacakra/build_pilot.py         # уроки и указатель (67 §§)
+python samasacakra/check_pilot.py         # 260/260 — exit 0
+python samasacakra/check_quiz.py          # QUIZ CHECK: PASS
+python scripts/check_example_pack.py      # PASS — 0 hard failures
+```
+
+## Карта репозитория
+
+| Путь | Что там |
 |---|---|
-| [sanskrit-right-to-left-reading.md](https://github.com/gasyoun/SamasaChakram/blob/main/sanskrit-right-to-left-reading.md) | the canonical right-to-left (head-first) reading method + all MG samāsa-direction rulings; shared source for the `/sanskrit-parse`, `/klammeruebersetzung` and `/klammerdiagramm` skills (which live in [claude-config](https://github.com/gasyoun/claude-config)) |
-| [klammerdiagramm-worked-examples.md](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm-worked-examples.md) | the illustrated gallery — eleven worked sections from the 2-lemma pair to the all-five-kinds capstone, each with diagram, config and what its run proved (19 drawn plates in all, counting the Leitan-comparison and D-vote examples) |
-| [KLAMMERDIAGRAMM_LEITAN_SAMASA_COMPARISON.md](https://github.com/gasyoun/SamasaChakram/blob/main/KLAMMERDIAGRAMM_LEITAN_SAMASA_COMPARISON.md) | the H982 crosswalk of the drawing system against Э. З. Лейтан's samāsa conspectus, with the six voted rulings (D1–D6) applied |
-| [klammerdiagramm/](https://github.com/gasyoun/SamasaChakram/tree/main/klammerdiagramm) | the generator ([build_klammerdiagramm.py](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/build_klammerdiagramm.py)), the OFL-renamed Charis 7.000 subset + licence, the printed reference plate, and every worked diagram (config JSON + SVG + embedded-font HTML + PNG) |
-| [samasacakra/](https://github.com/gasyoun/SamasaChakram/tree/main/samasacakra) | the samāsa-cakra wheel itself — taxonomy JSON, generator, interactive SVG/HTML (IAST ⇄ Devanāgarī, 18 of 58 leaves carrying their own bracket plates), the A2 poster, the Pages source (`docs/`), and the OFL-renamed Klammer Deva subset (H1016–H1036) |
-| [leitan/](https://github.com/gasyoun/SamasaChakram/tree/main/leitan) | pinned text export of Э. З. Лейтан, «Сложные слова в санскрите» (from MG's «Общество ревнителей санскрита» webinar; publication authorized by MG 16-07-2026 pending Leitan's own word) + the review-request letter **sent to Leitan 16-07-2026** — his reply governs corrections and the copy's fate |
+| [samasacakra/](https://github.com/gasyoun/SamasaChakram/tree/main/samasacakra) | таксономия, генератор, колесо (SVG/HTML/PNG), постер, страницы Pages, подмножество Klammer Deva |
+| [klammerdiagramm/](https://github.com/gasyoun/SamasaChakram/tree/main/klammerdiagramm) | [генератор](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/build_klammerdiagramm.py), 20 SVG-пластин, 21 конфигурация, подмножество Charis и его лицензия |
+| [klammerdiagramm-worked-examples.md](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm-worked-examples.md) | галерея: 11 разобранных разделов, от пары лемм до итогового примера со всеми пятью видами |
+| [sanskrit-right-to-left-reading.md](https://github.com/gasyoun/SamasaChakram/blob/main/sanskrit-right-to-left-reading.md) | канонический метод чтения справа налево (head last) и все решения MG о направлении; общий источник для навыков `/sanskrit-parse`, `/klammeruebersetzung`, `/klammerdiagramm` |
+| [KLAMMERDIAGRAMM_LEITAN_SAMASA_COMPARISON.md](https://github.com/gasyoun/SamasaChakram/blob/main/KLAMMERDIAGRAMM_LEITAN_SAMASA_COMPARISON.md) | сличение системы рисунка с конспектом Лейтан, шесть голосований D1–D6 |
+| [leitan/](https://github.com/gasyoun/SamasaChakram/tree/main/leitan) | текстовая вычитка конспекта и [письмо-запрос рецензии](https://github.com/gasyoun/SamasaChakram/blob/main/leitan/LEITAN_REVIEW_REQUEST_DRAFT_16.07.26.md), отправленное 16-07-2026 |
+| [docs/](https://github.com/gasyoun/SamasaChakram/tree/main/docs) | источник Pages: [index.html](https://github.com/gasyoun/SamasaChakram/blob/main/docs/index.html), [llms.txt](https://github.com/gasyoun/SamasaChakram/blob/main/docs/llms.txt), уроки, указатель, два DOCX конспекта и приложения |
+| [docs/adr/](https://github.com/gasyoun/SamasaChakram/tree/main/docs/adr) | [0001](https://github.com/gasyoun/SamasaChakram/blob/main/docs/adr/0001-leitan-source-and-editorial-differences.md) — конспект как главный источник; [0002](https://github.com/gasyoun/SamasaChakram/blob/main/docs/adr/0002-corpus-frequency-and-wheel-labels.md) — корпусная доля только по точной метке |
+| [drumam/](https://github.com/gasyoun/SamasaChakram/tree/main/drumam) и [docs/drumam/](https://github.com/gasyoun/SamasaChakram/tree/main/docs/drumam) | исходник дерева решений, данные, архив версий; [диаграммы](https://github.com/gasyoun/SamasaChakram/tree/main/docs/drumam/diagrams) |
+| [teaching-pack/](https://github.com/gasyoun/SamasaChakram/tree/main/teaching-pack) | [EXAMPLE_PACK.md](https://github.com/gasyoun/SamasaChakram/blob/main/teaching-pack/EXAMPLE_PACK.md), манифест, проверочные canary и печатные/браузерные доказательства |
+| [reports/](https://github.com/gasyoun/SamasaChakram/tree/main/reports) | [H8573_PILOT_DELIVERY.md](https://github.com/gasyoun/SamasaChakram/blob/main/reports/H8573_PILOT_DELIVERY.md) и [DRUMAM_IMPORT_DECISIONS_24-11-2026.md](https://github.com/gasyoun/SamasaChakram/blob/main/reports/DRUMAM_IMPORT_DECISIONS_24-11-2026.md) |
+| [CONTEXT.md](https://github.com/gasyoun/SamasaChakram/blob/main/CONTEXT.md) | глоссарий предметной области (samāsa, vigraha, pradhāna, класс/семейство/лепесток, измеренная доля/оценка) |
+| [CHANGELOG.md](https://github.com/gasyoun/SamasaChakram/blob/main/CHANGELOG.md), [changelog_queue/](https://github.com/gasyoun/SamasaChakram/tree/main/changelog_queue), [SECURITY.md](https://github.com/gasyoun/SamasaChakram/blob/main/SECURITY.md), [.ai_state.md](https://github.com/gasyoun/SamasaChakram/blob/main/.ai_state.md), [AGENTS.md](https://github.com/gasyoun/SamasaChakram/blob/main/AGENTS.md) | release-notes, очередь записей, политика безопасности, журнал сессий и инструкции для агентов |
 
-## What this is
+## Происхождение и правила
 
-*Samāsa Cakra* («колесо композитов») is a traditional Sanskrit pedagogical device: a
-chart, arranged as a wheel, for teaching the classification and analysis (*vigraha*) of
-Sanskrit nominal compounds — *tatpuruṣa* (incl. *karmadhāraya* and *dvigu*), *bahuvrīhi*,
-*dvandva*, *avyayībhāva*. This repo is that device reinvented digitally: the live wheel
-above, regenerable end-to-end from one taxonomy file, plus the drawing system
-(Klammerdiagramm), the reading method, and the scholarly crosswalk it is all built on.
+- **Таксономия**: Э. З. Лейтан, «Сложные слова в санскрите» (конспект программы вебинара MG);
+  сличение — в [KLAMMERDIAGRAMM_LEITAN_SAMASA_COMPARISON.md](https://github.com/gasyoun/SamasaChakram/blob/main/KLAMMERDIAGRAMM_LEITAN_SAMASA_COMPARISON.md).
+  При расхождениях главный источник — конспект; интерпретации проекта фиксируются явно
+  ([ADR 0001](https://github.com/gasyoun/SamasaChakram/blob/main/docs/adr/0001-leitan-source-and-editorial-differences.md)).
+- **Структурные решения (MG)**: каждый samāsa связывается справа налево (глава — последний
+  член); экзоцентричность bahuvrīhi и выделенность первого члена avyayībhāva — семантика, а не
+  направление скобок; плоский только dvandva; шесть голосований D1–D6 применены повсюду.
+- **Шрифты**: Klammer Serif (подмножество Charis 7.000) и Klammer Deva (подмножество Noto
+  Serif Devanagari) переименованы по правилам OFL Reserved Font Name; лицензии лежат рядом,
+  сценарии сборки зафиксированы.
+- Три навыка, которые **потребляют** этот материал (`/sanskrit-parse`, `/klammeruebersetzung`,
+  `/klammerdiagramm`), живут в [claude-config](https://github.com/gasyoun/claude-config);
+  репозиторий записан в [Uprava/PROJECT_INTERLINKS.md](https://github.com/gasyoun/Uprava/blob/main/PROJECT_INTERLINKS.md)
+  как источник, который следует использовать, а не воссоздавать.
 
-## Provenance & rules of the road
+## Статус
 
-- **Taxonomy**: Э. З. Лейтан, «Сложные слова в санскрите» (conspectus of MG's webinar
-  programme), crosswalked in [KLAMMERDIAGRAMM_LEITAN_SAMASA_COMPARISON.md](https://github.com/gasyoun/SamasaChakram/blob/main/KLAMMERDIAGRAMM_LEITAN_SAMASA_COMPARISON.md).
-- **Structural rulings (MG)**: every samāsa binds right-to-left (head last) — bahuvrīhi
-  exocentricity and avyayībhāva first-member prominence are semantics, not bracket
-  direction; the dvandva alone is flat; the six crosswalk votes D1–D6 (dvigu, samāhāra,
-  ekadeśin, the ghost-member notation, the uddāma constituency per Leitan, śītoṣṇa-type)
-  are applied throughout.
-- **Fonts**: Klammer Serif (Charis 7.000 subset) and Klammer Deva (Noto Serif Devanagari
-  subset) — both renamed per the OFL Reserved-Font-Name rules, licences bundled beside
-  the subsets, provenance scripts committed.
-- The three skills that *use* this material (`/sanskrit-parse`, `/klammeruebersetzung`,
-  `/klammerdiagramm`) live in [claude-config](https://github.com/gasyoun/claude-config)
-  and point here; the repo is wired into
-  [Uprava/PROJECT_INTERLINKS.md](https://github.com/gasyoun/Uprava/blob/main/PROJECT_INTERLINKS.md)
-  (consume, don't rebuild).
+Жив с 16-07-2026: консолидация H1010 → колесо H1016 → деванагари H1017 → плашки в панели
+H1020/H1026 → постер H1021 → плашки D-голосований H1025 → полное покрытие галереи H1030 →
+Pages H1036 → пилот H8573 → встроенный квиз #40. Текущие релизы — в
+[CHANGELOG.md](https://github.com/gasyoun/SamasaChakram/blob/main/CHANGELOG.md) и на
+[странице релизов](https://github.com/gasyoun/SamasaChakram/releases).
 
-## Status
-
-Live since 16-07-2026 (H1010 consolidation → H1016 wheel → H1017 Devanāgarī → H1020/H1026
-panel plates → H1021 poster → H1025 D-vote plates → H1030 full gallery coverage → H1036
-Pages). Current release: see [CHANGELOG.md](https://github.com/gasyoun/SamasaChakram/blob/main/CHANGELOG.md)
-and the [releases page](https://github.com/gasyoun/SamasaChakram/releases).
-**@WAITING**: review letter sent to Э. Лейтан 16-07-2026 — his corrections go into
+**@WAITING**: письмо Э. З. Лейтан отправлено 16-07-2026; его правки пойдут в
 [samasacakra/samasacakra-taxonomy.json](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/samasacakra-taxonomy.json)
-(one rebuild refreshes the wheel, the Pages site and the poster); his word on the
-conspectus copy is final. Session journal: [.ai_state.md](https://github.com/gasyoun/SamasaChakram/blob/main/.ai_state.md).
+(одна пересборка обновит колесо, сайт и постер), а его слово о копии конспекта — окончательное.
+Журнал сессий: [.ai_state.md](https://github.com/gasyoun/SamasaChakram/blob/main/.ai_state.md).
 
-## License
+## Лицензия
 
-Licensed under the [Apache License 2.0](https://github.com/gasyoun/SamasaChakram/blob/main/LICENSE).
+[Apache License 2.0](https://github.com/gasyoun/SamasaChakram/blob/main/LICENSE).
 
 _Dr. Mārcis Gasūns_

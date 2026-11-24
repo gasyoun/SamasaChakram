@@ -1,6 +1,6 @@
 # samāsa-cakra — колесо санскритских композитов
 
-> Interactive wheel of Sanskrit compounds: 4 classes, 10 families, 58 subtypes with examples and vigrahas; IAST and Devanagari; Klammerdiagramm bracket schemes. Stable leaf numbers, a one-legend corpus-share layer for measured Table-5 shares only, and kevala-samāsa as a separate entry.
+> Interactive wheel of Sanskrit compounds: 4 classes, 9 families, 58 subtypes with examples and vigrahas; IAST and Devanagari; Klammerdiagramm bracket schemes. Stable leaf numbers, a one-legend corpus-share layer for measured Table-5 shares only, and kevala-samāsa as a separate entry.
 
 ## Pages
 

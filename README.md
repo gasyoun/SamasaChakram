@@ -16,7 +16,11 @@ the wheel on GitHub Pages. **Interactive source:** [samasacakra/samasacakra-whee
 leaves embed their Klammerdiagramm from the gallery right in the panel — every drawn
 gallery compound is now reachable from the wheel, and every
 leaf links to the gallery; double-click to reset; **IAST ⇄ Devanāgarī script toggle**, embedded Klammer Serif + Klammer Deva
-(an OFL-renamed Noto Serif Devanagari subset — licence bundled), light/dark themes). **Print/poster export:** [samasacakra/samasacakra-poster.pdf](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/samasacakra-poster.pdf)
+(an OFL-renamed Noto Serif Devanagari subset — licence bundled), light/dark themes).
+**Embedded quiz:** the «Квиз» button in the legend opens a self-check over the very same 58-leaf
+taxonomy — two modes (class identification and vigraha → example), four options, immediate
+feedback and a `#k=` link straight to the answered leaf on the wheel; no second question bank to
+drift. Acceptance: `python samasacakra/check_quiz.py`. **Print/poster export:** [samasacakra/samasacakra-poster.pdf](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/samasacakra-poster.pdf)
 — a single A2 sheet (420×594 mm): dual-script title, the wheel full-width, and the complete
 58-subtype index in four class columns (term — example in both scripts — RU gloss), with
 the pradhāna line and MG structure rule heading each class. Built by

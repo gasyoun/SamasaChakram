@@ -401,6 +401,35 @@ body[data-freq=outline] #bandlegend i[data-band=none] { border:3px dashed #8d8b8
 #legend span { display:inline-flex; align-items:center; gap:6px; }
 #legend i { width:12px; height:12px; border-radius:3px; display:inline-block; }
 .hint { color:var(--ink2); font-size:.8rem; width:100%; margin:2px 2px 0; }
+/* --- embedded samāsa quiz: the wheel's own META is the question bank --- */
+#quizbtn { font:inherit; font-size:.85rem; padding:3px 12px; border:1px solid var(--c-tatpurusa);
+  background:var(--c-tatpurusa); color:#fff; border-radius:4px; cursor:pointer; }
+#quiz { position:fixed; inset:0; z-index:50; background:rgba(0,0,0,.45); display:flex;
+  align-items:center; justify-content:center; padding:16px; }
+#quiz[hidden] { display:none; }
+#quiz .qcard { background:var(--panel); color:var(--ink); border:1px solid var(--line);
+  border-radius:8px; max-width:520px; width:100%; padding:20px 24px; box-shadow:0 8px 30px rgba(0,0,0,.25); }
+#quiz h2 { margin:0 0 4px; font-size:1.25rem; font-weight:normal; }
+#quiz .qsub { color:var(--ink2); font-size:.85rem; margin-bottom:12px; }
+#quiz .qmodes { display:flex; gap:6px; margin-bottom:14px; flex-wrap:wrap; }
+#quiz .qmodes button { font:inherit; font-size:.85rem; padding:4px 12px; border:1px solid var(--line);
+  background:transparent; color:var(--ink2); border-radius:4px; cursor:pointer; }
+#quiz .qmodes button.on { background:var(--ink); color:var(--surface); border-color:var(--ink); }
+#quiz .qq { font-size:1.2rem; margin:8px 0 4px; }
+#quiz .qq .pdeva { font-size:1rem; }
+#quiz .qhint { color:var(--ink2); font-size:.9rem; margin:0 0 14px; }
+#quiz .qopts { display:grid; gap:8px; }
+#quiz .qopt { font:inherit; text-align:left; padding:9px 12px; border:1px solid var(--line);
+  background:transparent; color:var(--ink); border-radius:5px; cursor:pointer; }
+#quiz .qopt:hover { border-color:var(--ink2); }
+#quiz .qopt.correct { border-color:#2d6a4f; background:rgba(45,106,79,.12); }
+#quiz .qopt.wrong { border-color:#c0392b; background:rgba(192,57,43,.10); }
+#quiz .qfb { margin-top:14px; font-size:.92rem; min-height:1.4em; }
+#quiz .qfb a { color:var(--c-tatpurusa); }
+#quiz .qnext { margin-top:12px; display:flex; gap:10px; justify-content:flex-end; }
+#quiz .qnext button { font:inherit; font-size:.9rem; padding:6px 14px; border:1px solid var(--line);
+  background:transparent; color:var(--ink); border-radius:4px; cursor:pointer; }
+#quiz .qnext button.primary { background:var(--ink); color:var(--surface); }
 </style>
 </head>
 <body>
@@ -410,6 +439,7 @@ body[data-freq=outline] #bandlegend i[data-band=none] { border:3px dashed #8d8b8
   <span><i style="background:var(--c-bahuvrihi)"></i>bahuvrīhi</span>
   <span><i style="background:var(--c-dvandva)"></i>dvandva</span>
   <span><i style="background:var(--c-avyayibhava)"></i>avyayībhāva</span>
+  <button id="quizbtn" type="button">Квиз</button>
   <span id="scripttoggle"><button id="btn-iast" class="on">IAST</button><button id="btn-deva">देवनागरी</button></span>
 </div>
 <a class="kevalachip" href="#k=kevala" id="kevalachip">
@@ -441,6 +471,24 @@ body[data-freq=outline] #bandlegend i[data-band=none] { border:3px dashed #8d8b8
   <div class="rule">Источники: sanskrit-right-to-left-reading.md · KLAMMERDIAGRAMM_LEITAN_SAMASA_COMPARISON.md</div>
 </aside>
 </main>
+<div id="quiz" hidden role="dialog" aria-modal="true" aria-labelledby="quiz-title">
+  <div class="qcard">
+    <h2 id="quiz-title">Квиз по samaсам</h2>
+    <div class="qsub">Вопросы из таксономии колеса · <span id="qscore">0 / 0</span></div>
+    <div class="qmodes" role="group" aria-label="режим квиза">
+      <button type="button" data-qmode="type" class="on">определи класс</button>
+      <button type="button" data-qmode="vigraha">виграха → пример</button>
+    </div>
+    <div class="qq" id="qquest"></div>
+    <p class="qhint" id="qhint"></p>
+    <div class="qopts" id="qopts"></div>
+    <div class="qfb" id="qfb" aria-live="polite"></div>
+    <div class="qnext">
+      <button type="button" id="qclose">закрыть</button>
+      <button type="button" id="qnext" class="primary" hidden>дальше →</button>
+    </div>
+  </div>
+</div>
 <script>
 const META = __META__;
 const GAL = '__GAL__';
@@ -535,6 +583,71 @@ function route() {
 window.addEventListener('hashchange', route);
 setMode('none');
 route();
+// --- embedded quiz: the wheel's own META is the only question bank ---
+const QUIZ_LEAVES = Object.entries(META).filter(([id, m]) =>
+  m.kind === 'leaf' && m.ex && m.vigraha && m.ru);
+const QUIZ_CLASSES = [...new Set(QUIZ_LEAVES.map(([id, m]) => m.class))];
+const quizBox = document.getElementById('quiz');
+let qMode = 'type', qCurrent = null, qLastId = null, qAsked = 0, qRight = 0, qLocked = false;
+function shuffleQ(a) { const b = a.slice();
+  for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; }
+  return b; }
+function pickLeaf() {
+  let pool = QUIZ_LEAVES.filter(([id]) => id !== qLastId);
+  if (!pool.length) pool = QUIZ_LEAVES;
+  const [id, m] = pool[Math.floor(Math.random() * pool.length)];
+  qLastId = id; return {id, m};
+}
+function devaSpan(iast, deva) { return (deva && deva !== iast) ? ' <span class="pdeva">' + deva + '</span>' : ''; }
+function nextQuestion() {
+  const {id, m} = pickLeaf(); qCurrent = {id, m}; qLocked = false;
+  document.getElementById('qnext').hidden = true;
+  document.getElementById('qfb').textContent = '';
+  const quest = document.getElementById('qquest'), hint = document.getElementById('qhint');
+  let opts;
+  if (qMode === 'type') {
+    quest.innerHTML = m.ex + devaSpan(m.ex, m.ex_d);
+    hint.textContent = '«' + m.ru + '» — к какому классу относится композит?';
+    const wrong = QUIZ_CLASSES.filter(c => c !== m.class);
+    opts = shuffleQ([m.class].concat(shuffleQ(wrong).slice(0, 3)))
+      .map(c => ({label: c, correct: c === m.class}));
+  } else {
+    quest.innerHTML = m.vigraha + devaSpan(m.vigraha, m.vigraha_d);
+    hint.textContent = 'Виграха сложного слова. Выберите соответствующий композит.';
+    const pool = QUIZ_LEAVES.filter(([oid]) => oid !== id && META[oid].class !== m.class);
+    const others = shuffleQ(pool).slice(0, 3).map(([oid, om]) => om.ex);
+    opts = shuffleQ([m.ex].concat(others)).map(e => ({label: e, correct: e === m.ex}));
+  }
+  const box = document.getElementById('qopts'); box.innerHTML = '';
+  opts.forEach(o => { const b = document.createElement('button'); b.type = 'button'; b.className = 'qopt';
+    b.textContent = o.label; b.onclick = () => answerQ(o.correct, b); box.appendChild(b); });
+}
+function answerQ(correct, btn) {
+  if (qLocked) return; qLocked = true; qAsked++; if (correct) qRight++;
+  document.getElementById('qscore').textContent = qRight + ' / ' + qAsked;
+  const m = qCurrent.m;
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  const rightLabel = qMode === 'type' ? m.class : m.ex;
+  if (!correct) document.querySelectorAll('.qopt').forEach(b => {
+    if (b.textContent === rightLabel) b.classList.add('correct'); });
+  const fb = document.getElementById('qfb');
+  fb.innerHTML = (correct ? 'Верно. ' : 'Неверно. ') + 'Это <b>' + m.name + '</b> (' + m.class +
+    (m.family ? ' · ' + m.family : '') + '). ' +
+    '<a href="#k=' + qCurrent.id + '" id="qreveal">показать лепесток на колесе →</a>';
+  document.getElementById('qreveal').onclick = () => { quizBox.hidden = true; };
+  document.getElementById('qnext').hidden = false;
+}
+function openQuiz() { if (!QUIZ_LEAVES.length) return; quizBox.hidden = false; nextQuestion(); }
+document.getElementById('quizbtn').onclick = openQuiz;
+document.getElementById('qclose').onclick = () => { quizBox.hidden = true; };
+document.getElementById('qnext').onclick = nextQuestion;
+document.querySelectorAll('[data-qmode]').forEach(b => b.onclick = () => {
+  qMode = b.dataset.qmode;
+  document.querySelectorAll('[data-qmode]').forEach(x => x.classList.toggle('on', x === b));
+  nextQuestion();
+});
+quizBox.addEventListener('click', ev => { if (ev.target === quizBox) quizBox.hidden = true; });
+document.addEventListener('keydown', ev => { if (ev.key === 'Escape' && !quizBox.hidden) quizBox.hidden = true; });
 </script>
 </body>
 </html>

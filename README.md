@@ -1,6 +1,6 @@
 # SamasaChakram
 
-_Created: 11-07-2026 · Last updated: 05-09-2026_
+_Created: 11-07-2026 · Last updated: 24-11-2026_
 
 > **Status: live.** The samāsa programme consolidated here 16-07-2026 (H1010) from
 > claude-config: the /klammerdiagramm drawing system, its worked-example gallery,
@@ -25,6 +25,39 @@ from [samasacakra/samasacakra-taxonomy.json](https://github.com/gasyoun/SamasaCh
 4 classes (Patañjali's pradhāna scheme) · 10 families · 58 leaf subtypes, each with a
 canonical example from the Leitan conspectus; the MG structural rulings (right-to-left law,
 dvandva the sole flat exception, D1–D6) annotated per class and leaf.
+
+**H8573 pilot layer on the wheel:** every leaf carries a stable clockwise number
+(1–58 from 12 o'clock) drawn in its own layer, so switching the corpus-share mode
+never hides it. The share layer has ONE legend and three interchangeable encodings —
+traffic-light, hatching, outline — with four states: ≥ 5 %, 1–< 5 %, < 1 %, and
+«нет сопоставимой доли». The three bands are reserved for **measured** shares that
+match a leaf's corpus tag exactly (ADR 0002): five values from Kulkarni & Kumar
+2013, Table 5 — ṣaṣṭhī 40.56 %, viśeṣaṇapūrvapada 12.29 %, ṣaṣṭhyartha-bv 6.39 %,
+nañ- 5.9 %, upapada 4.32 %. Each of those cards also states its corpus rank and
+what the rank ranks among (the five measured tags, not all 58 subtypes); no measured
+tag falls below 1 %, so that band stays empty and the page says why. Conspectus § 14
+estimates (`~1,6 %`, `~9 %`, `~3 %`, `< 1 %`, the `~2,0 %` group value) are card
+notes only — no colour, no rank, never dressed as a share. `kevala-samāsa`
+(conspectus § 8) has no leaf and gets a separate entry beside the wheel. Cards have
+stable ids — `#k=<id>`, with the legacy `ekadesin` resolving to the merged
+`prathamā / ekadeśin` leaf. A Drumam visitor reaches all of it from the row at the
+top of [drumam/](https://gasyoun.github.io/SamasaChakram/drumam/).
+
+## Five lessons and the paragraph index
+
+- [Five lessons](https://gasyoun.github.io/SamasaChakram/uroki/) — rāja-bhāryā,
+  nested dvandva, rāmeśvaraḥ, prathamā / ekadeśin, kevala-samāsa. Each shows the
+  vigraha and a teaching scheme immediately, keeps its formal diagrams collapsed
+  and labelled with model + source, and ends in a Drumam exercise with feedback and
+  a § link.
+- [Paragraph index](https://gasyoun.github.io/SamasaChakram/paragrafy/) — 67 §§ of
+  the Leitan conspectus, one permanent anchor each (`#p-4-1-1`), with links to the
+  related analysis (or an explicit «разбора в пилоте нет») and to the main DOCX.
+- Both are generated: `samasacakra/build_pilot.py` reads
+  [samasacakra/pilot_data.json](samasacakra/pilot_data.json) (all pilot content) and
+  the conspectus DOCX; `samasacakra/check_pilot.py` is the failing-closed acceptance
+  pass (223 checks). Evidence and residuals:
+  [reports/H8573_PILOT_DELIVERY.md](reports/H8573_PILOT_DELIVERY.md).
 
 ## Drumam decision tree and trainer
 

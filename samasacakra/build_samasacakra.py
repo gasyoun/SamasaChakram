@@ -44,7 +44,73 @@ R_HUB, R1a, R1b, R2a, R2b, R3a, R3b = 96, 102, 186, 192, 288, 294, 448
 GAP_DEG = 0.0          # gaps drawn as surface-color strokes, not angular gaps
 
 GALLERY_URL = "https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm-worked-examples.md"
+PAGES = "https://gasyoun.github.io/SamasaChakram/"
 T = json.load(open(os.path.join(HERE, "samasacakra-taxonomy.json"), encoding="utf-8"))
+
+# --- H8573 pilot layer -----------------------------------------------------
+# Three things the approved five-lesson pilot adds to the wheel (design branch
+# design/drumam-wheel, reports/DRUMAM_WHEEL_DESIGN_24-11-2026.md):
+#   1. a stable clockwise leaf number, drawn in its own layer so a frequency
+#      mode change can never hide it;
+#   2. a corpus-share layer with ONE legend (>=5% / 1-<5% / <1% / no comparable
+#      share) switchable between traffic-light, hatching and outline — shares
+#      only where a corpus tag matches a leaf exactly (ADR 0002);
+#   3. kevala-samasa as a separate entry beside the wheel (conspectus § 8) plus
+#      legacy-id resolution (ekadesin -> the merged prathama leaf).
+# All pilot content lives in pilot_data.json; this file only renders it.
+PILOT = json.load(open(os.path.join(HERE, "pilot_data.json"), encoding="utf-8"))
+FREQ = PILOT["frequency"]
+BANDS = [b["id"] for b in FREQ["bands"]]
+# Only a MEASURED, exactly-matched share may use the three visual bands. The
+# conspectus' section-14 estimates are card notes: no band, no colour, no rank
+# (ADR 0002; reviewer ruling 24-11-2026).
+LEAF_FREQ = {e["target"]: e for e in FREQ["entries"]
+             if e["scope"] == "leaf" and e["kind"] == "share"}
+LEAF_EST = {e["target"]: e for e in FREQ["entries"]
+            if e["scope"] == "leaf" and e["kind"] == "estimate"}
+GROUP_FREQ = {e["target"]: e for e in FREQ["entries"] if e["scope"] == "group"}
+RANKED = sorted(LEAF_FREQ.values(), key=lambda e: -e["pct"])
+ALIAS = PILOT["legacy_leaf_aliases"]
+LESSON_BY_LEAF = {l["leaf"]: l for l in PILOT["lessons"]}
+PARA_LESSONS = {}
+for _l in PILOT["lessons"]:
+    for _p in _l["paras"]:
+        PARA_LESSONS.setdefault(_p, []).append(_l)
+
+
+BAND_LABEL = {b["id"]: b["label"] for b in PILOT["frequency"]["bands"]}
+
+
+def freq_line(lid):
+    """The card's MEASURED line: an exact table-5 share with its rank, or the
+    explicit statement that no comparable share exists."""
+    e = LEAF_FREQ.get(lid)
+    if e:
+        count = f'{e["count"]:,}'.replace(",", " ")
+        rank = RANKED.index(e) + 1
+        return (f'Корпусная доля: <b>{e["pct"]:.2f}%</b> ({e["tag"]}, '
+                f'{count} из ~64 тыс.; таблица 5, Kulkarni &amp; Kumar 2013). '
+                f'Корпусный ранг: <b>{rank} из {len(RANKED)}</b> — место по доле среди '
+                f'тегов с измеренной долей, не среди всех подтипов (ADR 0002)')
+    return ('Корпусная доля: <b>нет сопоставимой доли</b> — в таблице 5 нет тега, '
+            'совпадающего с лепестком (ADR 0002)')
+
+
+def est_line(lid):
+    """The conspectus estimate, kept strictly apart from the measured layer."""
+    e = LEAF_EST.get(lid)
+    return e["note"] if e else ""
+
+
+def group_est_line(fid):
+    e = GROUP_FREQ.get(fid)
+    return ('Оценка конспекта § 14 для всей группы avyayībhāva: ' + e["note"].split(': ', 1)[-1]) if e else ""
+
+
+def band_of(lid):
+    e = LEAF_FREQ.get(lid)
+    return e["band"] if e else "none"
+
 classes = T["classes"]
 total_leaves = sum(len(f["leaves"]) for c in classes for f in c["families"])
 UNIT = 360.0 / total_leaves
@@ -71,6 +137,15 @@ def dual(fn, *args, **kw):
         out += fn(args[0], args[1], args[2], d, args[4], args[5] + " l-deva")
     return out
 
+def number_label(r, a, text):
+    # the leaf's clockwise number, set tangentially at the rim (clock-face read);
+    # the rotation is folded into (-90, 90] so no number is ever upside down
+    x, y = pol(r, a)
+    rot = ((a + 90) % 180) - 90
+    return (f'<text x="{x:.1f}" y="{y:.1f}" font-size="11" class="lbl num" '
+            f'text-anchor="middle" dominant-baseline="middle" '
+            f'transform="rotate({rot:.1f} {x:.1f} {y:.1f})">{text}</text>')
+
 def radial_label(r, a, text, size, cls):
     # text runs along the radius; flipped on the left half so it reads outward
     x, y = pol(r, a)
@@ -91,6 +166,8 @@ def tangential_label(r, a0, a1, text, size, cls):
 
 svg, meta = [], {}
 svg.append('<g id="wheel">')
+leaf_no = 0          # stable clockwise leaf number, 1..58 from 12 o'clock
+nums = []            # its own layer: appended last, never repainted by a mode
 a = 0.0
 for c in classes:
     n_c = sum(len(f["leaves"]) for f in c["families"])
@@ -101,7 +178,8 @@ for c in classes:
     else:
         svg.append(dual(radial_label, R1a + 6, a + span_c / 2, c["name"], 19, "lbl lbl1"))
     meta[c["id"]] = {"kind": "class", "name": c["name"], "pradhana": c["pradhana"],
-                     "structure": c["structure"], "class": c["name"], "cid": c["id"]}
+                     "structure": c["structure"], "class": c["name"], "cid": c["id"],
+                     "freq": "", "n": None}
     af = a
     for f in c["families"]:
         span_f = len(f["leaves"]) * UNIT
@@ -113,18 +191,43 @@ for c in classes:
         else:
             svg.append(dual(radial_label, R2a + 8, af + span_f / 2, fname, 15, "lbl lbl2r"))
         meta[fid] = {"kind": "family", "name": fname, "class": c["name"], "cid": c["id"],
-                     "pradhana": c["pradhana"], "structure": c["structure"]}
+                     "pradhana": c["pradhana"], "structure": c["structure"],
+                     # a corpus tag that covers several leaves is published at the
+                     # GROUP, never repeated at each of its leaves (ADR 0002)
+                     "freq": "", "est": group_est_line(fid),
+                     "n": None}
         al = af
         for leaf in f["leaves"]:
             lid = f'{c["id"]}--{f["id"]}--{leaf["id"]}'
-            svg.append(f'<path d="{arc_path(R3a, R3b, al, al + UNIT)}" class="seg c-{c["id"]} ring3" data-id="{lid}"/>')
-            svg.append(dual(radial_label, R3a + 8, al + UNIT / 2, leaf["term"], 14.5, "lbl lbl3"))
+            n = leaf_no + 1                      # clockwise from 12 o'clock
+            leaf_no = n
+            band = band_of(lid)
+            d = arc_path(R3a, R3b, al, al + UNIT)
+            svg.append(f'<path d="{d}" class="seg c-{c["id"]} ring3" data-id="{lid}" '
+                       f'data-n="{n}" data-band="{band}"/>')
+            # the frequency overlay carries the share and nothing else: the mode
+            # classes below turn its fill/patterm/stroke on, so switching modes
+            # never touches the class identity fill or the leaf number
+            svg.append(f'<path d="{d}" class="fov" data-band="{band}"/>')
+            # long subtype names get a smaller size so the radial label stays
+            # inside the ring instead of running past the rim
+            _t = leaf["term"]
+            _sz = 14.5 if len(_t) <= 14 else (12.5 if len(_t) <= 18 else 11)
+            svg.append(dual(radial_label, R3a + 8, al + UNIT / 2, _t, _sz, "lbl lbl3"))
+            nums.append(number_label(R3b - 12, al + UNIT / 2, str(n)))
+            lz = LESSON_BY_LEAF.get(lid)
             meta[lid] = {"kind": "leaf", "name": leaf["term"], "class": c["name"], "cid": c["id"],
                          "family": fname, "pradhana": c["pradhana"], "structure": c["structure"],
                          "ex": leaf["ex"], "vigraha": leaf["vigraha"], "ru": leaf["ru"],
                          "ex_d": deva(leaf["ex"]), "vigraha_d": deva(leaf["vigraha"]),
                          "note": leaf.get("note", ""),
-                         "diagram": "".join(f'<div class="dwrap">{load_diagram(d)}</div>' for d in ([leaf["diagram"]] if isinstance(leaf.get("diagram"), str) else leaf.get("diagram", [])))}
+                         "n": n, "band": band, "freq": freq_line(lid),
+                         "est": est_line(lid),
+                         "paras": [{"num": p, "href": f'{PAGES}paragrafy/#p-{p.replace(".", "-")}'}
+                                   for p in (lz["paras"] if lz else [])],
+                         "lesson": ({"title": lz["title"], "href": f'{PAGES}uroki/{lz["slug"]}.html'}
+                                    if lz else None),
+                         "diagram": "".join(f'<div class="dwrap">{load_diagram(dg)}</div>' for dg in ([leaf["diagram"]] if isinstance(leaf.get("diagram"), str) else leaf.get("diagram", [])))}
             al += UNIT
         af += span_f
     a += span_c
@@ -134,7 +237,24 @@ svg.append(f'<text x="{CX}" y="{CY - 10}" font-size="34" class="lbl hublbl" text
 svg.append(f'<text x="{CX}" y="{CY + 26}" font-size="20" class="lbl hublbl2" text-anchor="middle">cakra</text>')
 svg.append(f'<text x="{CX}" y="{CY - 10}" font-size="34" class="lbl hublbl l-deva" text-anchor="middle">समास</text>')
 svg.append(f'<text x="{CX}" y="{CY + 26}" font-size="20" class="lbl hublbl2 l-deva" text-anchor="middle">चक्र</text>')
+svg.extend(nums)
 svg.append('</g>')
+assert leaf_no == total_leaves, (leaf_no, total_leaves)
+
+# kevala-samasa has no leaf on the wheel (conspectus § 8: outside the four
+# pradhana classes), so it gets a card of its own, reached from the chip beside
+# the wheel — the same panel, the same stable-id routing.
+K = PILOT["kevala"]
+meta["kevala"] = {"kind": "kevala", "name": K["title"], "class": "", "family": "",
+                  "ex": K["card"]["ex"], "vigraha": K["card"]["vigraha"],
+                  "ru": K["card"]["ru"], "note": K["card"]["note"],
+                  "ex_d": deva(K["card"]["ex"]), "vigraha_d": deva(K["card"]["vigraha"]),
+                  "pradhana": "", "structure": "", "freq": "", "n": None,
+                  "paras": [{"num": K["para"], "href": f'{PAGES}paragrafy/#p-{K["para"]}'}],
+                  "lesson": {"title": "Урок 5 · kevala-samāsa",
+                             "href": f'{PAGES}uroki/05-kevala-samasa.html'},
+                  "context": K["card"]["context"], "rule": K["card"]["rule"],
+                  "second_ex": K["card"]["second_ex"], "diagram": ""}
 
 STYLE_LIGHT = """
 .seg { stroke: var(--surface); stroke-width: 2; cursor: pointer; }
@@ -144,6 +264,8 @@ STYLE_LIGHT = """
 .hub { fill: var(--surface); stroke: var(--line); stroke-width: 1.4; }
 .lbl { fill: var(--ink); pointer-events: none; }
 .lbl2r, .lbl3 { fill: var(--ink2); }
+.num { fill: var(--ink); font-weight: bold; opacity: .75; }
+.fov { display: none; pointer-events: none; }
 .hublbl2 { fill: var(--ink2); }
 .seg:hover { fill-opacity: .72; }
 .l-deva { display: none; }
@@ -158,16 +280,25 @@ svg_doc = (f'<svg viewBox="0 0 {2*CX} {2*CY}" xmlns="http://www.w3.org/2000/svg"
            f'<rect width="100%" height="100%" fill="#fcfcfb"/>'
            + "".join(svg) + "</svg>")
 
-with open(os.path.join(HERE, "samasacakra-wheel.svg"), "w", encoding="utf-8") as fh:
+with open(os.path.join(HERE, "samasacakra-wheel.svg"), "w", encoding="utf-8", newline="\n") as fh:
     fh.write(svg_doc)
 print("wrote samasacakra-wheel.svg", len(svg_doc) // 1024, "KB")
 
 b64 = base64.b64encode(open(WOFF2, "rb").read()).decode("ascii")
 b64d = base64.b64encode(open(WOFF2_DEVA, "rb").read()).decode("ascii")
 meta_json = json.dumps(meta, ensure_ascii=False)
+# hatch patterns for the corpus-share layer (mode "штриховка"): the fill is
+# strokes on transparent, so the class hue underneath stays visible and the
+# band is read a second time by texture alone
+PATTERNS = "".join(
+    f'<pattern id="pat-{bid}" width="8" height="8" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">'
+    f'<rect width="8" height="8" fill="none"/>'
+    f'<line x1="0" y1="0" x2="0" y2="8" stroke="{col}" stroke-width="2.4"/></pattern>'
+    for bid, col in [("gte5", "#2e7d32"), ("mid15", "#d99b00"), ("lt1", "#b8352a"), ("none", "#8d8b82")])
 # the inline SVG for HTML drops the internal <style>/<rect> (the page styles it)
-svg_inline = ('<svg id="cakra" viewBox="0 0 1120 1120" role="img" '
-              f"font-family=\"{FONT}\">" + "".join(svg) + "</svg>")
+svg_inline = ('<svg id="cakra" class="mode-none" viewBox="0 0 1120 1120" role="img" '
+              f"font-family=\"{FONT}\">"
+              f"<defs>{PATTERNS}</defs>" + "".join(svg) + "</svg>")
 
 html = """<!doctype html>
 <html lang="ru">
@@ -195,6 +326,7 @@ svg { display:block; width:100%; height:auto; touch-action:none; }
 .c-tatpurusa { fill:var(--c-tatpurusa); } .c-bahuvrihi { fill:var(--c-bahuvrihi); }
 .c-dvandva { fill:var(--c-dvandva); } .c-avyayibhava { fill:var(--c-avyayibhava); }
 .seg:hover, .seg.sel { fill-opacity:.74; }
+.fov { fill:none; }   /* H8573 share layer: inert until a mode class styles it */
 .hub { fill:var(--surface); stroke:var(--line); stroke-width:1.4; }
 .lbl { fill:var(--ink); pointer-events:none; }
 .lbl2r,.lbl3,.hublbl2 { fill:var(--ink2); }
@@ -220,6 +352,51 @@ body.deva svg text.l-deva { display:block; }
 #panel .diagram figcaption { font-size:.78rem; color:var(--ink2); margin-top:6px; text-align:center; }
 #panel .glink { font-size:.85rem; margin-top:10px; }
 #panel .glink a { color:var(--c-tatpurusa); text-decoration:none; border-bottom:1px dotted var(--c-tatpurusa); }
+#panel .meta { font-size:.85rem; color:var(--ink2); margin-top:8px; }
+#panel .note.est { font-style:italic; }
+#panel .meta a { color:var(--c-tatpurusa); text-decoration:none; border-bottom:1px dotted var(--c-tatpurusa); }
+#panel .numtag { color:var(--ink2); font-size:.8rem; letter-spacing:.02em; }
+/* --- H8573 pilot: leaf numbers + one-legend corpus-share layer --- */
+.num { font-weight:bold; opacity:.72; }
+.fov { pointer-events:none; }
+#cakra.mode-light .fov[data-band=gte5] { fill:#2e7d32; fill-opacity:.88; }
+#cakra.mode-light .fov[data-band=mid15]{ fill:#d99b00; fill-opacity:.88; }
+#cakra.mode-light .fov[data-band=lt1]  { fill:#b8352a; fill-opacity:.88; }
+#cakra.mode-light .fov[data-band=none] { fill:#8d8b82; fill-opacity:.26; }
+#cakra.mode-hatch .fov[data-band=gte5] { fill:url(#pat-gte5); }
+#cakra.mode-hatch .fov[data-band=mid15]{ fill:url(#pat-mid15); }
+#cakra.mode-hatch .fov[data-band=lt1]  { fill:url(#pat-lt1); }
+#cakra.mode-hatch .fov[data-band=none] { fill:url(#pat-none); }
+#cakra.mode-outline .fov[data-band=gte5] { fill:none; stroke:#2e7d32; stroke-width:6; }
+#cakra.mode-outline .fov[data-band=mid15]{ fill:none; stroke:#d99b00; stroke-width:6; }
+#cakra.mode-outline .fov[data-band=lt1]  { fill:none; stroke:#b8352a; stroke-width:6; }
+#cakra.mode-outline .fov[data-band=none] { fill:none; stroke:#8d8b82; stroke-width:6; stroke-dasharray:3 9; }
+.freqbar { display:flex; gap:6px; align-items:center; flex-wrap:wrap; font-size:.85rem; width:100%; margin:0 0 6px; }
+.freqbar button { font:inherit; font-size:.8rem; padding:3px 10px; border:1px solid var(--line);
+  background:transparent; color:var(--ink2); border-radius:4px; cursor:pointer; }
+.freqbar button.on { background:var(--ink); color:var(--surface); border-color:var(--ink); }
+#bandlegend { display:flex; gap:14px; flex-wrap:wrap; font-size:.85rem; margin:0 0 8px; padding:0 2px; width:100%; }
+#bandlegend span { display:inline-flex; align-items:center; gap:6px; }
+#bandlegend i { width:14px; height:14px; border-radius:3px; display:inline-block; border:1px solid var(--line); background:transparent; }
+body[data-freq=none] #bandlegend { display:none; }
+body[data-freq=light] #bandlegend i[data-band=gte5] { background:#2e7d32; }
+body[data-freq=light] #bandlegend i[data-band=mid15]{ background:#d99b00; }
+body[data-freq=light] #bandlegend i[data-band=lt1]  { background:#b8352a; }
+body[data-freq=light] #bandlegend i[data-band=none] { background:#8d8b82; opacity:.5; }
+body[data-freq=hatch] #bandlegend i[data-band=gte5] { background:repeating-linear-gradient(45deg,#2e7d32 0 2px,transparent 2px 6px); }
+body[data-freq=hatch] #bandlegend i[data-band=mid15]{ background:repeating-linear-gradient(45deg,#d99b00 0 2px,transparent 2px 6px); }
+body[data-freq=hatch] #bandlegend i[data-band=lt1]  { background:repeating-linear-gradient(45deg,#b8352a 0 2px,transparent 2px 6px); }
+body[data-freq=hatch] #bandlegend i[data-band=none] { background:repeating-linear-gradient(45deg,#8d8b82 0 2px,transparent 2px 6px); }
+body[data-freq=outline] #bandlegend i[data-band=gte5] { border:3px solid #2e7d32; }
+body[data-freq=outline] #bandlegend i[data-band=mid15]{ border:3px solid #d99b00; }
+body[data-freq=outline] #bandlegend i[data-band=lt1]  { border:3px solid #b8352a; }
+body[data-freq=outline] #bandlegend i[data-band=none] { border:3px dashed #8d8b82; }
+.bandnote { color:var(--ink2); font-size:.78rem; width:100%; margin:0 2px 8px; }
+.kevalachip { display:flex; align-items:center; gap:10px; font-size:.92rem; text-decoration:none;
+  color:var(--ink); border:1px dashed var(--line); border-radius:6px; padding:7px 12px; margin:0 0 10px; width:100%; }
+.kevalachip:hover { border-color:var(--ink2); }
+.kevalachip b { font-weight:normal; border-bottom:1px dotted currentColor; }
+.kevalachip span.goto { margin-left:auto; color:var(--ink2); font-size:.82rem; }
 #legend { display:flex; gap:14px; flex-wrap:wrap; font-size:.9rem; margin:0 0 8px; padding:0 2px; width:100%; }
 #legend span { display:inline-flex; align-items:center; gap:6px; }
 #legend i { width:12px; height:12px; border-radius:3px; display:inline-block; }
@@ -235,7 +412,25 @@ body.deva svg text.l-deva { display:block; }
   <span><i style="background:var(--c-avyayibhava)"></i>avyayībhāva</span>
   <span id="scripttoggle"><button id="btn-iast" class="on">IAST</button><button id="btn-deva">देवनागरी</button></span>
 </div>
-<p class="hint">Колесо можно вращать (перетаскиванием); клик по сегменту — разбор справа; двойной клик — сброс поворота.</p>
+<a class="kevalachip" href="#k=kevala" id="kevalachip">
+  <span>§ 8 · <b>kevala-samāsa</b> — класс вне четырёх: отдельный вход</span>
+  <span class="goto">карточка и задание →</span>
+</a>
+<div class="freqbar" role="group" aria-label="частотный слой">
+  <span>Корпусная доля:</span>
+  <button data-mode="none" class="on">без слоя</button>
+  <button data-mode="light">светофор</button>
+  <button data-mode="hatch">штриховка</button>
+  <button data-mode="outline">контур</button>
+</div>
+<div id="bandlegend">
+  <span><i data-band="gte5"></i>≥ 5%</span>
+  <span><i data-band="mid15"></i>1–&lt; 5%</span>
+  <span><i data-band="lt1"></i>&lt; 1%</span>
+  <span><i data-band="none"></i>нет сопоставимой доли</span>
+</div>
+<p class="bandnote">__BANDNOTE__</p>
+<p class="hint">Колесо можно вращать (перетаскиванием); клик по сегменту — разбор справа; двойной клик — сброс поворота. Ссылка на карточку — <code>#k=&lt;id&gt;</code>.</p>
 <div id="wheelbox">__SVG__</div>
 <aside id="panel">
   <h2>samāsa-cakra</h2>
@@ -290,24 +485,62 @@ document.getElementById('btn-iast').onclick = () => { document.body.classList.re
   document.getElementById('btn-iast').classList.add('on'); document.getElementById('btn-deva').classList.remove('on'); };
 document.getElementById('btn-deva').onclick = () => { document.body.classList.add('deva');
   document.getElementById('btn-deva').classList.add('on'); document.getElementById('btn-iast').classList.remove('on'); };
-function select(seg) {
+function select(seg) { openCard(seg.dataset.id, seg); }
+function resolveId(id) { return ALIAS[id] || id; }
+function openCard(rawId, seg) {
+  const id = resolveId(rawId);
+  const m = META[id]; if (!m) return false;
   document.querySelectorAll('.seg.sel').forEach(s => s.classList.remove('sel'));
-  seg.classList.add('sel');
-  const m = META[seg.dataset.id]; if (!m) return;
-  let h = `<h2>${m.name}</h2><div class="chain">${m.class}${m.family ? ' · ' + m.family : ''}</div>`;
+  if (seg) seg.classList.add('sel');
+  else { const t = document.querySelector(`.seg[data-id="${id}"]`); if (t) t.classList.add('sel'); }
+  const num = m.n ? `<span class="numtag">№ ${m.n}</span> · ` : '';
+  let h = `<h2>${num}${m.name}</h2><div class="chain">${m.class}${m.family ? ' · ' + m.family : ''}</div>`;
   if (m.ex) h += `<div class="ex">${m.ex}</div><div class="pdeva">${m.ex_d}</div><div class="vig">${m.vigraha}${m.vigraha_d && m.vigraha_d !== m.vigraha ? ' · <span class="pdeva">' + m.vigraha_d + '</span>' : ''}</div><div class="ru">«${m.ru}»</div>`;
-  h += `<div class="rule">${m.pradhana}<br>структура: ${m.structure}</div>`;
+  if (m.kind === 'kevala') {
+    if (m.context) h += `<div class="note">${m.context}</div>`;
+    h += `<div class="rule">${m.rule}</div>`;
+    if (m.second_ex) h += `<div class="note">${m.second_ex}</div>`;
+  } else {
+    h += `<div class="rule">${m.pradhana}<br>структура: ${m.structure}</div>`;
+  }
   if (m.note) h += `<div class="note">${m.note}</div>`;
+  if (m.freq) h += `<div class="note">${m.freq}</div>`;
+  if (m.est) h += `<div class="note est">${m.est}</div>`;
+  const links = [];
+  (m.paras || []).forEach(pp => links.push(`<a href="${pp.href}">§ ${pp.num} в указателе параграфов</a>`));
+  if (m.lesson) links.push(`<a href="${m.lesson.href}">${m.lesson.title}</a>`);
+  if (m.kind === 'leaf') links.push(`<a href="${GAL}" target="_blank" rel="noopener">Галерея разобранных композитов</a>`);
+  if (links.length) h += `<div class="glink">${links.join(' · ')}</div>`;
   if (m.diagram) h += `<figure class="diagram">${m.diagram}<figcaption>Klammerdiagramm — скобочная схема (композит с этой конструкцией из галереи)</figcaption></figure>`;
-  if (m.kind === 'leaf') h += `<div class="glink"><a href="${GAL}" target="_blank" rel="noopener">Галерея разобранных композитов →</a></div>`;
+  h += `<div class="meta">Ссылка на карточку: <code>#k=${rawId}</code>${rawId !== id ? ' → ' + id : ''}</div>`;
   panel.innerHTML = h;
+  return true;
 }
+// --- corpus-share layer: one legend, three encodings (H8573) ---
+const MODES = ['none', 'light', 'hatch', 'outline'];
+function setMode(mode) {
+  MODES.forEach(m => cakra().classList.toggle('mode-' + m, m === mode));
+  document.body.dataset.freq = mode;
+  document.querySelectorAll('.freqbar button').forEach(b => b.classList.toggle('on', b.dataset.mode === mode));
+}
+function cakra() { return document.getElementById('cakra'); }
+document.querySelectorAll('.freqbar button').forEach(b => { b.onclick = () => setMode(b.dataset.mode); });
+// --- stable-id routing: #k=<leaf|family|class|kevala> (legacy ids resolve) ---
+const ALIAS = __ALIAS__;
+function route() {
+  const h = decodeURIComponent(location.hash || '');
+  const m = h.match(/^#k=(.+)$/);
+  if (m) openCard(m[1], null);
+}
+window.addEventListener('hashchange', route);
+setMode('none');
+route();
 </script>
 </body>
 </html>
 """
-html = html.replace("__B64__", b64).replace("__B64D__", b64d).replace("__GAL__", GALLERY_URL).replace("__META__", meta_json).replace("__SVG__", svg_inline)
-with open(os.path.join(HERE, "samasacakra-wheel.html"), "w", encoding="utf-8") as fh:
+html = html.replace("__B64__", b64).replace("__B64D__", b64d).replace("__GAL__", GALLERY_URL).replace("__META__", meta_json).replace("__SVG__", svg_inline).replace("__ALIAS__", json.dumps(ALIAS, ensure_ascii=False)).replace("__BANDNOTE__", FREQ["band_note"])
+with open(os.path.join(HERE, "samasacakra-wheel.html"), "w", encoding="utf-8", newline="\n") as fh:
     fh.write(html)
 print("wrote samasacakra-wheel.html", len(html) // 1024, "KB;", total_leaves, "leaves")
 
@@ -323,7 +556,7 @@ SEO = """<meta name="description" content="samāsa-cakra — интеракти�
 docs = os.path.join(HERE, "..", "docs")
 os.makedirs(docs, exist_ok=True)
 pages_html = html.replace('<meta name="viewport"', SEO + '<meta name="viewport"', 1)
-with open(os.path.join(docs, "index.html"), "w", encoding="utf-8") as fh:
+with open(os.path.join(docs, "index.html"), "w", encoding="utf-8", newline="\n") as fh:
     fh.write(pages_html)
 open(os.path.join(docs, ".nojekyll"), "w").close()
 print("wrote docs/index.html (GitHub Pages)")
@@ -375,6 +608,7 @@ h1 .dv {{ font-family:'Klammer Deva',serif; }}
 #wheelwrap svg {{ width:100%; height:auto; display:block; }}
 .l-deva {{ display:none; }}
 .seg {{ stroke:#fcfcfb; stroke-width:2; }}
+.fov {{ display:none; }}   /* H8573 share layer is screen-only */
 .ring1 {{ fill-opacity:.50; }} .ring2 {{ fill-opacity:.30; }} .ring3 {{ fill-opacity:.16; }}
 .c-tatpurusa {{ fill:#2a78d6; }} .c-bahuvrihi {{ fill:#1baf7a; }}
 .c-dvandva {{ fill:#eda100; }} .c-avyayibhava {{ fill:#008300; }}
@@ -409,6 +643,6 @@ Klammer Deva (Noto Serif Devanagari, OFL) · Fable 5 (claude-fable-5) · 16-07-2
 </body>
 </html>
 """
-with open(os.path.join(HERE, "samasacakra-poster.html"), "w", encoding="utf-8") as fh:
+with open(os.path.join(HERE, "samasacakra-poster.html"), "w", encoding="utf-8", newline="\n") as fh:
     fh.write(poster_html)
 print("wrote samasacakra-poster.html", len(poster_html) // 1024, "KB")

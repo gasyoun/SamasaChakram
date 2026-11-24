@@ -1,0 +1,2144 @@
+# Отфильтрованный список avyaya для AVYAYA_WORDS
+# Всего: 2135 слов
+# Критерии отсеивания:
+#   - удалены слова >10 букв (композиты)
+#   - удалены корни с √, формы с запятыми/апострофами
+#   - удалены падежные формы (acc/instr/abl/loc/vat/I-stem) для слов >=5 букв
+#   - добавлен whitelist из 128 классических avyaya
+#
+word	count	AP	PW	MW
+a	0			
+aMSI	1		aMSI	
+aMSu	1		aMSu/	
+akutaScid	1			a-kutaS—cid
+akutrA	1		aku/trA	
+akuDriak	1		akuDri/ak	
+akuDryaYc	1			a-kuDrya^Yc
+aktuBis	1			aktu/Bis
+aktos	1			akto/s
+akzapari	2		akzapari	akza—pari
+akzipat	2		akzipa/t	akzi—pa/t
+agni	1		agni	
+agre	1			a/gre
+aGos	2	aGos		aGos
+aNga	2	aNga		aNga/
+aNgI	1		aNgI	
+acakzus	1			a-cakzus
+acCa	1			a/cCa
+aY	1		aY	
+aYovuY	1		aYo vuY	
+aYj	1		aYj	
+aYjas	1			a/Yjas
+aYjasA	2		a/YjasA	a/YjasA
+awwa	2		awwa	awwa
+aRu	2		aRu/	aRu/
+aRU	1		aRU	
+aRvI	1		a/RvI	
+at	1			at
+ataTA	1	ataTA		
+atadarham	2	atadarham		a-tad—arham
+atas	3	atas	a/tas	a/tas
+ati	3	ati	ati	ati-
+atitamAm	2		atitamAm	ati-tamAm
+atitarAm	1			ati-tarA/m
+atinIcEs	1		atinIcEs	
+ativi	1		ativi	
+atisahasA	1		atisahasA	
+atyuccEs	1			aty-uccEs
+atyUmaSA	3	atyUmaSA	atyUmaSA	aty-UmaSA
+atra	1			a/-tra
+atravas	1	atravas		
+aTa	1			a/Ta
+aTakim	1			aTa—kim
+aTakimu	1			aTa—kimu
+aTatu	1			aTa—tu
+aTavA	1			aTa—vA
+adayAlu	1			a-dayAlu
+adas	1			adas
+adivA	1		adivA	
+adDA	3	adDA	adDA/	ad-DA/
+adDAtamAm	1			ad-DA—tamA/m
+adya	2	adya		a-dya/
+advezas	2		adveza/s	adveza/s
+adhas	0			
+adhi	0			
+adhunA	0			
+aDa	1			a/Da
+aDaH	0			
+aDarAk	2		aDarA/k	aDarA/k
+aDaredyuH	1	aDaredyuH		
+aDaredyus	2		aDaredyus	aDare-dyus
+aDas	1			aDa/s
+aDastarAm	2		aDastarA/m	aDas-tarA/m
+aDi	2	aDi		a/Di
+aDikziti	2		aDikziti	aDi-kziti
+aDigfham	1			aDi-gfham
+aDijAnu	2		aDijAnu	aDi-jAnu
+aDipARi	2		aDipARi	aDi-pARi
+aDiprajYam	2		aDiprajYam	aDi-prajYam
+aDimaKam	2		aDimaKam	aDimaKam
+aDiyajYam	1			aDi-yaj°Ya/m
+aDirajani	2		aDirajani	aDi-rajani
+aDivakzas	2		aDivakzas	aDi-vakzas
+aDivivAham	2		aDivivAham	aDi-vivAham
+aDiSiras	2		aDiSiras	aDi-Siras
+aDiSrezWi	1		aDiSrezWi	
+aDistri	3	aDistri	aDistri	aDi-stri
+aDihari	2		aDihari	aDi-hari
+aDihasti	2		aDihasti	aDi-hasti
+aDIvAsas	2		aDIvAsas	aDI-vAsas
+aDunA	3	aDunA	aDunA/	aDunA/
+aDojAnu	2		aDojAnu/	aDo-jAnu/
+aDonABi	1		aDonABi/	
+aDyagni	3	aDyagni	aDyagni	aDy-agni
+aDyaDi	2	aDyaDi		aDy-aDi
+aDyuras	2		aDyuras	aDy-uras
+an	0			
+ana	1		ana	
+anak	1	anak		
+anakasmAtm	1		anakasmAtm	
+anaquham	1		°anaquham	
+anati	1	anati		
+anadDA	3	anadDA	a/nadDA	a/n-adDA
+anaDas	2		a/naDas	a/n-aDas
+ananyaTA	1		ananyaTA	
+anapayati	3	anapayati	anapayati	an-apayati
+anapayatim	1		anapayatim	
+anapAvft	1			a/n-apAvft
+anA	3	anA	anA/	anA/
+anAdi	2		anAdi	an-Adi
+anAmayatA	1			a/n-Ama°yatA
+animizA	1			a/-nimizA
+anilavyADi	1			anila—vyADi
+anIcEs	1			a-nIcEs
+anu	2	anu		a/nu
+anugu	2		anugu	anu-gu
+anugum	1		anugum	
+anuccEs	1			an-uccEs
+anutamAm	2		anutamA/m	anu-tamA/m
+anudAyin	1		anudAyin	
+anudeham	2		anudeham	anu-deham
+anunadi	2		anunadi	anu-nadi
+anupati	2		anupati	anu-pati
+anupatim	1		anupatim	
+anupariDi	2		anupariDi	anu-pariDi
+anuBitti	2		anuBitti	anu-Bitti
+anuyajus	2		anuyajus	anu-yajus
+anurajju	2		anurajju	anu-rajju
+anuvizRu	2		anuvizRu	anu-vizRu
+anuvedi	2		anuvedi	anu-vedi
+anuzak	2		anuzak	anu-zak
+anuzaw	1		anuzaw	
+anusaMtati	1		anusaMtati	
+anusAnu	2		anusAnu	anu-sAnu
+anusneham	2	anusneham		anu-sneham
+anUci	1			anUci
+anUcInAham	1		anUcInAha/m	
+anftu	2		anftu/	an-ftu/
+anekaDA	3	anekaDA	anekaDA	an-eka—DA
+anekaSaH	1	anekaSaH		
+ano	3	ano	ano	ano
+ant	1	ant		
+antaHkratu	2		antaHkratu	antaH—kratu
+antaHpaSu	2		antaHpaSu	antaH—paSu
+antaHSri	2		anta/HSri	a/ntaH—Sri
+antaHsadas	2		antaHsadas	antaH—sadas
+antaHsAnu	2		antaHsAnu	antaH—sAnu
+antataH	1	antataH		
+antar	2	antar		anta/r
+antarataH	1	antarataH		
+antarA	2	antarA		antarA/
+antarjAnu	1			antar—jAnu
+antarmuKam	2		antarmuKam	antar—muKam
+antarvedi	1			antar—vedi/
+anti	2	anti		a/nti
+antitaH	1	antitaH		
+ante	3	ante	ante	a/nte
+antevAsi	2		antevAsi	ante-vAsi
+antraMDami	1			antra—M-Dami
+anDa	1		anDa	
+anDI	1		anDI	
+anDIkf	1	anDIkf		
+anDIBU	1	anDIBU		
+anya	1		anya	
+anyatra	2		anya/tra	anya/-tra
+anyathA	0			
+anyaTA	3	anyaTA	anya/TA	anya/-TA
+anyadA	3	anyadA	anyadA	anya-dA
+anyarhi	3	anyarhi	anyarhi	anyarhi
+anyedyuH	1	anyedyuH		
+anyedyus	2		anyedyu/s	anye-dyu/s
+anyokas	1		a/nyokas	
+anyokasm	1		a/nyokasm	
+anvak	3	anvak	anvak	anva/k
+anvaham	3	anvaham	anvaha/m	anv-aha/m
+apa	3	apa	a/pa	apa-
+apamuKam	1			apa-muKam
+aparaTA	2	aparaTA	aparaTA	
+aparaSvas	2		aparaSvas	apara—Svas
+aparAk	1	aparAk		
+aparedyus	2		aparedyus	apare-dyu/s
+aparedyusm	1		aparedyusm	
+apartu	2		apartu	apa-rtu/
+aparvaRi	1			a-parvaRi
+apavizRu	1			apa-vizRu
+apazWu	1			apa-zWu
+apasalavi	2	apasalavi		apa-salavi/
+apasalEH	1			apa-salEH
+apAk	3	apAk	apAk	a/pAk
+apAkA	2		apAkA/	apAkA/
+apAktAtm	1		a/pAktAtm	
+api	1	api		
+apisvit	1	apisvit		
+apunar	3	apunar	apuna/r	a-puna/r
+apfTak	2	apfTak		a-pfTak
+apratA	2		apratA/	a-pratA/
+aprati	1		aprati/	
+apralambam	2		apralambam	a-pralambam
+aprAyu	2		a/prAyu	a/-prAyu
+abahir	1			a-bahir
+abahirDA	2		a/bahirDA	a-bahir—DA
+abahirDAm	1		a/bahirDAm	
+abahis	1		abahis	
+abhi	0			
+aBi	3	aBi	aBi	aBi-
+aBijYu	2		aBijYu/	aBi-jYu/
+aBitarAm	1	aBitarAm		
+aBidUti	2		aBidUti	aBi-dUti
+aBinaBas	2		aBinaBas	aBi-naBas
+aBiprAtar	2		aBiprAta/r	aBi-prAta/r
+aBiBartf	2		aBiBartf	aBi-Bartf
+aBimuKam	1			aBi-muKam
+aBimuni	2		aBimuni	aBi-muni
+aBivAsas	3	aBivAsas	aBivA/sas	aBi-vA/sas
+aBivi	1		aBivi	
+aBiviDO	1			aBi-viDO
+aBiSatru	2		aBiSatru	aBi-Satru
+aBiSOri	2		aBiSOri	aBi-SOri
+aBizu	1			aBi-zu
+aBisatkf	1			aBi-satkf
+aBIkzRaSaH	1	aBIkzRaSaH		
+aBIpatasm	1		aBIpata/sm	
+aBIzahA	1			aBI-za/hA
+aBy	1			aBy-
+aByagni	1			aBy-agni
+aByari	2		aByari	aBy-ari
+aByarDas	2		aByarDa/s	aBy-arDa/s
+am	3	am	am	am
+amanAk	3	amanAk	amanAk	a-manAk
+amA	3	amA	amA/	amA/
+amAt	3	amAt	amA/t	amA/t
+amI	1		amI	
+amutaH	1	amutaH		
+amutas	2		amu/tas	amu/tas
+amuTA	3	amuTA	amu/TA	amu/TA
+amudA	2		amudA	amudA
+amurhi	3	amurhi	amu/rhi	amu/rhi
+amuzmin	1			amuzmin
+amfzA	3	amfzA	amfzA/	a-mfzA/
+amRas	2		amRa/s	amRa/s
+amnas	2	amnas	amna/s	
+amyak	1			a/myak
+amlI	1		amlI	
+ayaTA	3	ayaTA	ayaTA	a-yaTA
+ayaTAtaTA	1			a-yaTA—taTA
+ayA	3	ayA	ayA/	ayA/
+ayAs	1			ayA/s
+ayi	2	ayi		ayi
+ayugapad	3	ayugapad	ayugapad	a-yugapad
+ayutaDA	1			a-yuta—DA
+aye	2	aye		aye
+aram	3	aram	a/ram	a/ram
+arAt	1	arAt		
+arus	1			a/rus
+arU	1		arU	
+are	2	are		are
+arc	1			arc
+arTataH	1	arTataH		
+arTe	1			a/rTe
+arDI	1		arDI	
+arDe	1			arDe
+arbudaDA	1			arbuda—DA
+arvAk	2		arvA/k	arvA/k
+arvAc	1			arvA/c
+arhaRA	2	arhaRA		ar°ha/RA
+alaMtarAm	1			alaM—tarAm
+alantarAm	1		alantarAm	
+alam	3	alam	a/lam	a/lam
+alambam	1		alambam	
+ale	1			ale
+alpa	1		a/lpa	
+alpaSaH	1	alpaSaH		
+alpikA	1		alpikA	
+alpI	1		alpI	
+av	1			av
+ava	2	ava		a/va
+avagrAham	1			ava-grAham
+avacCad	1			ava-cCad
+avacCo	1			ava-cCo
+avaDi	1			ava-Di/
+avaDes	2		avaDes	ava-Des
+avayavaSaH	1	avayavaSaH		
+avarataH	1	avarataH		
+avarastAtm	1		avarastAtm	
+avalokezu	1			ava-lokezu
+avazwamB	1			ava-zwamB
+avas	1			ava/s
+avasalavi	2		avasalavi	ava-salavi
+avasavi	2		avasavi	ava-savi
+avAk	3	avAk	avAk	avAk
+avANnABi	2		avANnABi	avAN—nABi
+avAntarAm	1	avAntarAm		
+aviDA	2	aviDA		aviDA
+aviDinA	1			a-viDi—nA
+avimuKam	2		avimuKam	a-vimuKam
+avilambam	1			a-vilambam
+aviSaNkA	1			a-viSaNkA
+aviSezataH	1	aviSezataH		
+avihA	1	avihA		
+avfTA	2	avfTA		a-vfTA
+aSanEs	1		aSanEs	
+aSam	2	aSam		a/-Sam
+aSru	1		aSru	
+aSvimant	1		aSvimant	
+azwakftvas	1			azwa—kf/tvas
+azwaDA	3	azwaDA	azwaDA/	azwa—DA/
+azwAdaSaDA	2		azwAdaSaDA	azwA—da°Sa-DA
+as	1		as	
+asaMdeham	1		asaMdeham	
+asaMprati	2		a/saMprati	a/-saMprati
+asakft	3	asakft	asakft	a-sakft
+asakftm	1		asakftm	
+asadyas	2	asadyas		a-sadyas
+asamyak	2		asamyak	a-samyak
+asaScatA	1			a-saSca/tA
+asADu	1			a-sADu/
+asADunA	1			a-sADu/nA
+asAmi	2		a/sAmi	a/-sAmi
+asAmim	1		a/sAmim	
+asAmnA	1			a-sA°mnA
+astA	2		a/stA	a/stA
+asti	2	asti		asti
+astu	1	astu		
+astuvo	1		astuvo	
+asTA	2		asTA/	asTA/
+asTI	1		asTI	
+asmatrA	3	asmatrA	asmatrA/	asma—trA/
+asmadriaYc	1		asmadri/aYc	
+asmadryak	1			asmadrya^k
+asmi	1	asmi		
+asmfti	2		a/smfti	a/-smfti
+asyasi	2		asyasi	asy-asi
+aha	2	aha		a/ha
+aharahar	1			a/har—ahar
+ahardivi	1			a/har—divi
+ahahA	1			ahahA
+ahAvas	1			ahA/vas
+ahe	2	ahe		ahe
+aho	2	aho		aho
+A	2		A^	A
+AkIm	2	AkIm		A/-kIm
+Ake	3	Ake	Ake	Ake/
+AklI	3	AklI	AklI	A-klI
+AgrahAyaRi	1			AgrahAyaRi
+AjAnu	2	AjAnu		A-jAnu
+Aw	1			Aw
+AQyapadi	2		AQyapadi	AQya—padi
+At	3	At	A/t	A/t
+AtamAm	1	AtamAm		
+Atas	1		Atas	
+AtizWadgu	3	AtizWadgu	AtizWadgu	A-tizWad-gu
+Atfpti	2		Atfpti	A-tfpti
+AtmanA	1	AtmanA		
+AtmI	1		AtmI	
+AdaDIci	2		AdaDIci	A-daDIci
+AdA	1		A dA	
+AdehadAham	2		AdehadAham	A-deha-dAham
+AdO	1			AdO
+ADI	1		ADI	
+AnABi	2		AnABi	A-nABi
+Anuzak	3	Anuzak	Anuza/k	Anuza/k
+Anuzaj	1	Anuzaj		
+ApAtataH	1	ApAtataH		
+ApArzRi	2		ApArzRi	A-pArzRi
+Apfk	2		Apf/k	A-pf/k
+Apfc	1	Apfc		
+Abarham	1			A-barham
+Am	2	Am		A/m
+Ama	2		Ama	Ama
+AmuKam	1			A-muKam
+Ayuzak	2		Ayuza/k	Ayu—za/k
+Aye	1	Aye		
+ArAt	2	ArAt		ArA/t
+Are	3	Are	Are/	Are/
+Arta	1		A/rta	
+ArvAk	1	ArvAk		
+Alambam	1			A-lambam
+Alokin	1		°Alokin	
+Avarham	1			A-varham
+AvAriDi	2		AvAriDi	A-vAriDi
+Avis	3	Avis	Avi/s	Avi/s
+AvistarAm	2	AvistarAm		Avis—tarA/m
+ASiKam	2		ASiKam	A-SiKam
+ASIyas	1		ASIyas	
+ASu	1			ASu/
+ASumat	2	ASumat		ASu—ma/t
+As	1			As
+AsaMtati	1		AsaMtati	
+Asakti	1			A-sakti/
+AsaktO	1		AsaktO	
+AsamApti	2		AsamApti	A-samApti
+AsAt	2		AsA/t	AsA/t
+Asfzwi	2		Asfzwi	A-sfzwi
+AsTI	1		AsTI	
+Aha	2	Aha		Aha
+Ahalak	1			Aha/lak
+Aho	2	Aho		A/ho
+Ahosvit	1			Aho—svit
+itaraTA	3	itaraTA	itara/TA	i-tara/—TA
+itarad	2		itarad	i/-tarad
+itaredyuH	1	itaredyuH		
+itaredyus	2		itaredyus	itare-dyus
+itas	3	itas	ita/s	i-ta/s
+iti	3	iti	i/ti	i/ti
+itipARini	2		itipARini	iti—pARini
+itihari	2		itihari	iti—hari
+itomuKam	1			ito—muKam
+itthA	0			
+itTA	3	itTA	itTA/	itTA/
+ityevamAdi	1			ity-evam-Adi
+id	2	id		i/d
+idam	1			ida/m
+idA	3	idA	idA/	i-dA/
+idAnIm	3	idAnIm	idA/nIm	i-dA/nIm
+idDA	2	idDA	idDA	
+imaTA	3	imaTA	ima/TA	ima/TA
+iva	3	iva	iva	iva
+ivam	1		ivam	
+izitatvatA	1			izita—tva/tA
+izwvA	1			izwvA
+is	2	is		is
+iha	3	iha	iha/	iha/
+IH	1	IH		
+Iti	2		Iti	Iti
+Im	2	Im		Im
+Ira	1			Ira
+IraH	1	IraH		
+Irma	1			Irma/
+Iz	1			Iz
+Izat	3	Izat	Iza/t	Iza/t
+uka	1			uka
+uccakEH	1	uccakEH		
+uccakEs	2		uccakEs	uccakEs
+uccA	2	uccA		uccA/
+uccI	1		uccI	
+uccEH	1	uccEH		
+uccEs	2		uccEs	uccE/s
+uccEstamAm	3	uccEstamAm	uccEstamAm	uccEs—tamAm
+uccEstarAm	1			uccEs—tarAm
+ut	2	ut		ut
+uta	2	uta		uta/
+uttarA	2		uttarA/	uttarA
+uttarAm	1		uttarA/m	
+uttarAhi	3	uttarAhi	uttarA/hi	uttarA/hi
+uttaredyuH	1	uttaredyuH		
+uttaredyus	2		uttaredyu/s	uttare-dyu/s
+utsargataH	1	utsargataH		
+ud	1	ud		
+udak	1		udak	
+udaSru	1			ud-aSru
+udApiam	1		udApi/am	
+udfci	1			ud-f/ci
+uddeSataH	1	uddeSataH		
+upa	2	upa		u/pa
+upagiri	1			upa-giri
+upagu	2	upagu		upa-gu
+upaguru	2		upaguru	upa-guru
+upajAnu	2		upajAnu	upa-jAnu
+upadfzad	1			upa-dfzad
+upaDenu	2		upaDenu	upaDenu
+upanadi	2		upanadi	upa-nadi
+upanABi	1		upanABi	
+upanIvi	1		upanIvi	
+upapayoDi	1		upapayoDi	
+upaprAtar	1		upaprAtar	
+upaBEmi	1		upaBEmi	
+upamA	2		upamA/	upamA/
+upamAm	2		upamA/m	upamA/m
+upamuKam	2		upamuKam	upa-muKam
+uparatAti	2	uparatAti		upara/—tAti
+upari	3	upari	upari	upa/ri
+uparijAnu	2		uparijAnu	upari—jAnu
+uparinABi	2		uparinABi/	upari—nABi/
+upariprut	1		uparipru/t	
+upariBUmi	2		upariBUmi/	upari—BUmi/
+upavedi	2		upavedi	upavedi
+upaSiras	2		upaSiras	upa-Siras
+upazwut	2	upazwut	upazwut	
+upasaKi	1		upasaKi	
+upasapatni	2		upasapatni	upa-sapatni
+upasamit	1			upa-samit
+upasi	1	upasi		
+upasinDu	1		upasinDu	
+upA	1			upA
+upAMSu	2	upAMSu		upAMSu
+upAgni	1		upAgni	
+upAli	1		upAli	
+ubhayatra	0			
+uBayataH	1	uBayataH		
+uBayaTA	3	uBayaTA	uBaya/TA	uBaya/TA
+uBayadyus	2		uBayadyu/s	uBaya—dyu/s
+uBayAkarRi	1			uBayA—karRi
+uBayAYjali	1			uBayA—°Yjali
+uBayAdanti	1			uBayA—danti
+uBayApARi	1			uBayA—pARi
+uBayAbAhu	1			uBayA—bAhu
+uBayAhasti	2		uBayAhasti/	uBayA—hasti/
+uBayedyus	2		uBayedyus	uBaye-dyus
+uBAkarRi	1			uBA—karRi
+uBAYjali	1			uBA—°Yjali
+uBAdanti	1			uBA—danti
+uBApARi	1			uBA—pARi
+uBAbAhu	1			uBA—bAhu
+uBAhasti	1			uBA—hasti
+um	2	um		um
+uras	1			u/ras
+urI	2		urI	urI
+uru	1			uru/
+uruDA	3	uruDA	uruDA	uruDA
+uve	1			uve/
+uSanA	2	uSanA		uSa/nA
+uzA	2		uzA	uzA/
+uzRI	1		uzRI	
+usvit	1	usvit		
+UnI	1		UnI	
+Um	2	Um		Um
+UrI	2		UrI	UrI
+UrDvaMjAnu	1		UrDvaMjAnu	
+UrDvaTA	2		UrDva/TA	UrDva/TA
+UrDvam	1			UrDva/m
+fkCas	1			fk—Cas
+fju	1			fju/
+fjuDA	3	fjuDA	fjuDA/	fju—DA/
+fjU	1		fjU	
+fRI	1		fRI	
+ftam	2		fta/m	fta/m
+ftuTA	2	ftuTA		ftuTA/
+ftuSaMs	1		ftuSa/Ms	
+fte	2	fte		fte/
+fteyajYam	2		fteyajYa/m	fte—yajYa/m
+fDak	1			f/Dak
+fDajk	1	fDaj(k)		
+ekatra	3	ekatra	ekatra	ekatra
+ekadA	3	ekadA	ekadA	ekadA
+ekaDA	3	ekaDA	ekaDA/	ekaDA/
+ekapadi	2		ekapadi	eka—°padi
+ekapari	2		ekapari	eka—pari
+ekaSataDA	2		ekaSataDA/	eka—Sata—DA
+ekaSruti	1		ekaSruti	
+ekaSrutitA	1		ekaSrutitA	
+ekaSrutim	1		ekaSrutim	
+ekAdaSaDA	2		ekAdaSaDA/	ekAdaSaDA/
+ekI	1		ekI/	
+eji	1	eji		
+etad	1			eta/d
+etadavaDi	1			etad—avaDi
+etarhi	2	etarhi		eta/rhi
+etAvacCas	2		etAvacCa/s	etAvac—Ca/s
+etAvadDA	2		etAvadDA/	etAvad—DA/
+ed	1			e/d
+enA	3	enA	enA/	enA/
+eva	3	eva	eva	eva/
+evaTA	2		eva/TA	eva/TA
+evam	3	evam	eva/m	eva/m
+EH	1	EH		
+Ezamas	3	Ezamas	Eza/mas	Eza/mas
+oGI	1		oGI	
+odanaprati	2		odanaprati	odana—prati
+om	2	om		o/m
+ozam	3	ozam	oza/m	oza/m
+Om	2	Om		Om
+ka	1			ka/
+kacAkaci	3	kacAkaci	kacAkaci	kacA-kaci
+kaccit	1	kaccit		
+kaw	1			ka/w
+kawakawA	1			kawakawA
+kawu	1		kawu	
+kaqat	1			kaqat
+kaRaSaH	1	kaRaSaH		
+kaRIyaMs	1		kaRIyaMs	
+kaRe	3	kaRe	kaRe	kaRe
+kaRWataH	1	kaRWataH		
+kataraTA	2		kataraTA	kataraTA
+katikftvas	3	katikftvas	katikftvas	kati—kftvas
+katiDA	3	katiDA	katiDA/	katiDA/
+kaTaMtarAm	1			kaTaM—tarAm
+kaTantarAm	1		kaTantarAm	
+kaTA	2		kaTA/	kaTA/
+kaTI	1		kaTI	
+kad	2	kad		ka/d
+kadA	2	kadA		kadA/
+kadAcit	0			
+kadApi	0			
+kam	2	kam		ka/m
+kampAkaH	1	kampAkaH		
+kayA	2		ka/yA	ka/yA
+kar	1		kar	
+karagrAham	1			kara—grAham
+karI	1		karI	
+karRAkarRi	3	karRAkarRi	karRAkarRi	karRAkarRi
+kartuM	1		kartuM	
+karhi	3	karhi	ka/rhi	ka/rhi
+karhicit	1	karhicit		
+karhim	1		ka/rhim	
+kalli	2	kalli		kalli
+kAYci	1			kAYci
+kAt	3	kAt	kAt	kAt
+kAm	2	kAm		kAm
+kAme	1			kA/°me
+kAryataH	1	kAryataH		
+kAlI	1		kAlI	
+kAle	1			kAle/
+kAvelA	1		kA velA	
+kiMtamAm	1			kiM—tamAm
+kiMtarAm	1			kiM—tarAm
+kiMtu	1		kiM tu	
+kikirA	1			kikirA/
+kikkiwA	1			kikkiwA/
+kiRI	1		kiRI	
+kim	2	kim		ki/m
+kiyat	2		ki/yat	ki/yat
+kiyAnarTaH	1		kiyAnarTaH	
+kiyeDA	1		kiyeDA/	
+kila	2	kila		ki/la
+kis	1			ki/s
+kIm	1			kIm
+ku	1	ku		
+kukkuw	1			kukkuw
+kutas	3	kutas	ku/tas	ku/tas
+kutastarAm	2		kutastarAm	kutas—tarAm
+kutra	2	kutra		ku/tra
+kuntAkunti	2		kuntAkunti	kuntA-kunti
+kum	1			kum
+kulataH	1	kulataH		
+kuvid	2		kuvi/d	kuvi/d
+kuSalaMman	1		kuSalaM man	
+kuz	1			kuz
+kuha	2		ku/ha	ku/ha
+kuhacid	1			ku/ha—cid
+kuhu	1			kuhu
+kuhU	1			kuhU
+kuhUs	1			kuhUs
+kU	2		kU/	kU/
+kUcid	1			kU—cid
+kUwaSaH	1	kUwaSaH		
+kUwI	1		kUwI	
+kUpat	1			kUpat
+kfte	1			kfte
+kftvaH	1		kf/tvaH	
+kftvas	3	kftvas	kf/tvas	kf/tvas
+kfS	1			kfS
+kfSI	2		kfSI	kfSI
+kF	1			kF
+kena	2	kena		ke/na
+keSagrAham	1			keSa—grAham
+keSAkeSi	3	keSAkeSi	keSAkeSi	keSA-keSi
+ko	1			ko
+kowiSaH	1	kowiSaH		
+koRAkoRi	3	koRAkoRi	koRAkoRi	koRA-koRi
+kopAkopi	2		kopAkopi	kopA-kopi
+kolAkoli	2		kolAkoli	kolA-koli
+knUy	1			knUy
+kram	1			kram
+kramataH	1	kramataH		
+kramaSaH	1	kramaSaH		
+krARA	2		krARA/	krARA/
+krI	1			krI
+kliS	1			kliS
+klizwaM	1		klizwaM	
+kva	2	kva		kva^
+kzaRezu	1			kzaRezu
+kzatraM	1		kzatraM	
+kzapaH	1			kza/paH
+kzapA	1			kzapA/
+kzamA	1			kzamA/
+kziprA	1			kziprA/
+kzIraleham	1			kzIra—leham
+kzu	1			kzu
+kzuD	1			kzuD
+kzepIyaMs	1		kze/pIyaMs	
+kzepIyas	1			kze/pIyas
+kzepRA	1			kze°pRA
+kzemEs	1			kze/mEs
+kzrOm	1			kzrOm
+khalu	0			
+Kaw	1			Kaw
+KawwakaH	1	KawwakaH		
+KaqgAKaqgi	2		KaqgAKaqgi	Kaq—°gA-Kaqgi
+Kam	1			Kam
+Kampf	1		Kampf	
+KarI	1		KarI	
+KalI	2		KalI	KalI
+Kalu	2	Kalu		Ka/lu
+KAw	1			KAw
+KAwt	1	KAw(t)		
+KilI	2		KilI	KilI
+KilIkf	1			KilI—kf
+Kum	1			Kum
+gajI	1		gajI	
+gaR	1			gaR
+gaRakftvas	2		gaRakftvas	gaRa—kftvas
+gantum	1		gantum	
+gaBizak	2		gaBiza/k	gaBi-za/k
+gam	1		gam	
+gir	1		gir	
+gira	1		gira	
+girI	1		girI	
+guRataH	1	guRataH		
+guRI	1		guRI	
+guD	1			guD
+guP	1			guP
+gumP	1			gumP
+gurU	1		gurU	
+gurUm	1		gurUm	
+guluguDA	2		guluguDA	guluguDA
+gulUguDA	1		gulUguDA	
+guh	1			guh
+guhA	1			gu/hA
+gUQe	1			gUQe/
+gfD	1			gfD
+gfha	1		gfha	
+gfhI	1		gfhI	
+gE	1			gE
+go	1		go	
+godoham	1			go—doham
+gopitum	1		gopitum	
+goSe	1		goSe	
+gose	1			go—se
+gOrI	1		gOrI	
+graT	1			graT
+grAham	2	grAham		grAham
+glO	1		glO	
+Ga	1			Ga
+GanamA	1		Gana/mA	
+GanA	1		GanA/	
+GanAs	1		GanAs	
+GanI	2		GanI	GanI
+Gum	1			Gum
+GumaGumA	1			GumaGumA
+GuraGurA	1			GuraGurA
+GuruGurA	1			GuruGurA
+GfN	1			Gf/N
+GfRA	1			GfRA/
+Gfz	1			Gfz
+GrA	1			GrA
+GrAM	1			GrA/M
+ca	1			ca
+cakzuzwas	2		cakzuzwa/s	cakzuz—wa/s
+cakzU	1		cakzU	
+cawacawA	1			cawacawA
+cawat	1			cawat
+cawaditi	1			cawad-iti
+caRqi	1		caRqi	
+caturdikzu	1			catur—dikzu
+caturDA	2		caturDA/	catur—DA/
+catus	2		catu/s	catu/s
+catusm	1		catu/sm	
+cana	2	cana		cana/
+camat	2		camat	camat
+camI	1		camI	
+car	1		car	
+calI	1		calI	
+cAy	1			cAy
+cAru	2		cA/ru	cA/ru
+ci	1		ci	
+cikitvit	2		cikitvi/t	cikitvi/t
+cit	1			cit
+citraDA	2		citraDA	citra/—DA
+cid	2		cid	cid
+cire	1			cire/
+ciScA	1			ciScA/
+cIt	1			cIt
+cecced	1			cec-ced
+cet	0			
+cetasi	1		cetasi	
+cetI	2		cetI	cetI
+ced	1	ced		
+cOrI	2		cOrI	cOrI
+CanacCan	1	CanacCan		
+Cambaw	2		Camba/w	Camba/w
+jaM	1		jaM	
+jakz	1			jakz
+jagDvA	1			jagDvA/
+jajjalA	2		jajjalA	jajjalA
+jaYjaRA	1		jaYjaRA	
+jaqI	2		jaqI	jaqI
+janat	1			ja/nat
+janavati	1			jana—va°ti
+januzA	1			janu/zA
+januzAnDaH	1	januzAnDaH		
+jap	1			jap
+jahA	1			jahA/
+jAgfvi	1			jA/gfvi
+jAtu	2	jAtu		jA/tu
+jAnvantarA	1			jA—°nv-antarA
+jihmaM	1		jihmaM	
+jIv	1		jIv	
+jIvagrAham	1			jIva—grA/ham
+jfmB	1			jfmB
+jYAnataH	1	jYAnataH		
+jyA	1			jyA
+jyok	2	jyok		jyo/k
+jyoktamAm	2		jyoktamA/m	jyok—tamA/m
+Jagagiti	1	Jaga(gi)ti		
+Jagiti	1		Jagiti	
+JaN	1			JaN
+Jawiti	3	Jawiti	Jawiti	Jaw-iti
+JaRiti	1		JaRiti	
+JAM	1			JAM
+wasat	1			wasat
+wasiti	1			was-iti
+wAt	1			wAt
+ta	1		ta	
+taqataqiti	1			taqataq-iti
+taqit	1			taqi/t
+taqiti	1			taq-iti
+tat	0			
+tatas	3	tatas	ta/tas	ta/tas
+tatiDA	2		tatiDA/	tati—DA/
+tatpARini	2		tatpARini	tat—pARini
+tatra	2	tatra		ta/tra
+tathA	0			
+taTA	3	taTA	ta/TA	ta/-TA
+taTApi	1		taTApi	
+tad	2		tad	tad
+tada	1		tada°	
+tadanu	2		tadanu	tad—anu
+tadanukfti	2		tadanukfti	tad—anukfti
+tadapas	1			ta/d—apas
+tadavaDi	2		tadavaDi	tad—avaDi
+tadahar	1			ta/d-a/har
+tadA	3	tadA	tadA/	tadA/
+tadAdi	2		tadAdi	tad—Adi
+tadAnIm	3	tadAnIm	tadA/nIm	tadA/nIm
+tadvA	2		tadvA	tad—vA
+tanA	2		tanA/	ta/nA
+tanU	1		tanU	
+tamAm	2		tamAm	tamAm
+tara	1			tara
+tarasA	1			ta/rasA
+tarAm	1		tarAm	
+tarhi	3	tarhi	ta/rhi	ta/rhi
+talataH	1	talataH		
+talAtali	2		talAtali	talA-tali
+tava	1		tava	
+tavizIBis	1			ta/vizIBis
+tas	1		tas	
+taLit	1		taLi/t	
+tAjak	2		tAja/k	tAja/k
+tAjat	3	tAjat	tAja/t	tAja/t
+tAt	2		tA/t	tA/t
+tAdItnA	2		tAdI/tnA	tAdI/tnA
+tAdfk	1			tAdfk
+tAdfS	1		tAdf/S	
+tAlI	2		tAlI	tAlI
+tAvacCas	2		tAvacCa/s	tAvac—Ca/s
+tAvajjyok	2		tA/vajjyok	tA/vaj-jyok
+tAvat	2		tA/vat	tA/vat
+tAvatA	1			tA/vatA
+tAvati	1			tA/vati
+tAvadDA	3	tAvadDA	tAvadDA	tAvad—DA
+tikzRIyaMs	1		ti/kzRIyaMs	
+tiraScatA	2		tiraSca/tA	tiraSca/—tA
+tiraScaTA	2		tiraSca/TA	tiraSca/—TA
+tiraScA	1			ti°raScA/
+tiraSci	1			ti°raSci/
+tiras	2	tiras		tira/s
+tiryak	3	tiryak	tirya/k	tirya/k
+tilaSaH	1	tilaSaH		
+tizWadgu	3	tizWadgu	tizWadgu	tizWad—gu
+tIra	1			tIra
+tu	3	tu	tu	tu/
+tum	1			°tum
+tulyaSaH	1	tulyaSaH		
+tURI	2		tURI	tURI
+tUyaMm	1		tU/yaMm	
+tUrA	1			tUrA
+tUrBis	1			tUrBis
+tUla	1			tU/la
+tUladAham	1			tUla—dAham
+tUzRIkAm	1			tUzRIkAm
+tfRI	1		tfRI	
+tftIyAm	1		tftIyAm	
+tfpat	1			tfpa/t
+tfz	1			tfz
+tfzu	2		tfzu/	tfzu/
+tfh	1			tfh
+tena	2		te/na	te/na
+tman	1			tma/n
+tmanA	1			tma/nA
+tyajAmi	1		tyajAmi	
+tyad	1			tya/d
+trawat	1			trawat
+trayaDA	1		trayaDA/	
+tras	1			tras
+trA	1		trA	
+tri	1		tri°	
+trikftvas	2		trikftvas	tri—kftvas
+trikftvasm	1		trikftvasm	
+triguRA	1		triguRA	
+triDA	3	triDA	tri/DA	tri/—DA
+tripacCas	2		tripacCas	tri—pacCas
+triviDA	1		triviDA	
+trivizwi	2		trivizwi/	tri—vizwi/
+triSasm	1		triSasm	
+trizazwiDA	2		trizazwiDA	tri/—zazwi—DA
+tris	3	tris	tri/s	tri/s
+treDA	3	treDA	treDA	treDA/
+treDAm	1		treDA/m	
+trE	1			trE
+tryavaras	1		tryavaras	
+tryaham	1			try—aha/m
+tvad	1		tvad	
+tvadtvad	1		tvad — tvad	
+tvadrik	2		tvadri/k	tvadri/k
+tvI	1		tvI/	
+tvE	1			tvE/
+TUt	1			TUt
+TUTU	1	TUTU		
+TETE	1	TETE		
+daMS	1			daMS
+daMsu	2		da/Msu	da/Msu
+dakziRataH	1	dakziRataH		
+dakziRatrA	2		dakziRatrA/	dakziRa—trA/
+dakziRA	2	dakziRA		dakziRA/
+dakziRAhi	3	dakziRAhi	dakziRAhi	dakziRAhi
+dakziRit	2		dakziRi/t	dakzi°Ri/t
+dakziREH	1			da/kziREH
+dakziREs	1		dakziREs	
+daRqAdaRqi	3	daRqAdaRqi	daRqAdaRqi	daRqA-daRqi
+dadadas	1			dadada/s
+dadA	1			dadA
+daDfk	2		daDf/k	daDf/k
+dantAdanti	2	dantAdanti	dantAdanti	
+dam	1			dam
+darh	1		darh	
+dalaSaH	1	dalaSaH		
+dalI	1		dalI	
+davIyaMs	1		da/vIyaMs	
+davIyas	1			da/vIyas
+daSaDA	3	daSaDA	daSaDA/	daSa—DA/
+dAyI	1		dAyI	
+dAsI	1		dAsI	
+dinI	1		dinI	
+div	1			div
+divA	3	divA	di/vA	di/vA
+divitmatA	1			div—i/t°matA
+diS	1		diS	
+dIkz	1			dIkz
+duH	0			
+duHKam	2		duHKam	duHKam
+duHKA	1		duHKA	
+duHzWu	1			duH—zWu
+duHsTaM	1		duHsTaM	
+dur	1	dur		
+durAhA	1			dur—A/hA
+duvoyu	1			duvo—yu/
+duzWu	1	duzWu		
+dus	1			dus
+dUtI	1		dUtI	
+dUrataH	1	dUrataH		
+dUrI	2		dUrI	dUrI
+dUre	1			dUre/
+dfQI	2		dfQI	dfQI
+dfn	1			dfn
+dfzwi	1		dfzwi°	
+devatA	2		deva/tA	deva/tA
+devatrA	2		devatrA/	deva—trA/
+devI	1		devI	
+dEva	1			dE/va
+doSA	0			
+dozA	2	dozA		dozA/
+dozAm	1			dozA/m
+dyugat	2		dyuga/t	dyu—ga/t
+dyut	1			dyut
+dyumat	2		dyuma/t	dyu—ma/t
+dyE	1			dyE
+dymat	1		dyma/t	
+dravut	1		dravut	
+drahyat	2		drahya/t	drahya/t
+drAk	3	drAk	drAk	drAk
+drAGmA	2		drAGmA/	drAGmA/
+drAGmAm	1		drAGmA/m	
+dru	1			dru
+druh	1			druh
+dvandvaSaH	1	dvandvaSaH		
+dvAdaSaDA	2		dvAdaSaDA/	dvA-daSa—DA/
+dvi	1		dvi°	
+dviguRA	2		dviguRA	dvi—gu°RA
+dvitA	2		dvitA/	dvitA/
+dvitris	2		dvitris	dvi—tris
+dvidaRqi	1		dvidaRqi	
+dviDA	3	dviDA	dvi/DA	dvi/—DA
+dvipari	2		dvipari	dvi—pari
+dvibarhas	2		dviba/rhas	dvi—ba/rhas
+dvibarhAs	1			dvi—ba/rhAs
+dvimusali	2		dvimusali	dvi—musali
+dviviDA	2		dviviDA	dvi—viDA
+dvizwamAm	1			dviz—wamAm
+dvis	3	dvis	dvi/s	dvi/s
+dvisaptaDA	2		dvisaptaDA	dvi—sapta-DA
+dvihavis	1		dvihavis	
+dveDA	3	dveDA	dveDA/	dve-DA/
+dvyaham	1			dvy—aham
+dhik	0			
+Dakit	1			Dakit
+Dagiti	2	Dagiti		Dag-iti
+Dam	1			Dam
+DamaDamA	1			Dama-DamA
+DarmataH	1	DarmataH		
+DavARakaH	1	DavARakaH		
+DAv	1			DAv
+Dik	2	Dik		Dik
+DIra	1		DIra°	
+DIrI	1		DIrI	
+DurA	2		DurA/	DurA/
+DUnanaH	1	DUnanaH		
+DUsI	1		DUsI	
+Df	1			Df
+Dfzat	1		Dfza/t	
+DfzatA	2		DfzatA/	Dfza/tA/
+Dfzant	1		Dfza/nt	
+DfzitA	2		DfzitA/	DfzitA/
+DfzRu	1			DfzRu/
+De	1			De
+DyE	1			DyE
+DvaMs	1			DvaMs
+DvaMsakalA	1		DvaMsakalA	
+na	2		na	na/
+nak	1			na/k
+nakim	1			na—kim
+nakis	2		na/kis	na/—kis
+nakutaScid	1			na—kutaScid
+naktaM	1			na/ktaM
+naktam	3	naktam	na/ktam	na/ktam
+naKAnaKi	3	naKAnaKi	naKAnaKi	naKA-naKi
+naY	2	naY		naY
+natamAm	2		natamA/m	na—tamA/m
+natarAm	2		natarA/m	na—tarA/m
+nadI	1			nadI/
+nanu	3	nanu	nanu/	na-nu/
+namas	2	namas		na/mas
+narI	1		narI	
+nard	1			nard
+narmaRA	1			narmaRA
+narman	1			narman
+navakftvas	2		navakftvas	nava—kftvas
+navatiDA	1			navati—DA
+navaDA	3	navaDA	navaDA/	nava—DA/
+navaSaH	1	navaSaH		
+navI	1		navI	
+navIyas	2		na/vIyas	na/vIyas
+navIyasA	2		na/vIyasA	na/vIyasA
+navyas	1			na/vyas
+navyasA	1			na/vyasA
+naS	1			naS
+nah	1			nah
+nahi	2	nahi		na-hi/
+nA	1		nA/	
+nAgI	1		nAgI	
+nAT	1			nAT
+nAnA	2	nAnA		nA/nA
+nAma	3	nAma	nA/ma	nA/ma
+nAmagrAham	1			nAma—grA/ham
+nAmataH	1	nAmataH		
+nAmaTA	2		nAma/TA	nAma/TA
+nAmaDA	1	nAmaDA		
+nAman	1		nAman	
+nAmnA	1			nA/mnA
+nAsti	1	nAsti		
+ni	3	ni	ni	ni-
+niH	0			
+niHzku	1			niH-zku
+niHspfham	1			niH—spfham
+nikazA	3	nikazA	nikazA	ni-°kazA
+nikftamati	1			ni-°kfta—mati
+niRik	2		niRi/k	ni-Ri/k
+niRikm	1		niRi/km	
+nitarAm	3	nitarAm	nitarA/m	ni-tarA/m
+nitikti	2		ni/tikti	ni/-tikti
+nityadA	3	nityadA	nityadA	nitya—dA
+nind	1			nind
+nimnEs	1			nimnE/s
+nir	2	nir		nir-
+niraham	1			nir—aham
+nirAlambam	1			nir—Alambam
+nirloc	1			nir-loc
+nirvEratA	1		nirvEratA	
+nivatA	1			ni-vatA
+nivanA	2		nivanA/	ni-vanA/
+niS	1			niS-
+niSa	1			niSa
+niz	1			niz-
+nizad	1			ni-zad
+niziD	1			ni-ziD
+nizev	1			ni-zev
+nizkulA	1		nizkulA	
+nizpattrA	1		nizpattrA	
+nis	3	nis	ni/s	ni/s
+nisarC	1		nis-arC	
+nI	1			nI
+nIcakEs	3	nIcakEs	nIcakEs	nIcakEs
+nIcA	3	nIcA	nIcA/	nIcA/
+nIcI	1		nIcI	
+nIcEs	3	nIcEs	nIcE/s	nIcE/s
+nIcEstarAm	1			nIcEs—tarAm
+nu	2	nu		nu/
+nud	1			nud
+nU	1			nU/
+nUnam	3	nUnam	nUna/m	nUna/m
+nft	1			nft
+nedIyaMs	1		ne/dIyaMs	
+nedIyas	1			ne/dIyas
+neza	1			ne/za
+nezatamEs	1			neza-tamEs
+nEkaDA	2	nEkaDA	nEkaDA	
+no	2	no	no/	
+not	1		no/t	
+noDA	3	noDA	noDA	noDA
+nO	1		nO	
+nyak	2	nyak		ny-a^k
+nyakniak	1		nya^k ni/ak	
+nyAyataH	1	nyAyataH		
+nyUNKam	1			nyUNKam
+nvE	2		nvE/	nvE/
+paNktiSaH	1	paNktiSaH		
+pac	1			pac
+pacaritum	1		pacaritum	
+pacCas	3	pacCas	pacCa/s	pac—Cas
+paYcaDA	3	paYcaDA	paYcaDA/	paYca—DA/
+paYcavft	1			paYca—vft
+paYcaSaH	1	paYcaSaH		
+paYcASadDA	2		paYcASadDA	paYcASad—DA
+pawapawA	1	pawapawA		
+pawu	1		pawu	
+pawU	1		pawU	
+paW	1			paW
+paRI	1		paRI	
+pat	1			pat
+patIyas	2		patIyas	pa/tIyas
+pad	1			pad
+padaSaH	1	padaSaH		
+padAti	1		padAti°	
+padI	1		padI	
+padmaSaH	1	padmaSaH		
+paraHSvas	2		paraHSvas	paraH—Svas
+paraTA	1	paraTA		
+paramataH	1	paramataH		
+paramparA	1			para—m-parA
+paraSvas	2		paraSvas	para—Svas
+paras	2	paras		para/s
+parastarAm	1			paras—tarA/m
+parasparam	1			paras-param
+parA	3	parA	pa/rA	pa/rA
+parAk	1			parAk
+parAN	1			parAN
+parANmuKam	1			parAN—muKam
+parAcEs	2		parAcE/s	parAcE/s
+parAri	3	parAri	parAri	parAri
+pari	2	pari		pari-
+paricCad	1			pari-cCad
+paricCid	1			pari-cCid
+parijman	1			pa/ri-jman
+parinABi	2		parinABi	pari-nABi
+parinirRij	1			pari-nir-Rij
+parinizad	1			pari-ni-zad
+parimuKam	3	parimuKam	parimuKam	pari-muKam
+parivizRu	2		parivizRu	pari-vizRu
+parizic	1			pari-zic
+parizvaj	1			pari-zvaj
+parihanu	1		parihanu	
+parihanum	1		parihanum	
+parIRasA	1			pa/rIRasA
+parImaRi	1			pa/rI°maRi
+parut	2	parut		parut
+pare	2		pare/	pare/
+paredyavi	2		paredyavi	pare—dyavi
+paredyus	1			pare—dyus
+parobAhu	1		parobAhu/	
+pard	1	pard		
+paryak	3	paryak	paryak	pary-ak
+paryAyaSaH	1	paryAyaSaH		
+pavaH	1	pavaH		
+paSu	2	paSu		paSu
+paSU	1		paSU	
+paScA	2		paScA/	paScA
+paScAt	2	paScAt		paScA/t
+paScAdahas	2		paScAdahas	paScAd—ahas
+paScimA	1		paScimA	
+pAkatrA	2		pAkatrA/	pAka—trA/
+pAw	2	pAw		pAw
+pARigrAham	1			pARi—grA°ham
+pAda	1			pAda
+pAdEH	1			pAdEH
+pAre	1	pAre		
+pAresinDu	2		pAresinDu	pAre—sinDu
+piz	1			piz
+pIqA	1			pIqA
+puwI	2		puwI	puwI
+punaH	0			
+punar	3	punar	pu/nar	pu/nar
+punarm	1		pu/narm	
+punastarAm	2		punastarAm	punas—tarAm
+puras	3	puras	puras	pura/s
+purA	2	purA		purA/
+purARavatm	1		purARava/tm	
+puru	2		puru/	puru/
+purutrA	2		purutrA/	puru—trA/
+puruzatA	1			puruza/—tA
+puruzatrA	2		puruzatrA/	puruza—trA/
+purU	1		pu/rU/	
+purUruRA	1		purUru/RA	
+pUj	1			pUj
+pUt	2	pUt		pUt
+pUrvaTA	2		pUrva/TA	pUrva/—TA
+pUrviam	1		pUrvia/m	
+pUrvedyus	2	pUrvedyus		pUrvedyu/s
+pfTak	2	pfTak		pf/Tak
+pfTakat	2		pfTakat	pfTakat
+pfTu	2		pfTu/	pfTu/
+pfzwvA	1			pfzwvA
+peSikA	1	peSikA		
+peSI	2		peSI	peSI
+pezI	2		pezI	pezI
+pyAw	2	pyAw		pyAw
+pra	3	pra	pra	pra/
+prakAmataH	1	prakAmataH		
+pragrAham	1			pra-°grAham
+pracatA	2		praca/tA	pra-°ca/tA
+pracCo	1			pra-cCo
+praC	1			praC
+praRind	1			pra-Rind
+pratanu	1			pra-tanu
+pratanU	1		pratanU	
+pratamAm	3	pratamAm	pratamA/m	pra-tamA/m
+pratAm	1			pra-°tAm
+prati	3	prati	prati	pra/ti
+pratigu	2		pratigu	prati—gu
+pratigfham	2		pratigfham	prati—gfham
+pratigeham	2		pratigeham	prati—geham
+praticiti	2		praticiti	prati—citi
+pratitarAm	2		pratitarA/m	prati—tarA/m
+pratitaru	2		pratitaru	prati—taru
+pratideham	2		pratideham	prati—deham
+pratidvAri	1			prati—dvAri
+pratinadi	2		pratinadi	prati—nadi
+pratipatni	2		pratipatni	prati—patni
+pratipad	1			prati—pad
+pratipaSu	2		pratipaSu	prati—paSu
+pratiprARi	1		pratiprARi	
+pratimAtf	2		pratimAtf	prati—mAtf
+pratimuKam	1			prati—muKam
+pratimuhus	2		pratimuhus	prati—muhus
+pratiyoni	2		pratiyoni/	prati—yoni/
+pratiripu	2		pratiripu	prati—ripu
+prativi	1		prativi	
+prativizRu	2		prativizRu	prati—vizRu
+prativftti	2		prativftti	prati—vftti
+pratiSAKam	2		pratiSAKam	prati—SAKam
+pratihasti	2		pratihasti	prati—hasti
+pratnaTA	1			pratna/-TA
+pratyak	3	pratyak	pratya/k	praty-a/k
+pratyagni	2		pratyagni	praty—agni
+pratyarham	2		pratyarham	praty—arham
+pratyaham	1			praty—aham
+pratyAcCid	1			praty-A-cCid
+pratyAhuti	2		pratyAhuti	praty—Ahuti
+pratyudaDi	2		pratyudaDi	praty—udaDi
+pratyftu	2		pratyftu	praty—ftu
+praTamAham	1		praTamAha/m	
+pradivas	1			pra-di/vas
+pradivi	1			pra-di/vi
+prapadEs	1			pra/-padEs
+prapfTak	2		prapfTa/k	pra-pfTa/k
+prabAhuk	3	prabAhuk	prabA/huk	pra-bA/huk
+praBfti	2		praBfti	pra/-°Bfti
+pram	1			pram
+pramARataH	1	pramARataH		
+prayogataH	1	prayogataH		
+pravarham	1			pra-°va/rham
+pravAhikA	1			pra-°vAhikA
+pravi	1			pra-vi-
+pravicAraH	1	pravicAraH		
+praSAn	1			pra-SAn
+prasalavi	1			pra-salavi/
+prasAmi	2		prasAmi/	pra-sAmi/
+prAk	3	prAk	prA/k	prA/k
+prAktarAm	2		prAktarAm	prAk—tarAm
+prAgudak	1			prAg—udak
+prAN	2		prAN	prAN
+prANmuKam	2		prANmuKam	prAN—muKam
+prAcas	1			prAca/s
+prAcA	2		prAcA/	prAcA
+prAcEs	2		prAcE/s	prAcE/s
+prAjaruhA	1			prAjaruhA
+prARantaH	1	prARantaH		
+prAtar	3	prAtar	prAta/r	prAta/r
+prAdur	1			prAdu/r
+prAdus	2	prAdus	prAdu/s	
+prAdusm	1		prAdu/sm	
+prAntataH	1	prAntataH		
+prAptum	1		prAptum	
+prAyas	2	prAyas	prAyas	
+prAvis	1		prAvis	
+prASu	1		prASu/	
+prAsahA	1			prA—sa/°hA
+priyaMkar	1		priyaM kar	
+priyaDA	2		priyaDA/	priya—DA/
+prItamanas	1			prIta—manas
+prIti	1			prIti
+preRA	1			preRA/
+preDA	2		preDA/	preDA/
+premRA	1			premRA
+proccEs	2	proccEs	proccEs	
+plu	1			plu
+plugi	1			plugi
+psA	1			psA
+Paw	2	Paw		Pa/w
+Pat	1			Pat
+PalI	1		PalI/	
+PAw	2	PAw		PAw
+Puqut	2	Puqut		Puqut
+Put	1			Put
+PupPu	2	PupPu		PupPu
+PuPUt	1	Pu(PU)t		
+PumPuA	2	PumPuA		PumPuA
+Pew	1			Pew
+Pet	1			Pet
+baw	2		ba/w	ba/w
+baqA	1			baqA/
+bata	2	bata		bata
+banDU	1		banDU	
+bababA	1			bababA
+barhaRA	2		barhaRA	barha/RA
+balI	1		balI	
+balIyaMs	1		ba/lIyaMs	
+balIyas	1			ba/lIyas
+basri	2		ba/sri	ba/sri
+bahiHSri	2		bahi/HSri	bahi/H—Sri
+bahiHsadas	2		bahiHsadas	bahiH—sadas
+bahirgeham	2		bahirgeham	bahir—geham
+bahirjAnu	2		bahirjAnu	bahir—jAnu
+bahirDA	2		bahirDA/	bahir—DA/
+bahiryoni	2		bahiryoni/	bahir—yoni/
+bahirvedi	2		bahirvedi/	bahir—vedi/
+bahizkratu	2		bahizkratu	bahiz—kratu
+bahis	3	bahis	bahi/s	bahi/s
+bahIrajju	2		bahIrajju	bahI—rajju
+bahu	2		bahu	bahu/
+bahukftvas	1		bahukf/tvas	
+bahutaH	1	bahutaH		
+bahutarAm	2		bahutarAm	bahu—tarAm
+bahutrA	2		bahutrA/	bahu—trA/
+bahuTA	3	bahuTA	bahuTA	bahu—TA
+bahuDA	3	bahuDA	bahuDA/	bahuDA/
+bahuvrIhi	1		bahuvrIhi	
+bAQa	1			bAQa/
+bAD	1			bAD
+bAl	1			bA/l
+bAhAbAhavi	2		bAhAbAhavi	bAhA-bAhavi
+bAhutA	2		bAhu/tA	bAhu/—tA/
+bAhUbAhavi	3	bAhUbAhavi	bAhUbAhavi	bAhU-bAhavi
+bAhyAntar	1		bAhyAntar	
+bIjaruhA	1		bIjaruhA	
+bIjA	2		bIjA	bIjA
+buk	2	buk		buk
+buDe	1			buDe
+bunD	1	bunD		
+bfhat	1			bfha/t
+boDayitum	1		boDayitum	
+bhUyas	0			
+bho	0			
+Bakz	1			Bakz
+BakzU	1		BakzU/	
+BaYj	1			BaYj
+BaR	1			BaR
+BadrA	2		BadrA	BadrA
+BadrAs	1		BadrAs	
+Bara	1			Ba/ra
+Bartar	1		Bartar	
+BarBarA	2		BarBarA/	BarBarA
+Bala	3	Bala	Bala	Bala
+BavatA	1		BavatA	
+Bavati	1		Bavati	
+Bavatu	1		Bavatu	
+Bavant	1		Bavant	
+Bavet	1		Bavet	
+Basad	1			Basa/d
+BasmasA	1			BasmasA/
+BasmAnti	1		BasmAnti	
+BAgI	1		BAgI	
+BAjak	2	BAjak		BAjak
+BAz	1			BAz
+Bid	1			Bid
+BIma	1		BIma°	
+BIzA	2		BIzA/	BIzA/
+Buk	1			Bu/k
+Buj	1			Buj
+BujABuji	2		BujABuji	BujA-Buji
+Buvas	1			Bu/vas
+BUnA	1			BUnA/
+BUmnA	1			BUmnA
+BUyas	2		BUyas	BU/yas
+BUyasA	2		BUyasA	BU/yasA
+BUr	2	BUr		BU/r
+BUri	2		BUri	BU/ri
+Bfg	1	Bfg		
+BfSa	1		BfSa°	
+BfSI	1		BfSI	
+BEkzavatm	1		BEkzavatm	
+Bos	1	Bos		
+BraMS	1			BraMS
+BraMSakalA	1		BraMSakalA	
+Brajj	1			Brajj
+Bram	1			Bram
+maMhanA	2		maMha/nA	maMha/nA
+mak	1			mak
+makzU	2		makzU/	makzU/
+maNkzu	2	maNkzu		maNkzu
+majj	1			majj
+majmanA	2		majma/nA	majma/nA
+maYju	1		maYju	
+matI	1		matI	
+matojavan	1		matojavan	
+maTA	1			maTA
+madapawu	1			mada—pawu
+madrA	1		madrA	
+madriaYc	1		madri/aYc	
+madriadfk	1		madriadf/k	
+madrik	2		madri/k	madri/k
+madryak	1			madrya^k
+madryadrik	1			madryadrik
+madvatm	1		madvatm	
+maDudoham	1			maDu—doham
+maDyarAtrO	1			maDya—rAtrO
+maDyenadi	2		maDyenadi	maDye—nadi
+maDyevAri	2		maDyevAri	maDye—vAri
+maDyevArDi	2		maDyevArDi	maDye—vArDi
+mananA	2		mananA/	mananA/
+manasA	1			ma/nasA
+manasi	1		manasi	
+manastaH	1	manastaH		
+manAk	3	manAk	manAk	manAk
+manAnak	2		manAna/k	manAna/k
+manI	1		manI	
+manuzyat	2		manuzya/t	manuzya/t
+manuzyatrA	2		manuzyatrA/	manuzya—trA/
+manojavatA	1		manojavatA	
+mantrataH	1	mantrataH		
+mantravatm	1		mantravatm	
+mantrvt	1		mantrvt	
+mandaM	1		mandaM	
+manmalA	1		manmalA	
+mamat	2		ma/mat	ma/mat
+marU	1		marU	
+martyatrA	1			martya—trA/
+malmalA	1		malmalA	
+mav	1	mav		
+mavy	2	mavy		mavy
+mazmazA	1		mazmazA/	
+masamasA	1		masamasA	
+masI	1		masI	
+masmasA	1		masmasA/	
+mah	1			mah
+mahat	2		mahat	maha/t
+mahar	1			mahar
+mahas	2		maha/s	maha/s
+mahA	1		mahA/	
+mahi	1			ma/hi
+mahitvanA	1			mahi—tvanA/
+mahinA	2		mahinA/	mahinA/
+mahiman	1			mahima/n
+mahimnA	2		mahimnA/	mahimnA/
+mahI	1		mahI	
+mA	3	mA	mA/	mA/
+mAkim	1			mA—kim
+mAkis	2		mA/kis	mA/—kis
+mAtftaH	1	mAtftaH		
+mAtrAyAm	1			mA/trAyAm
+mAna	1			mA na
+mArg	1			mArg
+mArtiatrA	1		mArtiatrA/	
+mAvilambam	2		mAvilambam	mA—vilambam
+mAzaprati	2		mAzaprati	mAza—prati
+mAsaDA	2		mAsaDA	mAsa—DA
+mAsI	1		mAsI	
+mi	1			mi
+mitrakfti	1			mitra—kfti
+mitraDA	2		mitraDA/	mitra—DA/
+mithaH	0			
+miT	1			miT
+miTas	3	miTas	miTa/s	miTa/s
+miTu	1			mi/Tu
+miTus	2		mi/Tus	mi/Tus
+miTU	1			mi/TU
+miTo	1		miTo	
+mid	1			mid
+mil	1			mil
+miza	1		miza	
+mI	1			mI
+mIl	1			mIl
+muku	1			muku
+mukum	1			mukum
+muKI	1		muKI	
+muc	1			muc
+muRw	1	muRw		
+mud	1			mud
+muDA	3	muDA	muDA	muDA
+mumuzizu	1			mumuzizu
+murC	1			murC
+muz	1			muz
+muzwAmuzwi	2		muzwAmuzwi	muzwA-muzwi
+muzwImuzwi	3	muzwImuzwi	muzwImuzwi	muzwI—muzwi
+muh	1			muh
+muhu	1			mu/hu
+muhuH	1	muhuH		
+muhukEs	1			muhukE/s
+muhur	2		mu/hur	mu/hur
+muhus	1	muhus		
+muhustanEs	1			muhus—tanEs
+muhUn	1		muhUn	
+mUkI	1		mUkI	
+mUlI	1		mUlI	
+mf	1			mf
+mftyusAtm	1		mftyusAtm	
+mfd	1			mfd
+mfdU	1		mfdU	
+mfDA	2		mfDA	mfDA
+mfS	1			mfS
+mfz	1			mfz
+mfzA	3	mfzA	mf/zA	mf/zA
+mfsmfsA	1		mfsmfsA/	
+me	1			me
+mehanA	2		meha/nA	meha/nA
+mEtrin	1	mEtrin		
+moGa	2		moGa°	mo/Ga
+moha	1			mo/ha
+mOlimAlA	1			mOli—mAlA
+yajuzwas	2		yajuzwa/s	yajuz—wa/s
+yat	1			yat
+yatamaTA	2		yatama/TA	ya—tama/-TA
+yataraTA	2		yatara/TA	ya—tara/-TA
+yatas	3	yatas	ya/tas	ya/tas
+yatiDA	2		yatiDA/	yatiDA/
+yatra	2	yatra		ya/tra
+yathA	0			
+yaTafzi	2		yaTafzi	yaTa—fzi
+yaTartu	2		yaTartu	yaTa—rtu
+yaTarzi	2		yaTarzi	yaTa—rzi
+yaTA	3	yaTA	yaTA	ya/TA
+yaTAkxpti	2		yaTAkxpti	yaTA—kxpti
+yaTAgfham	2		yaTAgfham	yaTA—gfham
+yaTAgni	1		yaTAgni	
+yaTAciti	2		yaTAciti	yaTA—citi
+yaTAjAti	2		yaTAjAti	yaTA—jAti
+yaTAjYapti	1		yaTAjYapti	
+yaTAtfpti	1			yaTA—tfpti
+yaTAdik	1			yaTA—dik
+yaTApariDi	2		yaTApariDi	yaTA—pariDi
+yaTAparu	2		yaTAparu/	yaTA—paru/
+yaTAprASu	1		yaTAprASu	
+yaTAbudDi	1			yaTA—budDi
+yaTABUmi	2		yaTABUmi	yaTA—BUmi
+yaTABUyas	2		yaTABUyas	yaTA—BUyas
+yaTAmati	2		yaTAmati	yaTA—mati
+yaTAmuKam	2		yaTAmuKam	yaTA—muKam
+yaTAyajus	1			yaTA—yaju/s
+yaTAyukti	2		yaTAyukti	yaTA—yukti
+yaTAyoni	2		yaTAyoni	yaTA—yoni
+yaTAruci	2		yaTAruci	yaTA—ruci
+yaTArham	1		yaTArham	
+yaTAvayas	2		yaTAvayas	yaTA—vayas
+yaTAvastu	2		yaTAvastu	yaTA—vastu
+yaTAvAstu	2		yaTAvAstu	yaTA—vAstu
+yaTAviDi	2		yaTAviDi	yaTA—viDi
+yaTAvftti	2		yaTAvftti	yaTA—vftti
+yaTAvfdDi	2		yaTAvfdDi	yaTA—vfdDi
+yaTAvedi	2		yaTAvedi	yaTA—vedi
+yaTAvyADi	2		yaTAvyADi	yaTA—vyADi
+yaTASakti	1			yaTA—Sakti
+yaTASruti	2		yaTASruti	yaTA—Sruti
+yaTAsaMDi	2		yaTAsaMDi	yaTA—saMDi
+yaTAsaMpad	1		yaTAsaMpad	
+yaTAsampad	1			yaTA—sampad
+yaTAsuKam	1			yaTA—suKam
+yaTAsuzWu	1			yaTA—suzWu
+yaTAstut	2		yaTAstut	yaTA—stut
+yaTAstri	2		yaTAstri	yaTA—stri
+yaTAsTiti	2		yaTAsTiti	yaTA—sTiti
+yaTAsmfti	2		yaTAsmfti	yaTA—smfti
+yaTAsmftim	1		yaTAsmftim	
+yaTepsayAm	1		yaTepsayAm	
+yaTezwi	1		yaTe/zwi	
+yaTotpatti	1		yaTotpatti	
+yaTotsAham	1		yaTotsAham	
+yaTopADi	1		yaTopADi	
+yad	1		yad	
+yadavaDi	2		yadavaDi	yad—avaDi
+yadahar	1			ya/d-a/har
+yadA	2	yadA		yadA/
+yadi	2	yadi		ya/di
+yadfcCA	1			yad—fcCA
+yadDetos	2		yadDetos	yad—Detos
+yadBUyas	1			yad—BUyas
+yadBUyasA	2		yadBUyasA	yad—BUyasA
+yadvA	0			
+yayAti	1		yayA/ti	
+yarhi	2	yarhi		ya/rhi
+yavyABis	1			yavyA/Bis
+yas	1			yas
+yAc	1			yAc
+yAt	2		yA/t	yA/t
+yAttrA	1		yA/ttrA/	
+yAnI	1		yAnI	
+yABis	1			yA/Bis
+yAvacCakti	1			yAvac—Cakti
+yAvacCas	2		yAvacCa/s	yAvac—Ca/s
+yAvat	1			yA/vat
+yAvatA	1			yAvatA
+yAvati	1			yA/vati
+yAvatkartf	2		yAvatkartf	yAvat—kartf
+yAvatsmfti	2		yAvatsmfti	yAvat—smfti
+yAvadAyus	2		yAvadAyus	yAvad—Ayus
+yAvadDavis	2		yAvadDavis	yAvad—Davis
+yAvadDA	2		yAvadDA	yAvad—DA
+yu	1			yu
+yuk	1			yuk
+yuktaM	1		yuktaM	
+yuktA	1		yuktA	
+yuktitaH	1	yuktitaH		
+yuktiBis	1			yuktiBis
+yugapad	3	yugapad	yugapad	yuga—pad
+yuD	1			yuD
+yuvadrik	2		yuvadri/k	yuva—dri/k
+yuvAku	1			yuvA/ku
+yuvI	1		yuvI	
+yUTaSaH	1	yUTaSaH		
+yUTI	1		yUTI	
+yUpI	1		yUpI	
+yena	3	yena	ye/na	yena
+yok	1			yok
+yogataH	1	yogataH		
+yotsyAmi	1		yotsyAmi	
+yos	1			yo/s
+yOnikaH	1	yOnikaH		
+raMsu	2		ra/Msu	ra/Msu
+rac	1			rac
+raYj	1			raYj
+raTavft	1			raTa—vft
+raTAraTi	3	raTAraTi	raTAraTi	raTA-raTi
+raTAraTim	1		raTAraTim	
+raB	1			raB
+raBasA	1			ra/BasA
+ram	1			ram
+rahas	1			rahas
+rahasi	1			rahasi
+rahassu	1			rahassu
+rahitezu	1			rahitezu
+rahI	1		rahI	
+rAjavati	1			rAja—vati
+rAtrau	0			
+rAtri	1			rA/tri
+rAtriMdivA	1			rAtri—M-divA
+rAtrO	1			rA/trO
+rAtryAm	1			rA/tryAm
+rAD	1			rAD
+rAvaw	1			rA/vaw
+rASI	1		rASI	
+riP	1			riP
+riham	2		riham	riham
+rItI	1		rItI	
+ruc	1			ruc
+ruj	1			ruj
+rud	1			rud
+ruz	1			ruz
+ruh	1			ruh
+rUkzavASin	1		rUkzavASin	
+re	2	re		re
+reKI	1		reKI	
+rE	1			rE
+roc	1			ro/c
+rocanA	2		rocanA	rocanA
+lag	1			lag
+laGu	2		laGu	laGu/
+laGU	1		laGU	
+laGUm	1		laGUm	
+lap	1			lap
+laB	1			laB
+lamb	1			lamb
+lavaSasm	1		lavaSasm	
+lA	1			lA
+lABatAs	1			lABa—tAs
+liK	1			liK
+lip	1			lip
+lih	1			lih
+luk	1	luk		
+luYc	1			luYc
+lup	1			lup
+luB	1			luB
+lU	1			lU
+leSa	2		leSa	leSa
+leham	1			leham
+lomatasm	1		lomata/sm	
+lOkikezu	1			lOkikezu
+lyap	1			lyap
+va	1			va
+vai	0			
+vaYc	1			vaYc
+vaw	1			va/w
+vat	1		vat	
+vata	1			vata
+vatiH	1	vatiH		
+vatu	2	vatu		vatu
+vad	1			vad
+vadi	2	vadi		vadi
+vaDA	1			vaDA
+vaDvA	1			vaDvA
+vana	1			vana
+vand	1			vand
+vanDA	1			vanDA
+vap	1			vap
+vapA	1		vapA/	
+vapus	1			va/pus
+vaprakrIqA	1			vapra—krIqA
+vaprA	1			vaprA
+vam	1			vam
+vayunaSasm	1		vayunaSa/sm	
+varIyas	2		varIyas	va/rIyas
+val	1			val
+valgu	2		valgu/	valgu/
+vaSI	1		vaSI/	
+vaSmasA	1			vaSmasA
+vazaw	2	vazaw		va/zaw
+vazawkfti	2		va/zawkfti	va/zaw—kfti
+vas	1			vas
+vasantA	1			vasa/ntA
+vastuSakti	1			vastu—Sakti
+vahadgu	2		vahadgu	vahad-gu
+vA	2	vA		vA
+vANmanas	1			vAN—manas
+vAc	1		vAc	
+vAja	1			vA/ja
+vAjI	1		vAjI	
+vAjeBis	2	vAjeBis		vA/jeBis
+vAw	1			vA/w
+vAt	1			vAt
+vAtI	1		vAtI/	
+vAtf	1	vAtf		
+vAmI	1		vAmI	
+vAri	1		vAri	
+vAva	2	vAva		vA/va/
+vAS	1			vAS
+vi	3	vi	vi	vi/
+vigrAham	1			vi-°grAham
+vic	1			vic
+vijanezu	1			vi—janezu
+vitarAm	1		vitarA/m	
+vitastanuH	1		vitastanuH	
+vitastaruH	1		vitastaruH	
+viTak	1			viTak
+vinA	3	vinA	vi/nA	vi/nA
+viparyak	2		viparyak	vi—paryak
+vipAS	1		vi/pAS	
+viBAgataH	1	viBAgataH		
+viBAgaSaH	1	viBAgaSaH		
+vilokay	1		vilokay	
+viloman	1		viloman	
+viS	1			viS
+viSrAbDaM	1		viSrAbDaM	
+viSvaTA	1	viSvaTA		
+viSvaDA	1		viSva/DA	
+viSvayuH	1	viSvayuH		
+viSvA	1		vi/SvA	
+viSvAhA	2		viSvA/hA	viSvA/hA
+viSviA	1		vi/SviA	
+viz	1			viz
+vizA	1			vizA
+vizI	1		vizI	
+vizu	3	vizu	vizu°	vizu
+vizuRak	2		vizuRa/k	vizuRa/k
+vizwamB	1			vi-zwamB
+vizvak	2		vi/zvak	vi/zvak
+vizvadriak	1		vizvadri/ak	
+vizvadryak	1			vizvadrya^k
+visukft	1		visukf/t	
+vihA	2	vihA		vihA
+vI	1		vI°	
+vITI	1		vITI	
+vuY	1		vuY	
+vft	1			vft
+vfTak	2		vf/Tak	vfTak
+vfTA	3	vfTA	vf/TA	vf/TA
+vfz	1			vfz
+vew	1			vew
+velAyAm	1	velAyAm		
+vE	2	vE		vE/
+vEdikezu	1			vEdi°kezu
+vErI	1		vErI	
+vESAKavadi	1			vESAKa—vadi
+vOzaw	2	vOzaw		vO/zaw
+vyac	1			vyac
+vyaD	1			vyaD
+vyantarAm	2		vyantarA/m	vy—antarA/m
+vyastikA	2	vyastikA		vy-astikA
+vyudDf	1			vy-ud-Df
+vye	1			vye
+vraj	1			vraj
+vraSc	1			vraSc
+vrAjiH	1	vrAjiH		
+vlag	1			vlag
+vlI	1			vlI
+SaMyos	1			SaM—yo/s
+SaMs	1			SaMs
+SakalA	1		SakalA	
+SaNk	1			SaNk
+Satakftvas	2		Satakftvas	Sata—kftvas
+Satatarham	1			Sata—ta/rham
+SataDA	3	SataDA	SataDA	Sata—DA/
+Satin	1			Sati/n
+SatinIBis	2		Sati/nIBis	Sati/nIBis
+SanakEs	3	SanakEs	SanakE/s	SanakE/s
+SanEs	2	SanEs		Sa/nEs
+SanEstarAm	1			SanEs—tarAm
+Sap	2	Sap		Sap
+Sam	2	Sam		Sam
+Sambaw	2		Samba/w	Samba/w
+SambA	1		SambA	
+SayutrA	2		SayutrA/	SayutrA/
+SarASari	2		SarASari	SarASari
+SarI	1		SarI	
+SalAkApari	2		SalAkApari	SalAkA—pari
+Savas	1			Sa/vas
+SavasA	1			Sa/vasA
+SaSI	1		SaSI	
+SaSvaDA	2		SaSvaDA/	SaSvaDA/
+Sas	2		Sas	Sas
+SAkaprati	1			SAka—prati
+SAla	1			SAla/
+SitAman	2		Si/tAman	Si/tAman
+SitI	1		SitI	
+SilI	1		SilI	
+Siva	1			Siva/
+SiveBis	1		Sive/Bis	
+Siz	1			Siz
+SIt	1	SIt		
+SIta	1			SIta/
+SItI	1		SItI	
+Su	2		Su/	Su
+SukI	1		SukI	
+Suc	1			Suc
+SucI	1		SucI	
+Sudi	2	Sudi		Sudi
+SuBa	1		SuBa°	
+Suz	1			Suz
+SuzilaH	1	SuzilaH		
+SUrI	1		SUrI	
+SfD	1			SfD
+SF	1			SF
+SezI	1		SezI	
+So	1			So
+SoRI	1		SoRI	
+Som	1			Som
+Sos	1			Sos
+Sme	1			Sme
+Srat	2	Srat		Sra/t
+SraT	1			SraT
+Sram	1			Sram
+Sri	1			Sri
+Sruzwi	1			Sruzwi/
+Sreyas	1			Sre/yas
+SrOzaw	2	SrOzaw		SrO/zaw
+Sliz	1			Sliz
+Svas	2	Svas		Svas
+zaw	1			za/w
+zawkftvas	2		zawkftvas	zaw—kftvas
+zaqQA	2		zaqQA/	zaq—QA/
+zaqDA	2		zaqDA	zaq—DA
+zazwiDA	2		zazwiDA	zazwi—DA
+zazwis	2		zazwis	zazwis
+zAw	2	zAw		zAw
+zoqaSaDA	3	zoqaSaDA	zoqaSaDA/	zoqaSa—DA/
+zoQA	3	zoQA	zoQA/	zoQA/
+zWiv	1			zWiv
+zWu	1			zWu
+sa	2	sa		sa
+saM	1			saM-
+saMkalA	1			saM-kalA
+saMprati	2	saMprati	saMprati/	
+saMSakalA	2		saMSakalA	saM-SakalA
+saMs	1			saM-s-
+saMhanu	1			sa/M-hanu
+sakft	2	sakft		sa-kf/t
+sagUr	1		sagU/r	
+sacA	2		sa/cA	sa/cA
+saci	2		sa/ci	sa/ci
+saccaM	1		saccaM	
+sajUs	2		sajU/s	sa—jU/s
+sajozas	2		sajo/zas	sa—jo/zas
+sajyotis	3	sajyotis	sajyotis	sa—jyotis
+saYj	1			saYj
+sat	1			sa/t
+satatagati	1			sa-tata—gati
+sattrA	1	sattrA		
+satyaMkar	1		satyaM kar	
+satrA	2		satrA/	sa-trA/
+satrAm	1		satrA/m	
+sad	1			sad
+sadadi	2		sadadi/	sadadi/
+sadA	3	sadA	sa/dA	sa/dA
+sadAham	2		sadAham	sa—dAham
+sadivas	2		sadi/vas	sa—di/vas
+sadyas	3	sadyas	sadya/s	sa-dya/s
+saDa	1		saDa°	
+saDrIak	1		saDrI/ak	
+saDryak	1			saDrya^k
+sana	1			sa/na
+sanat	2	sanat		sanat
+sanatA	2		sana/tA	sana/tA
+sanas	2		sanas	sanas
+sanA	3	sanA	sa/nA	sa/nA
+sanitur	2		sanitu/r	sanitu/r
+sanutar	2		sanuta/r	sanuta/r
+sanemi	2		sa/nemi	sa/—nemi
+sapawaham	2		sapawaham	sa—pawaham
+sapattrA	2		sapattrA	sa—pattrA
+sapadi	2	sapadi		sa—padi
+saptaDA	3	saptaDA	saptaDA/	saptaDA/
+sabADas	1			sa—bA/Das
+saBUmi	1		sa/BUmi	
+sam	3	sam	sa/m	sa/m
+sama	1		sama°	
+samaMBUmi	1		samaMBUmi/	
+samaDA	2		samaDA	sama—DA
+samaDAm	1		samaDAm	
+samanA	2		samanA/	samanA/
+samapadAti	2		samapadAti	sama—padAti
+samaBijYA	1			sam-aBi-jYA
+samaBUmi	1			sama—BUmi
+samam	2		sama/m	sama/m
+samamBUmi	1			sama—m-BUmi/
+samayArcim	1		samayArcim	
+samaham	1		sa\ma\ha\m	
+samAgamin	1			sam-°Agamin
+samAcCid	1			sam-A-cCid
+samAvacCas	2		samAvacCa/s	samAvac—Ca/s
+samAvant	1		samA/vant	
+samiti	1			sam-iti
+samiraH	1	samiraH		
+samI	1		samI	
+samunmajj	1			sam-un-majj
+samoham	1			sam-o/ham
+samci	1		sam-ci	
+samprati	1			sam-prati/
+sambat	1			sambat
+samyak	2		samya/k	samy-a/k
+sarayuH	1	sarayuH		
+sarpizwas	1			sarpiz—was
+sarvatAtA	1			sarva/—tAtA
+sarvatra	3	sarvatra	sarva/tra	sarva/tra
+sarvathA	0			
+sarvaTA	3	sarvaTA	sarva/TA	sarva/TA
+sarvadA	3	sarvadA	sarvadA/	sarvadA/
+sarvaraTA	2		sarvaraTA/	sarva—raTA/
+sarvaSakti	1			sarva—Sakti
+sarvasADu	2		sarvasADu	sarva—sADu
+sarvasADum	1		sarvasADum	
+sarvahfdA	1			sarva—hfdA/
+savilambam	2		savilambam	sa—vilambam
+sasaKi	2		sasaKi	sa—saKi
+sasneham	1			sa—sneham
+saspfham	1			sa—spfham
+sasvar	1			sasva/r
+sasvartA	2		sasva/rtA	sasva/rtA
+saha	3	saha	saha	saha/
+sahari	1			sa—hari
+sahas	1			sa/has
+sahasA	2	sahasA		sahasA
+sahasraDA	3	sahasraDA	sahasraDA/	sahasra—DA/
+sahoBiH	1			sahoBiH
+sahohA	1		sahohA	
+sANgaglAni	1		sANgaglAni	
+sAci	3	sAci	sAci/	sAci/
+sAcI	1		sAcI	
+sAcIvit	1			sAcIvi/t
+sAcIvid	1		sAcIvi/d	
+sAcIvidm	1		sAcIvi/dm	
+sAt	2	sAt	sAt	
+sADiyas	1		sADiyas	
+sADIyas	1			sADIyas
+sADu	2		sADu/	sADu/
+sADukft	1		sADukf/t	
+sADyAm	1		sADyA/m	
+sAnukampaH	1	sAnukampaH		
+sAnuzak	1		sAnuza/k	
+sAntv	1			sAntv
+sAmAnyataH	1	sAmAnyataH		
+sAmi	3	sAmi	sAmi/	sAmi/
+sAmim	1		sAmi/m	
+sAvajYam	1			sAvajYam
+sASru	1		sASru	
+si	1			si
+sic	1			sic
+sitI	1		sitI	
+sidDavatm	1		sidDavatm	
+siD	1			siD
+sim	1			sim
+simA	1		si/mA	
+siv	1			siv
+sIm	1			sIm
+su	2	su		su/
+suKa	1		suKa°	
+suKam	2		suKam	suKa/m
+suKA	1		suKA	
+sucetunA	1			su—cetu/nA
+sutamAm	1			su—tamAm
+sutarAm	1			su-tarAm
+sutI	1		sutI	
+sudi	2	sudi		sudi
+sudivA	2		sudivA	su—divA
+sudivAm	1		sudivAm	
+suduHKam	1			su—duHKam
+suDI	1		suDI	
+suprAtar	2		suprAta/r	su—prAta/r
+subahu	2		subahu	su—bahu
+subahuDA	2		subahuDA	su—bahu—DA
+subahuSasm	1		subahuSasm	
+suBakti	1		suBakti	
+sumat	2		suma/t	suma/t
+sumahat	1			su/—mahat
+sumahA	1		sumahA°	
+suyuk	1			su—yu/k
+suyuj	1			su—yu/j
+suvar	1			su/var
+suSami	1			su—Sa/mi
+suzwu	1		suzwu	
+suzWu	3	suzWu	suzWu/	suzWu/
+susuKam	2		susuKam	su—suKam
+sU	2		sU/	sU
+sUccEs	1		sUccEs	
+sUt	2	sUt		sUt
+sUpat	1			sUpat
+sUpaprati	2		sUpaprati	sUpa—prati
+sUm	1		sU/m	
+sfp	1			sfp
+sev	1			sev
+sopagraham	2	sopagraham	sopagraham	
+sopaDi	2	sopaDi	sopaDi	
+sopADi	1		sopADi	
+somI	1		somI	
+solleKam	2	solleKam	solleKam	
+skand	1			skand
+skamB	1			skamB
+skumB	1			skumB
+stamB	1			stamB
+stokA	1		stokA	
+sTavimat	1			sTavimat
+sTA	2		sTA	sTA
+sTemnA	1			sTemnA
+snA	1			snA
+snu	1		snu	
+snum	1		snum	
+sparD	1			sparD
+spf	1			spf
+spfS	1			spfS
+sPut	1	sPut		
+sma	3	sma	sma	sma
+smat	2		sma/t	sma/t
+smi	1			smi
+smf	1			smf
+syand	1			syand
+syam	1			syam
+syAt	2	syAt		syAt
+sraMs	1			sraMs
+srAk	3	srAk	srAk	srAk
+srAkm	1		srAkm	
+sriv	1			sriv
+svagA	1			svagA
+svaj	1			svaj
+svad	1			svad
+svaDA	1			sva-DA
+svap	1			svap
+svapuras	2		svapuras	sva—puras
+svapraButA	1			sva—praButA
+svayam	2	svayam		svaya/m
+svar	2	svar		sva^r
+svargaM	1		svargaM	
+svargahetO	1			svarga—hetO
+svaviDinA	1			sva—viDinA
+svasti	1			sv-asti/
+svADIyas	1		svADIyas	
+svAhA	1			sv-A/hA
+svid	2	svid		svid
+svI	1		svI/	
+svf	1			svf
+ha	3	ha	ha	ha
+haMho	2	haMho		haMho
+hak	1			hak
+haRqA	1	haRqA		
+ham	2	ham		ham
+haye	1			haye/
+hari	1			hari
+halahalA	1			halahalA
+halA	1			halA
+havizwas	2		havizwas	haviz—was
+has	1			has
+hastAhasti	3	hastAhasti	hastAhasti	hastA-hasti
+hahA	1			hahA
+hahAhA	1			hahAhA
+hahe	1			hahe
+hA	2	hA		hA
+hAyi	1			hAyi
+hAvu	1			hAvu
+hi	2	hi		hi/
+hiMs	1			hiMs
+hiN	1			hi/N
+hina	1			hina/
+him	1			hi/m
+himiA	1		himiA/	
+himI	1		himI	
+hirakut	2		hirakut	hirakut
+hiruk	2	hiruk		hi/ruk
+hihi	1			hihi
+hI	2	hI		hI
+hIna	1		hIna°	
+hIz	1			hIz
+hIhI	2	hIhI		hIhI
+hu	1			hu
+huquk	1			huquk
+huqut	1			huqut
+hum	2	hum		hum
+huras	2		hura/s	hura/s
+huruk	2		huru/k	huru/k
+huluhulu	1			huluhulu
+huvA	1			huvA
+huss	1			huss
+hU	2	hU		hU
+hUm	1			hUm
+hf	1			hf
+hfdA	1		hfdA	
+he	2	he		he
+hetU	1		hetU	
+hehe	1	hehe		
+hE	2	hE		hE/
+hEmahA	1			hEmahA
+hEmI	1		hEmI	
+ho	2	ho		ho/
+hotrABiH	1			ho/trABiH
+hohO	1			hohO
+hnu	1			hnu
+hyas	2	hyas		hya/s
+hrAm	1			hrAm
+hrIm	1			hrIm
+hrum	1			hrum
+hrOm	1			hrOm
+hval	1			hval

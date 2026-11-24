@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.0.dtd" width="1700" height="1100" viewBox="0 0 1700 1100">
+<sodipodi:namedview inkscape:document-units="px" showgrid="false"/>
+<rect width="1700" height="1100" fill="white" id="background"/>
+<g id="title" inkscape:label="Title">
+  <text x="850.0" y="26" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#1a3a2a">Дерево решений: типология санскритских самас</text>
+  <text x="850.0" y="44" text-anchor="middle" font-family="Arial" font-size="11" fill="#555">Лейтан §§3–7 · цвет узла = корпусная частотность (UoHyd, n=9952; Kulkarni 2013)</text>
+</g>
+<g id="layer_edges" inkscape:groupmode="layer" inkscape:label="Edges">
+<g id="edge_q_avyaya_r_avyayi" class="edge edge-yes">
+  <path d="M163.0,353.1 C185.4,353.1 185.4,114.1 207.8,114.1" fill="none" stroke="#2d6a4f" stroke-width="1.4"/>
+  <text x="181.8" y="249.7" text-anchor="middle" font-family="Arial" font-size="9" font-weight="bold" fill="#333">да</text>
+</g>
+<g id="edge_q_avyaya_q_dvandva" class="edge edge-no">
+  <path d="M163.0,353.1 C185.4,353.1 185.4,438.4 207.8,438.4" fill="none" stroke="#a04020" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <text x="181.8" y="385.9" text-anchor="middle" font-family="Arial" font-size="9" font-weight="bold" fill="#333">нет</text>
+</g>
+<g id="edge_q_dvandva_q_dv_type" class="edge edge-yes">
+  <path d="M345.8,438.4 C368.2,438.4 368.2,216.6 390.6,216.6" fill="none" stroke="#2d6a4f" stroke-width="1.4"/>
+  <text x="364.6" y="342.3" text-anchor="middle" font-family="Arial" font-size="9" font-weight="bold" fill="#333">да</text>
+</g>
+<g id="edge_q_dvandva_q_same_case" class="edge edge-no">
+  <path d="M345.8,438.4 C368.2,438.4 368.2,540.9 390.6,540.9" fill="none" stroke="#a04020" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <text x="364.6" y="478.5" text-anchor="middle" font-family="Arial" font-size="9" font-weight="bold" fill="#333">нет</text>
+</g>
+<g id="edge_q_dv_type_r_dv_samahara" class="edge edge-yes">
+  <path d="M528.6,216.6 C550.9,216.6 550.9,182.4 573.3,182.4" fill="none" stroke="#2d6a4f" stroke-width="1.4"/>
+  <text x="547.4" y="199.2" text-anchor="middle" font-family="Arial" font-size="9" font-weight="bold" fill="#333">да</text>
+</g>
+<g id="edge_q_dv_type_r_dv_itaretara" class="edge edge-no">
+  <path d="M528.6,216.6 C550.9,216.6 550.9,250.7 573.3,250.7" fill="none" stroke="#a04020" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <text x="547.4" y="227.9" text-anchor="middle" font-family="Arial" font-size="9" font-weight="bold" fill="#333">нет</text>
+</g>
+<g id="edge_q_same_case_q_km_type" class="edge edge-yes">
+  <path d="M528.6,540.9 C550.9,540.9 550.9,353.1 573.3,353.1" fill="none" stroke="#2d6a4f" stroke-width="1.4"/>
+  <text x="547.4" y="459.0" text-anchor="middle" font-family="Arial" font-size="9" font-weight="bold" fill="#333">да</text>
+</g>
+<g id="edge_q_same_case_q_bv_role" class="edge edge-no">
+  <path d="M528.6,540.9 C550.9,540.9 550.9,677.4 573.3,677.4" fill="none" stroke="#a04020" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <text x="547.4" y="595.2" text-anchor="middle" font-family="Arial" font-size="9" font-weight="bold" fill="#333">нет</text>
+</g>
+<g id="edge_q_km_type_r_km_adj" class="edge edge-opt">
+  <path d="M711.3,353.1 C733.7,353.1 733.7,319.0 756.1,319.0" fill="none" stroke="#888" stroke-width="0.9" stroke-dasharray="2 3"/>
+</g>
+<g id="edge_q_km_type_r_km_appos" class="edge edge-opt">
+  <path d="M711.3,353.1 C733.7,353.1 733.7,387.2 756.1,387.2" fill="none" stroke="#888" stroke-width="0.9" stroke-dasharray="2 3"/>
+</g>
+<g id="edge_q_km_type_r_km_upamana" class="edge edge-opt">
+  <path d="M711.3,353.1 C825.1,353.1 825.1,319.0 938.9,319.0" fill="none" stroke="#888" stroke-width="0.9" stroke-dasharray="2 3"/>
+</g>
+<g id="edge_q_km_type_r_km_rupaka" class="edge edge-opt">
+  <path d="M711.3,353.1 C825.1,353.1 825.1,387.2 938.9,387.2" fill="none" stroke="#888" stroke-width="0.9" stroke-dasharray="2 3"/>
+</g>
+<g id="edge_q_km_type_r_km_ubhaya" class="edge edge-opt">
+  <path d="M711.3,353.1 C916.5,353.1 916.5,319.0 1121.7,319.0" fill="none" stroke="#888" stroke-width="0.9" stroke-dasharray="2 3"/>
+</g>
+<g id="edge_q_km_type_r_km_sambhavana" class="edge edge-opt">
+  <path d="M711.3,353.1 C916.5,353.1 916.5,387.2 1121.7,387.2" fill="none" stroke="#888" stroke-width="0.9" stroke-dasharray="2 3"/>
+</g>
+<g id="edge_q_km_type_r_km_madhyama" class="edge edge-opt">
+  <path d="M711.3,353.1 C1007.9,353.1 1007.9,319.0 1304.4,319.0" fill="none" stroke="#888" stroke-width="0.9" stroke-dasharray="2 3"/>
+</g>
+<g id="edge_q_bv_role_q_bv_sub" class="edge edge-yes">
+  <path d="M711.3,677.4 C733.7,677.4 733.7,523.8 756.1,523.8" fill="none" stroke="#2d6a4f" stroke-width="1.4"/>
+  <text x="730.1" y="609.9" text-anchor="middle" font-family="Arial" font-size="9" font-weight="bold" fill="#333">да</text>
+</g>
+<g id="edge_q_bv_role_q_upapada" class="edge edge-no">
+  <path d="M711.3,677.4 C733.7,677.4 733.7,660.3 756.1,660.3" fill="none" stroke="#a04020" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <text x="730.1" y="667.2" text-anchor="middle" font-family="Arial" font-size="9" font-weight="bold" fill="#333">нет</text>
+</g>
+<g id="edge_q_bv_sub_r_bv_reg" class="edge edge-opt">
+  <path d="M894.1,523.8 C916.5,523.8 916.5,455.5 938.9,455.5" fill="none" stroke="#888" stroke-width="0.9" stroke-dasharray="2 3"/>
+  <text x="912.9" y="492.1" text-anchor="middle" font-family="Arial" font-size="9" font-weight="bold" fill="#333">обычн</text>
+</g>
+<g id="edge_q_bv_sub_r_bv_saha" class="edge edge-opt">
+  <path d="M894.1,523.8 C916.5,523.8 916.5,523.8 938.9,523.8" fill="none" stroke="#888" stroke-width="0.9" stroke-dasharray="2 3"/>
+  <text x="912.9" y="520.8" text-anchor="middle" font-family="Arial" font-size="9" font-weight="bold" fill="#333">sa-</text>
+</g>
+<g id="edge_q_bv_sub_r_bv_pradi" class="edge edge-opt">
+  <path d="M894.1,523.8 C916.5,523.8 916.5,592.1 938.9,592.1" fill="none" stroke="#888" stroke-width="0.9" stroke-dasharray="2 3"/>
+  <text x="912.9" y="549.5" text-anchor="middle" font-family="Arial" font-size="9" font-weight="bold" fill="#333">prādi</text>
+</g>
+<g id="edge_q_upapada_r_upapada" class="edge edge-yes">
+  <path d="M894.1,660.3 C916.5,660.3 916.5,660.3 938.9,660.3" fill="none" stroke="#2d6a4f" stroke-width="1.4"/>
+  <text x="912.9" y="657.3" text-anchor="middle" font-family="Arial" font-size="9" font-weight="bold" fill="#333">да</text>
+</g>
+<g id="edge_q_upapada_q_numeral" class="edge edge-no">
+  <path d="M894.1,660.3 C825.1,660.3 825.1,728.6 756.1,728.6" fill="none" stroke="#a04020" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <text x="836.2" y="686.0" text-anchor="middle" font-family="Arial" font-size="9" font-weight="bold" fill="#333">нет</text>
+</g>
+<g id="edge_q_numeral_r_dvigu" class="edge edge-yes">
+  <path d="M894.1,728.6 C916.5,728.6 916.5,728.6 938.9,728.6" fill="none" stroke="#2d6a4f" stroke-width="1.4"/>
+  <text x="912.9" y="725.6" text-anchor="middle" font-family="Arial" font-size="9" font-weight="bold" fill="#333">да</text>
+</g>
+<g id="edge_q_numeral_q_prefix" class="edge edge-no">
+  <path d="M894.1,728.6 C825.1,728.6 825.1,796.9 756.1,796.9" fill="none" stroke="#a04020" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <text x="836.2" y="754.3" text-anchor="middle" font-family="Arial" font-size="9" font-weight="bold" fill="#333">нет</text>
+</g>
+<g id="edge_q_prefix_r_pradi" class="edge edge-yes">
+  <path d="M894.1,796.9 C916.5,796.9 916.5,796.9 938.9,796.9" fill="none" stroke="#2d6a4f" stroke-width="1.4"/>
+  <text x="912.9" y="793.9" text-anchor="middle" font-family="Arial" font-size="9" font-weight="bold" fill="#333">да</text>
+</g>
+<g id="edge_q_prefix_q_aluk" class="edge edge-no">
+  <path d="M894.1,796.9 C825.1,796.9 825.1,865.2 756.1,865.2" fill="none" stroke="#a04020" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <text x="836.2" y="822.6" text-anchor="middle" font-family="Arial" font-size="9" font-weight="bold" fill="#333">нет</text>
+</g>
+<g id="edge_q_aluk_r_aluk" class="edge edge-yes">
+  <path d="M894.1,865.2 C916.5,865.2 916.5,865.2 938.9,865.2" fill="none" stroke="#2d6a4f" stroke-width="1.4"/>
+  <text x="912.9" y="862.2" text-anchor="middle" font-family="Arial" font-size="9" font-weight="bold" fill="#333">да</text>
+</g>
+<g id="edge_q_aluk_q_case" class="edge edge-no">
+  <path d="M894.1,865.2 C825.1,865.2 825.1,967.6 756.1,967.6" fill="none" stroke="#a04020" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <text x="836.2" y="905.2" text-anchor="middle" font-family="Arial" font-size="9" font-weight="bold" fill="#333">нет</text>
+</g>
+<g id="edge_q_case_r_tp_gen" class="edge edge-opt">
+  <path d="M894.1,967.6 C916.5,967.6 916.5,933.4 938.9,933.4" fill="none" stroke="#888" stroke-width="0.9" stroke-dasharray="2 3"/>
+</g>
+<g id="edge_q_case_r_tp_nan" class="edge edge-opt">
+  <path d="M894.1,967.6 C916.5,967.6 916.5,1001.7 938.9,1001.7" fill="none" stroke="#888" stroke-width="0.9" stroke-dasharray="2 3"/>
+</g>
+<g id="edge_q_case_r_tp_acc" class="edge edge-opt">
+  <path d="M894.1,967.6 C1007.9,967.6 1007.9,933.4 1121.7,933.4" fill="none" stroke="#888" stroke-width="0.9" stroke-dasharray="2 3"/>
+</g>
+<g id="edge_q_case_r_tp_dat" class="edge edge-opt">
+  <path d="M894.1,967.6 C1007.9,967.6 1007.9,1001.7 1121.7,1001.7" fill="none" stroke="#888" stroke-width="0.9" stroke-dasharray="2 3"/>
+</g>
+<g id="edge_q_case_r_tp_abl" class="edge edge-opt">
+  <path d="M894.1,967.6 C1099.3,967.6 1099.3,933.4 1304.4,933.4" fill="none" stroke="#888" stroke-width="0.9" stroke-dasharray="2 3"/>
+</g>
+<g id="edge_q_case_r_tp_inst" class="edge edge-opt">
+  <path d="M894.1,967.6 C1099.3,967.6 1099.3,1001.7 1304.4,1001.7" fill="none" stroke="#888" stroke-width="0.9" stroke-dasharray="2 3"/>
+</g>
+<g id="edge_q_case_r_tp_loc" class="edge edge-opt">
+  <path d="M894.1,967.6 C1190.7,967.6 1190.7,933.4 1487.2,933.4" fill="none" stroke="#888" stroke-width="0.9" stroke-dasharray="2 3"/>
+</g>
+</g>
+<g id="layer_nodes" inkscape:groupmode="layer" inkscape:label="Nodes">
+<g id="cluster_root" inkscape:label="cluster_root">
+  <g id="q_avyaya" inkscape:label="q_avyaya" class="node ask">
+    <rect x="25.0" y="335.1" width="138" height="36" rx="5" ry="5" fill="#eaf4ee" stroke="#2d6a4f" stroke-width="1.4"/>
+    <text x="94.0" y="350.1" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#1e4a37">Итог = наречие?</text>
+    <text x="94.0" y="362.1" text-anchor="middle" font-family="Arial" font-size="9" fill="#666">acc.sg.nt.</text>
+  </g>
+  <g id="r_avyayi" inkscape:label="r_avyayi" class="node result-mid">
+    <rect x="207.8" y="98.1" width="130" height="32" rx="5" ry="5" fill="#fff9c4" stroke="#fbc02d" stroke-width="1.2"/>
+    <text x="272.8" y="111.1" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#5a4a00">avyayībhāva</text>
+    <text x="272.8" y="123.1" text-anchor="middle" font-family="Arial" font-size="9" fill="#5a4a00">A1 · 2.4%</text>
+  </g>
+</g>
+<g id="cluster_dvandva" inkscape:label="cluster_dvandva">
+  <g id="q_dvandva" inkscape:label="q_dvandva" class="node ask">
+    <rect x="207.8" y="420.4" width="138" height="36" rx="5" ry="5" fill="#eaf4ee" stroke="#2d6a4f" stroke-width="1.4"/>
+    <text x="276.8" y="435.4" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#1e4a37">«И/и» между частями?</text>
+  </g>
+  <g id="q_dv_type" inkscape:label="q_dv_type" class="node ask">
+    <rect x="390.6" y="198.6" width="138" height="36" rx="5" ry="5" fill="#eaf4ee" stroke="#2d6a4f" stroke-width="1.4"/>
+    <text x="459.6" y="213.6" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#1e4a37">Совокупность?</text>
+  </g>
+  <g id="r_dv_samahara" inkscape:label="r_dv_samahara" class="node result-mid">
+    <rect x="573.3" y="166.4" width="130" height="32" rx="5" ry="5" fill="#fff9c4" stroke="#fbc02d" stroke-width="1.2"/>
+    <text x="638.3" y="179.4" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#5a4a00">samāhāra-dv.</text>
+    <text x="638.3" y="191.4" text-anchor="middle" font-family="Arial" font-size="9" fill="#5a4a00">Ds · ~3%</text>
+  </g>
+  <g id="r_dv_itaretara" inkscape:label="r_dv_itaretara" class="node result-mid">
+    <rect x="573.3" y="234.7" width="130" height="32" rx="5" ry="5" fill="#fff9c4" stroke="#fbc02d" stroke-width="1.2"/>
+    <text x="638.3" y="247.7" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#5a4a00">itaretara-dv.</text>
+    <text x="638.3" y="259.7" text-anchor="middle" font-family="Arial" font-size="9" fill="#5a4a00">Di · ~9%</text>
+  </g>
+</g>
+<g id="cluster_same_case" inkscape:label="cluster_same_case">
+  <g id="q_same_case" inkscape:label="q_same_case" class="node ask">
+    <rect x="390.6" y="522.9" width="138" height="36" rx="5" ry="5" fill="#eaf4ee" stroke="#2d6a4f" stroke-width="1.4"/>
+    <text x="459.6" y="537.9" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#1e4a37">Обе части в одном падеже?</text>
+  </g>
+</g>
+<g id="cluster_karmadharaya" inkscape:label="cluster_karmadharaya">
+  <g id="q_km_type" inkscape:label="q_km_type" class="node ask">
+    <rect x="573.3" y="335.1" width="138" height="36" rx="5" ry="5" fill="#eaf4ee" stroke="#2d6a4f" stroke-width="1.4"/>
+    <text x="642.3" y="350.1" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#1e4a37">Подтип K?</text>
+  </g>
+  <g id="r_km_adj" inkscape:label="r_km_adj" class="node result-top">
+    <rect x="756.1" y="303.0" width="130" height="32" rx="5" ry="5" fill="#ffcdd2" stroke="#c62828" stroke-width="1.8"/>
+    <text x="821.1" y="316.0" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#7f0000">viśeṣaṇapūrvap.-K</text>
+    <text x="821.1" y="328.0" text-anchor="middle" font-family="Arial" font-size="9" fill="#7f0000">K1 · 12.29%</text>
+  </g>
+  <g id="r_km_appos" inkscape:label="r_km_appos" class="node result-lo">
+    <rect x="756.1" y="371.2" width="130" height="32" rx="5" ry="5" fill="#f5f5f5" stroke="#9e9e9e" stroke-width="1.0"/>
+    <text x="821.1" y="384.2" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#424242">viśeṣyapūrvap.-K</text>
+    <text x="821.1" y="396.2" text-anchor="middle" font-family="Arial" font-size="9" fill="#424242">K2 · низкая</text>
+  </g>
+  <g id="r_km_upamana" inkscape:label="r_km_upamana" class="node result-lo">
+    <rect x="938.9" y="303.0" width="130" height="32" rx="5" ry="5" fill="#f5f5f5" stroke="#9e9e9e" stroke-width="1.0"/>
+    <text x="1003.9" y="316.0" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#424242">upamāna pūrv.-K</text>
+    <text x="1003.9" y="328.0" text-anchor="middle" font-family="Arial" font-size="9" fill="#424242">K4 · низкая</text>
+  </g>
+  <g id="r_km_rupaka" inkscape:label="r_km_rupaka" class="node result-lo">
+    <rect x="938.9" y="371.2" width="130" height="32" rx="5" ry="5" fill="#f5f5f5" stroke="#9e9e9e" stroke-width="1.0"/>
+    <text x="1003.9" y="384.2" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#424242">rūpaka / avadh.</text>
+    <text x="1003.9" y="396.2" text-anchor="middle" font-family="Arial" font-size="9" fill="#424242">K6 · низкая</text>
+  </g>
+  <g id="r_km_ubhaya" inkscape:label="r_km_ubhaya" class="node result-lo">
+    <rect x="1121.7" y="303.0" width="130" height="32" rx="5" ry="5" fill="#f5f5f5" stroke="#9e9e9e" stroke-width="1.0"/>
+    <text x="1186.7" y="316.0" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#424242">ubhayapada-K</text>
+    <text x="1186.7" y="328.0" text-anchor="middle" font-family="Arial" font-size="9" fill="#424242">K3 · низкая</text>
+  </g>
+  <g id="r_km_sambhavana" inkscape:label="r_km_sambhavana" class="node result-lo">
+    <rect x="1121.7" y="371.2" width="130" height="32" rx="5" ry="5" fill="#f5f5f5" stroke="#9e9e9e" stroke-width="1.0"/>
+    <text x="1186.7" y="384.2" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#424242">sambhāvanā-K</text>
+    <text x="1186.7" y="396.2" text-anchor="middle" font-family="Arial" font-size="9" fill="#424242">K7 · оч. низк.</text>
+  </g>
+  <g id="r_km_madhyama" inkscape:label="r_km_madhyama" class="node result-lo">
+    <rect x="1304.4" y="303.0" width="130" height="32" rx="5" ry="5" fill="#f5f5f5" stroke="#9e9e9e" stroke-width="1.0"/>
+    <text x="1369.4" y="316.0" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#424242">madhyamapadalopi</text>
+    <text x="1369.4" y="328.0" text-anchor="middle" font-family="Arial" font-size="9" fill="#424242">Km · оч. низк.</text>
+  </g>
+</g>
+<g id="cluster_bahuvrihi" inkscape:label="cluster_bahuvrihi">
+  <g id="q_bv_role" inkscape:label="q_bv_role" class="node ask">
+    <rect x="573.3" y="659.4" width="138" height="36" rx="5" ry="5" fill="#eaf4ee" stroke="#2d6a4f" stroke-width="1.4"/>
+    <text x="642.3" y="674.4" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#1e4a37">Атрибут внеш. слова?</text>
+  </g>
+  <g id="q_bv_sub" inkscape:label="q_bv_sub" class="node ask">
+    <rect x="756.1" y="505.8" width="138" height="36" rx="5" ry="5" fill="#eaf4ee" stroke="#2d6a4f" stroke-width="1.4"/>
+    <text x="825.1" y="520.8" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#1e4a37">sa- / prādi- / обычн?</text>
+  </g>
+  <g id="r_bv_reg" inkscape:label="r_bv_reg" class="node result-hi">
+    <rect x="938.9" y="439.5" width="130" height="32" rx="5" ry="5" fill="#ffe0b2" stroke="#e65100" stroke-width="1.5"/>
+    <text x="1003.9" y="452.5" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#5a2e00">bahuvrīhi (обычн.)</text>
+    <text x="1003.9" y="464.5" text-anchor="middle" font-family="Arial" font-size="9" fill="#5a2e00">Bs6 · 6.39%</text>
+  </g>
+  <g id="r_bv_saha" inkscape:label="r_bv_saha" class="node result-lo">
+    <rect x="938.9" y="507.8" width="130" height="32" rx="5" ry="5" fill="#f5f5f5" stroke="#9e9e9e" stroke-width="1.0"/>
+    <text x="1003.9" y="520.8" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#424242">saha-bahuvrīhi</text>
+    <text x="1003.9" y="532.8" text-anchor="middle" font-family="Arial" font-size="9" fill="#424242">BvS · низк.</text>
+  </g>
+  <g id="r_bv_pradi" inkscape:label="r_bv_pradi" class="node result-lo">
+    <rect x="938.9" y="576.1" width="130" height="32" rx="5" ry="5" fill="#f5f5f5" stroke="#9e9e9e" stroke-width="1.0"/>
+    <text x="1003.9" y="589.1" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#424242">prādi-bahuvrīhi</text>
+    <text x="1003.9" y="601.1" text-anchor="middle" font-family="Arial" font-size="9" fill="#424242">Bp  · низк.</text>
+  </g>
+</g>
+<g id="cluster_special_tp" inkscape:label="cluster_special_tp">
+  <g id="q_upapada" inkscape:label="q_upapada" class="node ask">
+    <rect x="756.1" y="642.3" width="138" height="36" rx="5" ry="5" fill="#eaf4ee" stroke="#2d6a4f" stroke-width="1.4"/>
+    <text x="825.1" y="657.3" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#1e4a37">Kṛt-суфф. справа?</text>
+  </g>
+  <g id="q_numeral" inkscape:label="q_numeral" class="node ask">
+    <rect x="756.1" y="710.6" width="138" height="36" rx="5" ry="5" fill="#eaf4ee" stroke="#2d6a4f" stroke-width="1.4"/>
+    <text x="825.1" y="725.6" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#1e4a37">Числит. слева?</text>
+  </g>
+  <g id="q_prefix" inkscape:label="q_prefix" class="node ask">
+    <rect x="756.1" y="778.9" width="138" height="36" rx="5" ry="5" fill="#eaf4ee" stroke="#2d6a4f" stroke-width="1.4"/>
+    <text x="825.1" y="793.9" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#1e4a37">Преверб prādi/gati?</text>
+  </g>
+  <g id="q_aluk" inkscape:label="q_aluk" class="node ask">
+    <rect x="756.1" y="847.2" width="138" height="36" rx="5" ry="5" fill="#eaf4ee" stroke="#2d6a4f" stroke-width="1.4"/>
+    <text x="825.1" y="862.2" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#1e4a37">Aluk (падеж сохр.)?</text>
+  </g>
+  <g id="r_upapada" inkscape:label="r_upapada" class="node result-mid">
+    <rect x="938.9" y="644.3" width="130" height="32" rx="5" ry="5" fill="#fff9c4" stroke="#fbc02d" stroke-width="1.2"/>
+    <text x="1003.9" y="657.3" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#5a4a00">upapada-tp</text>
+    <text x="1003.9" y="669.3" text-anchor="middle" font-family="Arial" font-size="9" fill="#5a4a00">U · 4.32%</text>
+  </g>
+  <g id="r_dvigu" inkscape:label="r_dvigu" class="node result-lo">
+    <rect x="938.9" y="712.6" width="130" height="32" rx="5" ry="5" fill="#f5f5f5" stroke="#9e9e9e" stroke-width="1.0"/>
+    <text x="1003.9" y="725.6" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#424242">dvigu</text>
+    <text x="1003.9" y="737.6" text-anchor="middle" font-family="Arial" font-size="9" fill="#424242">Td · низк.</text>
+  </g>
+  <g id="r_pradi" inkscape:label="r_pradi" class="node result-lo">
+    <rect x="938.9" y="780.9" width="130" height="32" rx="5" ry="5" fill="#f5f5f5" stroke="#9e9e9e" stroke-width="1.0"/>
+    <text x="1003.9" y="793.9" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#424242">prādi/gati-tp</text>
+    <text x="1003.9" y="805.9" text-anchor="middle" font-family="Arial" font-size="9" fill="#424242">Tp/Tg · низк.</text>
+  </g>
+  <g id="r_aluk" inkscape:label="r_aluk" class="node result-lo">
+    <rect x="938.9" y="849.2" width="130" height="32" rx="5" ry="5" fill="#f5f5f5" stroke="#9e9e9e" stroke-width="1.0"/>
+    <text x="1003.9" y="862.2" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#424242">aluk-samāsa</text>
+    <text x="1003.9" y="874.2" text-anchor="middle" font-family="Arial" font-size="9" fill="#424242">оч. низк.</text>
+  </g>
+</g>
+<g id="cluster_vibhakti_tp" inkscape:label="cluster_vibhakti_tp">
+  <g id="q_case" inkscape:label="q_case" class="node ask">
+    <rect x="756.1" y="949.6" width="138" height="36" rx="5" ry="5" fill="#eaf4ee" stroke="#2d6a4f" stroke-width="1.4"/>
+    <text x="825.1" y="964.6" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#1e4a37">Падеж виграхи?</text>
+  </g>
+  <g id="r_tp_gen" inkscape:label="r_tp_gen" class="node result-top">
+    <rect x="938.9" y="917.4" width="130" height="32" rx="5" ry="5" fill="#ffcdd2" stroke="#c62828" stroke-width="1.8"/>
+    <text x="1003.9" y="930.4" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#7f0000">ṣaṣṭhī-tp</text>
+    <text x="1003.9" y="942.4" text-anchor="middle" font-family="Arial" font-size="9" fill="#7f0000">T6 · 40.56%</text>
+  </g>
+  <g id="r_tp_nan" inkscape:label="r_tp_nan" class="node result-hi">
+    <rect x="938.9" y="985.7" width="130" height="32" rx="5" ry="5" fill="#ffe0b2" stroke="#e65100" stroke-width="1.5"/>
+    <text x="1003.9" y="998.7" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#5a2e00">nañ-tp</text>
+    <text x="1003.9" y="1010.7" text-anchor="middle" font-family="Arial" font-size="9" fill="#5a2e00">Tn · 5.9% F=99%</text>
+  </g>
+  <g id="r_tp_acc" inkscape:label="r_tp_acc" class="node result-mid">
+    <rect x="1121.7" y="917.4" width="130" height="32" rx="5" ry="5" fill="#fff9c4" stroke="#fbc02d" stroke-width="1.2"/>
+    <text x="1186.7" y="930.4" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#5a4a00">dvitīyā-tp</text>
+    <text x="1186.7" y="942.4" text-anchor="middle" font-family="Arial" font-size="9" fill="#5a4a00">T2 · 2–5%</text>
+  </g>
+  <g id="r_tp_dat" inkscape:label="r_tp_dat" class="node result-mid">
+    <rect x="1121.7" y="985.7" width="130" height="32" rx="5" ry="5" fill="#fff9c4" stroke="#fbc02d" stroke-width="1.2"/>
+    <text x="1186.7" y="998.7" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#5a4a00">caturthī-tp</text>
+    <text x="1186.7" y="1010.7" text-anchor="middle" font-family="Arial" font-size="9" fill="#5a4a00">T4 · ~1.6% F=87%</text>
+  </g>
+  <g id="r_tp_abl" inkscape:label="r_tp_abl" class="node result-lo">
+    <rect x="1304.4" y="917.4" width="130" height="32" rx="5" ry="5" fill="#f5f5f5" stroke="#9e9e9e" stroke-width="1.0"/>
+    <text x="1369.4" y="930.4" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#424242">pañcamī-tp</text>
+    <text x="1369.4" y="942.4" text-anchor="middle" font-family="Arial" font-size="9" fill="#424242">T5 · &lt;2%</text>
+  </g>
+  <g id="r_tp_inst" inkscape:label="r_tp_inst" class="node result-lo">
+    <rect x="1304.4" y="985.7" width="130" height="32" rx="5" ry="5" fill="#f5f5f5" stroke="#9e9e9e" stroke-width="1.0"/>
+    <text x="1369.4" y="998.7" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#424242">tṛtīyā-tp</text>
+    <text x="1369.4" y="1010.7" text-anchor="middle" font-family="Arial" font-size="9" fill="#424242">T3 · ~1% F=5%</text>
+  </g>
+  <g id="r_tp_loc" inkscape:label="r_tp_loc" class="node result-lo">
+    <rect x="1487.2" y="917.4" width="130" height="32" rx="5" ry="5" fill="#f5f5f5" stroke="#9e9e9e" stroke-width="1.0"/>
+    <text x="1552.2" y="930.4" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#424242">saptamī-tp</text>
+    <text x="1552.2" y="942.4" text-anchor="middle" font-family="Arial" font-size="9" fill="#424242">T7 · &lt;1% F=1%</text>
+  </g>
+</g>
+</g>
+<g id="legend" inkscape:groupmode="layer" inkscape:label="Legend">
+<rect x="25" y="900" width="360" height="180" fill="#fafafa" stroke="#b0b0b0" stroke-width="0.8" rx="5"/>
+<text x="37" y="918" font-family="Arial" font-size="11" font-weight="bold" fill="#333">Цвет узла — корпусная частотность:</text>
+<rect x="37" y="923" width="18" height="11" fill="#ffcdd2" stroke="#c62828" stroke-width="1.2" rx="2"/>
+<text x="61" y="932" font-family="Arial" font-size="10" fill="#333">ТОП &gt; 10% (T6, K1)</text>
+<rect x="37" y="938" width="18" height="11" fill="#ffe0b2" stroke="#e65100" stroke-width="1.2" rx="2"/>
+<text x="61" y="947" font-family="Arial" font-size="10" fill="#333">высокая 5–10% (Tn, Bs6)</text>
+<rect x="37" y="953" width="18" height="11" fill="#fff9c4" stroke="#fbc02d" stroke-width="1.2" rx="2"/>
+<text x="61" y="962" font-family="Arial" font-size="10" fill="#333">средняя 2–5% (A1, U, T2, T4, Ds, Di)</text>
+<rect x="37" y="968" width="18" height="11" fill="#f5f5f5" stroke="#9e9e9e" stroke-width="1.2" rx="2"/>
+<text x="61" y="977" font-family="Arial" font-size="10" fill="#333">низкая &lt; 2% (остальные)</text>
+<text x="37" y="1008" font-family="Arial" font-size="11" font-weight="bold" fill="#333">Рёбра:</text>
+<line x1="37" y1="1022" x2="69" y2="1022" stroke="#2d6a4f" stroke-width="1.6"/>
+<text x="75" y="1025" font-family="Arial" font-size="10">«да»</text>
+<line x1="117" y1="1022" x2="149" y2="1022" stroke="#a04020" stroke-width="1.4" stroke-dasharray="4 3"/>
+<text x="155" y="1025" font-family="Arial" font-size="10">«нет»</text>
+<line x1="203" y1="1022" x2="235" y2="1022" stroke="#888" stroke-width="1" stroke-dasharray="2 3"/>
+<text x="241" y="1025" font-family="Arial" font-size="10">опция</text>
+<text x="37" y="1048" font-family="Arial" font-size="11" font-weight="bold" fill="#333">Топ-3 = ~59% корпуса:</text>
+<text x="37" y="1064" font-family="Arial" font-size="10">1. T6  ṣaṣṭhī-tp  — 40.56%</text>
+<text x="37" y="1078" font-family="Arial" font-size="10">2. K1  viśeṣaṇapūrvap.-K — 12.29%</text>
+<text x="37" y="1092" font-family="Arial" font-size="10">3. Bs6 ṣaṣṭhyartha-bv — 6.39%</text>
+</g>
+</svg>

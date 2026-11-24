@@ -26,6 +26,22 @@ from [samasacakra/samasacakra-taxonomy.json](https://github.com/gasyoun/SamasaCh
 canonical example from the Leitan conspectus; the MG structural rulings (right-to-left law,
 dvandva the sole flat exception, D1–D6) annotated per class and leaf.
 
+## Drumam decision tree and trainer
+
+- [Open the interactive Samāsa decision tree](https://gasyoun.github.io/SamasaChakram/drumam/)
+- [Open the Samāsa trainer](https://gasyoun.github.io/SamasaChakram/drumam/samasa_trainer.html)
+- [Browse the decision-tree diagrams](docs/drumam/diagrams) and [data, source, and earlier versions](drumam)
+
+## Leitan conspectus and supplements
+
+The two Word editions are working inputs for a single consolidated edition.
+
+- [Complete working edition](docs/SAMASA_Leitan_COMPLETE.docx)
+- [Edited working edition](docs/SAMASA_Leitan_edited.docx)
+- [Additions to the conspectus](docs/samasa_additions.docx)
+- [Teaching checklists](docs/samasa_checklists.docx)
+- [Formal features of Sanskrit compounds (§ 12)](docs/samasa_formal_features.docx)
+
 ## Contents
 
 | Path | What it is |

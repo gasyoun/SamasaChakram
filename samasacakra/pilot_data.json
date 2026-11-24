@@ -1,0 +1,760 @@
+{
+  "_meta": {
+    "created": "24-11-2026",
+    "handoff": "H8573",
+    "design_branch": "design/drumam-wheel",
+    "design_report": "reports/DRUMAM_WHEEL_DESIGN_24-11-2026.md",
+    "note": "Единственный источник содержания пилота: пять уроков, указатель параграфов, частотный слой колеса. Генераторы build_wheel_pilot.py и build_pilot.py читают этот файл; ручная правка HTML запрещена."
+  },
+  "sources": {
+    "leitan": {
+      "label": "Лейтан Э. З. Сложные слова в санскрите. Конспект",
+      "repo_path": "docs/SAMASA_Leitan_COMPLETE.docx",
+      "role": "основной конспект: классификация и адреса параграфов"
+    },
+    "lowe": {
+      "label": "Lowe J. The syntax of Sanskrit compounds. Language 91(3), 2015",
+      "url": "https://www.cambridge.org/core/journals/language/article/abs/syntax-of-sanskrit-compounds/8643A95C7DAC322452659DBC930E4DA1",
+      "local": "Lowe_Samasas_Syntax of Sanskrit Compounds_Lowe.pdf",
+      "locator": "e71–e115; § 7, e98, (44)–(48)"
+    },
+    "warnemyr": {
+      "label": "Warnemyr L. Compounds (Sanskrit grammar, morphology)",
+      "url": "http://www.warnemyr.com/skrgram/grammar/morphology/compounds.html",
+      "local": "Compounds.html",
+      "locator": "S = X–Y; правила (1)–(15)"
+    },
+    "kulkarni2013": {
+      "label": "Kulkarni A., Kumar A. Clues from Aṣṭādhyāyī for compound type identification",
+      "url": "https://sanskrit.uohyd.ac.in/faculty/amba/PUBLICATIONS/papers/scti-5scls.pdf",
+      "locator": "Table 5: доля пяти частых тегов среди ~64 тыс. двучленных композитов"
+    },
+    "dep2026": {
+      "label": "Dependency Analysis of Sanskrit Compounds (ISCLS 2026)",
+      "url": "https://aclanthology.org/2026.iscls-1.8/",
+      "locator": "пара rāmeśvaraḥ в двух контекстах"
+    }
+  },
+  "frequency": {
+    "title": "Корпусная доля",
+    "denominator": "Таблица 5 Kulkarni & Kumar 2013 — доля тега среди примерно 64 тыс. двучленных композитов, размеченных в контексте. Это единственный источник измеренных долей в пилоте; имена тегов сверены с Appendix A той же статьи (A Compound Tagset, 56 тегов).",
+    "second_source": "Оценки конспекта § 14 (колонка «% корпуса») приводятся ТОЛЬКО отдельной пометкой в карточке: это не измеренная доля, она не окрашивается и не участвует в частотном слое.",
+    "bands": [
+      {
+        "id": "gte5",
+        "label": "≥ 5%",
+        "test": "измеренная доля ≥ 5%"
+      },
+      {
+        "id": "mid15",
+        "label": "1–< 5%",
+        "test": "1% ≤ измеренная доля < 5%"
+      },
+      {
+        "id": "lt1",
+        "label": "< 1%",
+        "test": "измеренная доля < 1%"
+      },
+      {
+        "id": "none",
+        "label": "нет сопоставимой доли",
+        "test": "точного тега таблицы 5 для лепестка нет"
+      }
+    ],
+    "band_note": "Цветовой слой показывает только измеренную долю — пять тегов таблицы 5. Границы 1% и 5% — проектное предложение (ADR 0002); среди измеренных долей нет тега ниже 1%, поэтому диапазон < 1% на колесе пуст, но остаётся в легенде. Корпусный ранг — место тега по доле среди этих пяти тегов с измеренной долей, а не среди всех 58 подтипов; он показывается только при точном совпадении метки с лепестком. Оценки конспекта § 14 вынесены в карточку отдельной пометкой и не окрашиваются.",
+    "entries": [
+      {
+        "tag": "T6",
+        "label": "ṣaṣṭhī-tatpuruṣa",
+        "kind": "share",
+        "band": "gte5",
+        "count": 26097,
+        "pct": 40.56,
+        "scope": "leaf",
+        "target": "tatpurusa--vibhakti--sasthi",
+        "source": "kulkarni2013",
+        "source_text": "T6 — 26 097 — 40,56% (таблица 5)",
+        "rank": 1,
+        "mapping_verified": "Appendix A (A Compound Tagset): T6 = ṣaṣṭhī (tatpuruṣa)"
+      },
+      {
+        "tag": "K1",
+        "label": "viśeṣaṇapūrvapada-karmadhāraya",
+        "kind": "share",
+        "band": "gte5",
+        "count": 7909,
+        "pct": 12.29,
+        "scope": "leaf",
+        "target": "tatpurusa--karmadharaya--visesanapurvapada",
+        "source": "kulkarni2013",
+        "source_text": "K1 — 7 909 — 12,29% (таблица 5)",
+        "rank": 2,
+        "mapping_verified": "Appendix A (A Compound Tagset): K1 = viśeṣaṇa-pūrvapada (karmadhāraya)"
+      },
+      {
+        "tag": "Bs6",
+        "label": "ṣaṣṭhyartha-bahuvrīhi",
+        "kind": "share",
+        "band": "gte5",
+        "count": 4113,
+        "pct": 6.39,
+        "scope": "leaf",
+        "target": "bahuvrihi--samanadhikarana--sasthyartha",
+        "source": "kulkarni2013",
+        "source_text": "Bs6 — 4 113 — 6,39% (таблица 5)",
+        "rank": 3,
+        "mapping_verified": "Appendix A (A Compound Tagset): Bs6 = ṣaṣṭhyartha (bahuvrīhi)"
+      },
+      {
+        "tag": "Tn",
+        "label": "nañ-tatpuruṣa",
+        "kind": "share",
+        "band": "gte5",
+        "count": 3801,
+        "pct": 5.9,
+        "scope": "leaf",
+        "target": "tatpurusa--tp-special--nan-tp",
+        "source": "kulkarni2013",
+        "source_text": "Tn — 3 801 — 5,9% (таблица 5)",
+        "rank": 4,
+        "mapping_verified": "Appendix A (A Compound Tagset): Tn = nañ (tatpuruṣa)"
+      },
+      {
+        "tag": "U",
+        "label": "upapada-tatpuruṣa",
+        "kind": "share",
+        "band": "mid15",
+        "count": 2782,
+        "pct": 4.32,
+        "scope": "leaf",
+        "target": "tatpurusa--tp-special--upapada",
+        "source": "kulkarni2013",
+        "source_text": "U — 2 782 — 4,32% (таблица 5)",
+        "rank": 5,
+        "mapping_verified": "Appendix A (A Compound Tagset): U = upapada (tatpuruṣa)"
+      },
+      {
+        "tag": "T4",
+        "label": "caturthī-tatpuruṣa",
+        "kind": "estimate",
+        "value_text": "~1,6%",
+        "scope": "leaf",
+        "target": "tatpurusa--vibhakti--caturthi",
+        "source": "leitan",
+        "source_text": "§ 14, матрица частотности: ~1,6% (оценка, не измеренная доля)",
+        "note": "Оценка конспекта § 14: ~1,6%. Это не измеренная доля: в частотном слое значение не отмечается."
+      },
+      {
+        "tag": "T7",
+        "label": "saptamī-tatpuruṣa",
+        "kind": "estimate",
+        "value_text": "< 1%",
+        "scope": "leaf",
+        "target": "tatpurusa--vibhakti--saptami",
+        "source": "leitan",
+        "source_text": "§ 14, матрица частотности: < 1% (оценка, не измеренная доля)",
+        "note": "Оценка конспекта § 14: < 1%. Это не измеренная доля: в частотном слое значение не отмечается."
+      },
+      {
+        "tag": "Di",
+        "label": "itaretara-dvandva",
+        "kind": "estimate",
+        "value_text": "~9%",
+        "scope": "leaf",
+        "target": "dvandva--dv--itaretara",
+        "source": "leitan",
+        "source_text": "§ 14, матрица частотности: ~9% (оценка, не измеренная доля)",
+        "note": "Оценка конспекта § 14: ~9%. Это не измеренная доля: в частотном слое значение не отмечается."
+      },
+      {
+        "tag": "Ds",
+        "label": "samāhāra-dvandva",
+        "kind": "estimate",
+        "value_text": "~3%",
+        "scope": "leaf",
+        "target": "dvandva--dv--samahara-dv",
+        "source": "leitan",
+        "source_text": "§ 14, матрица частотности: ~3% (оценка, не измеренная доля)",
+        "note": "Оценка конспекта § 14: ~3%. Это не измеренная доля: в частотном слое значение не отмечается."
+      },
+      {
+        "tag": "A1",
+        "label": "avyayībhāva (avyaya в левой части)",
+        "kind": "estimate",
+        "value_text": "~2,0%",
+        "scope": "group",
+        "target": "avyayibhava--av",
+        "source": "leitan",
+        "source_text": "§ 14, матрица частотности: ~2,0% для всей группы avyayībhāva (оценка, не измеренная доля)",
+        "note": "Оценка конспекта § 14: ~2,0%. Это не измеренная доля: в частотном слое значение не отмечается."
+      }
+    ],
+    "unmapped_note": "Пометку «нет сопоставимой доли» получают лепестки, для которых в таблице 5 нет тега. Оценки конспекта § 14 («низкая», «очень низкая», «~1%», «~1,6%», «~2–5%», «< 1%», «< 2%», «~3%», «~9%», «~2,0%») показываются отдельной строкой в карточке и никогда не окрашиваются.",
+    "rank_note": "Корпусный ранг присваивается только при точном совпадении корпусной метки с лезпестком (ADR 0002) и означает место по доле среди пяти тегов таблицы 5 — единственных тегов с измеренной долей. Это не место среди всех 58 подтипов: у остальных измеренной доли нет.",
+    "estimate_note": "Оценки конспекта § 14 («низкая», ~1%, ~1,6%, ~3%, <1%, ~2,0% группы) приводятся отдельной строкой в карточке как оценка источника: они не являются долей, не получают диапазона и не отображаются в частотном слое колеса."
+  },
+  "kevala": {
+    "id": "kevala",
+    "title": "kevala-samāsa",
+    "subtitle": "отдельный вход рядом с колесом — § 8 конспекта",
+    "card": {
+      "ex": "ājanmaśuddhaḥ",
+      "vigraha": "ā janmanaḥ śuddhaḥ",
+      "ru": "чистый от рождения",
+      "context": "Калидаса, Рагхуванша 1.5",
+      "rule": "Идиоматические композиты, спонтанно создаваемые поэтами и не объяснимые правилами Панини; комментаторы легитимизируют их самым общим правилом [Пан. 2.1.4 sup saha supā].",
+      "second_ex": "vāgarthāv-iva: vāgarthau iva — «как звучание слова и его смысл» (Рагхуванша 1.1)",
+      "note": "Класс не входит в четыре класса прадхана-схемы Патанджали, поэтому у колеса нет лепестка: вход отдельный, § 8."
+    },
+    "para": "8",
+    "drumam": {
+      "label": "Задание Drumam: отнести пример к классу или к kevala",
+      "href": "uroki/05-kevala-samasa.html#zadanie"
+    }
+  },
+  "legacy_leaf_aliases": {
+    "ekadesin": "tatpurusa--vibhakti--prathama",
+    "tatpurusa--tp-special--ekadesin": "tatpurusa--vibhakti--prathama"
+  },
+  "lessons": [
+    {
+      "n": 1,
+      "slug": "01-raja-bharya",
+      "title": "rāja-bhāryā: генитивная развёртка и два дерева",
+      "subtitle": "Урок 1 · ṣaṣṭhī-tatpuruṣa · Лоу § 7, (44)–(45)",
+      "leaf": "tatpurusa--vibhakti--sasthi",
+      "paras": [
+        "4.1.6"
+      ],
+      "source_locator": "Lowe 2015, § 7, e98, пример (44)–(45)",
+      "vigraha": {
+        "form": "rājño bhāryā",
+        "gloss": "жена царя",
+        "analysis": "Правая часть bhāryā — главная; левая rājan- разворачивается в генитив rājñaḥ. Тип — ṣaṣṭhī-tatpuruṣa."
+      },
+      "scheme": [
+        {
+          "label": "Композит",
+          "text": "rāja-bhāryā = [rājan- + bhāryā]"
+        },
+        {
+          "label": "Развёртка",
+          "text": "rājño bhāryā — «жена царя»"
+        },
+        {
+          "label": "Что главное",
+          "text": "bhāryā: правая часть несёт род, число и падеж целого"
+        },
+        {
+          "label": "Отношение",
+          "text": "POSS: bhāryā ‘of’ rāja — принадлежность, генитив при левой основе"
+        }
+      ],
+      "body": [
+        "Лоу даёт для одного и того же содержания две разные структуры составляющих. В (44) rāja- и bhāryā — две сестры под N0, левая помечена как (↑ POSS) = ↓: генитивное отношение задаётся внутри композита. В (45) то же отношение выражено синтаксически: отдельная NP rājño под NP, а bhāryā — вершина.",
+        "Функциональная структура у обоих примеров одна: PRED ‘wife’ и POSS [PRED ‘king’]. Именно это и составляет учебный смысл пары: композит не создаёт нового отношения, он упаковывает уже известное. Различается только то, на каком уровне отношение записано — в дереве составляющих или в функциональной структуре.",
+        "Для чтения текста отсюда следует практическое правило: разворачивая ṣaṣṭhī-tatpuruṣa, спрашивайте не «какой падеж у первого члена», а «какое отношение связывает две основы». Генитив — самый частый ответ, но не единственный (§ 9)."
+      ],
+      "diagrams": [
+        {
+          "id": "warnemyr-3d",
+          "title": "Формула развёртки",
+          "model": "Warnemyr, правила развёртки (3d)",
+          "source": "Warnemyr, Compounds, S = X–Y; правило (3d) Y ᴳX ‘Y of X’",
+          "kind": "pre",
+          "content": "S = X–Y\n\n(3d)  Y ᴳX  =  ‘Y of X’\n\nX = rāja-   Y = bhāryā\n→ bhāryā ‘of’ rāja = «жена царя»\n\nВерхний индекс G — генитив; индекс стоит при левой основе X."
+        },
+        {
+          "id": "lowe-44",
+          "title": "Lowe (44): композит как дерево составляющих",
+          "model": "LFG, дерево составляющих (c-structure)",
+          "source": "Lowe 2015, § 7, e98, пример (44) — учебное переложение",
+          "kind": "pre",
+          "content": "            NP\n             |\n            N0            (↑ POSS) = ↓\n           /  \\\n         N^    N0\n         |      |\n       rāja-  bhāryā\n      ‘king’  ‘wife.NOM.SG’\n\nФункциональная структура:\n  PRED  ‘wife’\n  POSS  [ PRED ‘king’ ]"
+        },
+        {
+          "id": "lowe-45",
+          "title": "Lowe (45): то же отношение, записанное синтаксически",
+          "model": "LFG, дерево составляющих (c-structure)",
+          "source": "Lowe 2015, § 7, e98, пример (45) — учебное переложение",
+          "kind": "pre",
+          "content": "            NP\n           /  \\\n         NP     N0\n    (↑ POSS)=↓  |\n         |     bhāryā\n       rājño  ‘wife.NOM.SG’\n   ‘king.GEN.SG’\n\nФункциональная структура — та же, что в (44):\n  PRED  ‘wife’\n  POSS  [ PRED ‘king’ ]"
+        }
+      ],
+      "exercise": {
+        "id": "z1",
+        "kind": "single",
+        "prompt": "Разверните rāja-bhāryā и назовите отношение, которое сохраняется и в композите, и в развёрнутой конструкции.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Принадлежность (POSS): bhāryā ‘of’ rāja — генитив при левой основе",
+            "ok": true
+          },
+          {
+            "id": "b",
+            "text": "Сочинение: rājā ca bhāryā ca — царь и жена",
+            "ok": false,
+            "why": "Сочинение дало бы двандву rāja-bhāryau и другую развёртку (X Y ca)."
+          },
+          {
+            "id": "c",
+            "text": "Признак при определяемом: rājā bhāryā — жена-царь",
+            "ok": false,
+            "why": "Это кармадхарая с прилагательным или аппозицией; здесь главная часть — bhāryā, а rājan- уходит в генитив."
+          },
+          {
+            "id": "d",
+            "text": "Отрицание: na rājño bhāryā",
+            "ok": false,
+            "why": "Отрицание даёт nañ-тип (abrāhmaṇaḥ / abhāryaḥ), в этом композите отрицания нет."
+          }
+        ],
+        "explanation": "Верно (а). Лоу показывает, что дерево составляющих может меняться, а функциональное отношение остаётся одним: PRED ‘wife’, POSS [PRED ‘king’]. Вопрос «чей?» восстанавливает и композит, и развёрнутую фразу.",
+        "para": "4.1.6"
+      },
+      "sources": [
+        {
+          "label": "Lowe 2015, § 7, e98, (44)–(45)",
+          "url": "https://www.cambridge.org/core/journals/language/article/abs/syntax-of-sanskrit-compounds/8643A95C7DAC322452659DBC930E4DA1"
+        },
+        {
+          "label": "Конспект Лейтана, § 4.1.6",
+          "url": "../SAMASA_Leitan_COMPLETE.docx"
+        },
+        {
+          "label": "Warnemyr, Compounds, правило (3d)",
+          "url": "http://www.warnemyr.com/skrgram/grammar/morphology/compounds.html"
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "slug": "02-vlozhennaya-dvandva",
+      "title": "Вложенная двандва: два татпуруши внутри координации",
+      "subtitle": "Урок 2 · itaretara-dvandva + ṣaṣṭhī-tatpuruṣa · Лоу § 7, (46)–(48)",
+      "leaf": "dvandva--dv--itaretara",
+      "paras": [
+        "6.1",
+        "4.1.6"
+      ],
+      "source_locator": "Lowe 2015, § 7, e98, пример (46)–(48)",
+      "vigraha": {
+        "form": "adharasya vicaraṇam, daśanānāṃ darśanam ca",
+        "gloss": "дрожание губ и обнажение зубов",
+        "analysis": "Внешняя координация соединяет два татпуруши; каждый внутренний татпуруша — генитивный, с POSS внутри. Двойственное число относится к целому."
+      },
+      "scheme": [
+        {
+          "label": "Композит",
+          "text": "[[adhara-vicaraṇa-]tp [daśana-darśane]tp]dd"
+        },
+        {
+          "label": "Развёртка",
+          "text": "adharasya vicaraṇam ca daśanānāṃ darśanam ca"
+        },
+        {
+          "label": "Что главное",
+          "text": "обе части равноправны: двандва — единственная плоская конструкция"
+        },
+        {
+          "label": "Отношение",
+          "text": "внутри каждого конъюнкта — POSS (генитив), снаружи — координация"
+        }
+      ],
+      "body": [
+        "Пример (46) — упрощённая часть длинного композита из (20). Внешняя скобка — двандва, внутри неё два татпуруши: adhara-vicaraṇa- «дрожание губ» и daśana-darśane «обнажение зубов». Лоу строит (47) как дерево составляющих и (48) как функциональную структуру того же содержания.",
+        "Ключевое наблюдение для разбора: правило двандвы применяется к N0, к обоим конъюнктам — правило N + N татпуруши. Порядок применения важен: сначала татпуруша, потом координация. Поэтому при чтении справа налево вложенность не «схлопывается» в одну цепочку, а распадается на два независимых отношения.",
+        "В (47) слева N не проецирует (N^, основа vicaraṇa-), справа проецирует и даёт форму darśane с окончанием двойственного. Это тот же механизм не-проекции, который Лоу вводит в § 5 для первого члена композита."
+      ],
+      "diagrams": [
+        {
+          "id": "lowe-46",
+          "title": "Скобочная запись композита",
+          "model": "скобочная запись Лоу",
+          "source": "Lowe 2015, § 7, e98, пример (46) — как напечатано в статье",
+          "kind": "pre",
+          "content": "[[adhara- vicaraṇa-]tp [daśana- darśane]tp]dd\n\n‘quivering of the lips and baring of the teeth’ (NOM.DU)\n\nВ строке (46) самого PDF диакритика теряется при извлечении текста\n(«daana- darane»); дерево (47) даёт daśana- и darśane."
+        },
+        {
+          "id": "lowe-47",
+          "title": "Lowe (47): дерево составляющих",
+          "model": "LFG, дерево составляющих (c-structure)",
+          "source": "Lowe 2015, § 7, e98, пример (47) — учебное переложение",
+          "kind": "pre",
+          "content": "                 NP\n                  |\n                 N0\n                /  \\\n             N^      N0\n            /  \\      |\n          N^    N^   N^   N0\n          |      |    |    |\n       adhara  vicaraṇa-  daśana-  darśane\n\n(↑ POSS)=↓ у обоих внутренних татпуруш;\nлевая ветвь N не проецирует (N^), правая даёт N0."
+        },
+        {
+          "id": "lowe-48",
+          "title": "Lowe (48): функциональная структура",
+          "model": "LFG, функциональная структура (f-structure)",
+          "source": "Lowe 2015, § 7, e98, пример (48) — учебное переложение",
+          "kind": "pre",
+          "content": "NUM   DUAL\nCASE  NOM\n\nPRED  ‘quivering’\nPOSS  [ PRED ‘lip’ ]\n\nPRED  ‘baring’\nPOSS  [ PRED ‘teeth’ ]"
+        },
+        {
+          "id": "warnemyr-nesting",
+          "title": "Правило вложенности",
+          "model": "Warnemyr, примечание (5)",
+          "source": "Warnemyr, Compounds: «A compound can be part of a bigger compound» (5)",
+          "kind": "pre",
+          "content": "S = X–Y, и X или Y само может быть S.\n\ndd( tp(adhara-, vicaraṇa-), tp(daśana-, darśane) )\n\nПравило (3d) Y ᴳX применяется в каждом конъюнкте отдельно,\nзатем (1) X Y ca связывает конъюнкты."
+        }
+      ],
+      "exercise": {
+        "id": "z2",
+        "kind": "single",
+        "prompt": "Сколько татпуруш входит в (46) и какое отношение связывает основы внутри каждого из них?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Два татпуруши, в каждом — генитивное POSS; снаружи координация",
+            "ok": true
+          },
+          {
+            "id": "b",
+            "text": "Один татпуруша и одна двандва внутри него",
+            "ok": false,
+            "why": "Вложенность обратная: двандва внешняя, татпуруши внутренние — это и показывает (47)."
+          },
+          {
+            "id": "c",
+            "text": "Одна двандва из четырёх основ без внутренних отношений",
+            "ok": false,
+            "why": "Тогда (48) не содержала бы двух отдельных PRED с собственными POSS."
+          },
+          {
+            "id": "d",
+            "text": "Два бахуврихи внутри двандвы",
+            "ok": false,
+            "why": "Оба конъюнкта экзоцентричны только как целое; внутри они определяющие — татпуруши."
+          }
+        ],
+        "explanation": "Верно (а). В (48) два независимых PRED — ‘quivering’ и ‘baring’, у каждого свой POSS (‘lip’, ‘teeth’). Внешняя структура — двандва: NUM DUAL при обоих.",
+        "para": "6.1"
+      },
+      "sources": [
+        {
+          "label": "Lowe 2015, § 7, e98, (46)–(48)",
+          "url": "https://www.cambridge.org/core/journals/language/article/abs/syntax-of-sanskrit-compounds/8643A95C7DAC322452659DBC930E4DA1"
+        },
+        {
+          "label": "Конспект Лейтана, § 6.1 и § 4.1.6",
+          "url": "../SAMASA_Leitan_COMPLETE.docx"
+        },
+        {
+          "label": "Warnemyr, Compounds, правила (1), (3d), (5)",
+          "url": "http://www.warnemyr.com/skrgram/grammar/morphology/compounds.html"
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "slug": "03-ramesvarah",
+      "title": "rāmeśvaraḥ: два контекста и два обоснованных разбора",
+      "subtitle": "Урок 3 · ṣaṣṭhī-tatpuruṣa / bahuvrīhi · § 4.1.6 и §§ 5, 9",
+      "leaf": "bahuvrihi--samanadhikarana--sasthyartha",
+      "paras": [
+        "4.1.6",
+        "5.1.5",
+        "9"
+      ],
+      "source_locator": "Конспект §§ 4.1.6, 5.1.5, 9; пара rāmeśvaraḥ — Dependency Analysis of Sanskrit Compounds (ISCLS 2026)",
+      "vigraha": {
+        "form": "rāmasya īśvaraḥ / rāmaḥ īśvaraḥ yasya saḥ",
+        "gloss": "владыка Рамы / тот, чей владыка — Рама",
+        "analysis": "Одна и та же форма допускает татпурушу и бахуврихи. Выбор делает контекст: кого называет слово — владыку или его носителя."
+      },
+      "scheme": [
+        {
+          "label": "Композит",
+          "text": "rāma-īśvara-"
+        },
+        {
+          "label": "Развёртка А",
+          "text": "rāmasya īśvaraḥ — «владыка Рамы» (ṣaṣṭhī-tatpuruṣa, § 4.1.6)"
+        },
+        {
+          "label": "Развёртка Б",
+          "text": "rāmaḥ īśvaraḥ yasya saḥ — «тот, чей владыка — Рама» (bahuvrīhi, §§ 5, 9)"
+        },
+        {
+          "label": "Что решает",
+          "text": "референт: владыка (А) или носитель признака (Б)"
+        }
+      ],
+      "body": [
+        "Конспект даёт два контекста. Если Сита приветствует Рамешвару, композит называет владыку — татпуруша: первый член разворачивается в генитив, главная часть — īśvara-. Если Хануман описывается как rāmeśvaraḥ, композит характеризует Ханумана: Рама — его владыка, и главным становится внешний референт — бахуврихи.",
+        "Второй разбор не отменяет первый: обе развёртки грамматически допустимы. Различие в том, что татпуруша остаётся эндоцентричной (слово называет то, что названо правой частью), а бахуврихи — экзоцентрична (слово называет нечто вне себя).",
+        "Поэтому задание к уроку устроено как оценка обоснования: нужно не угадать «правильный» класс, а показать, какой признак в данном предложении его выбирает."
+      ],
+      "diagrams": [
+        {
+          "id": "ramesvara-tp",
+          "title": "Разбор А: ṣaṣṭhī-tatpuruṣa",
+          "model": "скобочная схема + правило Warnemyr (3d)",
+          "source": "конспект § 4.1.6; Warnemyr (3d) Y ᴳX — учебное переложение",
+          "kind": "pre",
+          "content": "rāma-īśvara-\n\n[ rāmasya  īśvaraḥ ]\n      G        ‘lord’\n\nPRED  ‘lord’\nPOSS  [ PRED ‘Rāma’ ]\n\nСлово называет владыку."
+        },
+        {
+          "id": "ramesvara-bv",
+          "title": "Разбор Б: bahuvrīhi",
+          "model": "скобочная схема + правило Warnemyr (4a)",
+          "source": "конспект §§ 5, 9; Warnemyr (4a) ᴳya Y [yathā] X asti — учебное переложение",
+          "kind": "pre",
+          "content": "rāma-īśvara-\n\n[ rāmaḥ  īśvaraḥ  yasya  saḥ ]\n   NOM     ‘lord’   whose  that\n\nPRED  ‘Hanumān’\nADJ   [ PRED ‘lord’; POSS [ PRED ‘Rāma’ ] ]\n\nСлово называет носителя признака, а не владыку."
+        }
+      ],
+      "exercise": {
+        "id": "z3",
+        "kind": "multi",
+        "prompt": "Отметьте все разборы, которые допустимы для формы rāmeśvaraḥ вне контекста, и укажите, чем подтверждается каждый.",
+        "options": [
+          {
+            "id": "a",
+            "text": "rāmasya īśvaraḥ — ṣaṣṭhī-tatpuruṣa, § 4.1.6",
+            "ok": true,
+            "why": "Генитив при левой основе; слово называет владыку. Допустимо всегда, пока контекст не требует иного референта."
+          },
+          {
+            "id": "b",
+            "text": "rāmaḥ īśvaraḥ yasya saḥ — bahuvrīhi, §§ 5, 9",
+            "ok": true,
+            "why": "Относительное ya разворачивает композит в признак внешнего референта; допустимо без контекста."
+          },
+          {
+            "id": "c",
+            "text": "rāmāṇām īśvaraḥ — «владыка Рам» (мн. ч. первый член)",
+            "ok": false,
+            "why": "Форма rāma- не даёт генитива мн. числа: было бы rāmeśvarāṇām или иной первый член. См. § 4.1.6."
+          },
+          {
+            "id": "d",
+            "text": "rāmaś cāsau īśvaraś ca — кармадхарая «Рама-владыка»",
+            "ok": false,
+            "why": "Кармадхарая требует согласования в одном падеже и функции определения; здесь īśvara- не прилагательное к rāma-."
+          }
+        ],
+        "explanation": "Верны (а) и (б): вне контекста форма допускает оба разбора, и оба опираются на разные диагностические признаки. В конкретном предложении выбор делается по референту: Сита приветствует владыку (А), Хануман назван носителем признака (Б).",
+        "para": "9"
+      },
+      "sources": [
+        {
+          "label": "Конспект Лейтана, § 4.1.6, § 5.1.5, § 9",
+          "url": "../SAMASA_Leitan_COMPLETE.docx"
+        },
+        {
+          "label": "Dependency Analysis of Sanskrit Compounds (ISCLS 2026)",
+          "url": "https://aclanthology.org/2026.iscls-1.8/"
+        },
+        {
+          "label": "Warnemyr, Compounds, (3d) и (4a)",
+          "url": "http://www.warnemyr.com/skrgram/grammar/morphology/compounds.html"
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "slug": "04-prathama-ekadesin",
+      "title": "prathamā / ekadeśin: pūrvakāyaḥ и партитивный генитив",
+      "subtitle": "Урок 4 · prathamā / ekadeśin · конспект § 4.1.1",
+      "leaf": "tatpurusa--vibhakti--prathama",
+      "paras": [
+        "4.1.1"
+      ],
+      "source_locator": "Конспект § 4.1.1, примеры (4.1.1.a) и (4.1.1.c)",
+      "vigraha": {
+        "form": "pūrvaṃ kāyasya",
+        "gloss": "передняя [часть] тела",
+        "analysis": "Партитивный генитив стоит при правой части: pūrvam — часть, kāyasya — целое. Тип ekadeśin [Пан. 2.2.1–3], очень редкий."
+      },
+      "scheme": [
+        {
+          "label": "Композит",
+          "text": "[pūrva- + kāya-]"
+        },
+        {
+          "label": "Развёртка",
+          "text": "pūrvaṃ kāyasya — «передняя [часть] тела»"
+        },
+        {
+          "label": "Что главное",
+          "text": "pūrva-: обозначение части; kāya- уходит в генитив целого"
+        },
+        {
+          "label": "Признак",
+          "text": "генитив на ПРАВОЙ части, а не на левой — это и отличает ekadeśin"
+        }
+      ],
+      "body": [
+        "Конспект описывает тип так: правая часть получает партитивный генитив, а левая называет часть — pūrva- «передняя», adhara- «нижняя», apara- «задняя», uttara- «верхняя». Пример (4.1.1.a) pūrvakāyaḥ: pūrvaṃ kāyasya.",
+        "Отсюда важное ограничение, которое стоит проверять на любом примере: тип не покрывается падежным рядом Warnemyr. В его правилах индекс ставится при левой основе (Y ᴳX ‘Y of X’), а здесь генитив принадлежит правой части. Формулу (3d) к ekadeśin применять нельзя — это честный отрицательный результат сверки, а не пробел в источнике.",
+        "Второй пример конспекта, (4.1.1.c) rājadantaḥ: dantānāṃ rājā «царь зубов (= передний зуб)», устроен так же: генитив при правой части, левая называет часть целого. На колесе этот лепесток объединён с prathamā и стоит первым в падежном ряду — так решено в сверке конспекта и колеса."
+      ],
+      "diagrams": [
+        {
+          "id": "ekadesin-brackets",
+          "title": "Скобочная запись и падежная зависимость",
+          "model": "учебная скобочная схема (право-налево)",
+          "source": "конспект § 4.1.1, (4.1.1.a) и (4.1.1.c) — переложение",
+          "kind": "pre",
+          "content": "[pūrva- kāya-]           [rājan- danta-]\n     |     |                   |      |\n  часть  целое             часть   целое\n     └─kāyasya (part. gen.)   └─dantānām (part. gen.)\n\npūrvaṃ kāyasya               dantānāṃ rājā\n«передняя [часть] тела»      «царь зубов»\n\nГенитив целого стоит при правой части — не при левой."
+        },
+        {
+          "id": "warnemyr-negative",
+          "title": "Почему формула (3d) не подходит",
+          "model": "сверка с правилами Warnemyr",
+          "source": "Warnemyr, Compounds, правила (3a)–(3f): индекс падежа при левой основе",
+          "kind": "pre",
+          "content": "(3d)  Y ᴳX  =  ‘Y of X’      индекс при X (левая основа)\n\npūrvakāyaḥ:  pūrvaṃ  kāyasya\n              часть   целое(GEN)\n\nГенитив при Y, а не при X → запись (3d) не описывает тип.\nИспользуем падежную зависимость: pūrvam ← kāyasya (part. gen.)."
+        }
+      ],
+      "exercise": {
+        "id": "z4",
+        "kind": "single",
+        "prompt": "Какая развёртка соответствует pūrvakāyaḥ по конспекту § 4.1.1?",
+        "options": [
+          {
+            "id": "a",
+            "text": "pūrvaṃ kāyasya — партитивный генитив при правой части",
+            "ok": true
+          },
+          {
+            "id": "b",
+            "text": "pūrvaḥ kāyaḥ — согласование в номинативе, как кармадхарая",
+            "ok": false,
+            "why": "Согласование дало бы определяющее отношение; конспект даёт генитив целого."
+          },
+          {
+            "id": "c",
+            "text": "pūrvasya kāyaḥ — генитив при левой части",
+            "ok": false,
+            "why": "Это ṣaṣṭhī-tatpuruṣa (§ 4.1.6), а не ekadeśin: генитив должен стоять при правой части."
+          },
+          {
+            "id": "d",
+            "text": "pūrvaṃ kāyam — аккузатив при правой части",
+            "ok": false,
+            "why": "Аккузатив дал бы dvitīyā-tatpuruṣa (§ 4.1.2); здесь зависимость партитивная."
+          }
+        ],
+        "explanation": "Верно (а). Диагностический признак ekadeśin — партитивный генитив при правой части и левая часть со значением части: pūrva-, adhara-, apara-, uttara-. Второй пример того же типа — rājadantaḥ: dantānāṃ rājā.",
+        "para": "4.1.1"
+      },
+      "sources": [
+        {
+          "label": "Конспект Лейтана, § 4.1.1",
+          "url": "../SAMASA_Leitan_COMPLETE.docx"
+        },
+        {
+          "label": "Warnemyr, Compounds, (3a)–(3f)",
+          "url": "http://www.warnemyr.com/skrgram/grammar/morphology/compounds.html"
+        },
+        {
+          "label": "Сверка конспекта и колеса (D3: ekadeśin)",
+          "url": "https://github.com/gasyoun/SamasaChakram/blob/main/KLAMMERDIAGRAMM_LEITAN_SAMASA_COMPARISON.md"
+        }
+      ]
+    },
+    {
+      "n": 5,
+      "slug": "05-kevala-samasa",
+      "title": "kevala-samāsa: вход вне четырёх классов",
+      "subtitle": "Урок 5 · kevala-samāsa · конспект § 8",
+      "leaf": "kevala",
+      "paras": [
+        "8"
+      ],
+      "source_locator": "Конспект § 8, примеры (8.1) и (8.2)",
+      "vigraha": {
+        "form": "ā janmanaḥ śuddhaḥ",
+        "gloss": "чистый от рождения",
+        "analysis": "Идиоматический композит: развёртка возможна, но правило Панини его не выводит; комментаторы легитимизируют его общим [Пан. 2.1.4 sup saha supā]."
+      },
+      "scheme": [
+        {
+          "label": "Композит",
+          "text": "ā-janma-śuddha-"
+        },
+        {
+          "label": "Развёртка",
+          "text": "ā janmanaḥ śuddhaḥ — «чистый от рождения»"
+        },
+        {
+          "label": "Что главное",
+          "text": "śuddha-: определяемое, к которому относится вся конструкция"
+        },
+        {
+          "label": "Признак",
+          "text": "ни один из четырёх классов не выводит форму правилом — это и есть kevala"
+        }
+      ],
+      "body": [
+        "Конспект выносит kevala-samāsa за пределы четырёх классов: это идиоматические композиты, спонтанно создаваемые поэтами, которые правила Панини не объясняют. Комментаторы легитимизируют их самым общим правилом [Пан. 2.1.4 sup saha supā].",
+        "Пример (8.1) ājanmaśuddhaḥ из Рагхуванши 1.5 разворачивается как ā janmanaḥ śuddhaḥ. Внешне первый член похож на авьяибхаву (ā- + аблатив), но результат — определение к лицу, а не наречие; поэтому класс не один из четырёх, а kevala.",
+        "Второй пример (8.2) vāgarthāv-iva: vāgarthau iva — «как звучание слова и его смысл» (Рагхуванша 1.1). Здесь в композит входит и частица iva, что тоже выводит форму за пределы регулярных классов. На колесе для kevala нет лепестка: вход отдельный, рядом с колесом, со ссылкой на § 8."
+      ],
+      "diagrams": [
+        {
+          "id": "kevala-brackets",
+          "title": "Скобочная запись развёртки",
+          "model": "учебная скобочная схема (право-налево)",
+          "source": "конспект § 8, (8.1) — переложение",
+          "kind": "pre",
+          "content": "[ā- [janmanaḥ] śuddha-]\n  │      ABL      ‘pure’\n  └─ предлог-префикс при аблативе\n\nā janmanaḥ śuddhaḥ\n«чистый от рождения»\n\nРазвёртка возможна; правило вывода — только общее 2.1.4."
+        },
+        {
+          "id": "kevala-4classes",
+          "title": "Почему не один из четырёх классов",
+          "model": "прадхана-схема Патанджали (4 класса)",
+          "source": "конспект § 2 (прадхана-схема) и § 8 (kevala) — сопоставление",
+          "kind": "pre",
+          "content": "tatpuruṣa      главная — правая часть        нет: śuddha- не выводится правилом\nbahuvrīhi      главное — внешнее слово     нет: референт назван прямо\navyayībhāva    главная — левая, итог наречие нет: итог — определение лица\ndvandva        обе части главные          нет: одна основа\n\n→ kevala-samāsa, § 8: вне четырёх, легитимация [Пан. 2.1.4]."
+        }
+      ],
+      "exercise": {
+        "id": "z5",
+        "kind": "single",
+        "prompt": "К какому классу конспект относит ājanmaśuddhaḥ и на каком основании?",
+        "options": [
+          {
+            "id": "a",
+            "text": "kevala-samāsa, § 8: правило вывода не подходит, легитимация общим [Пан. 2.1.4]",
+            "ok": true
+          },
+          {
+            "id": "b",
+            "text": "avyayībhāva: ā- стоит в левой части, значит главная — левая",
+            "ok": false,
+            "why": "Итог — не наречие, а определение к лицу; одной левой ā- недостаточно."
+          },
+          {
+            "id": "c",
+            "text": "bahuvrīhi: описано свойство лица",
+            "ok": false,
+            "why": "Бахуврихи называет носителя признака вместо правой части; здесь референт назван прямо — śuddhaḥ."
+          },
+          {
+            "id": "d",
+            "text": "dvandva: две равноправные основы",
+            "ok": false,
+            "why": "Вторая основа — определяемое, координации нет."
+          }
+        ],
+        "explanation": "Верно (а). Конспект относит пример к § 8 и указывает, что такие композиты не выводятся правилами Панини, а легитимируются самым общим правилом 2.1.4. Отдельный вход рядом с колесом нужен именно потому, что лепестка у класса нет.",
+        "para": "8"
+      },
+      "sources": [
+        {
+          "label": "Конспект Лейтана, § 8 и § 2",
+          "url": "../SAMASA_Leitan_COMPLETE.docx"
+        },
+        {
+          "label": "Сверка конспекта и колеса (§ 8 kevala — отдельный вход)",
+          "url": "https://github.com/gasyoun/SamasaChakram/blob/main/reports/DRUMAM_LEITAN_WHEEL_CROSSWALK_DRAFT.md"
+        }
+      ]
+    }
+  ]
+}

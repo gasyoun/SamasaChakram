@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Урок 1. rāja-bhāryā: генитивная развёртка и два дерева</title>
+<meta name="description" content="Пилот SamasaChakram: пять сквозных уроков по санскритским композитам и веб-указатель параграфов конспекта Э. З. Лейтана.">
+<style>
+:root{--surface:#fcfcfb;--panel:#fff;--ink:#20201d;--ink2:#5d5c55;--line:#ddd8cc;
+--blue:#2a78d6;--green:#2a7d4f;--amber:#d99b00;--red:#b8352a}
+@media (prefers-color-scheme:dark){:root{--surface:#1a1a19;--panel:#232320;--ink:#f2efe6;
+--ink2:#b5b2a5;--line:#3c3a33;--blue:#3987e5;--green:#37a06a;--amber:#c98500;--red:#d4614f}}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--surface);color:var(--ink);
+font-family:'Charis SIL',Charis,Georgia,'Times New Roman',serif;line-height:1.55}
+main{max-width:920px;margin:0 auto;padding:24px 18px 64px}
+a{color:var(--blue)}
+h1{font-size:1.9rem;font-weight:normal;margin:.2em 0 .1em;line-height:1.2}
+h2{font-size:1.15rem;font-weight:normal;margin:1.6em 0 .4em;letter-spacing:.01em}
+.sub{color:var(--ink2);font-size:.95rem;margin:0 0 1.2em}
+nav{display:flex;gap:14px;flex-wrap:wrap;font-size:.88rem;margin:0 0 18px;
+border-bottom:1px solid var(--line);padding-bottom:10px}
+nav a{text-decoration:none;border-bottom:1px dotted currentColor}
+.lede{font-size:1.05rem;margin:0 0 1.2em}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin:0 0 18px}
+.now{display:grid;grid-template-columns:1fr;gap:2px}
+.now .vig{font-size:1.5rem;margin:.1em 0}
+.now .gloss{color:var(--ink2);font-style:italic}
+.now dl{margin:.6em 0 0;display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;font-size:.95rem}
+.now dt{color:var(--ink2)}
+.now dd{margin:0}
+pre{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px 14px;
+overflow-x:auto;font-family:'Cascadia Mono',Consolas,'DejaVu Sans Mono',monospace;
+font-size:.82rem;line-height:1.45}
+details{border:1px solid var(--line);border-radius:6px;margin:0 0 10px;background:var(--panel)}
+details summary{cursor:pointer;padding:9px 14px;font-size:.95rem}
+details[open] summary{border-bottom:1px solid var(--line)}
+details .inner{padding:12px 14px}
+.src{color:var(--ink2);font-size:.8rem;margin:0 0 10px}
+.exercise{margin:0 0 8px}
+.exercise fieldset{border:1px solid var(--line);border-radius:6px;padding:12px 14px;margin:0}
+.exercise legend{font-size:.9rem;color:var(--ink2);padding:0 6px}
+.opt{display:block;margin:.35em 0;font-size:.96rem;cursor:pointer}
+.opt input{margin-right:8px}
+button.check{font:inherit;font-size:.9rem;padding:6px 16px;border:1px solid var(--line);
+border-radius:5px;background:var(--panel);color:var(--ink);cursor:pointer;margin:10px 0 0}
+button.check:hover{border-color:var(--ink2)}
+.fb{margin:12px 0 0;font-size:.95rem;display:none}
+.fb.show{display:block}
+.fb .verdict{font-weight:bold}
+.fb .ok{color:var(--green)}
+.fb .bad{color:var(--red)}
+.fb ul{margin:.5em 0 0;padding-left:1.2em;font-size:.9rem;color:var(--ink2)}
+.fb li.ok b{color:var(--green)} .fb li.bad b{color:var(--red)}
+.sources{font-size:.86rem;color:var(--ink2);margin:1.4em 0 0;padding-left:1.1em}
+.sources li{margin:.25em 0}
+.toc{list-style:none;padding:0;margin:0}
+.toc li{border-bottom:1px solid var(--line);padding:10px 0}
+.toc a{text-decoration:none;font-size:1.02rem}
+.toc .why{color:var(--ink2);font-size:.86rem}
+.idx{list-style:none;padding:0;margin:0}
+.idx > li{border-bottom:1px solid var(--line);padding:7px 0;display:grid;
+grid-template-columns:5.2em 1fr;gap:10px;align-items:baseline}
+.idx .num{font-variant-numeric:tabular-nums;color:var(--ink2);font-size:.9rem}
+.idx .num a{text-decoration:none;color:var(--ink2)}
+.idx .links{font-size:.82rem;color:var(--ink2);display:block;margin-top:2px}
+.idx .links a{color:var(--blue)}
+.idx .links .muted{color:var(--ink2)}
+h2.sec{margin-top:2em;border-top:2px solid var(--line);padding-top:.8em}
+h3.sec2{margin:1.4em 0 .2em;font-size:1rem;font-weight:normal;color:var(--ink2)}
+.filter{width:100%;font:inherit;padding:7px 10px;border:1px solid var(--line);
+border-radius:5px;background:var(--panel);color:var(--ink);margin:0 0 14px}
+.foot{margin-top:2.4em;border-top:1px solid var(--line);padding-top:12px;
+color:var(--ink2);font-size:.82rem}
+.neigh{display:flex;justify-content:space-between;gap:12px;font-size:.9rem;margin:1.6em 0 0}
+</style>
+</head>
+<body>
+<main>
+<nav>
+  <a href="https://gasyoun.github.io/SamasaChakram/">← колесо</a>
+  <a href="https://gasyoun.github.io/SamasaChakram/paragrafy/">указатель параграфов</a>
+  <a href="https://gasyoun.github.io/SamasaChakram/uroki/">пять уроков</a>
+  <a href="https://gasyoun.github.io/SamasaChakram/drumam/samasa_trainer.html">практика Drumam</a>
+  <a href="../SAMASA_Leitan_COMPLETE.docx">конспект (DOCX)</a>
+</nav>
+
+<h1>rāja-bhāryā: генитивная развёртка и два дерева</h1>
+<p class="sub">Урок 1 · ṣaṣṭhī-tatpuruṣa · Лоу § 7, (44)–(45)</p>
+<p class="lede">Lowe 2015, § 7, e98, пример (44)–(45) · <a href="https://gasyoun.github.io/SamasaChakram/#k=tatpurusa--vibhakti--sasthi">карточка № 6 на колесе</a></p>
+
+<section class="card now">
+  <div class="vig">rājño bhāryā</div>
+  <div class="gloss">«жена царя»</div>
+  <p>Правая часть bhāryā — главная; левая rājan- разворачивается в генитив rājñaḥ. Тип — ṣaṣṭhī-tatpuruṣa.</p>
+  <dl><div><dt>Композит</dt><dd>rāja-bhāryā = [rājan- + bhāryā]</dd></div>
+<div><dt>Развёртка</dt><dd>rājño bhāryā — «жена царя»</dd></div>
+<div><dt>Что главное</dt><dd>bhāryā: правая часть несёт род, число и падеж целого</dd></div>
+<div><dt>Отношение</dt><dd>POSS: bhāryā ‘of’ rāja — принадлежность, генитив при левой основе</dd></div></dl>
+</section>
+
+<h2>Разбор</h2>
+<p>Лоу даёт для одного и того же содержания две разные структуры составляющих. В (44) rāja- и bhāryā — две сестры под N0, левая помечена как (↑ POSS) = ↓: генитивное отношение задаётся внутри композита. В (45) то же отношение выражено синтаксически: отдельная NP rājño под NP, а bhāryā — вершина.</p>
+<p>Функциональная структура у обоих примеров одна: PRED ‘wife’ и POSS [PRED ‘king’]. Именно это и составляет учебный смысл пары: композит не создаёт нового отношения, он упаковывает уже известное. Различается только то, на каком уровне отношение записано — в дереве составляющих или в функциональной структуре.</p>
+<p>Для чтения текста отсюда следует практическое правило: разворачивая ṣaṣṭhī-tatpuruṣa, спрашивайте не «какой падеж у первого члена», а «какое отношение связывает две основы». Генитив — самый частый ответ, но не единственный (§ 9).</p>
+
+<h2>Формальные схемы</h2>
+<p class="src">Схемы раскрываются по запросу и подписаны: у каждой указана модель и источник.
+Схемы Лоу даны учебным переложением, а не воспроизведением авторских рисунков.</p>
+<details>
+<summary>Формула развёртки</summary>
+<div class="inner">
+<p class="src">модель: Warnemyr, правила развёртки (3d)<br>источник: Warnemyr, Compounds, S = X–Y; правило (3d) Y ᴳX ‘Y of X’</p>
+<pre>S = X–Y
+
+(3d)  Y ᴳX  =  ‘Y of X’
+
+X = rāja-   Y = bhāryā
+→ bhāryā ‘of’ rāja = «жена царя»
+
+Верхний индекс G — генитив; индекс стоит при левой основе X.</pre>
+</div>
+</details>
+<details>
+<summary>Lowe (44): композит как дерево составляющих</summary>
+<div class="inner">
+<p class="src">модель: LFG, дерево составляющих (c-structure)<br>источник: Lowe 2015, § 7, e98, пример (44) — учебное переложение</p>
+<pre>            NP
+             |
+            N0            (↑ POSS) = ↓
+           /  \
+         N^    N0
+         |      |
+       rāja-  bhāryā
+      ‘king’  ‘wife.NOM.SG’
+
+Функциональная структура:
+  PRED  ‘wife’
+  POSS  [ PRED ‘king’ ]</pre>
+</div>
+</details>
+<details>
+<summary>Lowe (45): то же отношение, записанное синтаксически</summary>
+<div class="inner">
+<p class="src">модель: LFG, дерево составляющих (c-structure)<br>источник: Lowe 2015, § 7, e98, пример (45) — учебное переложение</p>
+<pre>            NP
+           /  \
+         NP     N0
+    (↑ POSS)=↓  |
+         |     bhāryā
+       rājño  ‘wife.NOM.SG’
+   ‘king.GEN.SG’
+
+Функциональная структура — та же, что в (44):
+  PRED  ‘wife’
+  POSS  [ PRED ‘king’ ]</pre>
+</div>
+</details>
+
+<h2>Задание Drumam</h2>
+<div class="exercise" id="zadanie">
+<fieldset>
+<legend>Задание к уроку 1</legend>
+<p>Разверните rāja-bhāryā и назовите отношение, которое сохраняется и в композите, и в развёрнутой конструкции.</p>
+<label class="opt"><input type="radio" name="zz1" value="a" data-ok="1"> Принадлежность (POSS): bhāryā ‘of’ rāja — генитив при левой основе</label>
+<label class="opt"><input type="radio" name="zz1" value="b" data-ok="0"> Сочинение: rājā ca bhāryā ca — царь и жена</label>
+<label class="opt"><input type="radio" name="zz1" value="c" data-ok="0"> Признак при определяемом: rājā bhāryā — жена-царь</label>
+<label class="opt"><input type="radio" name="zz1" value="d" data-ok="0"> Отрицание: na rājño bhāryā</label>
+<button class="check" data-kind="single" data-ex="z1">Проверить</button>
+<div class="fb" id="fb-z1">
+  <p class="verdict" id="verdict-z1"></p>
+  <p>Верно (а). Лоу показывает, что дерево составляющих может меняться, а функциональное отношение остаётся одним: PRED ‘wife’, POSS [PRED ‘king’]. Вопрос «чей?» восстанавливает и композит, и развёрнутую фразу.</p>
+  <ul><li class="ok"><b>Принадлежность (POSS): bhāryā ‘of’ rāja — генитив при левой …</b></li>
+<li class="bad"><b>Сочинение: rājā ca bhāryā ca — царь и жена</b> — Сочинение дало бы двандву rāja-bhāryau и другую развёртку (X Y ca).</li>
+<li class="bad"><b>Признак при определяемом: rājā bhāryā — жена-царь</b> — Это кармадхарая с прилагательным или аппозицией; здесь главная часть — bhāryā, а rājan- уходит в генитив.</li>
+<li class="bad"><b>Отрицание: na rājño bhāryā</b> — Отрицание даёт nañ-тип (abrāhmaṇaḥ / abhāryaḥ), в этом композите отрицания нет.</li></ul>
+  <p class="src">Разбор: <a href="https://gasyoun.github.io/SamasaChakram/paragrafy/#p-4-1-6">§ 4.1.6</a> · <a href="https://gasyoun.github.io/SamasaChakram/drumam/samasa_trainer.html">общий режим практики Drumam</a></p>
+</div>
+</fieldset>
+</div>
+
+<h2>Источники урока</h2>
+<ul class="sources"><li><a href="https://www.cambridge.org/core/journals/language/article/abs/syntax-of-sanskrit-compounds/8643A95C7DAC322452659DBC930E4DA1">Lowe 2015, § 7, e98, (44)–(45)</a></li>
+<li><a href="../SAMASA_Leitan_COMPLETE.docx">Конспект Лейтана, § 4.1.6</a></li>
+<li><a href="http://www.warnemyr.com/skrgram/grammar/morphology/compounds.html">Warnemyr, Compounds, правило (3d)</a></li></ul>
+<div class="neigh"><span></span><a href="02-vlozhennaya-dvandva.html">урок 2 →</a></div>
+<div class="foot">
+Пилот H8573 · таксономия и § — конспект Э. З. Лейтана; структуры — Lowe 2015 (LFG),
+формулы развёртки — Warnemyr; доли — Kulkarni &amp; Kumar 2013, таблица 5 и § 14 конспекта.
+Собрано <code>samasacakra/build_pilot.py</code> из <code>pilot_data.json</code> —
+правьте данные, а не этот файл.</div>
+</main>
+</body>
+</html>
+<script>
+document.querySelectorAll('button.check').forEach(btn => {
+  btn.onclick = () => {
+    const kind = btn.dataset.kind, ex = btn.dataset.ex;
+    const box = document.getElementById('fb-' + ex);
+    const picks = [...document.querySelectorAll(`input[name="z${ex}"]`)].filter(i => i.checked);
+    const okPicks = picks.filter(i => i.dataset.ok === '1');
+    const all = [...document.querySelectorAll(`input[name="z${ex}"]`)];
+    const need = all.filter(i => i.dataset.ok === '1').map(i => i.value).sort().join(',');
+    const got = picks.map(i => i.value).sort().join(',');
+    let pass, msg;
+    if (!picks.length) { pass = false; msg = 'Ничего не выбрано — отметьте вариант.'; }
+    else if (kind === 'multi') {
+      pass = got === need;
+      msg = pass ? 'Принято: отмечены все допустимые разборы.'
+                 : (okPicks.length === picks.length
+                    ? 'Отмечены допустимые разборы, но не все: без контекста форма допускает ещё один.'
+                    : 'Принято частично: отмечен вариант, который форма не подтверждает.');
+    } else {
+      pass = picks.length === 1 && okPicks.length === 1;
+      msg = pass ? 'Верно.' : 'Неверно: см. объяснение ниже.';
+    }
+    const v = document.getElementById('verdict-' + ex);
+    v.textContent = msg;
+    v.className = 'verdict ' + (pass ? 'ok' : 'bad');
+    box.classList.add('show');
+  };
+});
+</script>

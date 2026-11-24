@@ -34,7 +34,7 @@ _Generated from `example_pack_manifest.json` — do not hand-edit; run `python s
 | `pancagavadhana` | ✅ approved | dvigu (karmadhāraya subtype) inside tatpuruṣa | ru: чьё богатство — пять коров… | klammerdiagramm-pancagavadhana.json | MG vote D1, 16-07-2026 (H997); comparison §3.2; gallery §3.2 |
 | `tribhuvana` | ✅ approved | dvigu samāhāre (collective) | ru: троемирье… | klammerdiagramm-tribhuvana.json | MG vote D1, 16-07-2026 (H997); taxonomy leaf samahare-dvigu |
 | `panipadamukha` | ✅ approved | samāhāra-dvandva (collective) | ru: руки, ноги и лицо (вместе)… | klammerdiagramm-panipadamukha.json | MG vote D2, 16-07-2026 (H997); taxonomy leaf samahara-dv |
-| `rajadanta` | ✅ approved | ekadeśin / prathamā-tatpuruṣa | ru: передний зуб… | klammerdiagramm-rajadanta.json | MG vote D3, 16-07-2026 (H997); taxonomy leaf ekadesin |
+| `rajadanta` | ✅ approved | ekadeśin / prathamā-tatpuruṣa | ru: передний зуб… | klammerdiagramm-rajadanta.json | MG vote D3, 16-07-2026 (H997); taxonomy leaf prathama (formerly ekadesin) |
 | `vanantara` | ✅ approved | mayūravyaṃsakādi / X-antara bahuvrīhi | ru: другой лес… | klammerdiagramm-vanantara.json | MG vote D3, 16-07-2026 (H997); taxonomy leaf mayura |
 | `sitosna` | ✅ approved | viśeṣaṇobhayapada-karmadhāraya | ru: тепло-холодная [вода]… | klammerdiagramm-sitosna.json | MG vote D6, 16-07-2026 (H997); taxonomy leaf ubhayapada |
 | `sakapriyaparthivah` | ✅ approved | tatpuruṣa · madhyamapadalopin (elided middle member) | ru: царь-любитель овощей… | klammerdiagramm-sakapriyaparthivah.json | MG vote D4, 16-07-2026 (H997, corrected same day); gallery §11 |

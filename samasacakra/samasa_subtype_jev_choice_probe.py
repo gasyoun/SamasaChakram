@@ -51,7 +51,7 @@ GOLD = {
     "sitosnasukhaduhkhadah": "upapada",
     "sakapriyaparthivah": "madhyamapadalopin",
     "abhijnanasakuntalam": "madhyamapadalopin",
-    "rajadanta": "ekadesin",
+    "rajadanta": "prathama",          # merged leaf prathamā / ekadeśin (H8573)
     "vanantara": "mayura",
     "rajarsivamsah": "appositional",
     "sitosna": "ubhayapada",

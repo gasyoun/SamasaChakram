@@ -13,6 +13,18 @@
      "name": "vibhakti-tatpuruṣa",
      "leaves": [
       {
+       "id": "prathama",
+       "term": "prathamā / ekadeśin",
+       "ex": "pūrvakāyaḥ",
+       "vigraha": "pūrvaṃ kāyasya",
+       "ru": "передняя [часть] тела",
+       "note": "Партитивный генитив при правой части: pūrvaṃ kāyasya (§ 4.1.1); ср. rājadantaḥ: dantānāṃ rājā. Генитив целого — диагностический признак типа, поэтому формула Warnemyr (3d) с индексом при левой основе к нему не применяется. Объединённый лепесток prathamā / ekadeśin; прежний идентификатор ekadeśin ведёт в эту карточку.",
+       "diagram": "klammerdiagramm-rajadanta-example.svg",
+       "legacy_ids": [
+        "ekadesin"
+       ]
+      },
+      {
        "id": "dvitiya",
        "term": "dvitīyā",
        "ex": "grāmagataḥ",
@@ -108,15 +120,6 @@
         "klammerdiagramm-sakapriyaparthivah-example.svg",
         "klammerdiagramm-abhijnanasakuntalam-example.svg"
        ]
-      },
-      {
-       "id": "ekadesin",
-       "term": "ekadeśin",
-       "ex": "rājadantaḥ",
-       "vigraha": "dantānāṃ rājā",
-       "ru": "передний зуб",
-       "note": "«перевёрнутое доминирование» — семантика, не структура (D3)",
-       "diagram": "klammerdiagramm-rajadanta-example.svg"
       },
       {
        "id": "mayura",

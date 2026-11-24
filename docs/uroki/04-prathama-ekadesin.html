@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Урок 4. prathamā / ekadeśin: pūrvakāyaḥ и партитивный генитив</title>
+<meta name="description" content="Пилот SamasaChakram: пять сквозных уроков по санскритским композитам и веб-указатель параграфов конспекта Э. З. Лейтана.">
+<style>
+:root{--surface:#fcfcfb;--panel:#fff;--ink:#20201d;--ink2:#5d5c55;--line:#ddd8cc;
+--blue:#2a78d6;--green:#2a7d4f;--amber:#d99b00;--red:#b8352a}
+@media (prefers-color-scheme:dark){:root{--surface:#1a1a19;--panel:#232320;--ink:#f2efe6;
+--ink2:#b5b2a5;--line:#3c3a33;--blue:#3987e5;--green:#37a06a;--amber:#c98500;--red:#d4614f}}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--surface);color:var(--ink);
+font-family:'Charis SIL',Charis,Georgia,'Times New Roman',serif;line-height:1.55}
+main{max-width:920px;margin:0 auto;padding:24px 18px 64px}
+a{color:var(--blue)}
+h1{font-size:1.9rem;font-weight:normal;margin:.2em 0 .1em;line-height:1.2}
+h2{font-size:1.15rem;font-weight:normal;margin:1.6em 0 .4em;letter-spacing:.01em}
+.sub{color:var(--ink2);font-size:.95rem;margin:0 0 1.2em}
+nav{display:flex;gap:14px;flex-wrap:wrap;font-size:.88rem;margin:0 0 18px;
+border-bottom:1px solid var(--line);padding-bottom:10px}
+nav a{text-decoration:none;border-bottom:1px dotted currentColor}
+.lede{font-size:1.05rem;margin:0 0 1.2em}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin:0 0 18px}
+.now{display:grid;grid-template-columns:1fr;gap:2px}
+.now .vig{font-size:1.5rem;margin:.1em 0}
+.now .gloss{color:var(--ink2);font-style:italic}
+.now dl{margin:.6em 0 0;display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;font-size:.95rem}
+.now dt{color:var(--ink2)}
+.now dd{margin:0}
+pre{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px 14px;
+overflow-x:auto;font-family:'Cascadia Mono',Consolas,'DejaVu Sans Mono',monospace;
+font-size:.82rem;line-height:1.45}
+details{border:1px solid var(--line);border-radius:6px;margin:0 0 10px;background:var(--panel)}
+details summary{cursor:pointer;padding:9px 14px;font-size:.95rem}
+details[open] summary{border-bottom:1px solid var(--line)}
+details .inner{padding:12px 14px}
+.src{color:var(--ink2);font-size:.8rem;margin:0 0 10px}
+.exercise{margin:0 0 8px}
+.exercise fieldset{border:1px solid var(--line);border-radius:6px;padding:12px 14px;margin:0}
+.exercise legend{font-size:.9rem;color:var(--ink2);padding:0 6px}
+.opt{display:block;margin:.35em 0;font-size:.96rem;cursor:pointer}
+.opt input{margin-right:8px}
+button.check{font:inherit;font-size:.9rem;padding:6px 16px;border:1px solid var(--line);
+border-radius:5px;background:var(--panel);color:var(--ink);cursor:pointer;margin:10px 0 0}
+button.check:hover{border-color:var(--ink2)}
+.fb{margin:12px 0 0;font-size:.95rem;display:none}
+.fb.show{display:block}
+.fb .verdict{font-weight:bold}
+.fb .ok{color:var(--green)}
+.fb .bad{color:var(--red)}
+.fb ul{margin:.5em 0 0;padding-left:1.2em;font-size:.9rem;color:var(--ink2)}
+.fb li.ok b{color:var(--green)} .fb li.bad b{color:var(--red)}
+.sources{font-size:.86rem;color:var(--ink2);margin:1.4em 0 0;padding-left:1.1em}
+.sources li{margin:.25em 0}
+.toc{list-style:none;padding:0;margin:0}
+.toc li{border-bottom:1px solid var(--line);padding:10px 0}
+.toc a{text-decoration:none;font-size:1.02rem}
+.toc .why{color:var(--ink2);font-size:.86rem}
+.idx{list-style:none;padding:0;margin:0}
+.idx > li{border-bottom:1px solid var(--line);padding:7px 0;display:grid;
+grid-template-columns:5.2em 1fr;gap:10px;align-items:baseline}
+.idx .num{font-variant-numeric:tabular-nums;color:var(--ink2);font-size:.9rem}
+.idx .num a{text-decoration:none;color:var(--ink2)}
+.idx .links{font-size:.82rem;color:var(--ink2);display:block;margin-top:2px}
+.idx .links a{color:var(--blue)}
+.idx .links .muted{color:var(--ink2)}
+h2.sec{margin-top:2em;border-top:2px solid var(--line);padding-top:.8em}
+h3.sec2{margin:1.4em 0 .2em;font-size:1rem;font-weight:normal;color:var(--ink2)}
+.filter{width:100%;font:inherit;padding:7px 10px;border:1px solid var(--line);
+border-radius:5px;background:var(--panel);color:var(--ink);margin:0 0 14px}
+.foot{margin-top:2.4em;border-top:1px solid var(--line);padding-top:12px;
+color:var(--ink2);font-size:.82rem}
+.neigh{display:flex;justify-content:space-between;gap:12px;font-size:.9rem;margin:1.6em 0 0}
+</style>
+</head>
+<body>
+<main>
+<nav>
+  <a href="https://gasyoun.github.io/SamasaChakram/">← колесо</a>
+  <a href="https://gasyoun.github.io/SamasaChakram/paragrafy/">указатель параграфов</a>
+  <a href="https://gasyoun.github.io/SamasaChakram/uroki/">пять уроков</a>
+  <a href="https://gasyoun.github.io/SamasaChakram/drumam/samasa_trainer.html">практика Drumam</a>
+  <a href="../SAMASA_Leitan_COMPLETE.docx">конспект (DOCX)</a>
+</nav>
+
+<h1>prathamā / ekadeśin: pūrvakāyaḥ и партитивный генитив</h1>
+<p class="sub">Урок 4 · prathamā / ekadeśin · конспект § 4.1.1</p>
+<p class="lede">Конспект § 4.1.1, примеры (4.1.1.a) и (4.1.1.c) · <a href="https://gasyoun.github.io/SamasaChakram/#k=tatpurusa--vibhakti--prathama">карточка № 1 на колесе</a></p>
+
+<section class="card now">
+  <div class="vig">pūrvaṃ kāyasya</div>
+  <div class="gloss">«передняя [часть] тела»</div>
+  <p>Партитивный генитив стоит при правой части: pūrvam — часть, kāyasya — целое. Тип ekadeśin [Пан. 2.2.1–3], очень редкий.</p>
+  <dl><div><dt>Композит</dt><dd>[pūrva- + kāya-]</dd></div>
+<div><dt>Развёртка</dt><dd>pūrvaṃ kāyasya — «передняя [часть] тела»</dd></div>
+<div><dt>Что главное</dt><dd>pūrva-: обозначение части; kāya- уходит в генитив целого</dd></div>
+<div><dt>Признак</dt><dd>генитив на ПРАВОЙ части, а не на левой — это и отличает ekadeśin</dd></div></dl>
+</section>
+
+<h2>Разбор</h2>
+<p>Конспект описывает тип так: правая часть получает партитивный генитив, а левая называет часть — pūrva- «передняя», adhara- «нижняя», apara- «задняя», uttara- «верхняя». Пример (4.1.1.a) pūrvakāyaḥ: pūrvaṃ kāyasya.</p>
+<p>Отсюда важное ограничение, которое стоит проверять на любом примере: тип не покрывается падежным рядом Warnemyr. В его правилах индекс ставится при левой основе (Y ᴳX ‘Y of X’), а здесь генитив принадлежит правой части. Формулу (3d) к ekadeśin применять нельзя — это честный отрицательный результат сверки, а не пробел в источнике.</p>
+<p>Второй пример конспекта, (4.1.1.c) rājadantaḥ: dantānāṃ rājā «царь зубов (= передний зуб)», устроен так же: генитив при правой части, левая называет часть целого. На колесе этот лепесток объединён с prathamā и стоит первым в падежном ряду — так решено в сверке конспекта и колеса.</p>
+
+<h2>Формальные схемы</h2>
+<p class="src">Схемы раскрываются по запросу и подписаны: у каждой указана модель и источник.
+Схемы Лоу даны учебным переложением, а не воспроизведением авторских рисунков.</p>
+<details>
+<summary>Скобочная запись и падежная зависимость</summary>
+<div class="inner">
+<p class="src">модель: учебная скобочная схема (право-налево)<br>источник: конспект § 4.1.1, (4.1.1.a) и (4.1.1.c) — переложение</p>
+<pre>[pūrva- kāya-]           [rājan- danta-]
+     |     |                   |      |
+  часть  целое             часть   целое
+     └─kāyasya (part. gen.)   └─dantānām (part. gen.)
+
+pūrvaṃ kāyasya               dantānāṃ rājā
+«передняя [часть] тела»      «царь зубов»
+
+Генитив целого стоит при правой части — не при левой.</pre>
+</div>
+</details>
+<details>
+<summary>Почему формула (3d) не подходит</summary>
+<div class="inner">
+<p class="src">модель: сверка с правилами Warnemyr<br>источник: Warnemyr, Compounds, правила (3a)–(3f): индекс падежа при левой основе</p>
+<pre>(3d)  Y ᴳX  =  ‘Y of X’      индекс при X (левая основа)
+
+pūrvakāyaḥ:  pūrvaṃ  kāyasya
+              часть   целое(GEN)
+
+Генитив при Y, а не при X → запись (3d) не описывает тип.
+Используем падежную зависимость: pūrvam ← kāyasya (part. gen.).</pre>
+</div>
+</details>
+
+<h2>Задание Drumam</h2>
+<div class="exercise" id="zadanie">
+<fieldset>
+<legend>Задание к уроку 4</legend>
+<p>Какая развёртка соответствует pūrvakāyaḥ по конспекту § 4.1.1?</p>
+<label class="opt"><input type="radio" name="zz4" value="a" data-ok="1"> pūrvaṃ kāyasya — партитивный генитив при правой части</label>
+<label class="opt"><input type="radio" name="zz4" value="b" data-ok="0"> pūrvaḥ kāyaḥ — согласование в номинативе, как кармадхарая</label>
+<label class="opt"><input type="radio" name="zz4" value="c" data-ok="0"> pūrvasya kāyaḥ — генитив при левой части</label>
+<label class="opt"><input type="radio" name="zz4" value="d" data-ok="0"> pūrvaṃ kāyam — аккузатив при правой части</label>
+<button class="check" data-kind="single" data-ex="z4">Проверить</button>
+<div class="fb" id="fb-z4">
+  <p class="verdict" id="verdict-z4"></p>
+  <p>Верно (а). Диагностический признак ekadeśin — партитивный генитив при правой части и левая часть со значением части: pūrva-, adhara-, apara-, uttara-. Второй пример того же типа — rājadantaḥ: dantānāṃ rājā.</p>
+  <ul><li class="ok"><b>pūrvaṃ kāyasya — партитивный генитив при правой части</b></li>
+<li class="bad"><b>pūrvaḥ kāyaḥ — согласование в номинативе, как кармадхарая</b> — Согласование дало бы определяющее отношение; конспект даёт генитив целого.</li>
+<li class="bad"><b>pūrvasya kāyaḥ — генитив при левой части</b> — Это ṣaṣṭhī-tatpuruṣa (§ 4.1.6), а не ekadeśin: генитив должен стоять при правой части.</li>
+<li class="bad"><b>pūrvaṃ kāyam — аккузатив при правой части</b> — Аккузатив дал бы dvitīyā-tatpuruṣa (§ 4.1.2); здесь зависимость партитивная.</li></ul>
+  <p class="src">Разбор: <a href="https://gasyoun.github.io/SamasaChakram/paragrafy/#p-4-1-1">§ 4.1.1</a> · <a href="https://gasyoun.github.io/SamasaChakram/drumam/samasa_trainer.html">общий режим практики Drumam</a></p>
+</div>
+</fieldset>
+</div>
+
+<h2>Источники урока</h2>
+<ul class="sources"><li><a href="../SAMASA_Leitan_COMPLETE.docx">Конспект Лейтана, § 4.1.1</a></li>
+<li><a href="http://www.warnemyr.com/skrgram/grammar/morphology/compounds.html">Warnemyr, Compounds, (3a)–(3f)</a></li>
+<li><a href="https://github.com/gasyoun/SamasaChakram/blob/main/KLAMMERDIAGRAMM_LEITAN_SAMASA_COMPARISON.md">Сверка конспекта и колеса (D3: ekadeśin)</a></li></ul>
+<div class="neigh"><a href="03-ramesvarah.html">← урок 3</a><a href="05-kevala-samasa.html">урок 5 →</a></div>
+<div class="foot">
+Пилот H8573 · таксономия и § — конспект Э. З. Лейтана; структуры — Lowe 2015 (LFG),
+формулы развёртки — Warnemyr; доли — Kulkarni &amp; Kumar 2013, таблица 5 и § 14 конспекта.
+Собрано <code>samasacakra/build_pilot.py</code> из <code>pilot_data.json</code> —
+правьте данные, а не этот файл.</div>
+</main>
+</body>
+</html>
+<script>
+document.querySelectorAll('button.check').forEach(btn => {
+  btn.onclick = () => {
+    const kind = btn.dataset.kind, ex = btn.dataset.ex;
+    const box = document.getElementById('fb-' + ex);
+    const picks = [...document.querySelectorAll(`input[name="z${ex}"]`)].filter(i => i.checked);
+    const okPicks = picks.filter(i => i.dataset.ok === '1');
+    const all = [...document.querySelectorAll(`input[name="z${ex}"]`)];
+    const need = all.filter(i => i.dataset.ok === '1').map(i => i.value).sort().join(',');
+    const got = picks.map(i => i.value).sort().join(',');
+    let pass, msg;
+    if (!picks.length) { pass = false; msg = 'Ничего не выбрано — отметьте вариант.'; }
+    else if (kind === 'multi') {
+      pass = got === need;
+      msg = pass ? 'Принято: отмечены все допустимые разборы.'
+                 : (okPicks.length === picks.length
+                    ? 'Отмечены допустимые разборы, но не все: без контекста форма допускает ещё один.'
+                    : 'Принято частично: отмечен вариант, который форма не подтверждает.');
+    } else {
+      pass = picks.length === 1 && okPicks.length === 1;
+      msg = pass ? 'Верно.' : 'Неверно: см. объяснение ниже.';
+    }
+    const v = document.getElementById('verdict-' + ex);
+    v.textContent = msg;
+    v.className = 'verdict ' + (pass ? 'ok' : 'bad');
+    box.classList.add('show');
+  };
+});
+</script>

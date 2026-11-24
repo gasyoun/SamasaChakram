@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Указатель параграфов — конспект Э. З. Лейтана</title>
+<meta name="description" content="Пилот SamasaChakram: пять сквозных уроков по санскритским композитам и веб-указатель параграфов конспекта Э. З. Лейтана.">
+<style>
+:root{--surface:#fcfcfb;--panel:#fff;--ink:#20201d;--ink2:#5d5c55;--line:#ddd8cc;
+--blue:#2a78d6;--green:#2a7d4f;--amber:#d99b00;--red:#b8352a}
+@media (prefers-color-scheme:dark){:root{--surface:#1a1a19;--panel:#232320;--ink:#f2efe6;
+--ink2:#b5b2a5;--line:#3c3a33;--blue:#3987e5;--green:#37a06a;--amber:#c98500;--red:#d4614f}}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--surface);color:var(--ink);
+font-family:'Charis SIL',Charis,Georgia,'Times New Roman',serif;line-height:1.55}
+main{max-width:920px;margin:0 auto;padding:24px 18px 64px}
+a{color:var(--blue)}
+h1{font-size:1.9rem;font-weight:normal;margin:.2em 0 .1em;line-height:1.2}
+h2{font-size:1.15rem;font-weight:normal;margin:1.6em 0 .4em;letter-spacing:.01em}
+.sub{color:var(--ink2);font-size:.95rem;margin:0 0 1.2em}
+nav{display:flex;gap:14px;flex-wrap:wrap;font-size:.88rem;margin:0 0 18px;
+border-bottom:1px solid var(--line);padding-bottom:10px}
+nav a{text-decoration:none;border-bottom:1px dotted currentColor}
+.lede{font-size:1.05rem;margin:0 0 1.2em}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin:0 0 18px}
+.now{display:grid;grid-template-columns:1fr;gap:2px}
+.now .vig{font-size:1.5rem;margin:.1em 0}
+.now .gloss{color:var(--ink2);font-style:italic}
+.now dl{margin:.6em 0 0;display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;font-size:.95rem}
+.now dt{color:var(--ink2)}
+.now dd{margin:0}
+pre{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px 14px;
+overflow-x:auto;font-family:'Cascadia Mono',Consolas,'DejaVu Sans Mono',monospace;
+font-size:.82rem;line-height:1.45}
+details{border:1px solid var(--line);border-radius:6px;margin:0 0 10px;background:var(--panel)}
+details summary{cursor:pointer;padding:9px 14px;font-size:.95rem}
+details[open] summary{border-bottom:1px solid var(--line)}
+details .inner{padding:12px 14px}
+.src{color:var(--ink2);font-size:.8rem;margin:0 0 10px}
+.exercise{margin:0 0 8px}
+.exercise fieldset{border:1px solid var(--line);border-radius:6px;padding:12px 14px;margin:0}
+.exercise legend{font-size:.9rem;color:var(--ink2);padding:0 6px}
+.opt{display:block;margin:.35em 0;font-size:.96rem;cursor:pointer}
+.opt input{margin-right:8px}
+button.check{font:inherit;font-size:.9rem;padding:6px 16px;border:1px solid var(--line);
+border-radius:5px;background:var(--panel);color:var(--ink);cursor:pointer;margin:10px 0 0}
+button.check:hover{border-color:var(--ink2)}
+.fb{margin:12px 0 0;font-size:.95rem;display:none}
+.fb.show{display:block}
+.fb .verdict{font-weight:bold}
+.fb .ok{color:var(--green)}
+.fb .bad{color:var(--red)}
+.fb ul{margin:.5em 0 0;padding-left:1.2em;font-size:.9rem;color:var(--ink2)}
+.fb li.ok b{color:var(--green)} .fb li.bad b{color:var(--red)}
+.sources{font-size:.86rem;color:var(--ink2);margin:1.4em 0 0;padding-left:1.1em}
+.sources li{margin:.25em 0}
+.toc{list-style:none;padding:0;margin:0}
+.toc li{border-bottom:1px solid var(--line);padding:10px 0}
+.toc a{text-decoration:none;font-size:1.02rem}
+.toc .why{color:var(--ink2);font-size:.86rem}
+.idx{list-style:none;padding:0;margin:0}
+.idx > li{border-bottom:1px solid var(--line);padding:7px 0;display:grid;
+grid-template-columns:5.2em 1fr;gap:10px;align-items:baseline}
+.idx .num{font-variant-numeric:tabular-nums;color:var(--ink2);font-size:.9rem}
+.idx .num a{text-decoration:none;color:var(--ink2)}
+.idx .links{font-size:.82rem;color:var(--ink2);display:block;margin-top:2px}
+.idx .links a{color:var(--blue)}
+.idx .links .muted{color:var(--ink2)}
+h2.sec{margin-top:2em;border-top:2px solid var(--line);padding-top:.8em}
+h3.sec2{margin:1.4em 0 .2em;font-size:1rem;font-weight:normal;color:var(--ink2)}
+.filter{width:100%;font:inherit;padding:7px 10px;border:1px solid var(--line);
+border-radius:5px;background:var(--panel);color:var(--ink);margin:0 0 14px}
+.foot{margin-top:2.4em;border-top:1px solid var(--line);padding-top:12px;
+color:var(--ink2);font-size:.82rem}
+.neigh{display:flex;justify-content:space-between;gap:12px;font-size:.9rem;margin:1.6em 0 0}
+</style>
+</head>
+<body>
+<main>
+<nav>
+  <a href="https://gasyoun.github.io/SamasaChakram/">← колесо</a>
+  <a href="https://gasyoun.github.io/SamasaChakram/paragrafy/">указатель параграфов</a>
+  <a href="https://gasyoun.github.io/SamasaChakram/uroki/">пять уроков</a>
+  <a href="https://gasyoun.github.io/SamasaChakram/drumam/samasa_trainer.html">практика Drumam</a>
+  <a href="../SAMASA_Leitan_COMPLETE.docx">конспект (DOCX)</a>
+</nav>
+
+<h1>Указатель параграфов</h1>
+<p class="sub">Конспект Э. З. Лейтана, «Сложные слова в санскрите» — 67 параграфов.
+У каждого § постоянный якорь, название, ссылка на связанный разбор (если он входит в пилот)
+и на главный DOCX.</p>
+<p class="lede">Ссылка на параграф выглядит так: <code>https://gasyoun.github.io/SamasaChakram/paragrafy/#p-4-1-1</code>.
+Якорь не меняется при обновлении текста конспекта: он выводится из номера §, а не из порядка
+абзацев. Ссылки на разборы ведут в пять уроков пилота; если разбора нет, это сказано прямо.</p>
+<p class="lede"><a href="../SAMASA_Leitan_COMPLETE.docx">Главный DOCX конспекта</a> ·
+<a href="https://gasyoun.github.io/SamasaChakram/">колесо</a> ·
+<a href="https://gasyoun.github.io/SamasaChakram/uroki/">пять уроков</a></p>
+<input class="filter" id="q" type="search" placeholder="фильтр по номеру или названию §">
+<h2 class="sec" id="sec-">Введение</h2><ul class="idx"><li id="p-1"><span class="num"><a href="#p-1">§ 1</a></span><span>vṛtti (типы словообразования в санскрите)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-2"><span class="num"><a href="#p-2">§ 2</a></span><span>samāsa (санскритские сложные слова)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-3"><span class="num"><a href="#p-3">§ 3</a></span><span>(основные классы: дерево решений)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li></ul><h2 class="sec" id="sec-i-tatpuru-a">I. TATPURUṢA (татпуруша)</h2><h3 class="sec2" id="sec-i-1-a-vibhakti-tatpuru-a">I.1. Собственно татпурушa — vibhakti-tatpuruṣa</h3><ul class="idx"><li id="p-4-1-1"><span class="num"><a href="#p-4-1-1">§ 4.1.1</a></span><span>prathamā-tatpuruṣa (татпуруша с номинативом в левой части)<span class="links"><a href="https://gasyoun.github.io/SamasaChakram/uroki/04-prathama-ekadesin.html">разбор: урок 4</a> · <a href="https://gasyoun.github.io/SamasaChakram/#k=tatpurusa--vibhakti--prathama">лепесток № 1 на колесе</a></span></span></li><li id="p-4-1-2"><span class="num"><a href="#p-4-1-2">§ 4.1.2</a></span><span>dvitīyā-tatpuruṣa (татпуруша с аккузативом в левой части)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-4-1-3"><span class="num"><a href="#p-4-1-3">§ 4.1.3</a></span><span>tṛtīyā-tatpuruṣa (татпуруша с инструменталисом в левой части)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-4-1-4"><span class="num"><a href="#p-4-1-4">§ 4.1.4</a></span><span>caturthī-tatpuruṣa (татпуруша с дативом в левой части)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-4-1-5"><span class="num"><a href="#p-4-1-5">§ 4.1.5</a></span><span>pañcamī-tatpuruṣa (татпуруша с аблативом в левой части)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-4-1-6"><span class="num"><a href="#p-4-1-6">§ 4.1.6</a></span><span>ṣaṣṭhī-tatpuruṣa (татпуруша с генетивом в левой части)<span class="links"><a href="https://gasyoun.github.io/SamasaChakram/uroki/01-raja-bharya.html">разбор: урок 1</a> · <a href="https://gasyoun.github.io/SamasaChakram/uroki/02-vlozhennaya-dvandva.html">разбор: урок 2</a> · <a href="https://gasyoun.github.io/SamasaChakram/uroki/03-ramesvarah.html">разбор: урок 3</a> · <a href="https://gasyoun.github.io/SamasaChakram/#k=tatpurusa--vibhakti--sasthi">лепесток № 6 на колесе</a></span></span></li><li id="p-4-1-7"><span class="num"><a href="#p-4-1-7">§ 4.1.7</a></span><span>saptamī-tatpuruṣa (татпуруша с локативом в левой части)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-4-1-8"><span class="num"><a href="#p-4-1-8">§ 4.1.8</a></span><span>nañ-tatpuruṣa (татпуруша с отрицанием)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-4-1-9"><span class="num"><a href="#p-4-1-9">§ 4.1.9</a></span><span>prādi-tatpuruṣa (татпуруша с превербами prādi)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-4-1-10"><span class="num"><a href="#p-4-1-10">§ 4.1.10</a></span><span>gati-tatpuruṣa (татпуруша с превербами gati)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-4-1-11"><span class="num"><a href="#p-4-1-11">§ 4.1.11</a></span><span>upapada-tatpuruṣa (татпуруша с вспомогательным словом)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-4-1-12"><span class="num"><a href="#p-4-1-12">§ 4.1.12</a></span><span>aluk-samāsa (татпуруша с сохранённым падежным окончанием)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-4-1-13"><span class="num"><a href="#p-4-1-13">§ 4.1.13</a></span><span>madhyamapadalopin (татпуруша с выпавшим средним элементом)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li></ul><h3 class="sec2" id="sec-i-2-karmad-h-raya-sam-n-dhikara-a-tatpur">I.2. Karmad hāraya (кармадхарая) — samānādhikaraṇa-tatpuruṣa</h3><ul class="idx"><li id="p-4-2-1"><span class="num"><a href="#p-4-2-1">§ 4.2.1</a></span><span>viśeṣaṇapūrvapada-karmadhāraya (прилагательное — левая часть)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-4-2-2"><span class="num"><a href="#p-4-2-2">§ 4.2.2</a></span><span>(простые аппозиционные кармадхараи (сущ. + сущ.))<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-4-2-3"><span class="num"><a href="#p-4-2-3">§ 4.2.3</a></span><span>viśeṣyapūrvapada-karmadhāraya (порицательные идиомы)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-4-2-4"><span class="num"><a href="#p-4-2-4">§ 4.2.4</a></span><span>viśeṣaṇobhayapada-karmadhāraya (оба члена — прилагательные)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-4-2-5"><span class="num"><a href="#p-4-2-5">§ 4.2.5</a></span><span>upamānapūrvapada-karmadhāraya (сравнение в левой части)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-4-2-6"><span class="num"><a href="#p-4-2-6">§ 4.2.6</a></span><span>upamānottarapada / upamita-samāsa (сравнение в правой части)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-4-2-7"><span class="num"><a href="#p-4-2-7">§ 4.2.7</a></span><span>avadhāraṇapūrvapada-karmadhāraya / rūpaka-samāsa (метафора с eva)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-4-2-8"><span class="num"><a href="#p-4-2-8">§ 4.2.8</a></span><span>sambhāvanā-pūrvapada-karmadhāraya (предположение с iti)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li></ul><h3 class="sec2" id="sec-i-3-dvigu">I.3. Dvigu (двигу)</h3><ul class="idx"><li id="p-4-3"><span class="num"><a href="#p-4-3">§ 4.3</a></span><span>dvigu (кармадхарая с числительным в левой части)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li></ul><h2 class="sec" id="sec-ii-bahuvr-hi">II. BAHUVRĪHI (бахуврихи)</h2><h3 class="sec2" id="sec-i">Классификация-I: падежная</h3><ul class="idx"><li id="p-5-1"><span class="num"><a href="#p-5-1">§ 5.1</a></span><span>samānādhikaraṇa-bahuvrīhi (согласованные, аппозиционные бахуврихи)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-5-1-1"><span class="num"><a href="#p-5-1-1">§ 5.1.1</a></span><span>dvitīyārtha (аккузатив в виграхе)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-5-1-2"><span class="num"><a href="#p-5-1-2">§ 5.1.2</a></span><span>tṛtīyārtha (инструменталис в виграхе)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-5-1-3"><span class="num"><a href="#p-5-1-3">§ 5.1.3</a></span><span>caturthyartha (датив в виграхе)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-5-1-4"><span class="num"><a href="#p-5-1-4">§ 5.1.4</a></span><span>pañcamyartha (аблатив в виграхе)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-5-1-5"><span class="num"><a href="#p-5-1-5">§ 5.1.5</a></span><span>ṣaṣṭhyartha (генетив в виграхе)<span class="links"><a href="https://gasyoun.github.io/SamasaChakram/uroki/03-ramesvarah.html">разбор: урок 3</a> · <a href="https://gasyoun.github.io/SamasaChakram/#k=bahuvrihi--samanadhikarana--sasthyartha">лепесток № 30 на колесе</a></span></span></li><li id="p-5-1-6"><span class="num"><a href="#p-5-1-6">§ 5.1.6</a></span><span>saptamyarthaḥ (локатив в виграхе)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-5-1-7"><span class="num"><a href="#p-5-1-7">§ 5.1.7</a></span><span>nañ-bahuvrīhi (отрицательные бахуврихи с a-/an-)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-5-1-8"><span class="num"><a href="#p-5-1-8">§ 5.1.8</a></span><span>prādi-bahuvrīhi<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-5-1-9"><span class="num"><a href="#p-5-1-9">§ 5.1.9</a></span><span>saha-bahuvrīhi / sahapūrvapada<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-5-2"><span class="num"><a href="#p-5-2">§ 5.2</a></span><span>vyadhikaraṇa-bahuvrīhi (несогласованные бахуврихи)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-5-3"><span class="num"><a href="#p-5-3">§ 5.3</a></span><span>(Классификация-II: семантическая)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-5-4"><span class="num"><a href="#p-5-4">§ 5.4</a></span><span>X-ādi- («и так далее» — очень частый)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-5-5"><span class="num"><a href="#p-5-5">§ 5.5</a></span><span>X-para- («полностью поглощённый X» — очень частый)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-5-6"><span class="num"><a href="#p-5-6">§ 5.6</a></span><span>X-mātra- («всего лишь X»)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-5-7"><span class="num"><a href="#p-5-7">§ 5.7</a></span><span>(Вопросительные бахуврихи (kim-, katham-))<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li></ul><h2 class="sec" id="sec-iii-dvandva">III. DVANDVA (двандва)</h2><ul class="idx"><li id="p-6-1"><span class="num"><a href="#p-6-1">§ 6.1</a></span><span>itaretara-dvandva (двандва с однородными членами)<span class="links"><a href="https://gasyoun.github.io/SamasaChakram/uroki/02-vlozhennaya-dvandva.html">разбор: урок 2</a> · <a href="https://gasyoun.github.io/SamasaChakram/#k=dvandva--dv--itaretara">лепесток № 46 на колесе</a></span></span></li><li id="p-6-2"><span class="num"><a href="#p-6-2">§ 6.2</a></span><span>samāhāra-dvandva (двандва — совокупность (ед. ч. ср. р.))<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li></ul><h2 class="sec" id="sec-iv-avyay-bh-va">IV. AVYAYĪBHĀVA (авьяибхава)</h2><ul class="idx"><li id="p-7-1"><span class="num"><a href="#p-7-1">§ 7.1</a></span><span>(В значении падежа (adhi-))<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-7-2"><span class="num"><a href="#p-7-2">§ 7.2</a></span><span>(В значении близости (upa-))<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-7-3"><span class="num"><a href="#p-7-3">§ 7.3</a></span><span>(В значении изобилия (su-))<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-7-4"><span class="num"><a href="#p-7-4">§ 7.4</a></span><span>(В значении нехватки (dur-))<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-7-5"><span class="num"><a href="#p-7-5">§ 7.5</a></span><span>(В значении отсутствия объектов (nir-))<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-7-6"><span class="num"><a href="#p-7-6">§ 7.6</a></span><span>(В значении прекращения (ati-))<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-7-7"><span class="num"><a href="#p-7-7">§ 7.7</a></span><span>(В значении «не ко времени» (ati-))<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-7-8"><span class="num"><a href="#p-7-8">§ 7.8</a></span><span>(В значении издавания/произнесения слов (iti-))<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-7-9"><span class="num"><a href="#p-7-9">§ 7.9</a></span><span>(В значении «вслед за» (anu-))<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-7-10"><span class="num"><a href="#p-7-10">§ 7.10</a></span><span>(В значениях «согласно» (yathā))<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-7-11"><span class="num"><a href="#p-7-11">§ 7.11</a></span><span>(В дистрибутивном значении (prati-))<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li></ul><h2 class="sec" id="sec-v-kevala-sam-sa">V. KEVALA-SAMĀSA («просто композит»)</h2><ul class="idx"><li id="p-8"><span class="num"><a href="#p-8">§ 8</a></span><span>kevala-samāsa (не включается ни в один из четырёх классов)<span class="links"><a href="https://gasyoun.github.io/SamasaChakram/uroki/05-kevala-samasa.html">разбор: урок 5</a></span></span></li></ul><h2 class="sec" id="sec-hatadvipa-kesar">Полисемия: разбор примера hatadvipaḥ kesarī</h2><ul class="idx"><li id="p-9"><span class="num"><a href="#p-9">§ 9</a></span><span>(многозначность композита в зависимости от классификации)<span class="links"><a href="https://gasyoun.github.io/SamasaChakram/uroki/03-ramesvarah.html">разбор: урок 3</a> · <a href="https://gasyoun.github.io/SamasaChakram/#k=bahuvrihi--samanadhikarana--sasthyartha">лепесток № 30 на колесе</a></span></span></li></ul><h2 class="sec" id="sec-lokan-tha">Беседа двух композитов: lokanāthaḥ</h2><h2 class="sec" id="sec-">Левая и правая части: что допускается</h2><h2 class="sec" id="sec-iast">Указатель А: санскритские лексемы (IAST-алфавит)</h2><h2 class="sec" id="sec-">Указатель Б: от русских значений к санскритским формам</h2><h2 class="sec" id="sec-">Указатель В: санскритские грамматические термины</h2><h2 class="sec" id="sec-">Указатель Г: источники примеров</h2><h2 class="sec" id="sec-">Указатель Д: термины лингвистического метатекста</h2><h2 class="sec" id="sec-">Указатель Е: указатель примеров по параграфам</h2><h2 class="sec" id="sec-">Библиография</h2><ul class="idx"><li id="p-10"><span class="num"><a href="#p-10">§ 10</a></span><span>Многочленные (многоуровневые) композиты<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-10-1"><span class="num"><a href="#p-10-1">§ 10.1</a></span><span>Правила разбора многочленных композитов<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-10-2"><span class="num"><a href="#p-10-2">§ 10.2</a></span><span>Примеры многочленных самас<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-11"><span class="num"><a href="#p-11">§ 11</a></span><span>Западная терминология<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-12"><span class="num"><a href="#p-12">§ 12</a></span><span>Таблицы формальных признаков<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-12-1"><span class="num"><a href="#p-12-1">§ 12.1</a></span><span>От признака → к типу самасы<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-12-2"><span class="num"><a href="#p-12-2">§ 12.2</a></span><span>От типа → к формальным признакам<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-12-3"><span class="num"><a href="#p-12-3">§ 12.3</a></span><span>Kṛt-суффиксы как маркер upapada-tatpuruṣa<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-12-4"><span class="num"><a href="#p-12-4">§ 12.4</a></span><span>Матрица частей речи по типам<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-13"><span class="num"><a href="#p-13">§ 13</a></span><span>Дерево решений (визуальная схема)<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li><li id="p-14"><span class="num"><a href="#p-14">§ 14</a></span><span>Матрица частотности подтипов<span class="links"><span class="muted">разбора в пилоте нет</span></span></span></li></ul>
+<div class="foot">
+Пилот H8573 · таксономия и § — конспект Э. З. Лейтана; структуры — Lowe 2015 (LFG),
+формулы развёртки — Warnemyr; доли — Kulkarni &amp; Kumar 2013, таблица 5 и § 14 конспекта.
+Собрано <code>samasacakra/build_pilot.py</code> из <code>pilot_data.json</code> —
+правьте данные, а не этот файл.</div>
+</main>
+</body>
+</html>
+
+<script>
+// progressive enhancement only: every row is fully readable without it
+const q = document.getElementById('q');
+q.addEventListener('input', () => {
+  const v = q.value.trim().toLowerCase();
+  document.querySelectorAll('.idx > li').forEach(li => {
+    li.style.display = !v || li.textContent.toLowerCase().includes(v) ? '' : 'none';
+  });
+});
+</script>

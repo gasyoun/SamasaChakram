@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Пять уроков пилота — SamasaChakram</title>
+<meta name="description" content="Пилот SamasaChakram: пять сквозных уроков по санскритским композитам и веб-указатель параграфов конспекта Э. З. Лейтана.">
+<style>
+:root{--surface:#fcfcfb;--panel:#fff;--ink:#20201d;--ink2:#5d5c55;--line:#ddd8cc;
+--blue:#2a78d6;--green:#2a7d4f;--amber:#d99b00;--red:#b8352a}
+@media (prefers-color-scheme:dark){:root{--surface:#1a1a19;--panel:#232320;--ink:#f2efe6;
+--ink2:#b5b2a5;--line:#3c3a33;--blue:#3987e5;--green:#37a06a;--amber:#c98500;--red:#d4614f}}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--surface);color:var(--ink);
+font-family:'Charis SIL',Charis,Georgia,'Times New Roman',serif;line-height:1.55}
+main{max-width:920px;margin:0 auto;padding:24px 18px 64px}
+a{color:var(--blue)}
+h1{font-size:1.9rem;font-weight:normal;margin:.2em 0 .1em;line-height:1.2}
+h2{font-size:1.15rem;font-weight:normal;margin:1.6em 0 .4em;letter-spacing:.01em}
+.sub{color:var(--ink2);font-size:.95rem;margin:0 0 1.2em}
+nav{display:flex;gap:14px;flex-wrap:wrap;font-size:.88rem;margin:0 0 18px;
+border-bottom:1px solid var(--line);padding-bottom:10px}
+nav a{text-decoration:none;border-bottom:1px dotted currentColor}
+.lede{font-size:1.05rem;margin:0 0 1.2em}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin:0 0 18px}
+.now{display:grid;grid-template-columns:1fr;gap:2px}
+.now .vig{font-size:1.5rem;margin:.1em 0}
+.now .gloss{color:var(--ink2);font-style:italic}
+.now dl{margin:.6em 0 0;display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;font-size:.95rem}
+.now dt{color:var(--ink2)}
+.now dd{margin:0}
+pre{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px 14px;
+overflow-x:auto;font-family:'Cascadia Mono',Consolas,'DejaVu Sans Mono',monospace;
+font-size:.82rem;line-height:1.45}
+details{border:1px solid var(--line);border-radius:6px;margin:0 0 10px;background:var(--panel)}
+details summary{cursor:pointer;padding:9px 14px;font-size:.95rem}
+details[open] summary{border-bottom:1px solid var(--line)}
+details .inner{padding:12px 14px}
+.src{color:var(--ink2);font-size:.8rem;margin:0 0 10px}
+.exercise{margin:0 0 8px}
+.exercise fieldset{border:1px solid var(--line);border-radius:6px;padding:12px 14px;margin:0}
+.exercise legend{font-size:.9rem;color:var(--ink2);padding:0 6px}
+.opt{display:block;margin:.35em 0;font-size:.96rem;cursor:pointer}
+.opt input{margin-right:8px}
+button.check{font:inherit;font-size:.9rem;padding:6px 16px;border:1px solid var(--line);
+border-radius:5px;background:var(--panel);color:var(--ink);cursor:pointer;margin:10px 0 0}
+button.check:hover{border-color:var(--ink2)}
+.fb{margin:12px 0 0;font-size:.95rem;display:none}
+.fb.show{display:block}
+.fb .verdict{font-weight:bold}
+.fb .ok{color:var(--green)}
+.fb .bad{color:var(--red)}
+.fb ul{margin:.5em 0 0;padding-left:1.2em;font-size:.9rem;color:var(--ink2)}
+.fb li.ok b{color:var(--green)} .fb li.bad b{color:var(--red)}
+.sources{font-size:.86rem;color:var(--ink2);margin:1.4em 0 0;padding-left:1.1em}
+.sources li{margin:.25em 0}
+.toc{list-style:none;padding:0;margin:0}
+.toc li{border-bottom:1px solid var(--line);padding:10px 0}
+.toc a{text-decoration:none;font-size:1.02rem}
+.toc .why{color:var(--ink2);font-size:.86rem}
+.idx{list-style:none;padding:0;margin:0}
+.idx > li{border-bottom:1px solid var(--line);padding:7px 0;display:grid;
+grid-template-columns:5.2em 1fr;gap:10px;align-items:baseline}
+.idx .num{font-variant-numeric:tabular-nums;color:var(--ink2);font-size:.9rem}
+.idx .num a{text-decoration:none;color:var(--ink2)}
+.idx .links{font-size:.82rem;color:var(--ink2);display:block;margin-top:2px}
+.idx .links a{color:var(--blue)}
+.idx .links .muted{color:var(--ink2)}
+h2.sec{margin-top:2em;border-top:2px solid var(--line);padding-top:.8em}
+h3.sec2{margin:1.4em 0 .2em;font-size:1rem;font-weight:normal;color:var(--ink2)}
+.filter{width:100%;font:inherit;padding:7px 10px;border:1px solid var(--line);
+border-radius:5px;background:var(--panel);color:var(--ink);margin:0 0 14px}
+.foot{margin-top:2.4em;border-top:1px solid var(--line);padding-top:12px;
+color:var(--ink2);font-size:.82rem}
+.neigh{display:flex;justify-content:space-between;gap:12px;font-size:.9rem;margin:1.6em 0 0}
+</style>
+</head>
+<body>
+<main>
+<nav>
+  <a href="https://gasyoun.github.io/SamasaChakram/">← колесо</a>
+  <a href="https://gasyoun.github.io/SamasaChakram/paragrafy/">указатель параграфов</a>
+  <a href="https://gasyoun.github.io/SamasaChakram/uroki/">пять уроков</a>
+  <a href="https://gasyoun.github.io/SamasaChakram/drumam/samasa_trainer.html">практика Drumam</a>
+  <a href="../SAMASA_Leitan_COMPLETE.docx">конспект (DOCX)</a>
+</nav>
+
+<h1>Пять уроков пилота</h1>
+<p class="sub">Сквозные уроки по санскритским композитам: от одной формы до чтения текста.
+В каждом — vigraha и учебная схема сразу, формальные схемы по запросу, задание Drumam
+с объяснением и ссылкой на параграф конспекта.</p>
+<p class="lede">Порядок задан сверкой конспекта и колеса: генитивная развёртка, вложенность,
+неоднозначность, объединённый лепесток prathamā / ekadeśin и отдельный вход kevala-samāsa.
+Полный выпуск требует литературного обзора по всем темам — здесь только пять уроков пилота.</p>
+<ul class="toc"><li><a href="01-raja-bharya.html">Урок 1. rāja-bhāryā: генитивная развёртка и два дерева</a><span class="why"><br>Урок 1 · ṣaṣṭhī-tatpuruṣa · Лоу § 7, (44)–(45) · лепесток № 6 · § 4.1.6</span></li><li><a href="02-vlozhennaya-dvandva.html">Урок 2. Вложенная двандва: два татпуруши внутри координации</a><span class="why"><br>Урок 2 · itaretara-dvandva + ṣaṣṭhī-tatpuruṣa · Лоу § 7, (46)–(48) · лепесток № 46 · § 6.1, § 4.1.6</span></li><li><a href="03-ramesvarah.html">Урок 3. rāmeśvaraḥ: два контекста и два обоснованных разбора</a><span class="why"><br>Урок 3 · ṣaṣṭhī-tatpuruṣa / bahuvrīhi · § 4.1.6 и §§ 5, 9 · лепесток № 30 · § 4.1.6, § 5.1.5, § 9</span></li><li><a href="04-prathama-ekadesin.html">Урок 4. prathamā / ekadeśin: pūrvakāyaḥ и партитивный генитив</a><span class="why"><br>Урок 4 · prathamā / ekadeśin · конспект § 4.1.1 · лепесток № 1 · § 4.1.1</span></li><li><a href="05-kevala-samasa.html">Урок 5. kevala-samāsa: вход вне четырёх классов</a><span class="why"><br>Урок 5 · kevala-samāsa · конспект § 8 · отдельный вход, § 8 · § 8</span></li></ul>
+<h2>Что дальше</h2>
+<p class="lede">Разборы связаны с колесом устойчивыми идентификаторами
+(<code>https://gasyoun.github.io/SamasaChakram/#k=&lt;id&gt;</code>), с указателем параграфов
+(<a href="https://gasyoun.github.io/SamasaChakram/paragrafy/">постоянные якоря</a>) и с практикой
+<a href="https://gasyoun.github.io/SamasaChakram/drumam/samasa_trainer.html">Drumam</a>. Из карточки на колесе открывается
+тот же урок, из урока — та же карточка.</p>
+<div class="foot">
+Пилот H8573 · таксономия и § — конспект Э. З. Лейтана; структуры — Lowe 2015 (LFG),
+формулы развёртки — Warnemyr; доли — Kulkarni &amp; Kumar 2013, таблица 5 и § 14 конспекта.
+Собрано <code>samasacakra/build_pilot.py</code> из <code>pilot_data.json</code> —
+правьте данные, а не этот файл.</div>
+</main>
+</body>
+</html>

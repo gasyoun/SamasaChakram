@@ -1,9 +1,14 @@
 # samāsa-cakra — колесо санскритских композитов
 
-> Interactive wheel of Sanskrit compounds: 4 classes, 10 families, 58 subtypes with examples and vigrahas; IAST and Devanagari; Klammerdiagramm bracket schemes.
+> Interactive wheel of Sanskrit compounds: 4 classes, 10 families, 58 subtypes with examples and vigrahas; IAST and Devanagari; Klammerdiagramm bracket schemes. Stable leaf numbers, a one-legend corpus-share layer for measured Table-5 shares only, and kevala-samāsa as a separate entry.
 
 ## Pages
 
 - [samāsa-cakra app (single page)](https://gasyoun.github.io/SamasaChakram/)
+- [Five lessons — пилот](https://gasyoun.github.io/SamasaChakram/uroki/)
+  - [rāja-bhāryā](https://gasyoun.github.io/SamasaChakram/uroki/01-raja-bharya.html) · [nested dvandva](https://gasyoun.github.io/SamasaChakram/uroki/02-vlozhennaya-dvandva.html) · [rāmeśvaraḥ](https://gasyoun.github.io/SamasaChakram/uroki/03-ramesvarah.html) · [prathamā / ekadeśin](https://gasyoun.github.io/SamasaChakram/uroki/04-prathama-ekadesin.html) · [kevala-samāsa](https://gasyoun.github.io/SamasaChakram/uroki/05-kevala-samasa.html)
+- [Paragraph index — 67 §§ of the Leitan conspectus](https://gasyoun.github.io/SamasaChakram/paragrafy/)
+- [Drumam decision tree](https://gasyoun.github.io/SamasaChakram/drumam/)
+- [Drumam trainer](https://gasyoun.github.io/SamasaChakram/drumam/samasa_trainer.html)
 
 Source: https://github.com/gasyoun/SamasaChakram

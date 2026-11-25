@@ -3,7 +3,7 @@ import hashlib
 import json
 from pathlib import Path
 
-from build_top1000 import rank_from_wordfreq
+from build_top1000 import combine_rankings, rank_from_lemma_proxy, rank_from_wordfreq
 from classify import classify
 from evaluate import evaluate, gate
 from gold import load_h989, split_fewshot
@@ -25,6 +25,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--cmps", required=True)
     ap.add_argument("--freq", required=True)
+    ap.add_argument("--lemma-freq", default="", help="DCS lemma TSV for member-frequency proxy fill")
     ap.add_argument("--gold-base", required=True)
     ap.add_argument("--rules", default=str(Path(__file__).with_name("rules.json")))
     ap.add_argument("--out-dir", default=str(Path(__file__).with_name("data")))
@@ -35,8 +36,14 @@ def main():
 
     rules = json.loads(Path(args.rules).read_text(encoding="utf-8"))
     fewshot, holdout = split_fewshot(load_h989(Path(args.gold_base)), n=60, seed=20260715)
-    ranked = rank_from_wordfreq(Path(args.cmps), Path(args.freq), cap=1000,
-                                extra_stop=rules["avyaya_words"])
+    measured = rank_from_wordfreq(Path(args.cmps), Path(args.freq), cap=1000,
+                                  extra_stop=rules["avyaya_words"])
+    if args.lemma_freq:
+        proxy = rank_from_lemma_proxy(Path(args.cmps), Path(args.lemma_freq), cap=1000,
+                                      extra_stop=rules["avyaya_words"])
+        ranked = combine_rankings(measured, proxy, cap=1000)
+    else:
+        ranked = measured
     if args.limit:
         ranked = ranked[:args.limit]
 
@@ -58,6 +65,10 @@ def main():
         f"Validation on 60 H989 holdout compounds: coverage {metrics['coverage']:.3f}, "
         f"coarse accuracy {metrics['coarse_accuracy']:.3f}, unknown rate {metrics['unknown_rate']:.3f}.\n"
         f"Kill-gate (≥0.70): {'PASS' if verdict['publish'] else 'FAIL'}.\n\n"
+        f"Ranking basis: {sum(r.get('basis') == 'measured' for r in ranked)} rows with "
+        "measured DCS compound-surface frequency; "
+        f"{sum(r.get('basis') == 'lemma_proxy' for r in ranked)} rows by min DCS lemma "
+        "frequency of members (PROXY, not attested compound frequency).\n\n"
         "Types are classifier outputs, not corpus annotations (FINDINGS §449). "
         "No type-frequency claim is made.\n", encoding="utf-8")
 
@@ -72,7 +83,10 @@ def main():
                                     " > ".join(c["path"]), "drumam+jev", "", "CC BY 4.0"]) + "\n")
         manifest = {"sha256": hashlib.sha256(tsv.read_bytes()).hexdigest(),
                     "threshold": 0.70, "publish": True, "mode": mode,
-                    "rows": len(results), "source": ["cmps.csv", "word_frequency_norm.txt"],
+                    "rows": len(results),
+                    "source": ["cmps.csv", "word_frequency_norm.txt"],
+                    "basis_counts": {b: sum(r.get("basis") == b for r in ranked)
+                                     for b in ("measured", "lemma_proxy")},
                     "validation": metrics}
         (out / "top1000_manifest.json").write_text(
             json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

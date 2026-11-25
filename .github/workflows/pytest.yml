@@ -2,8 +2,9 @@ name: Python tests
 
 # Runs the committed test suite on every pull request and push to main.
 # Beyond the real regression value, this gives Scorecard's CI-Tests check a
-# named test check-run on each PR ("Run Python tests"). The suite is stdlib-only
-# apart from pytest itself, which is pinned to the version verified locally.
+# named test check-run on each PR ("Run Python tests"). Dependencies are pinned
+# to the versions verified locally: pytest and indic-transliteration (the latter
+# is imported lazily by build_top1000.rank_from_wordfreq).
 
 on:
   push:
@@ -28,8 +29,8 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install pinned test runner
-        run: python -m pip install pytest==9.1.1
+      - name: Install pinned test dependencies
+        run: python -m pip install pytest==9.1.1 indic-transliteration==2.3.82
 
       - name: Run tests
         run: python -m pytest samasacakra/top1000/tests -q

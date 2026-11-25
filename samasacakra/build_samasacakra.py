@@ -79,16 +79,6 @@ for _l in PILOT["lessons"]:
 
 
 BAND_LABEL = {b["id"]: b["label"] for b in PILOT["frequency"]["bands"]}
-# Long family names are stacked, never shrunk: every family label keeps the
-# same 15-unit size and stays inside its ring.
-FAMILY_WRAP = {
-    "vibhakti-tatpuruṣa": "vibhakti-\ntatpuruṣa",
-    "особые татпуруши": "особые\nтатпуруши",
-    "samānādhikaraṇa": "samānādhi-\nkaraṇa",
-    "vyadhikaraṇa": "vyadhi-\nkaraṇa",
-    "особые бахуврихи": "особые\nбахуврихи",
-    "значения по Пан. 2.1.6": "значения по\nПан. 2.1.6",
-}
 
 
 def freq_line(lid):
@@ -180,6 +170,34 @@ def tangential_label(r, a0, a1, text, size, cls):
             f'text-anchor="middle" dominant-baseline="middle" '
             f'transform="rotate({rot:.1f} {x:.1f} {y:.1f})">{text}</text>')
 
+# Class and family names follow the rim: an invisible arc per label carries a
+# <textPath>. The arc is widened to fit the text at the fixed font size, and
+# reversed on the lower half so the letters never finish upside down.
+LABEL_ARCS = []
+
+def arc_label_path(r, a0, a1, text, size):
+    mid = (a0 + a1) / 2
+    need = len(text) * 0.55 * size / r * (180 / math.pi)
+    span = max(a1 - a0, need)
+    lo, hi = mid - span / 2, mid + span / 2
+    if 90 < mid % 360 < 270:
+        x0, y0 = pol(r, hi); x1, y1 = pol(r, lo)
+        sweep, large = 0, 1 if (hi - lo) > 180 else 0
+    else:
+        x0, y0 = pol(r, lo); x1, y1 = pol(r, hi)
+        sweep, large = 1, 1 if (hi - lo) > 180 else 0
+    return f'M{x0:.2f} {y0:.2f} A{r} {r} 0 {large} {sweep} {x1:.2f} {y1:.2f}'
+
+def arc_label(pid, text, size, cls):
+    return (f'<text font-size="{size}" class="{cls}" text-anchor="middle" '
+            f'dominant-baseline="middle">'
+            f'<textPath href="#{pid}" startOffset="50%">{text}</textPath></text>')
+
+def emit_arc_label(r, a0, a1, text, size, cls, pid):
+    LABEL_ARCS.append(f'<path id="{pid}" d="{arc_label_path(r, a0, a1, text, size)}" '
+                      f'fill="none" stroke="none"/>')
+    return arc_label(pid, text, size, cls) + arc_label(pid, deva(text), size, cls + " l-deva")
+
 svg, meta = [], {}
 svg.append('<g id="wheel">')
 leaf_no = 0          # stable clockwise leaf number, 1..58 from 12 o'clock
@@ -189,8 +207,9 @@ for c in classes:
     n_c = sum(len(f["leaves"]) for f in c["families"])
     span_c = n_c * UNIT
     svg.append(f'<path d="{arc_path(R1a, R1b, a, a + span_c)}" class="seg c-{c["id"]} ring1" data-id="{c["id"]}"/>')
-    # one style for every level: class and family names both run radially
-    svg.append(dual(radial_label, R1a + 6, a + span_c / 2, c["name"], 20, "lbl lbl1"))
+    # class names run ALONG the rim on their own arc (textPath)
+    svg.append(emit_arc_label((R1a + R1b) / 2, a, a + span_c, c["name"], 20,
+                              "lbl lbl1", f'arc-c-{c["id"]}'))
     meta[c["id"]] = {"kind": "class", "name": c["name"], "pradhana": c["pradhana"],
                      "structure": c["structure"], "class": c["name"], "cid": c["id"],
                      "freq": "", "n": None}
@@ -200,10 +219,9 @@ for c in classes:
         fid = f'{c["id"]}--{f["id"]}'
         svg.append(f'<path d="{arc_path(R2a, R2b, af, af + span_f)}" class="seg c-{c["id"]} ring2" data-id="{fid}"/>')
         fname = f["name"]
-        # every family label is radial at the same size; long names are stacked
-        # instead of being shrunk (user ruling 25-11-2026)
-        fname_label = FAMILY_WRAP.get(fname, fname)
-        svg.append(dual(radial_label, R2a + 8, af + span_f / 2, fname_label, 15, "lbl lbl2r"))
+        # family names follow the same rim arc, at one fixed size
+        svg.append(emit_arc_label((R2a + R2b) / 2, af, af + span_f, fname, 15,
+                                  "lbl lbl2r", f'arc-f-{fid}'))
         meta[fid] = {"kind": "family", "name": fname, "class": c["name"], "cid": c["id"],
                      "pradhana": c["pradhana"], "structure": c["structure"],
                      # a corpus tag that covers several leaves is published at the
@@ -283,11 +301,14 @@ STYLE_LIGHT = """
 .l-deva { display: none; }
 """
 
+LABEL_DEFS = "".join(LABEL_ARCS)
+
 svg_doc = (f'<svg viewBox="0 0 {2*CX} {2*CY}" xmlns="http://www.w3.org/2000/svg" role="img" '
            f"font-family=\"{FONT}\">"
            f'<title>samāsa-cakra</title>'
            f'<desc>The wheel of Sanskrit compounds: four classes, their families and leaf subtypes, '
            f'from the Leitan-crosswalked taxonomy with the MG structural rulings.</desc>'
+           f'<defs>{LABEL_DEFS}</defs>'
            f'<style>:root {{ --surface:#fcfcfb; --ink:#20201d; --ink2:#5d5c55; --line:#ddd8cc; }}\n{STYLE_LIGHT}</style>'
            f'<rect width="100%" height="100%" fill="#fcfcfb"/>'
            + "".join(svg) + "</svg>")
@@ -311,7 +332,7 @@ PATTERNS = "".join(
 # the inline SVG for HTML drops the internal <style>/<rect> (the page styles it)
 svg_inline = ('<svg id="cakra" class="mode-none" viewBox="0 0 1120 1120" role="img" '
               f"font-family=\"{FONT}\">"
-              f"<defs>{PATTERNS}</defs>" + "".join(svg) + "</svg>")
+              f"<defs>{LABEL_DEFS}{PATTERNS}</defs>" + "".join(svg) + "</svg>")
 
 html = """<!doctype html>
 <html lang="ru">
@@ -333,7 +354,9 @@ html = """<!doctype html>
 html,body { margin:0; background:var(--surface); color:var(--ink); font-family:'Klammer Serif',Georgia,serif; }
 main { max-width:1500px; margin:0 auto; padding:20px 16px; display:flex; gap:20px; flex-wrap:wrap; }
 #wheelbox { flex:1 1 520px; min-width:340px; }
-svg { display:block; width:100%; height:auto; touch-action:none; }
+#wheelbox svg { display:block; width:100%; height:auto; touch-action:none;
+  max-width:calc(100vh - 40px); margin:0 auto; }
+#panel .repolink svg { width:18px; height:18px; flex:none; }
 .seg { stroke:var(--surface); stroke-width:2; cursor:pointer; transition:fill-opacity .12s; }
 .ring1 { fill-opacity:.50; } .ring2 { fill-opacity:.30; } .ring3 { fill-opacity:.16; }
 .c-tatpurusa { fill:var(--c-tatpurusa); } .c-bahuvrihi { fill:var(--c-bahuvrihi); }
@@ -425,7 +448,8 @@ body[data-freq=outline] #bandlegend i[data-band="1to5"]   { border:1px solid #2a
 body[data-freq=outline] #bandlegend i[data-band=none]   { border:1px dashed #2a78d6; }
 .bandnote { color:var(--ink2); font-size:.78rem; width:100%; margin:0 2px 8px; }
 .kevalachip { display:flex; align-items:center; gap:10px; font-size:.92rem; text-decoration:none;
-  color:var(--ink); border:1px dashed var(--line); border-radius:6px; padding:7px 12px; margin:0 0 10px; width:100%; }
+  color:var(--ink); border:1px dashed var(--line); border-radius:6px; padding:7px 12px; margin:0 0 10px; width:100%;
+  box-sizing:border-box; }
 .kevalachip:hover { border-color:var(--ink2); }
 .kevalachip b { font-weight:normal; border-bottom:1px dotted currentColor; }
 .kevalachip span.goto { margin-left:auto; color:var(--ink2); font-size:.82rem; }

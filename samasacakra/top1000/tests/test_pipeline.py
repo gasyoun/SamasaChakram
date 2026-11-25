@@ -34,8 +34,8 @@ def test_rank_from_wordfreq_transliterates_iast(tmp_path):
 def test_combine_rankings_dedupes_and_marks_basis():
     from build_top1000 import combine_rankings
     measured = [{"compound": "a", "members": ["a", "b"], "freq": 5}]
-    proxy = [{"compound": "a", "members": ["a", "b"], "freq": 1, "basis": "lemma_proxy"},
-             {"compound": "b", "members": ["c", "d"], "freq": 1, "basis": "lemma_proxy"}]
+    proxy = [{"rank": 1, "compound": "a", "members": ["a", "b"], "freq": 1, "basis": "lemma_proxy"},
+             {"rank": 2, "compound": "b", "members": ["c", "d"], "freq": 1, "basis": "lemma_proxy"}]
     out = combine_rankings(measured, proxy, cap=2)
     assert [r["compound"] for r in out] == ["a", "b"]
     assert [r["rank"] for r in out] == [1, 2]

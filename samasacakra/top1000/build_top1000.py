@@ -121,7 +121,7 @@ def combine_rankings(measured, proxy, cap=1000):
         out.append(item)
         if len(out) >= cap:
             break
-    return [dict(rank=i + 1, **r) for i, r in enumerate(out)]
+    return [dict(r, rank=i + 1) for i, r in enumerate(out)]
 
 
 def write_ranked(rows, path):

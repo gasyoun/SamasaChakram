@@ -42,6 +42,21 @@ def test_combine_rankings_dedupes_and_marks_basis():
     assert out[0]["basis"] == "measured" and out[1]["basis"] == "lemma_proxy"
 
 
+def test_assemble_refuses_when_gate_failed(tmp_path, monkeypatch):
+    import argparse
+    import chunked
+    monkeypatch.setattr(chunked, "D", tmp_path)
+    (tmp_path / "ranked.json").write_text("[]", encoding="utf-8")
+    (tmp_path / "validation.json").write_text('{"publish": false}', encoding="utf-8")
+    (tmp_path / "predictions.jsonl").write_text("", encoding="utf-8")
+    try:
+        chunked.assemble(argparse.Namespace())
+    except SystemExit as exc:
+        assert "kill-gate" in str(exc)
+    else:
+        raise AssertionError("assemble published despite failed kill-gate")
+
+
 def test_fail_closed_artifact_check(tmp_path):
     from check_top1000 import check
     rows = "\t".join(["rank", "compound", "members", "freq", "type_coarse", "type_fine",

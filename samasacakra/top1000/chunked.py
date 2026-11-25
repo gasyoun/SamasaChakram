@@ -74,6 +74,8 @@ def assemble(args):
     missing = [r["rank"] for r in ranked if r["rank"] not in preds]
     if missing:
         raise SystemExit(f"missing {len(missing)} predictions, first: {missing[:5]}")
+    if not val["publish"]:
+        raise SystemExit("kill-gate failed (coarse accuracy < 0.70); typed TSV withheld")
     tsv = D / "top1000_typed.tsv"
     with tsv.open("w", encoding="utf-8", newline="\n") as fh:
         fh.write("rank\tcompound\tmembers\tfreq\ttype_coarse\ttype_fine\tconfidence\t"

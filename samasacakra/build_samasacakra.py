@@ -79,12 +79,19 @@ for _l in PILOT["lessons"]:
 
 
 BAND_LABEL = {b["id"]: b["label"] for b in PILOT["frequency"]["bands"]}
-# One size for every leaf of the outer ring (user ruling 25-11-2026).
+# One size for every leaf of the outer ring; the dvandva row sits between
+# the class heading (20) and rūpaka (18).
 LEAF_SIZE = 18
-# Narrow family sectors get syllable breaks instead of one overlong word.
+LEAF_SIZE_FAMILY = {"dvandva--dv": 19}
+# Family labels are stacked along the rim; the first line is the outer one.
 FAMILY_LABEL_BREAKS = {
-    "vyadhikaraṇa": "vya\nadhi\nkarana",
-    "dvandva": "dvan\ndva",
+    "значения по Пан. 2.1.6": "значения\nпо Пан. 2.1.6",
+    "vibhakti-tatpuruṣa": "vibhakti\n-tatpuruṣa",
+    "особые татпуруши": "особые\nтатпуруши",
+    "samānādhikaraṇa": "samānādhi\n-karaṇa",
+    "vyadhikaraṇa": "vya-\ndhi-\nkaraṇa",
+    "особые бахуврихи": "особые\nбахуврихи",
+    "dvandva": "dvan\n-dva",
 }
 
 
@@ -206,7 +213,7 @@ def emit_arc_label(r, a0, a1, text, size, cls, pid):
     out = []
     for i, line in enumerate(lines):
         # a broken label gets one arc per syllable, stacked across the ring
-        rr = r + (i - (len(lines) - 1) / 2) * size * 1.15 if len(lines) > 1 else r
+        rr = r - (i - (len(lines) - 1) / 2) * size * 1.15 if len(lines) > 1 else r
         lid = f'{pid}-{i}' if len(lines) > 1 else pid
         LABEL_ARCS.append(f'<path id="{lid}" d="{arc_label_path(rr, a0, a1, line, size)}" '
                           f'fill="none" stroke="none"/>')
@@ -259,8 +266,10 @@ for c in classes:
             # classes below turn its fill/patterm/stroke on, so switching modes
             # never touches the class identity fill or the leaf number
             svg.append(f'<path d="{d}" class="fov c-{c["id"]}" data-band="{band}"/>')
-            # all outer-ring leaves share one size; names are never shrunk
-            svg.append(dual(radial_label, R3a + 8, al + UNIT / 2, leaf["term"], LEAF_SIZE, "lbl lbl3"))
+            # one size for the outer ring, with the dvandva row between the
+            # class heading and rūpaka
+            leaf_size = LEAF_SIZE_FAMILY.get(fid, LEAF_SIZE)
+            svg.append(dual(radial_label, R3a + 8, al + UNIT / 2, leaf["term"], leaf_size, "lbl lbl3"))
             nums.append(number_label(R3b - 12, al + UNIT / 2, str(n)))
             lz = LESSON_BY_LEAF.get(lid)
             meta[lid] = {"kind": "leaf", "name": leaf["term"], "class": c["name"], "cid": c["id"],

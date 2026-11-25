@@ -1,0 +1,1 @@
+- OpenSSF Scorecard Pinned-Dependencies (7 → 10 target): the pytest check-run now installs from `requirements-test.txt` with `--require-hashes` instead of plain version pins. The lock covers the full transitive closure (23 packages, every PyPI SHA-256) and was verified with `pip install --dry-run --require-hashes --ignore-installed` plus the 27-test suite.

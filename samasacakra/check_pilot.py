@@ -21,6 +21,7 @@ import os
 import re
 import sys
 import json
+import math
 import docx
 
 sys.stdout.reconfigure(encoding="utf-8")
@@ -323,14 +324,18 @@ def check_wheel_html():
     # Typography rulings 25-11-2026: one size per row (20/19/18), no per-leaf
     # exception; a real Italic face everywhere, never a synthesised slant;
     # leaf 1 starts on the left equator; dvandva is named in the family row only.
-    rot = -(90.0 + 360.0 / (2 * len(LEAF_IDS)))
-    rot_s = f"{rot:.4f}"
     check("wheel: the three rows use 20/19/18 px",
           all(f'font-size="{s}"' in h for s in ("20", "19", "18"))
           and 'font-size="14.5"' not in h and 'font-size="15"' not in h)
+    # The tilt is baked into the geometry, not a group transform: labels stay
+    # upright and the hub text does not lie on its side. Leaf 1's first path
+    # point must sit at the left equator (~270° from 12 o'clock).
+    m1 = re.search(r'<path d="M([\d.]+) ([\d.]+)[^"]*" class="seg c-[\w-]+ ring3" '
+                   r'data-id="[^"]+" data-n="1" ', h)
+    ang = (math.degrees(math.atan2(float(m1.group(2)) - 560, float(m1.group(1)) - 560)) + 360) % 360 if m1 else None
     check("wheel: initial tilt puts leaf 1 on the left equator",
-          f'transform="rotate({rot_s} 560 560)"' in h and f"let rot = {rot_s}" in h,
-          rot_s)
+          ang is not None and abs(ang - 180) <= 4 and '<g id="wheel">' in h
+          and 'let rot = 0' in h, f"{ang:.1f}°" if ang is not None else "no leaf-1 path")
     check("wheel: dvandva absent from class row, present in family row",
           h.count('class="lbl lbl1"') == 3 and "dvan" in h and "-dva" in h)
     wheel = read(os.path.join(HERE, "samasacakra-wheel.html"))
@@ -338,6 +343,13 @@ def check_wheel_html():
     face = "font-style: italic; src: url(data:font/woff2;base64,"
     check("wheel: a real Italic face is embedded in all three artifacts",
           all(face in x and "__B64I__" not in x for x in (h, wheel, poster)))
+    # Cards show IAST example + vigraha + RU translation first; Devanagari
+    # comes after the translation in its own block, never interleaved.
+    card_tpl = ('<div class="ex">${m.ex}</div><div class="vig">${m.vigraha}</div>'
+                '<div class="ru">«${m.ru}»</div>')
+    check("wheel: card keeps Devanagari out of the IAST lines",
+          card_tpl in h and ' · <span class="pdeva">' not in h
+          and "'<br><span class=\"pdeva\">'" in h)
     return h
 
 

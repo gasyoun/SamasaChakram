@@ -62,7 +62,16 @@ _Создан: 25-11-2026 · Статус: указатель, не копия �
 
 **В кёльнских словарях структурированной метки типа нет.** В MW/AP90 тип упоминается
 в тексте статьи (`<s1>Tatpuruṣa</s1> compound`, `either Tatpuruṣa or Bahuvrīhi`) — это
-полезная слабая разметка для подсказок, но не поле `type` у отдельной лексемы. Аналогично
+полезная слабая разметка для подсказок, но не поле `type` у отдельной лексемы. По решению
+MG 25-11-2026 слабая разметка лучше ничего: она пригодна как weak supervision для
+классификатора, но не как gold.
+
+**P. M. Scharf, «Rāmopākhyāna» (Sanskrit Library, 2023)** — дробная разметка самас:
+classification + labeling, vigraha-vākya, dvandva, karmadhāraya, dvigu, dvitīyā–saptamī /
+upapada / nañ / gati / prādi-tatpuruṣa, bahuvrīhi и явно помеченные неоднозначности
+(§ II.D.2.h, II.D.3.c). Издание строится из семи файлов анализа данных, доступных через
+веб-ридер; **в поместье их нет**, наличие machine-readable выгрузки и лицензия не
+проверены — перед импортом нужна проверка прав. Аналогично
 `csl-orig` [`COMPOUND_MARKER_TYPOGRAPHY_CENSUS_CDSL_2026.md`](https://github.com/gasyoun/SanskritLexicography/blob/master/docs/COMPOUND_MARKER_TYPOGRAPHY_CENSUS_CDSL_2026.md)
 описывает типографику составных слов, не их класс. `MWderivations/issue15` размечает
 **природу правого члена**, а не тип самасы. Внешние наборы, упомянутые в FINDINGS §449 —

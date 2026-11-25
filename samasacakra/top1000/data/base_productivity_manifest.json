@@ -1,0 +1,30 @@
+{
+  "date": "26-11-2026",
+  "script": "samasacakra/top1000/build_base_productivity.py",
+  "inputs": {
+    "cmps.csv": {
+      "sha256": "0f0a6498a527a224bb93d760882f92070a0609ba39498b6155a379726c94ce49",
+      "path": "VisualDCS derived-data/Kompozity/cmps.csv"
+    },
+    "compounds.txt": {
+      "sha256": "5760de643893bad2a4671681723d566473ba62972f76c8814962941aa0be6cc7",
+      "path": "MWderivations compounds/compounds.txt"
+    }
+  },
+  "rows": 48791,
+  "examples": 58,
+  "bases": 99,
+  "counts": {
+    "pūrvapada": 35832,
+    "uttarapada": 12959,
+    "source_cmps.csv": 42174,
+    "source_compounds.txt": 6688,
+    "labelled": 0,
+    "already_in_our_examples": 34
+  },
+  "license": {
+    "cmps.csv": "CC BY 4.0 (Digital Corpus of Sanskrit, Oliver Hellwig)",
+    "compounds.txt": "MWderivations derived table from Monier-Williams (public domain)",
+    "this_tsv": "derived view; attribute DCS CC BY 4.0"
+  }
+}

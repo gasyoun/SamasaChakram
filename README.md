@@ -50,10 +50,6 @@ _Created: 11-07-2026 · Last updated: 24-11-2026_
 - **[Дерево решений Drumam](https://gasyoun.github.io/SamasaChakram/drumam/) и
   [тренажёр](https://gasyoun.github.io/SamasaChakram/drumam/samasa_trainer.html)** —
   классификация по шагам и тренировка.
-- **[Постер A2](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/samasacakra-poster.pdf)** —
-  420 × 594 мм: двуязычный заголовок, колесо на всю ширину и полный указатель 58 подтипов
-  в четырёх колонках классов.
-
 ## Хаб знаний
 
 [Указатель активов по samaсам во всём поместье](docs/SAMASA_KNOWLEDGE_HUB.md) — где лежит
@@ -87,7 +83,7 @@ _Created: 11-07-2026 · Last updated: 24-11-2026_
 
 - [samasacakra/samasacakra-taxonomy.json](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/samasacakra-taxonomy.json)
   + [samasacakra/build_samasacakra.py](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/build_samasacakra.py)
-  → интерактивная HTML-страница колеса, SVG, PNG и постер; встроенный квиз строится из
+  → интерактивная HTML-страница колеса, SVG и PNG; встроенный квиз строится из
   того же `META`, что и карточки.
 - [samasacakra/pilot_data.json](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/pilot_data.json)
   + [samasacakra/build_pilot.py](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/build_pilot.py)
@@ -104,7 +100,7 @@ _Created: 11-07-2026 · Last updated: 24-11-2026_
 транслитерируют IAST. Отдельного файла зависимостей в репозитории нет. Из корня клона:
 
 ```bash
-python samasacakra/build_samasacakra.py   # колесо, страница и постер
+python samasacakra/build_samasacakra.py   # колесо и страница Pages
 python samasacakra/build_pilot.py         # уроки и указатель (67 §§)
 python samasacakra/check_pilot.py         # 260/260 — exit 0
 python samasacakra/check_quiz.py          # QUIZ CHECK: PASS
@@ -115,7 +111,7 @@ python scripts/check_example_pack.py      # PASS — 0 hard failures
 
 | Путь | Что там |
 |---|---|
-| [samasacakra/](https://github.com/gasyoun/SamasaChakram/tree/main/samasacakra) | таксономия, генератор, колесо (SVG/HTML/PNG), постер, страницы Pages, подмножество Klammer Deva |
+| [samasacakra/](https://github.com/gasyoun/SamasaChakram/tree/main/samasacakra) | таксономия, генератор, колесо (SVG/HTML/PNG), страницы Pages, подмножество Klammer Deva |
 | [klammerdiagramm/](https://github.com/gasyoun/SamasaChakram/tree/main/klammerdiagramm) | [генератор](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/build_klammerdiagramm.py), 20 SVG-пластин, 21 конфигурация, подмножество Charis и его лицензия |
 | [klammerdiagramm-worked-examples.md](https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm-worked-examples.md) | галерея: 11 разобранных разделов, от пары лемм до итогового примера со всеми пятью видами |
 | [sanskrit-right-to-left-reading.md](https://github.com/gasyoun/SamasaChakram/blob/main/sanskrit-right-to-left-reading.md) | канонический метод чтения справа налево (head last) и все решения MG о направлении; общий источник для навыков `/sanskrit-parse`, `/klammeruebersetzung`, `/klammerdiagramm` |
@@ -156,7 +152,7 @@ Pages H1036 → пилот H8573 → встроенный квиз #40. Теку
 
 **@WAITING**: письмо Э. З. Лейтан отправлено 16-07-2026; его правки пойдут в
 [samasacakra/samasacakra-taxonomy.json](https://github.com/gasyoun/SamasaChakram/blob/main/samasacakra/samasacakra-taxonomy.json)
-(одна пересборка обновит колесо, сайт и постер), а его слово о копии конспекта — окончательное.
+(одна пересборка обновит колесо и сайт), а его слово о копии конспекта — окончательное.
 Журнал сессий: [.ai_state.md](https://github.com/gasyoun/SamasaChakram/blob/main/.ai_state.md).
 
 ## Лицензия

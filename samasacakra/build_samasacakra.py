@@ -17,9 +17,14 @@ def deva(t):
 # built from the Leitan-crosswalked taxonomy (samasacakra-taxonomy.json) and
 # the MG rulings (direction law, dvandva flat, D1–D6).
 #
-# Rings: hub "samāsa-cakra" · ring 1 = the four classes (Patañjali's pradhāna
-# scheme) · ring 2 = families · ring 3 = leaf subtypes, one canonical example
-# each (click for vigraha + RU gloss in the HTML). Angular width ∝ leaf count.
+# Rings: hub "samāsa-cakra" · ring 1 = classes (Patañjali's pradhāna scheme) ·
+# ring 2 = families · ring 3 = leaf subtypes, one canonical example each (click
+# for vigraha + RU gloss in the HTML). These are the three named rows of the
+# type-size scale: classes 20, families 19, leaves 18 px — one size per row,
+# never an exception for an individual example (MG ruling 25-11-2026).
+# The dvandva class label is omitted from ring 1 (its 2-leaf arc is too narrow);
+# dvandva is still named in ring 2, beside "значения по Пан. 2.1.6".
+# Angular width ∝ leaf count.
 # Colors: the four validated categorical hues (dataviz palette, light+dark
 # modes both validated); identity is never color-alone — every segment carries
 # a direct ink label and 2px surface gaps separate all fills.
@@ -29,6 +34,7 @@ def deva(t):
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 WOFF2 = os.path.join(HERE, "..", "klammerdiagramm", "charis-klammer-subset.woff2")
+WOFF2_ITA = os.path.join(HERE, "..", "klammerdiagramm", "charis-klammer-italic-subset.woff2")
 WOFF2_DEVA = os.path.join(HERE, "noto-deva-klammer-subset.woff2")
 FONT = "'Klammer Serif', 'Charis SIL', Charis, Georgia, serif"
 
@@ -79,10 +85,9 @@ for _l in PILOT["lessons"]:
 
 
 BAND_LABEL = {b["id"]: b["label"] for b in PILOT["frequency"]["bands"]}
-# One size for every leaf of the outer ring; the dvandva row sits between
-# the class heading (20) and rūpaka (18).
+# One size for every leaf of the outer row (18px). The size ladder is by row
+# (classes 20 / families 19 / leaves 18), never by an individual example.
 LEAF_SIZE = 18
-LEAF_SIZE_FAMILY = {"dvandva--dv": 19}
 # Family labels are stacked along the rim; the first line is the outer one.
 FAMILY_LABEL_BREAKS = {
     "значения по Пан. 2.1.6": "значения\nпо Пан. 2.1.6",
@@ -128,6 +133,11 @@ def band_of(lid):
 classes = T["classes"]
 total_leaves = sum(len(f["leaves"]) for c in classes for f in c["families"])
 UNIT = 360.0 / total_leaves
+# Initial tilt (MG ruling 25-11-2026): leaf 1 (prathamā / ekadeśin) rests on the
+# left equator. It is drawn UNIT/2 past 12 o'clock, so a CCW rotation of
+# 90 + UNIT/2 puts its centre at 9 o'clock. Drag rotates from here; a double
+# click resets to this tilt, not to zero (which would put leaf 1 at the top).
+INIT_ROT = -(90.0 + UNIT / 2)
 
 def pol(r, a_deg):
     a = math.radians(a_deg - 90)          # 0° at 12 o'clock, clockwise
@@ -228,7 +238,7 @@ def emit_arc_label(r, a0, a1, text, size, cls, pid):
     return "".join(out)
 
 svg, meta = [], {}
-svg.append('<g id="wheel">')
+svg.append(f'<g id="wheel" transform="rotate({INIT_ROT:.4f} {CX} {CY})">')
 leaf_no = 0          # stable clockwise leaf number, 1..58 from 12 o'clock
 nums = []            # its own layer: appended last, never repainted by a mode
 a = 0.0
@@ -237,8 +247,12 @@ for c in classes:
     span_c = n_c * UNIT
     svg.append(f'<path d="{arc_path(R1a, R1b, a, a + span_c)}" class="seg c-{c["id"]} ring1" data-id="{c["id"]}"/>')
     # class names run ALONG the rim on their own arc (textPath)
-    svg.append(emit_arc_label((R1a + R1b) / 2, a, a + span_c, c["name"], 20,
-                              "lbl lbl1", f'arc-c-{c["id"]}'))
+    # dvandva's two-leaf arc is too narrow for a 20px class label; keep the
+    # segment and its card, drop the ring-1 label — the family row still names
+    # dvandva beside "значения по Пан. 2.1.6" (MG ruling 25-11-2026).
+    if c["id"] != "dvandva":
+        svg.append(emit_arc_label((R1a + R1b) / 2, a, a + span_c, c["name"], 20,
+                                  "lbl lbl1", f'arc-c-{c["id"]}'))
     meta[c["id"]] = {"kind": "class", "name": c["name"], "pradhana": c["pradhana"],
                      "structure": c["structure"], "class": c["name"], "cid": c["id"],
                      "freq": "", "n": None}
@@ -250,7 +264,7 @@ for c in classes:
         fname = f["name"]
         # family names follow the same rim arc; narrow sectors get syllable breaks
         fname_label = FAMILY_LABEL_BREAKS.get(fname, fname)
-        svg.append(emit_arc_label((R2a + R2b) / 2, af, af + span_f, fname_label, 15,
+        svg.append(emit_arc_label((R2a + R2b) / 2, af, af + span_f, fname_label, 19,
                                   "lbl lbl2r", f'arc-f-{fid}'))
         meta[fid] = {"kind": "family", "name": fname, "class": c["name"], "cid": c["id"],
                      "pradhana": c["pradhana"], "structure": c["structure"],
@@ -271,10 +285,8 @@ for c in classes:
             # classes below turn its fill/patterm/stroke on, so switching modes
             # never touches the class identity fill or the leaf number
             svg.append(f'<path d="{d}" class="fov c-{c["id"]}" data-band="{band}"/>')
-            # one size for the outer ring, with the dvandva row between the
-            # class heading and rūpaka
-            leaf_size = LEAF_SIZE_FAMILY.get(fid, LEAF_SIZE)
-            svg.append(dual(radial_label, R3a + 8, al + UNIT / 2, leaf["term"], leaf_size, "lbl lbl3"))
+            # one size for every leaf of the outer row (18px)
+            svg.append(dual(radial_label, R3a + 8, al + UNIT / 2, leaf["term"], LEAF_SIZE, "lbl lbl3"))
             nums.append(number_label(R3b - 12, al + UNIT / 2, str(n)))
             lz = LESSON_BY_LEAF.get(lid)
             meta[lid] = {"kind": "leaf", "name": leaf["term"], "class": c["name"], "cid": c["id"],
@@ -349,6 +361,7 @@ with open(os.path.join(HERE, "samasacakra-wheel.svg"), "w", encoding="utf-8", ne
 print("wrote samasacakra-wheel.svg", len(svg_doc) // 1024, "KB")
 
 b64 = base64.b64encode(open(WOFF2, "rb").read()).decode("ascii")
+b64i = base64.b64encode(open(WOFF2_ITA, "rb").read()).decode("ascii")
 b64d = base64.b64encode(open(WOFF2_DEVA, "rb").read()).decode("ascii")
 meta_json = json.dumps(meta, ensure_ascii=False)
 # hatch patterns for the corpus-share layer (mode "штриховка"): the fill is
@@ -372,7 +385,9 @@ html = """<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>samāsa-cakra — колесо санскритских композитов</title>
 <style>
-@font-face { font-family: 'Klammer Serif'; src: url(data:font/woff2;base64,__B64__) format('woff2'); }
+@font-face { font-family: 'Klammer Serif'; font-style: normal; src: url(data:font/woff2;base64,__B64__) format('woff2'); }
+/* a real Italic face: <em>/<i> and font-style:italic must not be a synthesised slant */
+@font-face { font-family: 'Klammer Serif'; font-style: italic; src: url(data:font/woff2;base64,__B64I__) format('woff2'); }
 @font-face { font-family: 'Klammer Deva'; src: url(data:font/woff2;base64,__B64D__) format('woff2'); }
 :root { --surface:#fcfcfb; --ink:#20201d; --ink2:#5d5c55; --line:#ddd8cc; --panel:#ffffff; }
 @media (prefers-color-scheme: dark) {
@@ -583,7 +598,7 @@ const GAL = '__GAL__';
 const svg = document.getElementById('cakra');
 const wheel = document.getElementById('wheel');
 const panel = document.getElementById('panel');
-let rot = 0, dragging = false, a0 = 0, r0 = 0, moved = 0, downSeg = null, px = 0, py = 0;
+let rot = __INIT_ROT__, dragging = false, a0 = 0, r0 = 0, moved = 0, downSeg = null, px = 0, py = 0;
 function angleOf(ev) {
   const r = svg.getBoundingClientRect();
   const x = ev.clientX - (r.left + r.width/2), y = ev.clientY - (r.top + r.height/2);
@@ -616,7 +631,8 @@ function onUp(ev) {
 window.addEventListener('pointermove', onMove);
 window.addEventListener('pointerup', onUp);
 window.addEventListener('pointercancel', () => { dragging = false; downSeg = null; });
-svg.addEventListener('dblclick', () => { rot = 0; wheel.setAttribute('transform', ''); });
+svg.addEventListener('dblclick', () => { rot = __INIT_ROT__;
+  wheel.setAttribute('transform', `rotate(${rot} 560 560)`); });
 document.getElementById('btn-iast').onclick = () => { document.body.classList.remove('deva');
   document.getElementById('btn-iast').classList.add('on'); document.getElementById('btn-deva').classList.remove('on'); };
 document.getElementById('btn-deva').onclick = () => { document.body.classList.add('deva');
@@ -743,7 +759,11 @@ document.addEventListener('keydown', ev => { if (ev.key === 'Escape' && !quizBox
 BANDLEGEND = "".join(
     f'<span><i data-band="{b["id"]}"></i>{b["label"].replace("<", "&lt;")}</span>'
     for b in FREQ["bands"])
-html = html.replace("__B64__", b64).replace("__B64D__", b64d).replace("__GAL__", GALLERY_URL).replace("__META__", meta_json).replace("__SVG__", svg_inline).replace("__ALIAS__", json.dumps(ALIAS, ensure_ascii=False)).replace("__BANDNOTE__", FREQ["band_note"]).replace("__BANDLEGEND__", BANDLEGEND)
+html = (html.replace("__B64__", b64).replace("__B64I__", b64i).replace("__B64D__", b64d)
+        .replace("__INIT_ROT__", f"{INIT_ROT:.4f}")
+        .replace("__GAL__", GALLERY_URL).replace("__META__", meta_json)
+        .replace("__SVG__", svg_inline).replace("__ALIAS__", json.dumps(ALIAS, ensure_ascii=False))
+        .replace("__BANDNOTE__", FREQ["band_note"]).replace("__BANDLEGEND__", BANDLEGEND))
 with open(os.path.join(HERE, "samasacakra-wheel.html"), "w", encoding="utf-8", newline="\n") as fh:
     fh.write(html)
 print("wrote samasacakra-wheel.html", len(html) // 1024, "KB;", total_leaves, "leaves")
@@ -797,7 +817,8 @@ poster_html = f"""<!doctype html>
 <meta charset="utf-8">
 <title>samāsa-cakra — poster</title>
 <style>
-@font-face {{ font-family: 'Klammer Serif'; src: url(data:font/woff2;base64,{b64}) format('woff2'); }}
+@font-face {{ font-family: 'Klammer Serif'; font-style: normal; src: url(data:font/woff2;base64,{b64}) format('woff2'); }}
+@font-face {{ font-family: 'Klammer Serif'; font-style: italic; src: url(data:font/woff2;base64,{b64i}) format('woff2'); }}
 @font-face {{ font-family: 'Klammer Deva'; src: url(data:font/woff2;base64,{b64d}) format('woff2'); }}
 @page {{ size: 420mm 594mm; margin: 0; }}
 html,body {{ margin:0; padding:0; width:420mm; height:594mm; background:#fcfcfb; color:#20201d;

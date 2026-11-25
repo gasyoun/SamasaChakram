@@ -134,13 +134,16 @@ classes = T["classes"]
 total_leaves = sum(len(f["leaves"]) for c in classes for f in c["families"])
 UNIT = 360.0 / total_leaves
 # Initial tilt (MG ruling 25-11-2026): leaf 1 (prathamā / ekadeśin) rests on the
-# left equator. It is drawn UNIT/2 past 12 o'clock, so a CCW rotation of
-# 90 + UNIT/2 puts its centre at 9 o'clock. Drag rotates from here; a double
-# click resets to this tilt, not to zero (which would put leaf 1 at the top).
+# left equator. The offset is baked into the geometry — NOT applied as a group
+# transform — so the labels are re-oriented at their new positions and the hub
+# text stays upright. A double click resets any drag to this baked-in zero.
 INIT_ROT = -(90.0 + UNIT / 2)
 
+def eff(a_deg):
+    return a_deg + INIT_ROT
+
 def pol(r, a_deg):
-    a = math.radians(a_deg - 90)          # 0° at 12 o'clock, clockwise
+    a = math.radians(eff(a_deg) - 90)     # 0° at 12 o'clock, clockwise
     return CX + r * math.cos(a), CY + r * math.sin(a)
 
 def arc_path(r0, r1, a0, a1):
@@ -165,7 +168,7 @@ def number_label(r, a, text):
     # the leaf's clockwise number, set tangentially at the rim (clock-face read);
     # the rotation is folded into (-90, 90] so no number is ever upside down
     x, y = pol(r, a)
-    rot = ((a + 90) % 180) - 90
+    rot = ((eff(a) + 90) % 180) - 90
     return (f'<text x="{x:.1f}" y="{y:.1f}" font-size="11" class="lbl num" '
             f'text-anchor="middle" dominant-baseline="middle" '
             f'transform="rotate({rot:.1f} {x:.1f} {y:.1f})">{text}</text>')
@@ -175,8 +178,9 @@ def radial_label(r, a, text, size, cls):
     # A newline becomes a stacked tspan pair, so long family names such as
     # vyadhi-/karaṇa keep the same font size as every other family label.
     x, y = pol(r, a)
-    rot = a - 90 if a % 360 <= 180 else a + 90
-    anchor = "start" if a % 360 <= 180 else "end"
+    ea = eff(a)
+    rot = ea - 90 if ea % 360 <= 180 else ea + 90
+    anchor = "start" if ea % 360 <= 180 else "end"
     lines = text.split("\n")
     body = (lines[0] if len(lines) == 1 else "".join(
         f'<tspan x="{x:.1f}" dy="{0 if i == 0 else size * 1.05:.1f}">{line}</tspan>'
@@ -188,8 +192,9 @@ def radial_label(r, a, text, size, cls):
 def tangential_label(r, a0, a1, text, size, cls):
     a = (a0 + a1) / 2
     x, y = pol(r, a)
-    rot = a if 90 <= a % 360 <= 270 else a          # tangential; flip bottom half
-    rot = a + 180 if 90 < a % 360 < 270 else a
+    ea = eff(a)
+    rot = ea if 90 <= ea % 360 <= 270 else ea       # tangential; flip bottom half
+    rot = ea + 180 if 90 < ea % 360 < 270 else ea
     return (f'<text x="{x:.1f}" y="{y:.1f}" font-size="{size}" class="{cls}" '
             f'text-anchor="middle" dominant-baseline="middle" '
             f'transform="rotate({rot:.1f} {x:.1f} {y:.1f})">{text}</text>')
@@ -204,7 +209,9 @@ def arc_label_path(r, a0, a1, text, size):
     need = max(len(x) for x in text.split("\n")) * 0.55 * size / r * (180 / math.pi)
     span = max(a1 - a0, need)
     lo, hi = mid - span / 2, mid + span / 2
-    if 90 < mid % 360 < 270:
+    # pol() already applies the initial tilt; only the reading-direction test
+    # needs the effective angle, never the path endpoints (no double offset).
+    if 90 < eff(mid) % 360 < 270:
         x0, y0 = pol(r, hi); x1, y1 = pol(r, lo)
         sweep, large = 0, 1 if (hi - lo) > 180 else 0
     else:
@@ -224,7 +231,7 @@ def emit_arc_label(r, a0, a1, text, size, cls, pid):
     # On the lower half of the wheel a larger radius sits visually LOWER, so
     # the first line must be inner; on the upper half it must be outer. Either
     # way the stacked lines read top-to-bottom, never back-to-front.
-    first_inner = 90 < ((a0 + a1) / 2) % 360 < 270
+    first_inner = 90 < eff((a0 + a1) / 2) % 360 < 270
     for i, line in enumerate(lines):
         # a broken label gets one arc per syllable, stacked across the ring
         offset = (i - (len(lines) - 1) / 2) * size * 1.15
@@ -238,7 +245,7 @@ def emit_arc_label(r, a0, a1, text, size, cls, pid):
     return "".join(out)
 
 svg, meta = [], {}
-svg.append(f'<g id="wheel" transform="rotate({INIT_ROT:.4f} {CX} {CY})">')
+svg.append('<g id="wheel">')
 leaf_no = 0          # stable clockwise leaf number, 1..58 from 12 o'clock
 nums = []            # its own layer: appended last, never repainted by a mode
 a = 0.0
@@ -419,6 +426,7 @@ body.deva svg text.l-deva { display:block; }
 #scripttoggle button { font:inherit; font-size:.85rem; padding:3px 12px; border:0; background:transparent; color:var(--ink2); cursor:pointer; }
 #scripttoggle button.on { background:var(--c-tatpurusa); color:#fff; }
 .pdeva { font-family:'Klammer Deva','Nirmala UI',serif; color:var(--ink); }
+#panel .pdeva { margin-top:.6em; font-size:.92rem; line-height:1.6; }
 #panel { flex:0 1 340px; min-width:300px; background:var(--panel); border:1px solid var(--line);
   border-radius:6px; padding:18px 20px; align-self:flex-start; position:sticky; top:16px;
   max-height:calc(100vh - 32px); overflow:auto; overflow-wrap:anywhere; }
@@ -598,7 +606,7 @@ const GAL = '__GAL__';
 const svg = document.getElementById('cakra');
 const wheel = document.getElementById('wheel');
 const panel = document.getElementById('panel');
-let rot = __INIT_ROT__, dragging = false, a0 = 0, r0 = 0, moved = 0, downSeg = null, px = 0, py = 0;
+let rot = 0, dragging = false, a0 = 0, r0 = 0, moved = 0, downSeg = null, px = 0, py = 0;
 function angleOf(ev) {
   const r = svg.getBoundingClientRect();
   const x = ev.clientX - (r.left + r.width/2), y = ev.clientY - (r.top + r.height/2);
@@ -631,8 +639,7 @@ function onUp(ev) {
 window.addEventListener('pointermove', onMove);
 window.addEventListener('pointerup', onUp);
 window.addEventListener('pointercancel', () => { dragging = false; downSeg = null; });
-svg.addEventListener('dblclick', () => { rot = __INIT_ROT__;
-  wheel.setAttribute('transform', `rotate(${rot} 560 560)`); });
+svg.addEventListener('dblclick', () => { rot = 0; wheel.setAttribute('transform', ''); });
 document.getElementById('btn-iast').onclick = () => { document.body.classList.remove('deva');
   document.getElementById('btn-iast').classList.add('on'); document.getElementById('btn-deva').classList.remove('on'); };
 document.getElementById('btn-deva').onclick = () => { document.body.classList.add('deva');
@@ -647,7 +654,15 @@ function openCard(rawId, seg) {
   else { const t = document.querySelector(`.seg[data-id="${id}"]`); if (t) t.classList.add('sel'); }
   const num = m.n ? `<span class="numtag">№ ${m.n}</span> · ` : '';
   let h = `<h2>${num}${m.name}</h2><div class="chain">${m.class}${m.family ? ' · ' + m.family : ''}</div>`;
-  if (m.ex) h += `<div class="ex">${m.ex}</div><div class="pdeva">${m.ex_d}</div><div class="vig">${m.vigraha}${m.vigraha_d && m.vigraha_d !== m.vigraha ? ' · <span class="pdeva">' + m.vigraha_d + '</span>' : ''}</div><div class="ru">«${m.ru}»</div>`;
+  if (m.ex) {
+    h += `<div class="ex">${m.ex}</div><div class="vig">${m.vigraha}</div><div class="ru">«${m.ru}»</div>`;
+    // Devanagari goes AFTER the translation, never interleaved with IAST
+    // (MG ruling 25-11-2026): both lines together, each on its own row.
+    const dv = [];
+    if (m.ex_d && m.ex_d !== m.ex) dv.push(m.ex_d);
+    if (m.vigraha_d && m.vigraha_d !== m.vigraha) dv.push(m.vigraha_d);
+    if (dv.length) h += `<div class="pdeva">${dv.join('<br>')}</div>`;
+  }
   if (m.kind === 'kevala') {
     if (m.context) h += `<div class="note">${m.context}</div>`;
     h += `<div class="rule">${m.rule}</div>`;
@@ -702,7 +717,7 @@ function pickLeaf() {
   const [id, m] = pool[Math.floor(Math.random() * pool.length)];
   qLastId = id; return {id, m};
 }
-function devaSpan(iast, deva) { return (deva && deva !== iast) ? ' <span class="pdeva">' + deva + '</span>' : ''; }
+function devaSpan(iast, deva) { return (deva && deva !== iast) ? '<br><span class="pdeva">' + deva + '</span>' : ''; }
 function nextQuestion() {
   const {id, m} = pickLeaf(); qCurrent = {id, m}; qLocked = false;
   document.getElementById('qnext').hidden = true;
@@ -760,7 +775,6 @@ BANDLEGEND = "".join(
     f'<span><i data-band="{b["id"]}"></i>{b["label"].replace("<", "&lt;")}</span>'
     for b in FREQ["bands"])
 html = (html.replace("__B64__", b64).replace("__B64I__", b64i).replace("__B64D__", b64d)
-        .replace("__INIT_ROT__", f"{INIT_ROT:.4f}")
         .replace("__GAL__", GALLERY_URL).replace("__META__", meta_json)
         .replace("__SVG__", svg_inline).replace("__ALIAS__", json.dumps(ALIAS, ensure_ascii=False))
         .replace("__BANDNOTE__", FREQ["band_note"]).replace("__BANDLEGEND__", BANDLEGEND))

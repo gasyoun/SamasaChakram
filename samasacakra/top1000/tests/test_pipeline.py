@@ -24,10 +24,10 @@ def test_rank_from_wordfreq_transliterates_iast(tmp_path):
     from build_top1000 import rank_from_wordfreq
     cmps = tmp_path / "cmps.csv"
     freq = tmp_path / "wf.txt"
-    cmps.write_text("rājaputra;rājan putra\nrāma;rāma rāma\n", encoding="utf-8")
-    freq.write_text("rAjaputra 37\nrAma 5\n", encoding="utf-8-sig")
+    cmps.write_text("tad;tad tad\nrājaputra;rājan putra\nrāmalakṣmaṇau;rāma lakṣmaṇa\n", encoding="utf-8")
+    freq.write_text("tad 999\nrAjaputra 37\nrAmalakzmaRO 5\n", encoding="utf-8-sig")
     rows = rank_from_wordfreq(cmps, freq, cap=10)
-    assert [r["compound"] for r in rows] == ["rājaputra", "rāma"]
+    assert [r["compound"] for r in rows] == ["rājaputra", "rāmalakṣmaṇau"]
     assert [r["freq"] for r in rows] == [37, 5]
 
 

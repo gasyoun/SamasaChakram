@@ -25,7 +25,15 @@ def rank_compounds(cmps: Path, names: Path, cap: int = 1000) -> list:
     return [dict(rank=i + 1, **r) for i, r in enumerate(ranked[:cap])]
 
 
-def rank_from_wordfreq(cmps, freq_path, cap=1000):
+# H1398 (kosha/data/samasa/drill_weights.json): corpus heads are polluted by
+# particles, pronoun stems, bare roots and taddhita suffixes. Ranked surfaces
+# must pass this filter or the "top-1000" is a list of function words.
+STOP = {"ca", "eva", "vā", "tu", "hi", "api", "iva", "idam", "tad", "etad",
+        "yad", "kim", "adas", "sva", "kṛ", "as", "bhū", "gam", "i", "dā",
+        "dhā", "sthā", "han", "nī", "pā", "yā", "tva", "tā"}
+
+
+def rank_from_wordfreq(cmps, freq_path, cap=1000, extra_stop=()):
     """Rank cmps.csv surfaces by DCS token frequency (SLP1 word-frequency file).
 
     `names.csv` is not published in VisualDCS, so the surface frequency comes
@@ -49,7 +57,10 @@ def rank_from_wordfreq(cmps, freq_path, cap=1000):
             if len(p) < 2:
                 continue
             surface, members = p[0].strip(), p[1].split()
-            if len(members) < 2:
+            stop = STOP | set(extra_stop)
+            if len(surface) < 6 or len(members) < 2 or surface in stop:
+                continue
+            if sum(1 for m in members if len(m) >= 3 and m not in stop) < 2:
                 continue
             key = sanscript.transliterate(surface, sanscript.IAST, sanscript.SLP1)
             if key in freq and freq[key] > 0:

@@ -35,7 +35,8 @@ def main():
 
     rules = json.loads(Path(args.rules).read_text(encoding="utf-8"))
     fewshot, holdout = split_fewshot(load_h989(Path(args.gold_base)), n=60, seed=20260715)
-    ranked = rank_from_wordfreq(Path(args.cmps), Path(args.freq), cap=1000)
+    ranked = rank_from_wordfreq(Path(args.cmps), Path(args.freq), cap=1000,
+                                extra_stop=rules["avyaya_words"])
     if args.limit:
         ranked = ranked[:args.limit]
 

@@ -21,6 +21,11 @@
 - 56 dual-tagged Gita rows are excluded from evaluation but counted in the report.
 - Commit and push in the same pass (MG 25-11-2026); no local-only commits.
 
+## Execution rulings (25-11, carried into later tasks)
+
+- R7 — three Drumam nodes (`ask_km_type`, `ask_bv_sub`, `ask_tp_case`) are multi-way `options:[{label,next}]`, not yes/no. `rules.json.nodes[*]` therefore also has `options: list[{label,next}]` (empty for yes/no nodes); `yes`/`no` are empty strings for option nodes. Task 4's walker must branch on options, and Task 5's semantic provider must answer a choice among 2–7 labelled options, not only yes/no.
+- R8 — test paths are relative to the worktree root: `tests/test_rules.py` uses `parents[3]`, `check_rules.py` uses `parents[2]`. The plan's original Step-2 command named the non-worktree clone path; use the current worktree cwd.
+
 ## Review Focus
 
 - **Compound with no attested members** (`cmps.csv` row present, `names.csv` frequency missing) → excluded from ranking, counted in report — Task 2 test.

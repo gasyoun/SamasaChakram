@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+data/cmps.csv
+data/word_frequency_norm.txt
+data/top1000_ranked.tsv
+data/fewshot.json
+data/ranked.json
+data/predictions.jsonl
+data/validation.json

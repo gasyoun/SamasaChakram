@@ -1,0 +1,27 @@
+{
+  "sha256": "d34cfbd3ac1d9016d80ab9beef2f4b90405d5bb69ca22c8fa82889dc2e17dc09",
+  "threshold": 0.7,
+  "publish": true,
+  "mode": "live",
+  "rows": 1000,
+  "source": [
+    "cmps.csv",
+    "word_frequency_norm.txt",
+    "lemma_frequency.tsv"
+  ],
+  "basis_counts": {
+    "measured": 348,
+    "lemma_proxy": 652
+  },
+  "validation": {
+    "n": 60,
+    "coverage": 1.0,
+    "coarse_accuracy": 0.7333333333333333,
+    "unknown_rate": 0.0,
+    "correct": 44,
+    "scored": 60,
+    "publish": true,
+    "threshold": 0.7,
+    "measured": 0.7333333333333333
+  }
+}

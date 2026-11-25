@@ -69,9 +69,9 @@ MG 25-11-2026 слабая разметка лучше ничего: она пр
 **P. M. Scharf, «Rāmopākhyāna» (Sanskrit Library, 2023)** — дробная разметка самас:
 classification + labeling, vigraha-vākya, dvandva, karmadhāraya, dvigu, dvitīyā–saptamī /
 upapada / nañ / gati / prādi-tatpuruṣa, bahuvrīhi и явно помеченные неоднозначности
-(§ II.D.2.h, II.D.3.c). Издание строится из семи файлов анализа данных, доступных через
-веб-ридер; **в поместье их нет**, наличие machine-readable выгрузки и лицензия не
-проверены — перед импортом нужна проверка прав. Аналогично
+(§ II.D.2.h, II.D.3.c). PDF доступен, лицензия допускает производные работы; machine-readable
+выгрузки нет — метки извлекаются из PDF в `data/scharf_gold.tsv` в рамках плана топ-1000.
+Аналогично
 `csl-orig` [`COMPOUND_MARKER_TYPOGRAPHY_CENSUS_CDSL_2026.md`](https://github.com/gasyoun/SanskritLexicography/blob/master/docs/COMPOUND_MARKER_TYPOGRAPHY_CENSUS_CDSL_2026.md)
 описывает типографику составных слов, не их класс. `MWderivations/issue15` размечает
 **природу правого члена**, а не тип самасы. Внешние наборы, упомянутые в FINDINGS §449 —

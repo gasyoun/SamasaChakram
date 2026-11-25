@@ -28,6 +28,7 @@ _Создан: 25-11-2026 · Статус: spec, ждёт ревью MG · Вл�
 | Правила | `drumam/archive/samasa_decision_tree.html` → `NODES`, `RESULTS`, `AVYAYA_WORDS`, `PREVERB_LIST`, `CANONICAL_DB` | узлы дерева, формулировки вопросов, списки preverb/avyaya |
 | Gold (DCS) | `SanskritGrammar/sangram/articles/tatpurusha/data/{validation_sample.tsv,annotations_full.tsv,validation_verdicts.tsv}` (H989) | 120 DCS-композитов, coarse 4 класса + fine, два слепых прохода, κ 0,93/0,72; виграхи в `annotations_full.tsv` |
 | Gold (внекорпусный) | `kosha/data/gita/gita_morphology_gold.tsv`, колонка `compound` | 759 однозначных, 4 класса (перекос: 458 TP / 298 BV) |
+| Fine gold (дробное) | **P. M. Scharf, «Rāmopākhyāna» (Sanskrit Library, 2023), PDF** — § II.D.2.h classification/labeling и § II.D.3.c compound-derivation: dvandva, karmadhāraya, dvigu, dvitīyā–saptamī / upapada / nañ / gati / prādi-tatpuruṣa, bahuvrīhi, ambiguities | тонкие метки и явно помеченные неоднозначности; лицензия допускает производные работы, PDF есть, machine-readable выгрузки нет — извлечение меток из PDF входит в работу |
 | Weak supervision | MW/AP90 definitional mentions; `MWderivations/issue15` (природа правого члена, НЕ тип) | подсказки на этапе формулировки вопроса к LLM |
 
 Лицензия: DCS CC BY 4.0 → атрибуция в выходном TSV и отчёте; в репозиторий попадают только
@@ -74,10 +75,14 @@ _Создан: 25-11-2026 · Статус: spec, ждёт ревью MG · Вл�
 - 120 DCS-gold смещены в tatpuruṣa (design P4); Gita-gold смещён в TP/BV. Оба — частичные
   эталоны, не репрезентативная выборка по 4 классам.
 - Двойные метки Gita (56) исключаются из validate, но учитываются в отчёте.
-- Scharf/Rāmopākhyāna может дать более тонкое золото; без проверки прав в этот PR не входит.
+- Scharf/Rāmopākhyāna даёт более тонкое золото; лицензия допускает производные работы и PDF
+  доступен, поэтому метки извлекаются в `data/scharf_gold.tsv`. PDF — печатная вёрстка,
+  извлечение может дать пропуски; каждый item без уверенной метки помечается `ambiguous`
+  и в gold не попадает.
 
 ## 7. Acceptance
 
-- Отчёт с метриками и kill-gate вердиктом; TSV с 1000 строками и честным `unknown`-остатком;
+- `data/scharf_gold.tsv` с дробными метками из PDF (плюс `ambiguous`-остаток); отчёт с метриками
+  и kill-gate вердиктом; TSV с 1000 строками и честным `unknown`-остатком;
   манифест с происхождением и атрибуцией; PR в SamasaChakram, запись в changelog_queue;
   отдельная строка cross-repo edge в Uprava `PROJECT_INTERLINKS.md` (kosha → consuming).

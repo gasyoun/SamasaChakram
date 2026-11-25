@@ -3,8 +3,8 @@ name: Python tests
 # Runs the committed test suite on every pull request and push to main.
 # Beyond the real regression value, this gives Scorecard's CI-Tests check a
 # named test check-run on each PR ("Run Python tests"). Dependencies are pinned
-# to the versions verified locally: pytest and indic-transliteration (the latter
-# is imported lazily by build_top1000.rank_from_wordfreq).
+# by SHA-256 in requirements-test.txt and installed with --require-hashes, which
+# is what Scorecard's Pinned-Dependencies check recognises as a pinned pip command.
 
 on:
   push:
@@ -29,8 +29,8 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install pinned test dependencies
-        run: python -m pip install pytest==9.1.1 indic-transliteration==2.3.82
+      - name: Install hash-pinned test dependencies
+        run: python -m pip install --require-hashes -r requirements-test.txt
 
       - name: Run tests
         run: python -m pytest samasacakra/top1000/tests -q

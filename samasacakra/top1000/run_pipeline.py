@@ -4,21 +4,9 @@ import json
 from pathlib import Path
 
 from build_top1000 import combine_rankings, rank_from_lemma_proxy, rank_from_wordfreq
-from classify import classify
+from batch import batched, classify_batch
 from evaluate import evaluate, gate
 from gold import load_h989, split_fewshot
-from semantics import answer_semantics
-
-
-def semantic_ids(rules):
-    return [nid for nid, node in rules["nodes"].items() if node["kind"] == "semantic"]
-
-
-def classify_one(surface, members, rules, fewshot, run, max_cost):
-    questions = semantic_ids(rules)
-    answers = answer_semantics(surface, members, questions, fewshot, rules,
-                               run=run, max_cost=max_cost)
-    return classify(surface, members, answers, rules)
 
 
 def main():
@@ -47,15 +35,19 @@ def main():
     if args.limit:
         ranked = ranked[:args.limit]
 
-    val_preds = [classify_one(g["surface"], [g["surface"]], rules, fewshot,
-                              args.run, args.max_cost) for g in holdout]
+    val_items = [{"surface": g["surface"], "members": [g["surface"]]} for g in holdout]
+    val_preds = []
+    for chunk in batched(val_items, 10):
+        val_preds.extend(classify_batch(chunk, rules, fewshot, args.run, args.max_cost))
     metrics = evaluate(val_preds, holdout)
     verdict = gate(metrics)
     print("VALIDATION", json.dumps({**metrics, **verdict}, ensure_ascii=False))
 
     mode = "live" if args.run else "dry-run"
-    results = [classify_one(r["compound"], r["members"], rules, fewshot,
-                            args.run, args.max_cost) for r in ranked]
+    ranked_items = [{"surface": r["compound"], "members": r["members"]} for r in ranked]
+    results = []
+    for chunk in batched(ranked_items, 10):
+        results.extend(classify_batch(chunk, rules, fewshot, args.run, args.max_cost))
     out = Path(args.out_dir)
     out.mkdir(parents=True, exist_ok=True)
     report = out / "TOP1000_TYPED_REPORT.md"

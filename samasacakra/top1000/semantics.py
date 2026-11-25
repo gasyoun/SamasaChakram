@@ -38,11 +38,11 @@ def answer_semantics(surface, members, questions, fewshot, rules,
     if not run or not questions:
         return {}
     spec = build_spec(questions, rules)
-    state = {"compound": surface, "members": members,
-             "few_shot": [{"surface": g.get("surface", ""),
-                           "vigraha": g.get("vigraha", ""),
-                           "type": g.get("coarse", "")} for g in fewshot[:8]],
-             "questions": {q: spec[q]["question"] for q in questions}}
+    shot = [f'{g.get("surface", "")}: {g.get("vigraha", "")} → {g.get("coarse", "")}'
+            for g in fewshot[:8]]
+    state = "\n".join(
+        [f"Compound: {surface} (members: {', '.join(members)})",
+         "Gold examples (compound: vigraha → type):"] + shot)
     if probe is not None:
         return parse_answers(probe.ask(state, spec), questions, rules)
     return _live(load_probe(), state, spec, questions, rules, max_cost)

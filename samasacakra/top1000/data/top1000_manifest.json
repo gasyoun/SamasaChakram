@@ -1,0 +1,19 @@
+{
+  "sha256": "659e878a59fa6018c3d95f1d305f5902992f230ae5d6482f58238d4a2e854b36",
+  "threshold": 0.7,
+  "publish": true,
+  "mode": "live",
+  "rows": 10,
+  "source": [
+    "cmps.csv",
+    "word_frequency_norm.txt"
+  ],
+  "validation": {
+    "n": 60,
+    "coverage": 1.0,
+    "coarse_accuracy": 0.7333333333333333,
+    "unknown_rate": 0.0,
+    "correct": 44,
+    "scored": 60
+  }
+}

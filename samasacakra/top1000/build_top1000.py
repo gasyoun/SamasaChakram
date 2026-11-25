@@ -25,6 +25,39 @@ def rank_compounds(cmps: Path, names: Path, cap: int = 1000) -> list:
     return [dict(rank=i + 1, **r) for i, r in enumerate(ranked[:cap])]
 
 
+def rank_from_wordfreq(cmps, freq_path, cap=1000):
+    """Rank cmps.csv surfaces by DCS token frequency (SLP1 word-frequency file).
+
+    `names.csv` is not published in VisualDCS, so the surface frequency comes
+    from csl-apidev/simple-search/wf0/word_frequency_norm.txt (SLP1). Surfaces
+    are transliterated IAST -> SLP1 before lookup.
+    """
+    from indic_transliteration import sanscript
+    freq = {}
+    with Path(freq_path).open(encoding="utf-8-sig") as fh:
+        for line in fh:
+            p = line.split()
+            if len(p) >= 2:
+                try:
+                    freq[p[0]] = int(p[1])
+                except ValueError:
+                    continue
+    ranked = []
+    with Path(cmps).open(encoding="utf-8") as fh:
+        for line in fh:
+            p = line.rstrip("\n").split(";", 1)
+            if len(p) < 2:
+                continue
+            surface, members = p[0].strip(), p[1].split()
+            if len(members) < 2:
+                continue
+            key = sanscript.transliterate(surface, sanscript.IAST, sanscript.SLP1)
+            if key in freq and freq[key] > 0:
+                ranked.append({"compound": surface, "members": members, "freq": freq[key]})
+    ranked.sort(key=lambda r: (-r["freq"], r["compound"]))
+    return [dict(rank=i + 1, **r) for i, r in enumerate(ranked[:cap])]
+
+
 def write_ranked(rows, path):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)

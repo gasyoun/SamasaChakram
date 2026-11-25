@@ -1,0 +1,11 @@
+rank	compound	members	freq	type_coarse	type_fine	confidence	decision_path	source	gold_agree	license
+1	tad	eva eva	180	tatpurusa	TATPURUṢA — ṣaṣṭhī		start > check_avyayi > ask_dvandva_2 > ask_bv_role > ask_same_case > ask_tp_special > ask_tp_numeral > ask_tp_prefix > ask_tp_aluk > ask_tp_case	drumam+jev		CC BY 4.0
+2	eva	vacana ādāna viharaṇa utsarga ānanda	171	tatpurusa	TATPURUṢA — ṣaṣṭhī		start > ask_dvandva > ask_bv_role > ask_same_case > ask_tp_special > ask_tp_numeral > ask_tp_prefix > ask_tp_aluk > ask_tp_case	drumam+jev		CC BY 4.0
+3	iti	iti iti	168	tatpurusa	TATPURUṢA — ṣaṣṭhī		start > check_avyayi > ask_dvandva_2 > ask_bv_role > ask_same_case > ask_tp_special > ask_tp_numeral > ask_tp_prefix > ask_tp_aluk > ask_tp_case	drumam+jev		CC BY 4.0
+4	iti	iti sthā ah āśaṅk	168	tatpurusa	TATPURUṢA — ṣaṣṭhī		start > check_avyayi > ask_dvandva_2 > ask_bv_role > ask_same_case > ask_tp_special > ask_tp_numeral > ask_tp_prefix > ask_tp_aluk > ask_tp_case	drumam+jev		CC BY 4.0
+5	iti	etad indriya ah nirākṛ	168	tatpurusa	TATPURUṢA — ṣaṣṭhī		start > ask_dvandva > ask_bv_role > ask_same_case > ask_tp_special > ask_tp_numeral > ask_tp_prefix > ask_tp_aluk > ask_tp_case	drumam+jev		CC BY 4.0
+6	iti	ca ājya ca ājya	168	tatpurusa	TATPURUṢA — ṣaṣṭhī		start > check_avyayi > ask_dvandva_2 > ask_bv_role > ask_same_case > ask_tp_special > ask_tp_numeral > ask_tp_prefix > ask_tp_aluk > ask_tp_case	drumam+jev		CC BY 4.0
+7	iti	tri tri	168	karmadharaya	KARMADHĀRAYA — dvigu		start > ask_dvandva > ask_bv_role > ask_same_case > ask_tp_special > ask_tp_numeral	drumam+jev		CC BY 4.0
+8	iti	nāḍī heman iva akṣaya nāma	168	tatpurusa	TATPURUṢA — ṣaṣṭhī		start > check_avyayi > ask_dvandva_2 > ask_bv_role > ask_same_case > ask_tp_special > ask_tp_numeral > ask_tp_prefix > ask_tp_aluk > ask_tp_case	drumam+jev		CC BY 4.0
+9	iti	putra putra	168	tatpurusa	TATPURUṢA — ṣaṣṭhī		start > ask_dvandva > ask_bv_role > ask_same_case > ask_tp_special > ask_tp_numeral > ask_tp_prefix > ask_tp_aluk > ask_tp_case	drumam+jev		CC BY 4.0
+10	iti	mahākāyā stava	168	tatpurusa	TATPURUṢA — ṣaṣṭhī		start > ask_dvandva > ask_bv_role > ask_same_case > ask_tp_special > ask_tp_numeral > ask_tp_prefix > ask_tp_aluk > ask_tp_case	drumam+jev		CC BY 4.0

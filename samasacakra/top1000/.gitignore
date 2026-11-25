@@ -1,3 +1,6 @@
 __pycache__/
 *.pyc
 .pytest_cache/
+data/cmps.csv
+data/word_frequency_norm.txt
+data/top1000_ranked.tsv

@@ -1,0 +1,560 @@
+{
+  "nodes": {
+    "start": {
+      "id": "start",
+      "question": "Первый компонент (pūrvapada) — неизменяемое слово (<em>avyaya</em>)?",
+      "yes": "check_avyayi",
+      "no": "ask_dvandva",
+      "options": [],
+      "step": 0,
+      "kind": "form"
+    },
+    "check_avyayi": {
+      "id": "check_avyayi",
+      "question": "Итог стоит в acc.sg.nt. и используется как наречие?",
+      "yes": "r_avyayibhava",
+      "no": "ask_dvandva_2",
+      "options": [],
+      "step": 0,
+      "kind": "semantic"
+    },
+    "ask_dvandva_2": {
+      "id": "ask_dvandva_2",
+      "question": "Обе части — самостоятельные равноправные члены, сочиняемые (не отождествляемые) друг с другом?",
+      "yes": "ask_dvandva_or_ubhaya",
+      "no": "ask_bv_role",
+      "options": [],
+      "step": 0,
+      "kind": "semantic"
+    },
+    "ask_dvandva": {
+      "id": "ask_dvandva",
+      "question": "Обе части — самостоятельные равноправные члены, <strong>сочиняемые</strong> (не отождествляемые, не приравниваемые)?",
+      "yes": "ask_dvandva_or_ubhaya",
+      "no": "ask_bv_role",
+      "options": [],
+      "step": 0,
+      "kind": "semantic"
+    },
+    "ask_dvandva_or_ubhaya": {
+      "id": "ask_dvandva_or_ubhaya",
+      "question": "Оба компонента — <strong>прилагательные</strong>, описывающие <strong>одну и ту же</strong> вещь?",
+      "yes": "r_km_ubhaya",
+      "no": "ask_samahara",
+      "options": [],
+      "step": 0,
+      "kind": "semantic"
+    },
+    "ask_samahara": {
+      "id": "ask_samahara",
+      "question": "Итог — ед. число, средний род (собирательное значение)?",
+      "yes": "r_dv_samahara",
+      "no": "r_dv_itaretara",
+      "options": [],
+      "step": 0,
+      "kind": "semantic"
+    },
+    "ask_bv_role": {
+      "id": "ask_bv_role",
+      "question": "Весь композит — прилагательное (род ≠ роду правого компонента)?",
+      "yes": "ask_bv_sub",
+      "no": "ask_same_case",
+      "options": [],
+      "step": 0,
+      "kind": "semantic"
+    },
+    "ask_same_case": {
+      "id": "ask_same_case",
+      "question": "При виграхе обе части — в одном падеже (номинатив)?",
+      "yes": "ask_km_type",
+      "no": "ask_tp_special",
+      "options": [],
+      "step": 0,
+      "kind": "semantic"
+    },
+    "ask_km_type": {
+      "id": "ask_km_type",
+      "question": "Выберите подтип karmadhāraya:",
+      "yes": "",
+      "no": "",
+      "options": [
+        {
+          "label": "Прилаг. + сущ. (X описывает Y) ★ 12.29%",
+          "next": "r_km_adj"
+        },
+        {
+          "label": "Сущ. + сущ. в аппозиции",
+          "next": "r_km_appos"
+        },
+        {
+          "label": "Сравнение (iva) — upamāna",
+          "next": "r_km_upamana"
+        },
+        {
+          "label": "Метафора (eva) — rūpaka",
+          "next": "r_km_rupaka"
+        },
+        {
+          "label": "Оба прилагательных (X и Y) — viśeṣaṇobhayapada",
+          "next": "r_km_ubhaya"
+        },
+        {
+          "label": "Предположение (iti) — sambhāvanā",
+          "next": "r_km_sambhavana"
+        },
+        {
+          "label": "С выпавшим средним элементом — madhyamapadalopi",
+          "next": "r_km_madhyama"
+        }
+      ],
+      "step": 0,
+      "kind": "semantic"
+    },
+    "ask_tp_special": {
+      "id": "ask_tp_special",
+      "question": "Правая часть — первичное отглагольное образование (kṛdanta: √gam→gāmin, √kṛ→kāra, √jan→ja…), смысл которого раскрывается только вместе с левой частью?",
+      "yes": "r_tp_upapada",
+      "no": "ask_tp_numeral",
+      "options": [],
+      "step": 0,
+      "kind": "semantic"
+    },
+    "ask_tp_numeral": {
+      "id": "ask_tp_numeral",
+      "question": "Первая часть — числительное (eka-, dvi-, tri-, catur-, pañca-, ṣaṣ-, sapta-…)?",
+      "yes": "r_km_dvigu",
+      "no": "ask_tp_prefix",
+      "options": [],
+      "step": 0,
+      "kind": "form"
+    },
+    "ask_tp_prefix": {
+      "id": "ask_tp_prefix",
+      "question": "Первая часть — это превербальный префикс (prādi: pra-, parā-, apa-, sam-, anu-; или gati: vi-, ut-, nis-…)?",
+      "yes": "r_tp_pradi",
+      "no": "ask_tp_aluk",
+      "options": [],
+      "step": 0,
+      "kind": "form"
+    },
+    "ask_tp_aluk": {
+      "id": "ask_tp_aluk",
+      "question": "Первая часть сохраняет падежное окончание внутри композита (aluk-samāsa)?",
+      "yes": "r_tp_aluk",
+      "no": "ask_tp_case",
+      "options": [],
+      "step": 0,
+      "kind": "semantic"
+    },
+    "ask_bv_sub": {
+      "id": "ask_bv_sub",
+      "question": "Первая часть — sa- (= «⁠совместно с⁠»), или прикладной префикс из группы prādi?",
+      "yes": "",
+      "no": "",
+      "options": [
+        {
+          "label": "sa- (saha-bahuvrīhi): «⁠пребывающий вместе с X⁠»",
+          "next": "r_bv_saha"
+        },
+        {
+          "label": "Прикладной префикс (prādi-bahuvrīhi)",
+          "next": "r_bv_pradi"
+        },
+        {
+          "label": "Обычный bahuvrīhi (без sa- и prādi)",
+          "next": "r_bahuvrishi"
+        }
+      ],
+      "step": 0,
+      "kind": "semantic"
+    },
+    "ask_tp_case": {
+      "id": "ask_tp_case",
+      "question": "Какой падеж принимает левая часть при виграхе?",
+      "yes": "",
+      "no": "",
+      "options": [
+        {
+          "label": "Генетив (-asya/-āṇām) ★ 40.56%",
+          "next": "r_tp_gen"
+        },
+        {
+          "label": "Аккузатив (-am) — ktānta (p.p.p.) справа",
+          "next": "r_tp_acc"
+        },
+        {
+          "label": "Инструменталис (-ena/-bhiḥ)",
+          "next": "r_tp_inst"
+        },
+        {
+          "label": "Датив (-āya) — artha/hita/bali ★ F=87%",
+          "next": "r_tp_dat"
+        },
+        {
+          "label": "Аблатив (-āt) — bhaya/mukta",
+          "next": "r_tp_abl"
+        },
+        {
+          "label": "Локатив (-e/-ṣu) — kuśala/nipuṇa",
+          "next": "r_tp_loc"
+        },
+        {
+          "label": "Отрицание a-/an- (nañ) ★★ F=99%",
+          "next": "r_tp_nan"
+        }
+      ],
+      "step": 0,
+      "kind": "semantic"
+    }
+  },
+  "results": {
+    "r_avyayibhava": {
+      "type": "avyayibhava",
+      "fine": "AVYAYĪBHĀVA"
+    },
+    "r_dv_itaretara": {
+      "type": "dvandva",
+      "fine": "DVANDVA — itaretara"
+    },
+    "r_dv_samahara": {
+      "type": "dvandva",
+      "fine": "DVANDVA — samāhāra"
+    },
+    "r_tp_upapada": {
+      "type": "tatpurusa",
+      "fine": "TATPURUṢA — upapada"
+    },
+    "r_tp_pradi": {
+      "type": "tatpurusa",
+      "fine": "TATPURUṢA — prādi / gati"
+    },
+    "r_tp_aluk": {
+      "type": "tatpurusa",
+      "fine": "TATPURUṢA — aluk-samāsa"
+    },
+    "r_km_dvigu": {
+      "type": "karmadharaya",
+      "fine": "KARMADHĀRAYA — dvigu"
+    },
+    "r_bv_saha": {
+      "type": "bahuvrihi",
+      "fine": "BAHUVRĪHI — saha-pūrvapada"
+    },
+    "r_bv_pradi": {
+      "type": "bahuvrihi",
+      "fine": "BAHUVRĪHI — prādi-bahuvrīhi"
+    },
+    "r_bahuvrishi": {
+      "type": "bahuvrihi",
+      "fine": "BAHUVRĪHI"
+    },
+    "r_km_adj": {
+      "type": "karmadharaya",
+      "fine": "KARMADHĀRAYA — viśeṣaṇapūrvapada"
+    },
+    "r_km_appos": {
+      "type": "karmadharaya",
+      "fine": "KARMADHĀRAYA — apposition"
+    },
+    "r_km_upamana": {
+      "type": "karmadharaya",
+      "fine": "KARMADHĀRAYA — upamānapūrvapada"
+    },
+    "r_km_rupaka": {
+      "type": "karmadharaya",
+      "fine": "KARMADHĀRAYA — rūpaka-samāsa"
+    },
+    "r_km_ubhaya": {
+      "type": "karmadharaya",
+      "fine": "KARMADHĀRAYA — viśeṣaṇobhayapada"
+    },
+    "r_km_sambhavana": {
+      "type": "karmadharaya",
+      "fine": "KARMADHĀRAYA — sambhāvanāpūrvapada"
+    },
+    "r_km_madhyama": {
+      "type": "karmadharaya",
+      "fine": "KARMADHĀRAYA — madhyamapadalopi"
+    },
+    "r_tp_gen": {
+      "type": "tatpurusa",
+      "fine": "TATPURUṢA — ṣaṣṭhī"
+    },
+    "r_tp_acc": {
+      "type": "tatpurusa",
+      "fine": "TATPURUṢA — dvitīyā"
+    },
+    "r_tp_inst": {
+      "type": "tatpurusa",
+      "fine": "TATPURUṢA — tṛtīyā"
+    },
+    "r_tp_dat": {
+      "type": "tatpurusa",
+      "fine": "TATPURUṢA — caturthī"
+    },
+    "r_tp_abl": {
+      "type": "tatpurusa",
+      "fine": "TATPURUṢA — pañcamī"
+    },
+    "r_tp_loc": {
+      "type": "tatpurusa",
+      "fine": "TATPURUṢA — saptamī"
+    },
+    "r_tp_nan": {
+      "type": "tatpurusa",
+      "fine": "TATPURUṢA — nañ"
+    }
+  },
+  "avyaya_words": [
+    "abhi",
+    "abhitaḥ",
+    "adas",
+    "adhastāt",
+    "adhi",
+    "adya",
+    "agre",
+    "alam",
+    "ambho",
+    "amutra",
+    "antar",
+    "antas",
+    "antataḥ",
+    "anu",
+    "anyatra",
+    "apa",
+    "apara",
+    "api",
+    "are",
+    "ataḥ",
+    "atha",
+    "atho",
+    "ati",
+    "atimātra",
+    "ativela",
+    "atra",
+    "atyartham",
+    "atīva",
+    "bahis",
+    "bahutaram",
+    "bhoḥ",
+    "bhṛśam",
+    "bāḍha",
+    "bāḍham",
+    "ca",
+    "dakṣiṇataḥ",
+    "dattvā",
+    "diṣṭyā",
+    "dur",
+    "duḥ",
+    "dṛṣṭvā",
+    "ekadā",
+    "etarhi",
+    "etaḥ",
+    "eva",
+    "gatvā",
+    "ha",
+    "hanta",
+    "hatvā",
+    "he",
+    "hi",
+    "hyaḥ",
+    "idānīm",
+    "iha",
+    "ihā",
+    "itara",
+    "iti",
+    "itthaṃ",
+    "iva",
+    "jñātvā",
+    "kadā",
+    "kadācana",
+    "kadācit",
+    "kha",
+    "khalu",
+    "khalv",
+    "kila",
+    "kiñcit",
+    "kutoḥ",
+    "kutra",
+    "kva",
+    "kṛtvā",
+    "kṣipram",
+    "labdhvā",
+    "muhur",
+    "muhurmuhuḥ",
+    "mā",
+    "na",
+    "nahi",
+    "namaḥ",
+    "nanu",
+    "natu",
+    "ni",
+    "nir",
+    "nis",
+    "nitya",
+    "nityam",
+    "niḥ",
+    "no",
+    "nu",
+    "nūnam",
+    "para",
+    "pari",
+    "paritaḥ",
+    "parā",
+    "paścimataḥ",
+    "paścāt",
+    "pra",
+    "prapya",
+    "prati",
+    "prāk",
+    "puraḥ",
+    "purā",
+    "pūrvataḥ",
+    "re",
+    "sadā",
+    "saha",
+    "sam",
+    "samantataḥ",
+    "samprati",
+    "sarva",
+    "sarvadā",
+    "sarvatra",
+    "satata",
+    "satatam",
+    "su",
+    "svadha",
+    "svasti",
+    "svāhā",
+    "tadvat",
+    "tadā",
+    "tatas",
+    "tathaiva",
+    "tathā",
+    "tathāhi",
+    "tatra",
+    "tiryak",
+    "tu",
+    "tūrṇam",
+    "ubh",
+    "ubhaya",
+    "ud",
+    "udak",
+    "uktva",
+    "upa",
+    "upariṣṭāt",
+    "upādāya",
+    "ut",
+    "uttarataḥ",
+    "vaṣaṭ",
+    "vi",
+    "vinā",
+    "viśva",
+    "vā",
+    "yadā",
+    "yatha",
+    "yathā",
+    "yathāpi",
+    "ā",
+    "āgamya",
+    "ārabhya",
+    "śraddhā",
+    "śrutvā",
+    "śvaḥ",
+    "śīghram",
+    "ṛte"
+  ],
+  "preverbs": [
+    "abhi",
+    "abhi-",
+    "adhi",
+    "adhi-",
+    "an",
+    "an-",
+    "antar",
+    "antar-",
+    "anu",
+    "anu-",
+    "anuṣ",
+    "anuṣ-",
+    "apa",
+    "apa-",
+    "apari",
+    "apari-",
+    "ati",
+    "ati-",
+    "avyaya",
+    "dur",
+    "dur-",
+    "dur-/duṣ-",
+    "duḥ",
+    "duḥ-",
+    "duṣ",
+    "nan",
+    "nañ before vowel",
+    "ni",
+    "ni-",
+    "nir",
+    "nir-",
+    "nis-/nir-",
+    "niḥ",
+    "niḥ-",
+    "niṣ",
+    "para",
+    "pari",
+    "pari-",
+    "pary",
+    "parā",
+    "parā-",
+    "pra",
+    "pra-",
+    "prati",
+    "prati-",
+    "sam",
+    "sam-/saṃ-",
+    "sandhi",
+    "sandhi niḥ+k/p/t→niṣ",
+    "sandhi su+a→sva",
+    "sandhi su+o",
+    "sandhi su+u→sū",
+    "sandhi su+ā→svā",
+    "sandhi: pari+a→parya",
+    "sandhi: ā+g",
+    "saṃ",
+    "saṃ-",
+    "so",
+    "su",
+    "su-",
+    "su_dur",
+    "suṣ",
+    "sva",
+    "svā",
+    "sū",
+    "sūṣ",
+    "ud",
+    "ud-",
+    "upa",
+    "upa-",
+    "upari-",
+    "upary",
+    "upāṅg",
+    "ut",
+    "ut-/ud-",
+    "vi",
+    "vi-",
+    "yatha",
+    "yathā",
+    "yathā-",
+    "ā-",
+    "āc",
+    "āṅg"
+  ],
+  "numerals": [
+    "eka",
+    "dvi",
+    "tri",
+    "catur",
+    "pañca",
+    "ṣaṣ",
+    "sapta"
+  ]
+}

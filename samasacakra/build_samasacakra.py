@@ -79,21 +79,12 @@ for _l in PILOT["lessons"]:
 
 
 BAND_LABEL = {b["id"]: b["label"] for b in PILOT["frequency"]["bands"]}
-# Per-row leaf sizes (user ruling 25-11-2026): the first two rows were too
-# small next to the rest, avyayībhāva is deliberately twice the base size.
-LEAF_SIZE_BASE = 14.5
-LEAF_SIZE_FAMILY = {"tatpurusa--vibhakti": 18, "tatpurusa--tp-special": 18}
-LEAF_SIZE_CLASS = {"avyayibhava": 2 * LEAF_SIZE_BASE}
+# One size for every leaf of the outer ring (user ruling 25-11-2026).
+LEAF_SIZE = 18
 # Narrow family sectors get syllable breaks instead of one overlong word.
 FAMILY_LABEL_BREAKS = {
     "vyadhikaraṇa": "vya\nadhi\nkarana",
     "dvandva": "dvan\ndva",
-}
-# At the doubled size the two longest avyayībhāva names overrun the rim, so
-# they get the same syllabic stacking instead of a size cut.
-LEAF_WRAP = {
-    "arthābhāva": "artha-\nbhāva",
-    "śabda-prādurbhāva": "śabda-\nprādur-\nbhāva",
 }
 
 
@@ -268,10 +259,8 @@ for c in classes:
             # classes below turn its fill/patterm/stroke on, so switching modes
             # never touches the class identity fill or the leaf number
             svg.append(f'<path d="{d}" class="fov c-{c["id"]}" data-band="{band}"/>')
-            # per-row leaf size: two cramped rows raised, avyayībhāva doubled
-            leaf_size = LEAF_SIZE_CLASS.get(c["id"], LEAF_SIZE_FAMILY.get(fid, LEAF_SIZE_BASE))
-            leaf_label = LEAF_WRAP.get(leaf["term"], leaf["term"]) if c["id"] == "avyayibhava" else leaf["term"]
-            svg.append(dual(radial_label, R3a + 8, al + UNIT / 2, leaf_label, leaf_size, "lbl lbl3"))
+            # all outer-ring leaves share one size; names are never shrunk
+            svg.append(dual(radial_label, R3a + 8, al + UNIT / 2, leaf["term"], LEAF_SIZE, "lbl lbl3"))
             nums.append(number_label(R3b - 12, al + UNIT / 2, str(n)))
             lz = LESSON_BY_LEAF.get(lid)
             meta[lid] = {"kind": "leaf", "name": leaf["term"], "class": c["name"], "cid": c["id"],

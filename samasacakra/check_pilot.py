@@ -319,6 +319,25 @@ def check_wheel_html():
     check("wheel: every leaf card links its § and its lesson",
           all(c.get("paras") and c.get("lesson") for c in leaf_meta.values() if c.get("lesson")),
           "leaf cards without a lesson are allowed")
+
+    # Typography rulings 25-11-2026: one size per row (20/19/18), no per-leaf
+    # exception; a real Italic face everywhere, never a synthesised slant;
+    # leaf 1 starts on the left equator; dvandva is named in the family row only.
+    rot = -(90.0 + 360.0 / (2 * len(LEAF_IDS)))
+    rot_s = f"{rot:.4f}"
+    check("wheel: the three rows use 20/19/18 px",
+          all(f'font-size="{s}"' in h for s in ("20", "19", "18"))
+          and 'font-size="14.5"' not in h and 'font-size="15"' not in h)
+    check("wheel: initial tilt puts leaf 1 on the left equator",
+          f'transform="rotate({rot_s} 560 560)"' in h and f"let rot = {rot_s}" in h,
+          rot_s)
+    check("wheel: dvandva absent from class row, present in family row",
+          h.count('class="lbl lbl1"') == 3 and "dvan" in h and "-dva" in h)
+    wheel = read(os.path.join(HERE, "samasacakra-wheel.html"))
+    poster = read(os.path.join(HERE, "samasacakra-poster.html"))
+    face = "font-style: italic; src: url(data:font/woff2;base64,"
+    check("wheel: a real Italic face is embedded in all three artifacts",
+          all(face in x and "__B64I__" not in x for x in (h, wheel, poster)))
     return h
 
 

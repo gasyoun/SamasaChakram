@@ -132,7 +132,7 @@ def check_data():
     check("kevala: § exists in the conspectus", PILOT["kevala"]["para"] in paras,
           PILOT["kevala"]["para"])
 
-    # corpus shares: ADR 0002 — the three visual bands are reserved for MEASURED
+    # corpus shares: ADR 0002/0003 — the four visual bands are reserved for MEASURED
     # shares that match a leaf tag exactly; estimates are notes and carry nothing
     for e in FREQ:
         tag = f'доля {e["tag"]}'
@@ -145,7 +145,8 @@ def check_data():
             check(f"{tag}: band known", e["band"] in BANDS, str(e.get("band")))
             check(f"{tag}: measured share carries count + pct + tag",
                   isinstance(e.get("count"), int) and isinstance(e.get("pct"), (int, float)))
-            want = "gte5" if e["pct"] >= 5 else ("mid15" if e["pct"] >= 1 else "lt1")
+            want = ("gte20" if e["pct"] >= 20 else "10to20" if e["pct"] >= 10
+                    else "5to10" if e["pct"] >= 5 else "1to5" if e["pct"] >= 1 else "none")
             check(f"{tag}: band follows the published thresholds", e["band"] == want,
                   f'{e["band"]} vs {want} at {e["pct"]}%')
             check(f"{tag}: mapping verified against the source's tag list",
@@ -238,12 +239,14 @@ def check_wheel_html():
     check("wheel: mode CSS exists for all three encodings",
           all(f"mode-{m}" in h for m in ("light", "hatch", "outline")))
     check("wheel: hatch patterns defined once per band",
-          all(f'id="pat-{b}"' in h for b in ("gte5", "mid15", "lt1", "none")))
+          all(f'id="pat-{b}"' in h for b in BANDS))
     check("wheel: four mode buttons", len(re.findall(r'data-mode="(?:none|light|hatch|outline)"', h)) == 4)
-    check("wheel: one legend with four band states",
-          len(re.findall(r'<i data-band="(?:gte5|mid15|lt1|none)"></i>', h)) == 4)
+    check("wheel: one legend with five band states",
+          len(re.findall(r'<i data-band="[\w]+"></i>', h)) == len(BANDS),
+          str(len(re.findall(r'<i data-band="[\w]+"></i>', h))))
     check("wheel: frequency overlay per leaf",
-          h.count('class="fov"') == 58, f"{h.count('class=\"fov\"')}")
+          len(re.findall(r'class="fov c-[\w-]+"', h)) == 58,
+          str(len(re.findall(r'class="fov c-[\w-]+"', h))))
     check("wheel: kevala entry beside the wheel", 'class="kevalachip"' in h and "#k=kevala" in h)
     check("wheel: hash routing present", "hashchange" in h and "location.hash" in h)
     check("wheel: legacy alias map embedded",

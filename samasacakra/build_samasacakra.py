@@ -40,7 +40,7 @@ def load_diagram(fname):
         return fh.read()
 
 CX = CY = 560
-R_HUB, R1a, R1b, R2a, R2b, R3a, R3b = 96, 102, 186, 192, 288, 294, 448
+R_HUB, R1a, R1b, R2a, R2b, R3a, R3b = 96, 102, 186, 192, 288, 294, 500
 GAP_DEG = 0.0          # gaps drawn as surface-color strokes, not angular gaps
 
 GALLERY_URL = "https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm-worked-examples.md"
@@ -79,6 +79,16 @@ for _l in PILOT["lessons"]:
 
 
 BAND_LABEL = {b["id"]: b["label"] for b in PILOT["frequency"]["bands"]}
+# Long family names are stacked, never shrunk: every family label keeps the
+# same 15-unit size and stays inside its ring.
+FAMILY_WRAP = {
+    "vibhakti-tatpuruṣa": "vibhakti-\ntatpuruṣa",
+    "особые татпуруши": "особые\nтатпуруши",
+    "samānādhikaraṇa": "samānādhi-\nkaraṇa",
+    "vyadhikaraṇa": "vyadhi-\nkaraṇa",
+    "особые бахуврихи": "особые\nбахуврихи",
+    "значения по Пан. 2.1.6": "значения по\nПан. 2.1.6",
+}
 
 
 def freq_line(lid):
@@ -147,13 +157,19 @@ def number_label(r, a, text):
             f'transform="rotate({rot:.1f} {x:.1f} {y:.1f})">{text}</text>')
 
 def radial_label(r, a, text, size, cls):
-    # text runs along the radius; flipped on the left half so it reads outward
+    # text runs along the radius; flipped on the left half so it reads outward.
+    # A newline becomes a stacked tspan pair, so long family names such as
+    # vyadhi-/karaṇa keep the same font size as every other family label.
     x, y = pol(r, a)
     rot = a - 90 if a % 360 <= 180 else a + 90
     anchor = "start" if a % 360 <= 180 else "end"
+    lines = text.split("\n")
+    body = (lines[0] if len(lines) == 1 else "".join(
+        f'<tspan x="{x:.1f}" dy="{0 if i == 0 else size * 1.05:.1f}">{line}</tspan>'
+        for i, line in enumerate(lines)))
     return (f'<text x="{x:.1f}" y="{y:.1f}" font-size="{size}" class="{cls}" '
             f'text-anchor="{anchor}" dominant-baseline="middle" '
-            f'transform="rotate({rot:.1f} {x:.1f} {y:.1f})">{text}</text>')
+            f'transform="rotate({rot:.1f} {x:.1f} {y:.1f})">{body}</text>')
 
 def tangential_label(r, a0, a1, text, size, cls):
     a = (a0 + a1) / 2
@@ -173,10 +189,8 @@ for c in classes:
     n_c = sum(len(f["leaves"]) for f in c["families"])
     span_c = n_c * UNIT
     svg.append(f'<path d="{arc_path(R1a, R1b, a, a + span_c)}" class="seg c-{c["id"]} ring1" data-id="{c["id"]}"/>')
-    if span_c >= 36:
-        svg.append(dual(tangential_label, (R1a + R1b) / 2, a, a + span_c, c["name"], 30, "lbl lbl1"))
-    else:
-        svg.append(dual(radial_label, R1a + 6, a + span_c / 2, c["name"], 19, "lbl lbl1"))
+    # one style for every level: class and family names both run radially
+    svg.append(dual(radial_label, R1a + 6, a + span_c / 2, c["name"], 20, "lbl lbl1"))
     meta[c["id"]] = {"kind": "class", "name": c["name"], "pradhana": c["pradhana"],
                      "structure": c["structure"], "class": c["name"], "cid": c["id"],
                      "freq": "", "n": None}
@@ -186,10 +200,10 @@ for c in classes:
         fid = f'{c["id"]}--{f["id"]}'
         svg.append(f'<path d="{arc_path(R2a, R2b, af, af + span_f)}" class="seg c-{c["id"]} ring2" data-id="{fid}"/>')
         fname = f["name"]
-        if span_f >= 24:
-            svg.append(dual(tangential_label, (R2a + R2b) / 2, af, af + span_f, fname, 19, "lbl lbl2"))
-        else:
-            svg.append(dual(radial_label, R2a + 8, af + span_f / 2, fname, 15, "lbl lbl2r"))
+        # every family label is radial at the same size; long names are stacked
+        # instead of being shrunk (user ruling 25-11-2026)
+        fname_label = FAMILY_WRAP.get(fname, fname)
+        svg.append(dual(radial_label, R2a + 8, af + span_f / 2, fname_label, 15, "lbl lbl2r"))
         meta[fid] = {"kind": "family", "name": fname, "class": c["name"], "cid": c["id"],
                      "pradhana": c["pradhana"], "structure": c["structure"],
                      # a corpus tag that covers several leaves is published at the
@@ -208,12 +222,10 @@ for c in classes:
             # the frequency overlay carries the share and nothing else: the mode
             # classes below turn its fill/patterm/stroke on, so switching modes
             # never touches the class identity fill or the leaf number
-            svg.append(f'<path d="{d}" class="fov" data-band="{band}"/>')
-            # long subtype names get a smaller size so the radial label stays
-            # inside the ring instead of running past the rim
-            _t = leaf["term"]
-            _sz = 14.5 if len(_t) <= 14 else (12.5 if len(_t) <= 18 else 11)
-            svg.append(dual(radial_label, R3a + 8, al + UNIT / 2, _t, _sz, "lbl lbl3"))
+            svg.append(f'<path d="{d}" class="fov c-{c["id"]}" data-band="{band}"/>')
+            # one size for every leaf: the longer outer ring (R3b=500) gives
+            # names such as upamāna-pūrvapada room without shrinking the type
+            svg.append(dual(radial_label, R3a + 8, al + UNIT / 2, leaf["term"], 14.5, "lbl lbl3"))
             nums.append(number_label(R3b - 12, al + UNIT / 2, str(n)))
             lz = LESSON_BY_LEAF.get(lid)
             meta[lid] = {"kind": "leaf", "name": leaf["term"], "class": c["name"], "cid": c["id"],
@@ -260,7 +272,7 @@ STYLE_LIGHT = """
 .seg { stroke: var(--surface); stroke-width: 2; cursor: pointer; }
 .ring1 { fill-opacity: .50; } .ring2 { fill-opacity: .30; } .ring3 { fill-opacity: .16; }
 .c-tatpurusa { fill: #2a78d6; } .c-bahuvrihi { fill: #1baf7a; }
-.c-dvandva { fill: #eda100; } .c-avyayibhava { fill: #008300; }
+.c-dvandva { fill: #d99b00; } .c-avyayibhava { fill: #b8a300; }
 .hub { fill: var(--surface); stroke: var(--line); stroke-width: 1.4; }
 .lbl { fill: var(--ink); pointer-events: none; }
 .lbl2r, .lbl3 { fill: var(--ink2); }
@@ -290,11 +302,12 @@ meta_json = json.dumps(meta, ensure_ascii=False)
 # hatch patterns for the corpus-share layer (mode "штриховка"): the fill is
 # strokes on transparent, so the class hue underneath stays visible and the
 # band is read a second time by texture alone
+BAND_STROKE = {"gte20": 3.2, "10to20": 2.8, "5to10": 2.4, "1to5": 2.0, "none": 1.2}
 PATTERNS = "".join(
     f'<pattern id="pat-{bid}" width="8" height="8" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">'
     f'<rect width="8" height="8" fill="none"/>'
-    f'<line x1="0" y1="0" x2="0" y2="8" stroke="{col}" stroke-width="2.4"/></pattern>'
-    for bid, col in [("gte5", "#2e7d32"), ("mid15", "#d99b00"), ("lt1", "#b8352a"), ("none", "#8d8b82")])
+    f'<line x1="0" y1="0" x2="0" y2="8" stroke="#4a4842" stroke-width="{BAND_STROKE[bid]}"/></pattern>'
+    for bid in BANDS)
 # the inline SVG for HTML drops the internal <style>/<rect> (the page styles it)
 svg_inline = ('<svg id="cakra" class="mode-none" viewBox="0 0 1120 1120" role="img" '
               f"font-family=\"{FONT}\">"
@@ -312,21 +325,21 @@ html = """<!doctype html>
 :root { --surface:#fcfcfb; --ink:#20201d; --ink2:#5d5c55; --line:#ddd8cc; --panel:#ffffff; }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme=light]) { --surface:#1a1a19; --ink:#f2efe6; --ink2:#b5b2a5; --line:#3c3a33; --panel:#232320;
-    --c-tatpurusa:#3987e5; --c-bahuvrihi:#199e70; --c-dvandva:#c98500; --c-avyayibhava:#008300; }
+    --c-tatpurusa:#3987e5; --c-bahuvrihi:#199e70; --c-dvandva:#e0b33c; --c-avyayibhava:#c8b84a; }
 }
 :root[data-theme=dark] { --surface:#1a1a19; --ink:#f2efe6; --ink2:#b5b2a5; --line:#3c3a33; --panel:#232320;
-  --c-tatpurusa:#3987e5; --c-bahuvrihi:#199e70; --c-dvandva:#c98500; --c-avyayibhava:#008300; }
-:root { --c-tatpurusa:#2a78d6; --c-bahuvrihi:#1baf7a; --c-dvandva:#eda100; --c-avyayibhava:#008300; }
+  --c-tatpurusa:#3987e5; --c-bahuvrihi:#199e70; --c-dvandva:#e0b33c; --c-avyayibhava:#c8b84a; }
+:root { --c-tatpurusa:#2a78d6; --c-bahuvrihi:#1baf7a; --c-dvandva:#d99b00; --c-avyayibhava:#b8a300; }
 html,body { margin:0; background:var(--surface); color:var(--ink); font-family:'Klammer Serif',Georgia,serif; }
 main { max-width:1500px; margin:0 auto; padding:20px 16px; display:flex; gap:20px; flex-wrap:wrap; }
-#wheelbox { flex:1 1 640px; min-width:340px; }
+#wheelbox { flex:1 1 520px; min-width:340px; }
 svg { display:block; width:100%; height:auto; touch-action:none; }
 .seg { stroke:var(--surface); stroke-width:2; cursor:pointer; transition:fill-opacity .12s; }
 .ring1 { fill-opacity:.50; } .ring2 { fill-opacity:.30; } .ring3 { fill-opacity:.16; }
 .c-tatpurusa { fill:var(--c-tatpurusa); } .c-bahuvrihi { fill:var(--c-bahuvrihi); }
 .c-dvandva { fill:var(--c-dvandva); } .c-avyayibhava { fill:var(--c-avyayibhava); }
 .seg:hover, .seg.sel { fill-opacity:.74; }
-.fov { fill:none; }   /* H8573 share layer: inert until a mode class styles it */
+.fov { fill:none; }   /* corpus-share layer: inert until a mode class styles it */
 .hub { fill:var(--surface); stroke:var(--line); stroke-width:1.4; }
 .lbl { fill:var(--ink); pointer-events:none; }
 .lbl2r,.lbl3,.hublbl2 { fill:var(--ink2); }
@@ -337,15 +350,20 @@ body.deva svg text.l-deva { display:block; }
 #scripttoggle button { font:inherit; font-size:.85rem; padding:3px 12px; border:0; background:transparent; color:var(--ink2); cursor:pointer; }
 #scripttoggle button.on { background:var(--c-tatpurusa); color:#fff; }
 .pdeva { font-family:'Klammer Deva','Nirmala UI',serif; color:var(--ink); }
-#panel { flex:0 1 360px; min-width:300px; background:var(--panel); border:1px solid var(--line);
-  border-radius:6px; padding:18px 20px; align-self:flex-start; position:sticky; top:16px; }
+#panel { flex:0 1 340px; min-width:300px; background:var(--panel); border:1px solid var(--line);
+  border-radius:6px; padding:18px 20px; align-self:flex-start; position:sticky; top:16px;
+  max-height:calc(100vh - 32px); overflow:auto; overflow-wrap:anywhere; }
+.panel-controls { border-top:1px dashed var(--line); margin-top:14px; padding-top:12px; }
+.repolink { display:inline-flex; align-items:center; gap:7px; color:var(--ink2); text-decoration:none;
+  font-size:.85rem; margin:0 0 12px; }
+.repolink:hover { color:var(--ink); }
 #panel h2 { margin:0 0 2px; font-size:1.3rem; font-weight:normal; }
 #panel .chain { color:var(--ink2); font-size:.85rem; margin-bottom:10px; }
 #panel .ex { font-size:1.15rem; margin:.5em 0 .1em; }
 #panel .vig { color:var(--ink2); font-style:italic; }
 #panel .ru { margin-top:.4em; }
 #panel .rule,#panel .note { font-size:.85rem; color:var(--ink2); border-top:1px dashed var(--line);
-  margin-top:12px; padding-top:8px; }
+  margin-top:12px; padding-top:8px; overflow-wrap:anywhere; }
 #panel .diagram { margin:12px 0 0; padding-top:10px; border-top:1px dashed var(--line); color:var(--ink); }
 #panel .diagram svg { width:100%; height:auto; display:block; }
 #panel .dwrap + .dwrap { margin-top:10px; border-top:1px dotted var(--line); padding-top:10px; }
@@ -359,18 +377,28 @@ body.deva svg text.l-deva { display:block; }
 /* --- H8573 pilot: leaf numbers + one-legend corpus-share layer --- */
 .num { font-weight:bold; opacity:.72; }
 .fov { pointer-events:none; }
-#cakra.mode-light .fov[data-band=gte5] { fill:#2e7d32; fill-opacity:.88; }
-#cakra.mode-light .fov[data-band=mid15]{ fill:#d99b00; fill-opacity:.88; }
-#cakra.mode-light .fov[data-band=lt1]  { fill:#b8352a; fill-opacity:.88; }
-#cakra.mode-light .fov[data-band=none] { fill:#8d8b82; fill-opacity:.26; }
-#cakra.mode-hatch .fov[data-band=gte5] { fill:url(#pat-gte5); }
-#cakra.mode-hatch .fov[data-band=mid15]{ fill:url(#pat-mid15); }
-#cakra.mode-hatch .fov[data-band=lt1]  { fill:url(#pat-lt1); }
-#cakra.mode-hatch .fov[data-band=none] { fill:url(#pat-none); }
-#cakra.mode-outline .fov[data-band=gte5] { fill:none; stroke:#2e7d32; stroke-width:6; }
-#cakra.mode-outline .fov[data-band=mid15]{ fill:none; stroke:#d99b00; stroke-width:6; }
-#cakra.mode-outline .fov[data-band=lt1]  { fill:none; stroke:#b8352a; stroke-width:6; }
-#cakra.mode-outline .fov[data-band=none] { fill:none; stroke:#8d8b82; stroke-width:6; stroke-dasharray:3 9; }
+/* The share layer never invents a palette: it is the class hue, intensified.
+   Band = opacity inside that hue; texture modes keep the same baseline. */
+.fov.c-tatpurusa   { --fov:var(--c-tatpurusa); }
+.fov.c-bahuvrihi   { --fov:var(--c-bahuvrihi); }
+.fov.c-dvandva     { --fov:var(--c-dvandva); }
+.fov.c-avyayibhava { --fov:var(--c-avyayibhava); }
+#cakra.mode-light .fov[data-band=gte20]  { fill:var(--fov); fill-opacity:.96; }
+#cakra.mode-light .fov[data-band="10to20"] { fill:var(--fov); fill-opacity:.84; }
+#cakra.mode-light .fov[data-band="5to10"]  { fill:var(--fov); fill-opacity:.70; }
+#cakra.mode-light .fov[data-band="1to5"]   { fill:var(--fov); fill-opacity:.54; }
+#cakra.mode-light .fov[data-band=none]   { fill:var(--fov); fill-opacity:.16;
+  stroke:var(--fov); stroke-width:1.5; stroke-dasharray:3 6; }
+#cakra.mode-hatch .fov[data-band=gte20]  { fill:url(#pat-gte20); }
+#cakra.mode-hatch .fov[data-band="10to20"] { fill:url(#pat-10to20); }
+#cakra.mode-hatch .fov[data-band="5to10"]  { fill:url(#pat-5to10); }
+#cakra.mode-hatch .fov[data-band="1to5"]   { fill:url(#pat-1to5); }
+#cakra.mode-hatch .fov[data-band=none]   { fill:url(#pat-none); }
+#cakra.mode-outline .fov[data-band=gte20]  { fill:none; stroke:var(--fov); stroke-width:8; }
+#cakra.mode-outline .fov[data-band="10to20"] { fill:none; stroke:var(--fov); stroke-width:6; }
+#cakra.mode-outline .fov[data-band="5to10"]  { fill:none; stroke:var(--fov); stroke-width:4; }
+#cakra.mode-outline .fov[data-band="1to5"]   { fill:none; stroke:var(--fov); stroke-width:2.5; }
+#cakra.mode-outline .fov[data-band=none]   { fill:none; stroke:var(--fov); stroke-width:2; stroke-dasharray:3 9; }
 .freqbar { display:flex; gap:6px; align-items:center; flex-wrap:wrap; font-size:.85rem; width:100%; margin:0 0 6px; }
 .freqbar button { font:inherit; font-size:.8rem; padding:3px 10px; border:1px solid var(--line);
   background:transparent; color:var(--ink2); border-radius:4px; cursor:pointer; }
@@ -379,18 +407,22 @@ body.deva svg text.l-deva { display:block; }
 #bandlegend span { display:inline-flex; align-items:center; gap:6px; }
 #bandlegend i { width:14px; height:14px; border-radius:3px; display:inline-block; border:1px solid var(--line); background:transparent; }
 body[data-freq=none] #bandlegend { display:none; }
-body[data-freq=light] #bandlegend i[data-band=gte5] { background:#2e7d32; }
-body[data-freq=light] #bandlegend i[data-band=mid15]{ background:#d99b00; }
-body[data-freq=light] #bandlegend i[data-band=lt1]  { background:#b8352a; }
-body[data-freq=light] #bandlegend i[data-band=none] { background:#8d8b82; opacity:.5; }
-body[data-freq=hatch] #bandlegend i[data-band=gte5] { background:repeating-linear-gradient(45deg,#2e7d32 0 2px,transparent 2px 6px); }
-body[data-freq=hatch] #bandlegend i[data-band=mid15]{ background:repeating-linear-gradient(45deg,#d99b00 0 2px,transparent 2px 6px); }
-body[data-freq=hatch] #bandlegend i[data-band=lt1]  { background:repeating-linear-gradient(45deg,#b8352a 0 2px,transparent 2px 6px); }
-body[data-freq=hatch] #bandlegend i[data-band=none] { background:repeating-linear-gradient(45deg,#8d8b82 0 2px,transparent 2px 6px); }
-body[data-freq=outline] #bandlegend i[data-band=gte5] { border:3px solid #2e7d32; }
-body[data-freq=outline] #bandlegend i[data-band=mid15]{ border:3px solid #d99b00; }
-body[data-freq=outline] #bandlegend i[data-band=lt1]  { border:3px solid #b8352a; }
-body[data-freq=outline] #bandlegend i[data-band=none] { border:3px dashed #8d8b82; }
+/* legend swatches use the representative tatpuruṣa hue at the same intensities */
+body[data-freq=light] #bandlegend i[data-band=gte20]  { background:#2a78d6; opacity:1; }
+body[data-freq=light] #bandlegend i[data-band="10to20"] { background:#2a78d6; opacity:.84; }
+body[data-freq=light] #bandlegend i[data-band="5to10"]  { background:#2a78d6; opacity:.70; }
+body[data-freq=light] #bandlegend i[data-band="1to5"]   { background:#2a78d6; opacity:.54; }
+body[data-freq=light] #bandlegend i[data-band=none]   { background:#2a78d6; opacity:.16; }
+body[data-freq=hatch] #bandlegend i[data-band=gte20]  { background:repeating-linear-gradient(45deg,#4a4842 0 3px,transparent 3px 7px); }
+body[data-freq=hatch] #bandlegend i[data-band="10to20"] { background:repeating-linear-gradient(45deg,#4a4842 0 2.5px,transparent 2.5px 7px); }
+body[data-freq=hatch] #bandlegend i[data-band="5to10"]  { background:repeating-linear-gradient(45deg,#4a4842 0 2px,transparent 2px 7px); }
+body[data-freq=hatch] #bandlegend i[data-band="1to5"]   { background:repeating-linear-gradient(45deg,#4a4842 0 1.5px,transparent 1.5px 7px); }
+body[data-freq=hatch] #bandlegend i[data-band=none]   { background:repeating-linear-gradient(45deg,#9a978e 0 1px,transparent 1px 7px); }
+body[data-freq=outline] #bandlegend i[data-band=gte20]  { border:4px solid #2a78d6; }
+body[data-freq=outline] #bandlegend i[data-band="10to20"] { border:3px solid #2a78d6; }
+body[data-freq=outline] #bandlegend i[data-band="5to10"]  { border:2px solid #2a78d6; }
+body[data-freq=outline] #bandlegend i[data-band="1to5"]   { border:1px solid #2a78d6; }
+body[data-freq=outline] #bandlegend i[data-band=none]   { border:1px dashed #2a78d6; }
 .bandnote { color:var(--ink2); font-size:.78rem; width:100%; margin:0 2px 8px; }
 .kevalachip { display:flex; align-items:center; gap:10px; font-size:.92rem; text-decoration:none;
   color:var(--ink); border:1px dashed var(--line); border-radius:6px; padding:7px 12px; margin:0 0 10px; width:100%; }
@@ -434,33 +466,6 @@ body[data-freq=outline] #bandlegend i[data-band=none] { border:3px dashed #8d8b8
 </head>
 <body>
 <main>
-<div id="legend">
-  <span><i style="background:var(--c-tatpurusa)"></i>tatpuruṣa</span>
-  <span><i style="background:var(--c-bahuvrihi)"></i>bahuvrīhi</span>
-  <span><i style="background:var(--c-dvandva)"></i>dvandva</span>
-  <span><i style="background:var(--c-avyayibhava)"></i>avyayībhāva</span>
-  <button id="quizbtn" type="button">Квиз</button>
-  <span id="scripttoggle"><button id="btn-iast" class="on">IAST</button><button id="btn-deva">देवनागरी</button></span>
-</div>
-<a class="kevalachip" href="#k=kevala" id="kevalachip">
-  <span>§ 8 · <b>kevala-samāsa</b> — класс вне четырёх: отдельный вход</span>
-  <span class="goto">карточка и задание →</span>
-</a>
-<div class="freqbar" role="group" aria-label="частотный слой">
-  <span>Корпусная доля:</span>
-  <button data-mode="none" class="on">без слоя</button>
-  <button data-mode="light">светофор</button>
-  <button data-mode="hatch">штриховка</button>
-  <button data-mode="outline">контур</button>
-</div>
-<div id="bandlegend">
-  <span><i data-band="gte5"></i>≥ 5%</span>
-  <span><i data-band="mid15"></i>1–&lt; 5%</span>
-  <span><i data-band="lt1"></i>&lt; 1%</span>
-  <span><i data-band="none"></i>нет сопоставимой доли</span>
-</div>
-<p class="bandnote">__BANDNOTE__</p>
-<p class="hint">Колесо можно вращать (перетаскиванием); клик по сегменту — разбор справа; двойной клик — сброс поворота. Ссылка на карточку — <code>#k=&lt;id&gt;</code>.</p>
 <div id="wheelbox">__SVG__</div>
 <aside id="panel">
   <h2>samāsa-cakra</h2>
@@ -469,6 +474,34 @@ body[data-freq=outline] #bandlegend i[data-band=none] { border:3px dashed #8d8b8
   по конспекту Э. З. Лейтана и правилам разбора (право-налево; двандва — единственное
   плоское исключение). Кликните сегмент.</div>
   <div class="rule">Источники: sanskrit-right-to-left-reading.md · KLAMMERDIAGRAMM_LEITAN_SAMASA_COMPARISON.md</div>
+  <div class="panel-controls">
+    <a class="repolink" href="https://github.com/gasyoun/SamasaChakram" target="_blank" rel="noopener" aria-label="Репозиторий на GitHub" title="Репозиторий на GitHub">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.05-.02-2.07-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.34-5.47-5.96 0-1.32.47-2.4 1.24-3.24-.13-.3-.54-1.53.12-3.19 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 016 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.89.12 3.19.77.84 1.23 1.92 1.23 3.24 0 4.63-2.8 5.65-5.48 5.95.43.37.81 1.1.81 2.22 0 1.6-.01 2.89-.01 3.28 0 .32.22.7.83.58A12.01 12.01 0 0024 12.5C24 5.87 18.63.5 12 .5z"/></svg>
+      <span>GitHub</span>
+    </a>
+    <div id="legend">
+      <span><i style="background:var(--c-tatpurusa)"></i>tatpuruṣa</span>
+      <span><i style="background:var(--c-bahuvrihi)"></i>bahuvrīhi</span>
+      <span><i style="background:var(--c-dvandva)"></i>dvandva</span>
+      <span><i style="background:var(--c-avyayibhava)"></i>avyayībhāva</span>
+      <button id="quizbtn" type="button">Квиз</button>
+      <span id="scripttoggle"><button id="btn-iast" class="on">IAST</button><button id="btn-deva">देवनागरी</button></span>
+    </div>
+    <a class="kevalachip" href="#k=kevala" id="kevalachip">
+      <span>§ 8 · <b>kevala-samāsa</b> — класс вне четырёх: отдельный вход</span>
+      <span class="goto">карточка и задание →</span>
+    </a>
+    <div class="freqbar" role="group" aria-label="частотный слой">
+      <span>Корпусная доля:</span>
+      <button data-mode="none" class="on">без слоя</button>
+      <button data-mode="light">светофор</button>
+      <button data-mode="hatch">штриховка</button>
+      <button data-mode="outline">контур</button>
+    </div>
+    <div id="bandlegend">__BANDLEGEND__</div>
+    <p class="bandnote">__BANDNOTE__</p>
+    <p class="hint">Колесо можно вращать (перетаскиванием); клик по сегменту — разбор справа; двойной клик — сброс поворота. Ссылка на карточку — <code>#k=&lt;id&gt;</code>.</p>
+  </div>
 </aside>
 </main>
 <div id="quiz" hidden role="dialog" aria-modal="true" aria-labelledby="quiz-title">
@@ -652,13 +685,16 @@ document.addEventListener('keydown', ev => { if (ev.key === 'Escape' && !quizBox
 </body>
 </html>
 """
-html = html.replace("__B64__", b64).replace("__B64D__", b64d).replace("__GAL__", GALLERY_URL).replace("__META__", meta_json).replace("__SVG__", svg_inline).replace("__ALIAS__", json.dumps(ALIAS, ensure_ascii=False)).replace("__BANDNOTE__", FREQ["band_note"])
+BANDLEGEND = "".join(
+    f'<span><i data-band="{b["id"]}"></i>{b["label"].replace("<", "&lt;")}</span>'
+    for b in FREQ["bands"])
+html = html.replace("__B64__", b64).replace("__B64D__", b64d).replace("__GAL__", GALLERY_URL).replace("__META__", meta_json).replace("__SVG__", svg_inline).replace("__ALIAS__", json.dumps(ALIAS, ensure_ascii=False)).replace("__BANDNOTE__", FREQ["band_note"]).replace("__BANDLEGEND__", BANDLEGEND)
 with open(os.path.join(HERE, "samasacakra-wheel.html"), "w", encoding="utf-8", newline="\n") as fh:
     fh.write(html)
 print("wrote samasacakra-wheel.html", len(html) // 1024, "KB;", total_leaves, "leaves")
 
 # GitHub Pages copy (H1031): same page + SEO head, served from /docs
-SEO = """<meta name="description" content="samāsa-cakra — интерактивное колесо санскритских композитов: 4 класса, 10 семейств, 58 подтипов с примерами и виграхами; IAST и деванагари; скобочные схемы Klammerdiagramm.">
+SEO = """<meta name="description" content="samāsa-cakra — интерактивное колесо санскритских композитов: 4 класса, 9 семейств, 58 подтипов с примерами и виграхами; IAST и деванагари; скобочные схемы Klammerdiagramm.">
 <meta property="og:title" content="samāsa-cakra — колесо санскритских композитов">
 <meta property="og:description" content="Интерактивная классификация санскритских сложных слов: вращающееся колесо, разбор каждого подтипа, скобочные схемы. Таксономия по конспекту Э. З. Лейтана.">
 <meta property="og:type" content="website">
@@ -724,7 +760,7 @@ h1 .dv {{ font-family:'Klammer Deva',serif; }}
 .fov {{ display:none; }}   /* H8573 share layer is screen-only */
 .ring1 {{ fill-opacity:.50; }} .ring2 {{ fill-opacity:.30; }} .ring3 {{ fill-opacity:.16; }}
 .c-tatpurusa {{ fill:#2a78d6; }} .c-bahuvrihi {{ fill:#1baf7a; }}
-.c-dvandva {{ fill:#eda100; }} .c-avyayibhava {{ fill:#008300; }}
+.c-dvandva {{ fill:#d99b00; }} .c-avyayibhava {{ fill:#b8a300; }}
 .hub {{ fill:#fcfcfb; stroke:#ddd8cc; stroke-width:1.4; }}
 .lbl {{ fill:#20201d; }} .lbl2r,.lbl3,.hublbl2 {{ fill:#5d5c55; }}
 .cols {{ display:grid; grid-template-columns:repeat(4,1fr); gap:5mm; margin:3mm 0 0; flex:1; }}

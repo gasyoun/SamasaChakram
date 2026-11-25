@@ -54,13 +54,17 @@ _Created: 11-07-2026 · Last updated: 24-11-2026_
 ## Корпусный слой: измеренное и оценённое
 
 Слой корпусных долей имеет **одну легенду и три взаимозаменяемые кодировки** — светофор,
-штриховку и контур — с четырьмя состояниями: ≥ 5 %, 1–< 5 %, < 1 % и «нет сопоставимой
-доли».
+штриховку и контур — с пятью состояниями: ≥ 20 %, 10–< 20 %, 5–< 10 %, 1–< 5 % и «нет
+сопоставимой доли». Полоса < 1 % убрана: ни один измеренный тег туда не попадает.
 
 - **Измеренные доли** — пять значений из таблицы 5 работы Kulkarni & Kumar (2013),
   выборка ≈ 64 000 двучленных композитов: ṣaṣṭhī 40,56 %, viśeṣaṇapūrvapada 12,29 %,
-  ṣaṣṭhyartha-bv 6,39 %, nañ- 5,9 %, upapada 4,32 %. Каждая карточка указывает ранг и
-  поясняет, что ранжируются именно пять измеренных меток, а не все 58 подтипов.
+  ṣaṣṭhyartha-bv 6,39 %, nañ- 5,9 %, upapada 4,32 %. Границы полос и отказ от чужой
+  зелёно-красной палитры зафиксированы в
+  [ADR 0003](https://github.com/gasyoun/SamasaChakram/blob/main/docs/adr/0003-corpus-share-band-scale.md):
+  слой использует более интенсивный оттенок базового цвета класса. Каждая карточка
+  указывает ранг и поясняет, что ранжируются именно пять измеренных меток, а не все 58
+  подтипов.
 - **Оценки § 14 конспекта** (`~1,6 %`, `~9 %`, `~3 %`, `< 1 %`, `~2,0 %` для группы)
   остаются примечаниями карточек: без цвета, без ранга, никогда не в виде доли.
 - Доля приписывается подтипу **только при точном совпадении корпусной метки**
@@ -108,7 +112,7 @@ python scripts/check_example_pack.py      # PASS — 0 hard failures
 | [KLAMMERDIAGRAMM_LEITAN_SAMASA_COMPARISON.md](https://github.com/gasyoun/SamasaChakram/blob/main/KLAMMERDIAGRAMM_LEITAN_SAMASA_COMPARISON.md) | сличение системы рисунка с конспектом Лейтан, шесть голосований D1–D6 |
 | [leitan/](https://github.com/gasyoun/SamasaChakram/tree/main/leitan) | текстовая вычитка конспекта и [письмо-запрос рецензии](https://github.com/gasyoun/SamasaChakram/blob/main/leitan/LEITAN_REVIEW_REQUEST_DRAFT_16.07.26.md), отправленное 16-07-2026 |
 | [docs/](https://github.com/gasyoun/SamasaChakram/tree/main/docs) | источник Pages: [index.html](https://github.com/gasyoun/SamasaChakram/blob/main/docs/index.html), [llms.txt](https://github.com/gasyoun/SamasaChakram/blob/main/docs/llms.txt), уроки, указатель, два DOCX конспекта и приложения |
-| [docs/adr/](https://github.com/gasyoun/SamasaChakram/tree/main/docs/adr) | [0001](https://github.com/gasyoun/SamasaChakram/blob/main/docs/adr/0001-leitan-source-and-editorial-differences.md) — конспект как главный источник; [0002](https://github.com/gasyoun/SamasaChakram/blob/main/docs/adr/0002-corpus-frequency-and-wheel-labels.md) — корпусная доля только по точной метке |
+| [docs/adr/](https://github.com/gasyoun/SamasaChakram/tree/main/docs/adr) | [0001](https://github.com/gasyoun/SamasaChakram/blob/main/docs/adr/0001-leitan-source-and-editorial-differences.md) — конспект как главный источник; [0002](https://github.com/gasyoun/SamasaChakram/blob/main/docs/adr/0002-corpus-frequency-and-wheel-labels.md) — корпусная доля только по точной метке; [0003](https://github.com/gasyoun/SamasaChakram/blob/main/docs/adr/0003-corpus-share-band-scale.md) — новые полосы 20/10/5/1 % и цвет класса |
 | [drumam/](https://github.com/gasyoun/SamasaChakram/tree/main/drumam) и [docs/drumam/](https://github.com/gasyoun/SamasaChakram/tree/main/docs/drumam) | исходник дерева решений, данные, архив версий; [диаграммы](https://github.com/gasyoun/SamasaChakram/tree/main/docs/drumam/diagrams) |
 | [teaching-pack/](https://github.com/gasyoun/SamasaChakram/tree/main/teaching-pack) | [EXAMPLE_PACK.md](https://github.com/gasyoun/SamasaChakram/blob/main/teaching-pack/EXAMPLE_PACK.md), манифест, проверочные canary и печатные/браузерные доказательства |
 | [reports/](https://github.com/gasyoun/SamasaChakram/tree/main/reports) | [H8573_PILOT_DELIVERY.md](https://github.com/gasyoun/SamasaChakram/blob/main/reports/H8573_PILOT_DELIVERY.md) и [DRUMAM_IMPORT_DECISIONS_24-11-2026.md](https://github.com/gasyoun/SamasaChakram/blob/main/reports/DRUMAM_IMPORT_DECISIONS_24-11-2026.md) |

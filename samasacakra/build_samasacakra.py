@@ -211,9 +211,14 @@ def emit_arc_label(r, a0, a1, text, size, cls, pid):
     lines = text.split("\n")
     dlines = deva(text).split("\n")
     out = []
+    # On the lower half of the wheel a larger radius sits visually LOWER, so
+    # the first line must be inner; on the upper half it must be outer. Either
+    # way the stacked lines read top-to-bottom, never back-to-front.
+    first_inner = 90 < ((a0 + a1) / 2) % 360 < 270
     for i, line in enumerate(lines):
         # a broken label gets one arc per syllable, stacked across the ring
-        rr = r - (i - (len(lines) - 1) / 2) * size * 1.15 if len(lines) > 1 else r
+        offset = (i - (len(lines) - 1) / 2) * size * 1.15
+        rr = r + offset if (len(lines) > 1 and first_inner) else (r - offset if len(lines) > 1 else r)
         lid = f'{pid}-{i}' if len(lines) > 1 else pid
         LABEL_ARCS.append(f'<path id="{lid}" d="{arc_label_path(rr, a0, a1, line, size)}" '
                           f'fill="none" stroke="none"/>')

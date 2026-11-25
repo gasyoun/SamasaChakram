@@ -6,7 +6,7 @@
    "hue_light": "#2a78d6",
    "hue_dark": "#3987e5",
    "pradhana": "uttarapadārtha-pradhāna — главная правая часть",
-   "structure": "направленная пара, право-налево",
+   "structure": "направленная пара, справа-налево",
    "families": [
     {
      "id": "vibhakti",
@@ -441,7 +441,7 @@
    "hue_light": "#008300",
    "hue_dark": "#008300",
    "pradhana": "pūrvapadārtha-pradhāna — главная левая часть",
-   "structure": "право-налево, как все (главенство = семантика)",
+   "structure": "справа-налево, как все (главенство = семантика)",
    "families": [
     {
      "id": "av",

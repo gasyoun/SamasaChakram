@@ -426,7 +426,7 @@ body.deva svg text.l-deva { display:block; }
 #scripttoggle button { font:inherit; font-size:.85rem; padding:3px 12px; border:0; background:transparent; color:var(--ink2); cursor:pointer; }
 #scripttoggle button.on { background:var(--c-tatpurusa); color:#fff; }
 .pdeva { font-family:'Klammer Deva','Nirmala UI',serif; color:var(--ink); }
-#panel .pdeva { margin-top:.6em; font-size:.92rem; line-height:1.6; }
+#panel .pdeva { margin-top:.6em; font-size:1.8rem; line-height:1.6; white-space:nowrap; }
 #panel { flex:0 1 340px; min-width:300px; background:var(--panel); border:1px solid var(--line);
   border-radius:6px; padding:18px 20px; align-self:flex-start; position:sticky; top:16px;
   max-height:calc(100vh - 32px); overflow:auto; overflow-wrap:anywhere; }
@@ -549,7 +549,7 @@ body[data-freq=outline] #bandlegend i[data-band=none]   { border:1px dashed #2a7
   <h2>samāsa-cakra</h2>
   <div class="chain">колесо санскритских композитов</div>
   <div class="ru">Четыре класса по прадхана-схеме Патанджали, семейства и подтипы —
-  по конспекту Э. З. Лейтана и правилам разбора (право-налево; двандва — единственное
+  по конспекту Э. З. Лейтана и правилам разбора (справа-налево; двандва — единственное
   плоское исключение). Кликните сегмент.</div>
   <div class="rule">Источники: sanskrit-right-to-left-reading.md · KLAMMERDIAGRAMM_LEITAN_SAMASA_COMPARISON.md</div>
   <div class="panel-controls">
@@ -661,7 +661,7 @@ function openCard(rawId, seg) {
     const dv = [];
     if (m.ex_d && m.ex_d !== m.ex) dv.push(m.ex_d);
     if (m.vigraha_d && m.vigraha_d !== m.vigraha) dv.push(m.vigraha_d);
-    if (dv.length) h += `<div class="pdeva">${dv.join('<br>')}</div>`;
+    if (dv.length) h += `<div class="pdeva">${dv.join(' / ')}</div>`;
   }
   if (m.kind === 'kevala') {
     if (m.context) h += `<div class="note">${m.context}</div>`;
@@ -800,88 +800,3 @@ open(os.path.join(docs, ".nojekyll"), "w").close()
 print("wrote docs/index.html (GitHub Pages)")
 
 
-# --- POSTER EXPORT (H1021, 16-07-2026) -------------------------------------
-# A2 portrait (420x594 mm) single-sheet print: title in both scripts, the IAST
-# wheel full-width, four class-rule panels, and the complete 58-subtype index
-# (term - example IAST+Devanagari - RU gloss). Rendered to PDF via headless
-# Edge --print-to-pdf (the @page rule pins the sheet size; fonts embed from
-# the data-URI @font-face declarations).
-
-cols = ""
-for c in classes:
-    n_c = sum(len(f["leaves"]) for f in c["families"])
-    col = (f'<div class="col" style="border-color:{c["hue_light"]}">' 
-           f'<h3>{c["name"]} · <span class="dv">{deva(c["name"])}</span></h3>'
-           f'<div class="pp">{c["pradhana"]}</div>'
-           f'<div class="pp"><b>структура:</b> {c["structure"]}</div>'
-           f'<div class="pp muted">{n_c} подтипов</div>')
-    for f in c["families"]:
-        if len(c["families"]) > 1:
-            col += f'<div class="fam">{f["name"]}</div>'
-        for leaf in f["leaves"]:
-            ex_d = deva(leaf["ex"])
-            ex_d_html = f' <span class="dv">{ex_d}</span>' if ex_d != leaf["ex"] else ""
-            col += (f'<div class="idx"><i style="background:{c["hue_light"]}"></i>'
-                    f'<b>{leaf["term"]}</b> — {leaf["ex"]}{ex_d_html} — {leaf["ru"]}</div>')
-    cols += col + "</div>"
-
-poster_html = f"""<!doctype html>
-<html lang="ru">
-<head>
-<meta charset="utf-8">
-<title>samāsa-cakra — poster</title>
-<style>
-@font-face {{ font-family: 'Klammer Serif'; font-style: normal; src: url(data:font/woff2;base64,{b64}) format('woff2'); }}
-@font-face {{ font-family: 'Klammer Serif'; font-style: italic; src: url(data:font/woff2;base64,{b64i}) format('woff2'); }}
-@font-face {{ font-family: 'Klammer Deva'; src: url(data:font/woff2;base64,{b64d}) format('woff2'); }}
-@page {{ size: 420mm 594mm; margin: 0; }}
-html,body {{ margin:0; padding:0; width:420mm; height:594mm; background:#fcfcfb; color:#20201d;
-  font-family:'Klammer Serif',Georgia,serif; overflow:hidden; }}
-.sheet {{ width:420mm; height:593mm; box-sizing:border-box; padding:14mm 16mm 10mm;
-  display:flex; flex-direction:column; overflow:hidden; }}
-header {{ text-align:center; margin-bottom:2mm; }}
-h1 {{ font-size:34pt; font-weight:normal; margin:0; letter-spacing:.02em; }}
-h1 .dv {{ font-family:'Klammer Deva',serif; }}
-.sub {{ font-size:10.5pt; color:#5d5c55; margin-top:1mm; }}
-#wheelwrap {{ width:340mm; margin:0 auto; }}
-#wheelwrap svg {{ width:100%; height:auto; display:block; }}
-.l-deva {{ display:none; }}
-.seg {{ stroke:#fcfcfb; stroke-width:2; }}
-.fov {{ display:none; }}   /* H8573 share layer is screen-only */
-.ring1 {{ fill-opacity:.50; }} .ring2 {{ fill-opacity:.30; }} .ring3 {{ fill-opacity:.16; }}
-.c-tatpurusa {{ fill:#2a78d6; }} .c-bahuvrihi {{ fill:#1baf7a; }}
-.c-dvandva {{ fill:#d99b00; }} .c-avyayibhava {{ fill:#b8a300; }}
-.hub {{ fill:#fcfcfb; stroke:#ddd8cc; stroke-width:1.4; }}
-.lbl {{ fill:#20201d; }} .lbl2r,.lbl3,.hublbl2 {{ fill:#5d5c55; }}
-.cols {{ display:grid; grid-template-columns:repeat(4,1fr); gap:5mm; margin:3mm 0 0; flex:1; }}
-.col {{ border-top:1.2mm solid; padding:2mm 1mm 0; }}
-.col h3 {{ margin:0 0 1mm; font-size:12.5pt; font-weight:normal; }}
-.col .dv {{ font-family:'Klammer Deva',serif; }}
-.pp {{ font-size:8pt; line-height:1.35; color:#3c3a33; }}
-.pp.muted {{ color:#8b887c; margin-bottom:1.5mm; }}
-.fam {{ font-size:7.6pt; font-style:italic; color:#8b887c; margin:1.4mm 0 .4mm; }}
-.idx {{ font-size:7.6pt; line-height:1.42; break-inside:avoid; margin-bottom:.6mm; }}
-.idx i {{ display:inline-block; width:5pt; height:5pt; border-radius:1pt; margin-right:2pt; }}
-.idx .dv {{ font-family:'Klammer Deva',serif; }}
-footer {{ font-size:7.5pt; color:#8b887c; text-align:center; margin-top:2mm; }}
-</style>
-</head>
-<body>
-<div class="sheet">
-<header>
-  <h1>samāsa-cakra · <span class="dv">समास-चक्र</span></h1>
-  <div class="sub">Колесо санскритских композитов — 4 класса · 10 семейств · 58 подтипов ·
-  таксономия по конспекту Э. З. Лейтана («Сложные слова в санскрите»), структурные правила разбора MG
-  (право-налево; двандва — единственное плоское исключение)</div>
-</header>
-<div id="wheelwrap">{svg_inline}</div>
-<div class="cols">{cols}</div>
-<footer>SamasaChakram · github.com/gasyoun/SamasaChakram · шрифты: Klammer Serif (Charis 7.000, SIL OFL) и
-Klammer Deva (Noto Serif Devanagari, OFL) · Fable 5 (claude-fable-5) · 16-07-2026</footer>
-</div>
-</body>
-</html>
-"""
-with open(os.path.join(HERE, "samasacakra-poster.html"), "w", encoding="utf-8", newline="\n") as fh:
-    fh.write(poster_html)
-print("wrote samasacakra-poster.html", len(poster_html) // 1024, "KB")

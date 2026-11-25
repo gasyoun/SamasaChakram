@@ -339,10 +339,9 @@ def check_wheel_html():
     check("wheel: dvandva absent from class row, present in family row",
           h.count('class="lbl lbl1"') == 3 and "dvan" in h and "-dva" in h)
     wheel = read(os.path.join(HERE, "samasacakra-wheel.html"))
-    poster = read(os.path.join(HERE, "samasacakra-poster.html"))
     face = "font-style: italic; src: url(data:font/woff2;base64,"
-    check("wheel: a real Italic face is embedded in all three artifacts",
-          all(face in x and "__B64I__" not in x for x in (h, wheel, poster)))
+    check("wheel: a real Italic face is embedded in both artifacts",
+          all(face in x and "__B64I__" not in x for x in (h, wheel)))
     # Cards show IAST example + vigraha + RU translation first; Devanagari
     # comes after the translation in its own block, never interleaved.
     card_tpl = ('<div class="ex">${m.ex}</div><div class="vig">${m.vigraha}</div>'
@@ -350,6 +349,10 @@ def check_wheel_html():
     check("wheel: card keeps Devanagari out of the IAST lines",
           card_tpl in h and ' · <span class="pdeva">' not in h
           and "'<br><span class=\"pdeva\">'" in h)
+    check("wheel: Devanagari pair is one large row after the translation",
+          "dv.join(' / ')" in h and 'font-size:1.8rem' in h)
+    check("wheel: direction reads справа-налево",
+          "справа-налево" in h and "право-налево" not in h)
     return h
 
 

@@ -5,7 +5,7 @@ from html.parser import HTMLParser
 import json
 import re
 
-from build_frequency import OUTPUT, PILOT, render
+from build_frequency import CORPUS_SOURCES, HUB, OUTPUT, PILOT, hub_volume, render
 
 
 class FrequencyTables(HTMLParser):
@@ -109,7 +109,55 @@ def main():
         if f'../#k={entry["target"]}' not in parsed.hrefs:
             raise SystemExit(f'Missing wheel resolver link: {entry["target"]}')
 
+    check_source_volumes(html.decode("utf-8"))
+
     print(f"Frequency check PASS: {len(shares)} measured shares, {len(estimates)} unbanded estimates, wheel and build parity")
+
+
+BYTE_SIZE = "1\u202f346\u202f227"
+LINE_COUNT = "12\u202f609"
+UOHYD_APPROX = "\u2248 32\u202f000 размеченных композитов"
+COMPOUNDS_VOLUME = LINE_COUNT + " строк"
+SYNTHETIC_HUB = (
+    "Проза каталога: В папке «(2)» `compounds.txt` занимает 1 346 227 байт, а выдержка — 1 637 447 байт.\n"
+    "| Источник | Что даёт | Ограничение |\n"
+    "|---|---|---|\n"
+    "| `compounds.txt` | 12 609 строк: размер списка, родительская основа. | Нет метки типа. |\n"
+    "| UoHyd (SHMT) | Около 32 000 размеченных композитов в исходном наборе. | Нет распределения. |\n"
+)
+
+
+def source_volume(row_name, html):
+    match = re.search(
+        r'<tr><th scope="row">' + re.escape(row_name) + r"</th><td>([^<]*)</td>", html
+    )
+    if not match:
+        raise SystemExit(f"Visible sources table has no row: {row_name}")
+    return match.group(1)
+
+
+def check_source_volumes(html):
+    """Regression: the compounds.txt byte size must never be selected as rows."""
+    compounds = dict((name, pattern) for name, pattern, *_ in CORPUS_SOURCES)["compounds.txt"]
+    synthetic = hub_volume(SYNTHETIC_HUB, compounds, "строк")
+    if synthetic != COMPOUNDS_VOLUME or BYTE_SIZE in synthetic:
+        raise SystemExit("Byte-size prose selected instead of the line-count evidence row")
+    if "1346227" not in re.sub(r"\s", "", SYNTHETIC_HUB):
+        raise SystemExit("Synthetic hub lost its byte-size decoy; regression is vacuous")
+
+    if BYTE_SIZE in html:
+        raise SystemExit("Rendered sources table carries the compounds.txt byte size")
+    if source_volume("compounds.txt", html) != COMPOUNDS_VOLUME:
+        raise SystemExit("Rendered compounds.txt volume is not the hub line count")
+    if source_volume("UoHyd", html) != UOHYD_APPROX:
+        raise SystemExit("Rendered UoHyd volume is not marked approximate")
+
+    hub = HUB.read_text(encoding="utf-8")
+    if hub_volume(hub, compounds, "строк") != COMPOUNDS_VOLUME:
+        raise SystemExit("Current hub no longer resolves compounds.txt to its line count")
+    uohyd = dict((name, pattern) for name, pattern, *_ in CORPUS_SOURCES)["UoHyd"]
+    if hub_volume(hub, uohyd, "размеченных композитов", "\u2248 ") != UOHYD_APPROX:
+        raise SystemExit("Current hub no longer resolves UoHyd to its approximate volume")
 
 
 if __name__ == "__main__":

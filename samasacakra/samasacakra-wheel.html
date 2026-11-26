@@ -314,7 +314,11 @@ function route() {
 }
 window.addEventListener('hashchange', route);
 setMode('none');
-route();
+// H8620: the INITIAL deep-link dispatch runs at the very END of this script, after
+// every control (incl. #quizbtn) is bound — openCard() replaces aside#panel's
+// innerHTML (including #quizbtn), so routing first made `quizbtn.onclick` throw on
+// direct #k= entry. hashchange keeps its listener; normal (hashless) entrypoint
+// behaviour is unchanged.
 // --- embedded quiz: the wheel's own META is the only question bank ---
 const QUIZ_LEAVES = Object.entries(META).filter(([id, m]) =>
   m.kind === 'leaf' && m.ex && m.vigraha && m.ru);
@@ -380,6 +384,7 @@ document.querySelectorAll('[data-qmode]').forEach(b => b.onclick = () => {
 });
 quizBox.addEventListener('click', ev => { if (ev.target === quizBox) quizBox.hidden = true; });
 document.addEventListener('keydown', ev => { if (ev.key === 'Escape' && !quizBox.hidden) quizBox.hidden = true; });
+route();  // initial deep-link dispatch: LAST, after every control above is bound (H8620)
 </script>
 </body>
 </html>

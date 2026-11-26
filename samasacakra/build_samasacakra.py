@@ -794,6 +794,14 @@ SEO = """<meta name="description" content="samāsa-cakra — интеракти�
 docs = os.path.join(HERE, "..", "docs")
 os.makedirs(docs, exist_ok=True)
 pages_html = html.replace('<meta name="viewport"', SEO + '<meta name="viewport"', 1)
+# H8620 review: ONE generated navigation link from the Pages start into the route
+# pilot — injected into the /docs copy only (the wheel page, its frequency layer
+# and its geometry stay byte-identical).
+NAVROUTE = ('<a class="navroute" href="route/" style="display:flex;align-items:center;gap:8px;'
+            'font-size:.92rem;text-decoration:none;border:1px solid var(--line);border-radius:999px;'
+            'padding:6px 14px;color:var(--ink2)">Маршрут H8620'
+            '<span style="margin-left:auto">пример → признак → vigraha →</span></a>')
+pages_html = pages_html.replace('<a class="kevalachip"', NAVROUTE + '\n    <a class="kevalachip"', 1)
 with open(os.path.join(docs, "index.html"), "w", encoding="utf-8", newline="\n") as fh:
     fh.write(pages_html)
 open(os.path.join(docs, ".nojekyll"), "w").close()

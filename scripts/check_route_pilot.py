@@ -77,6 +77,13 @@ def wheel_ids() -> set[str]:
     return set(json.loads(m.group(1)))
 
 
+def wheel_names() -> dict[str, str]:
+    """Human-readable card names: the route page shows names, not internal slugs."""
+    html = WHEEL.read_text(encoding="utf-8")
+    m = re.search(r"const META = (\{.*?\});\nconst GAL", html, re.S)
+    return {k: v.get("name", k) for k, v in json.loads(m.group(1)).items()}
+
+
 def pack_vigraha(manifest: dict) -> dict[str, str]:
     return {e["id"]: e["analytical_expansion"] for e in manifest["examples"]}
 
@@ -411,8 +418,20 @@ def addr(sv: dict, link_text: str | None = None) -> str:
     return ""
 
 
+def diagram(vis: dict, root: Path) -> str:
+    "Inline the canonical checked-in SVG so the diagram is visible on Pages."
+    path = str(vis.get("path") or "")
+    if not path.endswith(".svg") or not (root / path).is_file():
+        return ""
+    svg = (root / path).read_text(encoding="utf-8").strip()
+    cap = esc(vis.get("caption") or vis.get("label"))
+    return (f'<figure class="diagram" role="group" aria-label="{cap}">'
+            + svg + f'<figcaption>{cap}</figcaption></figure>')
+
+
 def render(d: dict) -> str:
     s = d["sources"]
+    names = wheel_names()
     out: list[str] = []
     a = out.append
     a("<!DOCTYPE html>\n<html lang=\"ru\">\n<head>\n<meta charset=\"utf-8\">")
@@ -449,7 +468,10 @@ def render(d: dict) -> str:
       "details.check>summary{cursor:pointer;padding:.4rem .6rem;font-weight:bold;"
       "font-size:.9rem;letter-spacing:.03em}\n"
       "details.check[open]>summary{border-bottom:1px solid var(--line)}\n"
-      "details.check .ans,details.check .open{border:0;border-radius:0}\n</style>\n</head>\n<body>")
+      "details.check .ans,details.check .open{border:0;border-radius:0}\n"
+      ".diagram{margin:.8rem 0;background:#fff;border:1px solid var(--line);border-radius:6px;padding:.6rem}\n"
+      ".diagram svg{display:block;max-width:100%;height:auto;margin:0 auto}\n"
+      ".diagram figcaption{font-size:.85rem;color:var(--mut);margin-top:.4rem}\n</style>\n</head>\n<body>")
     a(f"<h1>{esc(d['title'])}</h1>")
     a(f'<p class="mut">Статический маршрут пилота H8620 · версия {esc(d["version"])} · '
       f'данные: <a href="h8620_route_data.json"><code>h8620_route_data.json</code></a> · '
@@ -459,6 +481,10 @@ def render(d: dict) -> str:
     tb = s.get("teacher_brief") or {}
     if tb.get("url"):
         a(f'<p class="mut">Преподавателю: <a href="{tb["url"]}">{esc(tb["label"])}</a></p>')
+    va = s.get("visual_annotation") or {}
+    if va.get("url"):
+        a(f'<p class="mut">Упражнение на чтение по блоку 66.1: '
+          f'<a href="{va["url"]}">{esc(va["label"])}</a></p>')
     a("<h2>Покрытие и ограничения</h2><ul>")
     for lim in d["coverage"]["limits"]:
         a(f"<li>{esc(lim)}</li>")
@@ -474,6 +500,14 @@ def render(d: dict) -> str:
           + "</div>")
         a(f'<div class="form">{esc(e["form"])}</div>')
         a(f'<p>{esc(e["label"])} — {esc(e["observation"])}</p>')
+        if e.get("node_labels"):
+            a('<div class="row"><b>Узлы</b><span>' +
+              "; ".join(f"<b>{esc(k)}</b>: {esc(v)}" for k, v in e["node_labels"].items()) +
+              "</span></div>")
+        if e.get("source_anchor"):
+            a(f'<div class="row"><b>Стих</b><span><i>{esc(e["source_anchor"])}</i></span></div>')
+        if e.get("referent_hint"):
+            a(f'<div class="row"><b>Референт</b><span>{esc(e["referent_hint"])}</span></div>')
         src = s[e["source"]]
         corr = s.get(e.get("corroborating_source", ""), {})
         src_addr, corr_addr = addr(src, "открыть"), addr(corr, "открыть")
@@ -483,35 +517,59 @@ def render(d: dict) -> str:
             a('<div class="row"><b>Сверка</b><span>' + esc(corr["label"]) +
               (f" — {corr_addr}" if corr_addr else "") + "</span></div>")
         a(f'<div class="row"><b>Лепесток колеса</b><span><a href="{e["wheel_leaf_link"]}">'
-          f'{esc(e["wheel_leaf_id"])}</a>')
+          f'{esc(e.get("wheel_link_label") or names.get(e["wheel_leaf_id"], e["wheel_leaf_id"]))}</a>')
         if e.get("second_wheel_leaf_link"):
-            a(f' · <a href="{e["second_wheel_leaf_link"]}">{esc(e["second_wheel_leaf_id"])}</a>')
+            a(f' · <a href="{e["second_wheel_leaf_link"]}">'
+              f'{esc(e.get("second_wheel_link_label") or names.get(e["second_wheel_leaf_id"], e["second_wheel_leaf_id"]))}</a>')
         a(f' <span class="mut">— {esc(e["wheel_link_note"])}</span></span></div>')
         if e.get("lesson_link"):
             a(f'<div class="row"><b>Урок</b><span><a href="{e["lesson_link"]}">урок 2: '
-              "вложенная двандва</a></span></div>")
+              "вложенная двандва</a>"
+              + (f' <span class="mut">— {esc(e["lesson_note"])}</span>' if e.get("lesson_note") else "")
+              + "</span></div>")
         vis = e["visual"]
         a(f'<div class="row"><b>Визуальный источник</b><span><a href="{vis["url"]}">{esc(vis["label"])}</a>'
           + (f' <span class="mut">— {esc(vis["note"])}</span>' if vis.get("note") else "") + "</span></div>")
+        fig = diagram(vis, ROOT)
+        if fig:
+            a(fig)
         if e.get("manifest_ref"):
             a(f'<div class="row"><b>Манифест</b><span><code>{esc(e["manifest_ref"])}</code></span></div>')
         if e.get("config_ref"):
             a(f'<div class="row"><b>Конфиг схемы</b><span><code>{esc(e["config_ref"])}</code></span></div>')
+        if e.get("scheme_status"):
+            a(f'<div class="row"><b>Схема и рубрика</b><span>Схема: {esc(e["scheme_status"])} · '
+              f'Рубрика: {esc(e["classification"]["status"])}</span></div>')
+        if e.get("alternate_grouping"):
+            ag = e["alternate_grouping"]
+            a(f'<div class="row"><b>Альтернатива</b><span><span class="mut">статус {esc(ag["status"])}</span> — '
+              f'{esc(ag["text"])}</span></div>')
         if e.get("segmentation") == "shared":
             a('<div class="row"><b>Членение</b><span>общее для обеих трактовок (a- + putraḥ): '
               "контраст — семантическое отношение и референт, не границы членов</span></div>")
+        if e.get("contrast_contexts"):
+            items = "".join(
+                f'<li><b>{esc(c.get("analysis_label") or names.get(c["analysis"], c["analysis"]))}</b> '
+                f'<span class="mut">({esc(c["status"])})</span><br>{esc(c["context"])}<br>'
+                f'{esc(c["reading"])}</li>'
+                for c in e["contrast_contexts"])
+            a(f'<div class="row"><b>Контексты</b><span><ul>{items}</ul></span></div>')
+        if e.get("source_check"):
+            a(f'<div class="row"><b>Сверка источника</b><span>{esc(e["source_check"])}</span></div>')
+        if e.get("isolation_note"):
+            a(f'<div class="row"><b>Изолированно</b><span>{esc(e["isolation_note"])}</span></div>')
         cand = next(c for c in d["candidates"] if c["id"] == e["candidate_set"])
         a(f'<div class="row"><b>Кандидаты</b><span>{esc(cand["question"])} · '
-          + ", ".join(f"<code>{o}</code>" for o in cand["options"])
-          + f' <span class="mut">— {esc(cand["decision_rule"])}</span></span></div>')
+          + ", ".join(f"{esc(names.get(o, o))}" for o in cand["options"]) + "</span></div>")
         cues = [c for c in d["cues"] if c["id"] in e["cue_refs"]]
         a('<div class="row"><b>Признаки</b><span>' +
           ", ".join(f'<a href="#{c["id"]}">{esc(c["name"])}</a>' for c in cues) + "</span></div>")
         cl = e["classification"]
         box = "open" if cl["status"] == "open" else "ans"
-        verdict = ", ".join(f"<code>{v}</code>" for v in cl["answer"]) or "<i>выбор открыт</i>"
-        a(f'<details class="check"><summary>Проверка 1 — класс и довод · статус {esc(cl["status"])}</summary>'
-          f'<div class="{box}">Класс: {verdict}<br>Довод: {esc(cl["reason"])}</div></details>')
+        verdict = ", ".join(f"{esc(names.get(v, v))}" for v in cl["answer"]) or "<i>выбор открыт</i>"
+        a(f'<details class="check"><summary>Самопроверка 1 — класс и довод · статус {esc(cl["status"])}</summary>'
+          f'<div class="{box}">Класс: {verdict}<br>Довод: {esc(cl["reason"])}<br>'
+          f'Правило решения (после ответа): {esc(cand["decision_rule"])}</div></details>')
         v = e["vigraha"]
         vextra = ""
         if v["status"] == "checked-in" and v.get("text"):
@@ -521,7 +579,7 @@ def render(d: dict) -> str:
                       "".join(f"<li>{esc(x)}</li>" for x in v["allowed"]) + "</ul>")
         elif v["status"] == "source-only":
             vextra = esc(v["allowed"][0]) + "<br>"
-        a(f'<details class="check"><summary>Проверка 2 — vigraha · статус {esc(v["status"])}</summary>'
+        a(f'<details class="check"><summary>Самопроверка 2 — vigraha · статус {esc(v["status"])}</summary>'
           f'<div class="{"open" if v["status"] == "open" else "ans"}">{vextra}'
           f'Основание: {esc(v["reason"])}</div></details>')
         a("</div>")

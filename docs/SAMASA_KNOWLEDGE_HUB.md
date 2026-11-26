@@ -99,10 +99,10 @@ _Создан: 25-11-2026 · Статус: указатель, не копия �
 MG 25-11-2026 слабая разметка лучше ничего: она пригодна как weak supervision для
 классификатора, но не как gold.
 
-**P. M. Scharf, «Rāmopākhyāna» (Sanskrit Library, 2023)** — дробная разметка самас:
+**P. M. Scharf, «Rāmopākhyāna» (издание 2003 года)** — дробная разметка самас:
 classification + labeling, vigraha-vākya, dvandva, karmadhāraya, dvigu, dvitīyā–saptamī /
 upapada / nañ / gati / prādi-tatpuruṣa, bahuvrīhi и явно помеченные неоднозначности
-(§ II.D.2.h, II.D.3.c). Полный [чтитель Sanskrit Library](https://sanskritlibrary.org/reader.html) содержит структурированные метки. Для переноса полного набора виграх и разметки в производную выгрузку нужна отдельная проверка прав (H8602).
+(§ II.D.2.h, II.D.3.c). Полный [электронный читатель Sanskrit Library](https://sanskritlibrary.org/reader.html) содержит структурированные метки. Для переноса полного набора виграх и разметки в производную выгрузку нужна отдельная проверка прав (H8602).
 Аналогично
 `csl-orig` [`COMPOUND_MARKER_TYPOGRAPHY_CENSUS_CDSL_2026.md`](https://github.com/gasyoun/SanskritLexicography/blob/master/docs/COMPOUND_MARKER_TYPOGRAPHY_CENSUS_CDSL_2026.md)
 описывает типографику составных слов, не их класс. `MWderivations/issue15` размечает

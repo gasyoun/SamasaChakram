@@ -26,6 +26,9 @@ Checks (fail-closed, offline, no config/token reads):
              metadata; the generated Pages start exposes exactly one route link;
   assets   — a relative (Pages) visual must live under docs/ AND be git-tracked;
              a repo-only file must use its GitHub blob URL instead.
+  paths    — the published JSON and page carry no absolute local paths or private
+             temp filenames; an access-controlled source renders as a plain
+             reference, so the public page never requires a private link.
 
 Existing generators are otherwise untouched: samasacakra wheel generation stays
 deterministic (the Pages copy gains only its single navigation link).
@@ -97,7 +100,14 @@ def check_schema(d: dict, ids: set[str]) -> None:
         for f in ("label", "kind", "locator"):
             if not s.get(f):
                 fail(f"source {sid}: missing `{f}`")
-        if "url" not in s and "path" not in s:
+        if s.get("access") == "access-controlled":
+            # a restricted source may carry no public address at all: its whole point
+            # is that the page does not need one (availability / access note instead)
+            if not (s.get("url") or s.get("path") or s.get("availability")
+                    or s.get("access_note")):
+                fail(f"source {sid}: access-controlled source needs a url, a path, "
+                     f"a stated availability or an access note")
+        elif "url" not in s and "path" not in s:
             fail(f"source {sid}: needs a url or a path")
         if s.get("url") and not str(s["url"]).startswith("https://"):
             fail(f"source {sid}: url must be https")
@@ -249,11 +259,17 @@ def check_links(d: dict, ids: set[str], root: Path) -> None:
 
 def check_honesty(d: dict) -> None:
     blob = json.dumps(d, ensure_ascii=False)
-    for token in ("W16-3701", "LEITAN_PUBLIC_SOURCE_AUDIT_H8618", "data-qmode",
+    for token in ("W16-3701", "H8618", "data-qmode",
                   "teacher_review", "Реконструкция", "na putraḥ", "avidyamānaḥ putraḥ",
-                  "слайд 19", "compounds.pptx"):
+                  "слайд 19", "compounds_pptx"):
         if token not in blob:
             fail(f"honesty: `{token}` not carried in the JSON source")
+    # coverage claims corrected on 26-11-2026 must not come back: the single Google Doc
+    # IS the complete Yoga-Vasishtha archive, and the LiveJournal posts are separate
+    # authored publications rather than a second archive behind an access blocker
+    for gone in ("обоих архивов", "охват архива ЖЖ не установлен"):
+        if gone in blob:
+            fail(f"honesty: corrected coverage claim `{gone}` is back in the JSON source")
     ex = {e["id"]: e for e in d["examples"]}
     nan = ex.get("nan-reconstruction", {})
     if nan.get("segmentation") != "shared":
@@ -301,6 +317,24 @@ def check_surface(page_text: str) -> None:
     if "статус open" not in page_text and "статус draft" not in page_text:
         fail("surface: per-check status is not shown")
     ok("surface: checks are separate <details>, status draft, no script, no build filler")
+
+
+# local paths / private temp filenames are never publishable (H8620 editorial correction)
+LOCAL_MARKERS = ("C:/", "C:\\", "AppData", "/Temp/", "\\Temp\\", "Users/COMPUTER",
+                 "LEITAN_PUBLIC_SOURCE_AUDIT", "h8604-source-audit", "h8603-audit-2611",
+                 "compounds.pptx")
+
+
+def check_published_paths(d: dict, html: str) -> None:
+    """Neither the JSON source nor the generated page may carry absolute local paths
+    or private temp filenames; restricted evidence is cited by an access-controlled
+    reference instead."""
+    for name, text in (("h8620_route_data.json", json.dumps(d, ensure_ascii=False)),
+                       ("index.html", html)):
+        hits = sorted(m for m in LOCAL_MARKERS if m in text)
+        if hits:
+            fail(f"paths: {name} carries local path / private filename material: {hits}")
+    ok("paths: no absolute local paths or private temp filenames in the published JSON/HTML")
 
 
 def check_pages_nav(root: Path) -> None:
@@ -351,6 +385,32 @@ def esc(s: str) -> str:
     return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
+def addr(sv: dict, link_text: str | None = None) -> str:
+    """Address fragment for one source.
+
+    A public https URL becomes an anchor (`link_text` or the URL itself). An
+    access-controlled source stays a PLAIN reference — the public page carries no
+    private link and needs none to be read. Otherwise the checked-in path or the
+    declared availability is shown. Empty string when the source declares nothing.
+    """
+    if sv.get("access") == "access-controlled":
+        out = ""
+        ref = sv.get("url") or sv.get("path")
+        if ref:
+            out += f"<code>{esc(str(ref))}</code> "
+        if sv.get("availability"):
+            out += f'<span class="mut">{esc(sv["availability"])}</span> '
+        note = sv.get("access_note") or "материал с ограниченным доступом — для чтения страницы не требуется"
+        return out + f'<span class="mut">({esc(note)})</span>'
+    if sv.get("url"):
+        return f'<a href="{sv["url"]}">{esc(link_text or sv["url"])}</a>'
+    if sv.get("path"):
+        return f"<code>{esc(sv['path'])}</code>"
+    if sv.get("availability"):
+        return f'<span class="mut">{esc(sv["availability"])}</span>'
+    return ""
+
+
 def render(d: dict) -> str:
     s = d["sources"]
     out: list[str] = []
@@ -396,6 +456,9 @@ def render(d: dict) -> str:
       f'{esc(d["created"])}</p>')
     a('<div class="banner">Пилот в статусе draft: ни один пример не допущен до оцениваемых упражнений без проверки преподавателем.'
       f'<small>{esc(d["coverage"]["teacher_review_note"])}</small></div>')
+    tb = s.get("teacher_brief") or {}
+    if tb.get("url"):
+        a(f'<p class="mut">Преподавателю: <a href="{tb["url"]}">{esc(tb["label"])}</a></p>')
     a("<h2>Покрытие и ограничения</h2><ul>")
     for lim in d["coverage"]["limits"]:
         a(f"<li>{esc(lim)}</li>")
@@ -413,13 +476,12 @@ def render(d: dict) -> str:
         a(f'<p>{esc(e["label"])} — {esc(e["observation"])}</p>')
         src = s[e["source"]]
         corr = s.get(e.get("corroborating_source", ""), {})
+        src_addr, corr_addr = addr(src, "открыть"), addr(corr, "открыть")
         a('<div class="row"><b>Источник</b><span>' + esc(src["label"]) +
-          (f' — <a href="{src["url"]}">открыть</a>' if src.get("url") else
-           f' — <code>{esc(src.get("path", ""))}</code>') + "</span></div>")
+          (f" — {src_addr}" if src_addr else "") + "</span></div>")
         if corr:
             a('<div class="row"><b>Сверка</b><span>' + esc(corr["label"]) +
-              (f' — <a href="{corr["url"]}">открыть</a>' if corr.get("url") else
-               f' — <code>{esc(corr.get("path", ""))}</code>') + "</span></div>")
+              (f" — {corr_addr}" if corr_addr else "") + "</span></div>")
         a(f'<div class="row"><b>Лепесток колеса</b><span><a href="{e["wheel_leaf_link"]}">'
           f'{esc(e["wheel_leaf_id"])}</a>')
         if e.get("second_wheel_leaf_link"):
@@ -477,9 +539,7 @@ def render(d: dict) -> str:
 
     a("<h2>Источники (провенанс)</h2><table><tr><th>id</th><th>метка</th><th>тип</th><th>адрес</th></tr>")
     for sid, sv in s.items():
-        addr = sv.get("url") or sv.get("path", "")
-        link = (f'<a href="{addr}">{esc(addr)}</a>' if sv.get("url")
-                else f"<code>{esc(addr)}</code>")
+        link = addr(sv) or '<span class="mut">—</span>'
         a(f"<tr><td><code>{esc(sid)}</code></td><td>{esc(sv['label'])}</td>"
           f"<td>{esc(sv['kind'])}</td><td>{link}</td></tr>")
     a("</table>")
@@ -499,6 +559,7 @@ def main() -> int:
     check_visual_deploy(d, ROOT)
     check_pages_nav(ROOT)
     html = render(d)
+    check_published_paths(d, html)
     if emit:
         PAGE.parent.mkdir(parents=True, exist_ok=True)
         PAGE.write_text(html, encoding="utf-8", newline="\n")

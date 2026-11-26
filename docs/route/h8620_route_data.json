@@ -15,23 +15,46 @@
       "Три примера ручной выборки, не корпус и не выборка: ни одной новой аттестации пилот не добавляет.",
       "adhīta-vedakaḥ: класс bahuvrīhi взят из источника, подтип (лепесток) остаётся открытым до сверки преподавателем; сама vigraha остаётся в источнике и в пилот не переносится.",
       "Реконструкция a-putra — учебная реконструкция, не аттестация: обе трактовки защищаемы, набор кандидатов не закрыт.",
-      "Привязки к 18.17–19 в снимке YV отсутствуют, охват архива ЖЖ не установлен (H8618).",
-      "Полная приёмка H8620 ждёт покрытия обоих архивов Лейтана (H8618)."
+      "Единый Google Doc содержит полный архив курса «Йога-Васиштха: медленное чтение». Разбор 18.17–19 приведён в отдельном авторском посте.",
+      "Посты ЖЖ 496943 и 496753 выросли из работы Лейтана над курсами. У каждой публикации свой адрес.",
+      "У каждого занятия «Синтаксиса санскрита» свой файл в Dropbox и в учебном Telegram-чате. Сверка файлов продолжается.",
+      "Полная приёмка ждёт сверки материалов и утверждения учебных эталонов."
     ],
     "teacher_review_note": "Ни один пример не допускается до оцениваемых упражнений без подтверждения преподавателем: в пилоте размечены допустимые ответы, но статус каждого примера — draft."
   },
   "sources": {
     "yv_doc": {
-      "label": "Лейтан. «Йога-Васиштха: медленное чтение», Google Doc, с. 11, стих 1.9",
+      "label": "Лейтан. «Йога-Васиштха: медленное чтение» — полный архив курса, Google Doc, с. 11, стих 1.9",
       "kind": "public-source",
       "url": "https://docs.google.com/document/d/177MjZex_bsdGuqMKos2f4cDGCO4UtrxI/edit",
-      "local_evidence": "C:/Users/COMPUTER/AppData/Local/Temp/h8604-source-audit/LEITAN_PUBLIC_SOURCE_AUDIT_H8618_26-11-2026.md",
-      "locator": "с. 11, стих 1.9: adhīta-vedakaḥ, класс bahuvrīhi и развернутая vigraha"
+      "locator": "с. 11 PDF, стих 1.9: adhīta-vedakaḥ, класс bahuvrīhi и развёрнутая vigraha"
+    },
+    "lj_496943": {
+      "label": "Э. Лейтан, ЖЖ: «Йогавасиштха 18.17-19: медленная работа над переводом» (пост 496943)",
+      "kind": "public-source",
+      "url": "https://edgar-leitan.livejournal.com/496943.html",
+      "locator": "Разбор стихов 18.17–19, включая kāya-plakṣaḥ и разветвление трактовок в śleṣa"
+    },
+    "lj_496753": {
+      "label": "Э. Лейтан, ЖЖ: «Кропотливый перевод с санскрита как садхана (духовное делание)» (пост 496753)",
+      "kind": "public-source",
+      "url": "https://edgar-leitan.livejournal.com/496753.html",
+      "locator": "Раздел I о проверке и обосновании перевода"
+    },
+    "sanskrit_syntax": {
+      "label": "Э. Лейтан. «Синтаксис санскрита» — раздатки отдельными файлами на урок",
+      "kind": "access-controlled-course-files",
+      "access": "access-controlled",
+      "availability": "доступ подтверждён: общий Dropbox и Telegram-курса, отдельный файл на урок",
+      "access_note": "просмотр неполный: доступ ≠ пройденное покрытие",
+      "locator": "учебные вложения по урокам; публичного адреса нет, ссылка не требуется для чтения страницы"
     },
     "h8618_audit": {
       "label": "H8618: проверка источников и покрытия раздаток Лейтана (26-11-2026)",
-      "kind": "local-audit",
-      "path": "C:/Users/COMPUTER/AppData/Local/Temp/h8604-source-audit/LEITAN_PUBLIC_SOURCE_AUDIT_H8618_26-11-2026.md",
+      "kind": "access-controlled-evidence",
+      "access": "access-controlled",
+      "url": "https://github.com/gasyoun/Uprava/pull/8399",
+      "access_note": "закрытый отчёт о сверке — для чтения страницы не требуется",
       "in_git": false,
       "locator": "раздел «Йога-Васиштха», пункт про с. 11 и стих 1.9"
     },
@@ -44,8 +67,9 @@
     },
     "compounds_pptx": {
       "label": "Дека к издательской статье о типах композитов (W16-3701), слайд 19 «Same word for multiple types»",
-      "kind": "local-evidence",
-      "path": "C:/Users/COMPUTER/AppData/Local/Temp/h8603-audit-2611/compounds.pptx",
+      "kind": "access-controlled-evidence",
+      "access": "access-controlled",
+      "access_note": "рабочая копия вне публичного контура; открытый адрес материала — источник w16_3701",
       "in_git": false,
       "locator": "слайд 19: aputraḥ — na putraḥ (nañ-Tatpuruṣa); avidyamānaḥ putraḥ yastya saḥ (nañ-Bahuvrīhi); «Either context or canonical paraphrase is required»"
     },
@@ -91,6 +115,12 @@
       "path": "docs/drumam/diagrams/samasa_decision_tree_visual.png",
       "in_git": true,
       "locator": "область действия, исключения и сохранившиеся кандидаты"
+    },
+    "teacher_brief": {
+      "label": "Задание для научного редактора",
+      "kind": "editorial-guide",
+      "url": "https://github.com/gasyoun/SamasaChakram/blob/9579ebc03a51cedbdbd1f4d24dac289fc2b01101/docs/LEITAN_EDITOR_README.md",
+      "locator": "Три карточки, предлагаемые ответы и форма редакторского решения"
     }
   },
   "cues": [

@@ -578,6 +578,7 @@ body[data-freq=outline] #bandlegend i[data-band=none]   { border:1px dashed #2a7
     </div>
     <div id="bandlegend">__BANDLEGEND__</div>
     <p class="bandnote">__BANDNOTE__</p>
+__FREQUENCY_LINK__
     <p class="hint">Колесо можно вращать (перетаскиванием); клик по сегменту — разбор справа; двойной клик — сброс поворота. Ссылка на карточку — <code>#k=&lt;id&gt;</code>.</p>
   </div>
 </aside>
@@ -779,7 +780,7 @@ html = (html.replace("__B64__", b64).replace("__B64I__", b64i).replace("__B64D__
         .replace("__SVG__", svg_inline).replace("__ALIAS__", json.dumps(ALIAS, ensure_ascii=False))
         .replace("__BANDNOTE__", FREQ["band_note"]).replace("__BANDLEGEND__", BANDLEGEND))
 with open(os.path.join(HERE, "samasacakra-wheel.html"), "w", encoding="utf-8", newline="\n") as fh:
-    fh.write(html)
+    fh.write(html.replace("__FREQUENCY_LINK__\n", ""))
 print("wrote samasacakra-wheel.html", len(html) // 1024, "KB;", total_leaves, "leaves")
 
 # GitHub Pages copy (H1031): same page + SEO head, served from /docs
@@ -794,6 +795,9 @@ SEO = """<meta name="description" content="samāsa-cakra — интеракти�
 docs = os.path.join(HERE, "..", "docs")
 os.makedirs(docs, exist_ok=True)
 pages_html = html.replace('<meta name="viewport"', SEO + '<meta name="viewport"', 1)
+pages_html = pages_html.replace(
+    "__FREQUENCY_LINK__", '    <p><a href="chastotnosti/">Частотность самас</a></p>'
+)
 with open(os.path.join(docs, "index.html"), "w", encoding="utf-8", newline="\n") as fh:
     fh.write(pages_html)
 open(os.path.join(docs, ".nojekyll"), "w").close()

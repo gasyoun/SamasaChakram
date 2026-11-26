@@ -494,7 +494,7 @@ def render(d: dict) -> str:
 
     a("<h2>Примеры маршрута</h2>")
     for e in d["examples"]:
-        a('<div class="ex">')
+        a(f'<div class="ex" id="{esc(e["id"])}">')
         a(f'<div class="kind">{esc(e["kind"])}'
           + (' · <span class="recon">реконструкция — не аттестация</span>' if e.get("reconstruction") else "")
           + "</div>")

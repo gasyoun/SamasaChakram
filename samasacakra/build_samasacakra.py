@@ -297,7 +297,8 @@ for c in classes:
             nums.append(number_label(R3b - 12, al + UNIT / 2, str(n)))
             lz = LESSON_BY_LEAF.get(lid)
             meta[lid] = {"kind": "leaf", "name": leaf["term"], "class": c["name"], "cid": c["id"],
-                         "family": fname, "pradhana": c["pradhana"], "structure": c["structure"],
+                         "family": fname, "pradhana": c["pradhana"],
+                         "structure": leaf.get("structure", c["structure"]),
                          "ex": leaf["ex"], "vigraha": leaf["vigraha"], "ru": leaf["ru"],
                          "ex_d": deva(leaf["ex"]), "vigraha_d": deva(leaf["vigraha"]),
                          "note": leaf.get("note", ""),
@@ -307,6 +308,7 @@ for c in classes:
                                    for p in (lz["paras"] if lz else [])],
                          "lesson": ({"title": lz["title"], "href": f'{PAGES}uroki/{lz["slug"]}.html'}
                                     if lz else None),
+                         "route": leaf.get("route"),
                          "diagram": "".join(f'<div class="dwrap">{load_diagram(dg)}</div>' for dg in ([leaf["diagram"]] if isinstance(leaf.get("diagram"), str) else leaf.get("diagram", [])))}
             al += UNIT
         af += span_f
@@ -676,6 +678,7 @@ function openCard(rawId, seg) {
   const links = [];
   (m.paras || []).forEach(pp => links.push(`<a href="${pp.href}">§ ${pp.num} в указателе параграфов</a>`));
   if (m.lesson) links.push(`<a href="${m.lesson.href}">${m.lesson.title}</a>`);
+  if (m.route) links.push(`<a href="${m.route.href}">${m.route.title}</a>`);
   if (m.kind === 'leaf') links.push(`<a href="${GAL}" target="_blank" rel="noopener">Галерея разобранных композитов</a>`);
   if (links.length) h += `<div class="glink">${links.join(' · ')}</div>`;
   if (m.diagram) h += `<figure class="diagram">${m.diagram}<figcaption>Klammerdiagramm — скобочная схема (композит с этой конструкцией из галереи)</figcaption></figure>`;

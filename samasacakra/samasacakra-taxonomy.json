@@ -78,7 +78,8 @@
        "term": "nañ-",
        "ex": "abrāhmaṇaḥ",
        "vigraha": "na brāhmaṇaḥ",
-       "ru": "не-брахман"
+       "ru": "не-брахман",
+       "route": {"title": "Маршрут: aputraḥ — открытые трактовки", "href": "https://gasyoun.github.io/SamasaChakram/route/#nan-reconstruction"}
       },
       {
        "id": "pradi-tp",
@@ -318,7 +319,8 @@
        "term": "nañ-",
        "ex": "abhāryaḥ",
        "vigraha": "avidyamānā bhāryā yasya",
-       "ru": "неженатый"
+       "ru": "неженатый",
+       "route": {"title": "Маршрут: aputraḥ — открытые трактовки", "href": "https://gasyoun.github.io/SamasaChakram/route/#nan-reconstruction"}
       },
       {
        "id": "pradi-bv",
@@ -419,6 +421,7 @@
        "term": "itaretara",
        "ex": "rāmakṛṣṇau",
        "vigraha": "rāmaś ca kṛṣṇaś ca",
+       "structure": "В этом узле члены равноправны; узел может содержать вложенные самасы.",
        "ru": "Рама и Кришна",
        "diagram": "klammerdiagramm-hastyasvarathaghosah-example.svg"
       },

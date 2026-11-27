@@ -1,0 +1,373 @@
+{
+  "route_id": "h8620-bounded-route-pilot",
+  "title": "Маршрут и атлас: от примера к признаку и vigraha",
+  "version": "0.1.0",
+  "handoff": "H8620",
+  "created": "2026-11-26",
+  "spec": "docs/SAMASA_LEARNING_ARCHITECTURE.md — ручной первый выпуск: один простой, один вложенный и один недоопределённый пример",
+  "status": "draft — не допущено до оцениваемых упражнений",
+  "teacher_review_required": true,
+  "coverage": {
+    "examples": 3,
+    "kinds": [
+      "simple",
+      "nested",
+      "underdetermined"
+    ],
+    "new_attestations": 0,
+    "limits": [
+      "Три примера ручной выборки, не корпус и не выборка: ни одной новой аттестации пилот не добавляет.",
+      "adhīta-vedakaḥ: класс bahuvrīhi взят из источника, подтип (лепесток) остаётся открытым до сверки преподавателем; сама vigraha остаётся в источнике и в пилот не переносится.",
+      "Реконструкция a-putra — учебная реконструкция, не аттестация: обе трактовки защищаемы, набор кандидатов не закрыт.",
+      "Единый Google Doc содержит полный архив курса «Йога-Васиштха: медленное чтение». Разбор 18.17–19 приведён в отдельном авторском посте.",
+      "Посты ЖЖ 496943 и 496753 выросли из работы Лейтана над курсами. У каждой публикации свой адрес.",
+      "У каждого занятия «Синтаксиса санскрита» свой файл в Dropbox и в учебном Telegram-чате. Сверка файлов продолжается.",
+      "Полная приёмка ждёт сверки материалов и утверждения учебных эталонов."
+    ],
+    "teacher_review_note": "Ни один пример не допускается до оцениваемых упражнений без подтверждения преподавателем: в пилоте размечены допустимые ответы, но статус каждого примера — draft."
+  },
+  "sources": {
+    "yv_doc": {
+      "label": "Лейтан. «Йога-Васиштха: медленное чтение» — полный архив курса, Google Doc, с. 11, стих 1.9",
+      "kind": "public-source",
+      "url": "https://docs.google.com/document/d/177MjZex_bsdGuqMKos2f4cDGCO4UtrxI/edit",
+      "locator": "с. 11 PDF, стих 1.9: adhīta-vedakaḥ, класс bahuvrīhi и развёрнутая vigraha"
+    },
+    "lj_496943": {
+      "label": "Э. Лейтан, ЖЖ: «Йогавасиштха 18.17-19: медленная работа над переводом» (пост 496943)",
+      "kind": "public-source",
+      "url": "https://edgar-leitan.livejournal.com/496943.html",
+      "locator": "Разбор стихов 18.17–19, включая kāya-plakṣaḥ и разветвление трактовок в śleṣa"
+    },
+    "lj_496753": {
+      "label": "Э. Лейтан, ЖЖ: «Кропотливый перевод с санскрита как садхана (духовное делание)» (пост 496753)",
+      "kind": "public-source",
+      "url": "https://edgar-leitan.livejournal.com/496753.html",
+      "locator": "Раздел I о проверке и обосновании перевода"
+    },
+    "sanskrit_syntax": {
+      "label": "Э. Лейтан. «Синтаксис санскрита» — раздатки отдельными файлами на урок",
+      "kind": "access-controlled-course-files",
+      "access": "access-controlled",
+      "availability": "доступ подтверждён: общий Dropbox и Telegram-курса, отдельный файл на урок",
+      "access_note": "просмотр неполный: доступ ≠ пройденное покрытие",
+      "locator": "учебные вложения по урокам; публичного адреса нет, ссылка не требуется для чтения страницы"
+    },
+    "h8618_audit": {
+      "label": "H8618: проверка источников и покрытия раздаток Лейтана (26-11-2026)",
+      "kind": "access-controlled-evidence",
+      "access": "access-controlled",
+      "url": "https://github.com/gasyoun/Uprava/pull/8399",
+      "access_note": "закрытый отчёт о сверке — для чтения страницы не требуется",
+      "in_git": false,
+      "locator": "раздел «Йога-Васиштха», пункт про с. 11 и стих 1.9"
+    },
+    "w16_3701": {
+      "label": "Экспериментальная выборка идентификации типа композита (9 952), ACL W16-3701",
+      "kind": "publisher-paper",
+      "url": "https://aclanthology.org/W16-3701.pdf",
+      "in_git": false,
+      "locator": "docs/adr/0002-corpus-frequency-and-wheel-labels.md — «выборка 9 952 относится к другому эксперименту»"
+    },
+    "compounds_pptx": {
+      "label": "Дека к издательской статье о типах композитов (W16-3701), слайд 19 «Same word for multiple types»",
+      "kind": "access-controlled-evidence",
+      "access": "access-controlled",
+      "access_note": "рабочая копия вне публичного контура; открытый адрес материала — источник w16_3701",
+      "in_git": false,
+      "locator": "слайд 19: aputraḥ — na putraḥ (nañ-Tatpuruṣa); avidyamānaḥ putraḥ yastya saḥ (nañ-Bahuvrīhi); «Either context or canonical paraphrase is required»"
+    },
+    "quiz": {
+      "label": "Проверенный квиз колеса: два режима — «определи класс» и «виграха → пример»",
+      "kind": "checked-in",
+      "path": "samasacakra/check_quiz.py",
+      "in_git": true,
+      "locator": "data-qmode=\"type\" и data-qmode=\"vigraha\"; в пуле abrāhmaṇaḥ (nañ-татпуруша) и abhāryaḥ (nañ-бахуврихи)"
+    },
+    "wheel": {
+      "label": "Колесо (Pages): детерминированная сборка build_samasacakra.py",
+      "kind": "checked-in",
+      "path": "docs/index.html",
+      "in_git": true,
+      "locator": "hash-маршрутизация #k=<id лепестка>"
+    },
+    "lesson02": {
+      "label": "Урок 2: вложенная двандва",
+      "kind": "checked-in",
+      "path": "docs/uroki/02-vlozhennaya-dvandva.html",
+      "in_git": true,
+      "locator": "Разбор другого вложенного примера по Лоу, § 7, (46)–(48)"
+    },
+    "klammer_sitosna": {
+      "label": "Klammerdiagramm: śīta-uṣṇa-sukha-duḥkha-dāḥ (approved в пакете примеров)",
+      "kind": "published-diagram",
+      "url": "https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-sitosnasukhaduhkhadah-example.svg",
+      "path": "klammerdiagramm/klammerdiagramm-sitosnasukhaduhkhadah-example.svg",
+      "in_git": true,
+      "locator": "teaching-pack/example_pack_manifest.json, id sitosnasukhaduhkhadah, review_status approved"
+    },
+    "pack": {
+      "label": "Пакет разобранных примеров H8028",
+      "kind": "checked-in",
+      "path": "teaching-pack/example_pack_manifest.json",
+      "in_git": true,
+      "locator": "review_status: approved | withheld"
+    },
+    "decision_tree": {
+      "label": "Drumam: схема хода проверки признаков",
+      "kind": "published-diagram",
+      "path": "docs/drumam/diagrams/samasa_decision_tree_visual.png",
+      "in_git": true,
+      "locator": "область действия, исключения и сохранившиеся кандидаты"
+    },
+    "teacher_brief": {
+      "label": "Приглашение к научной редактуре (решения 1–12)",
+      "kind": "editorial-guide",
+      "url": "https://github.com/gasyoun/SamasaChakram/blob/148135d61226423df805c3c8bb2f2d282c19511a/docs/LEITAN_EDITOR_README.md",
+      "locator": "Первая карточка и резервные решения 4–12, включая блок 66.1 и приложенные ссылки на маршрут PR #51"
+    },
+    "visual_annotation": {
+      "label": "Упражнение на чтение, блок 66.1: скобки источника, палитра и комментаторский слой",
+      "kind": "editorial-guide",
+      "url": "https://github.com/gasyoun/SamasaChakram/blob/148135d61226423df805c3c8bb2f2d282c19511a/docs/LEITAN_VISUAL_ANNOTATION.md",
+      "locator": "66.1: круглые/фигурные/квадратные скобки с локальными ролями, палитра #00B050/#00B0F0/#7030A0 с подписями без цвета, комментаторский слой Маллинатхи"
+    },
+    "tubb_boose": {
+      "label": "Тубб и Буза, Scholastic Sanskrit: A Manual for Students — § 1.65.2 (отрицательный bahuvrīhi)",
+      "kind": "publisher-book",
+      "url": "https://thus.org/publication-book/scholastic-sanskrit-a-manual-for-students/",
+      "locator": "§ 1.65.2 — отрицательный bahuvrīhi; сверено (checked) для трактовки aputraḥ как nañ-bahuvrīhi"
+    }
+  },
+  "cues": [
+    {
+      "id": "cue-bv-referent",
+      "name": "Внешний референт у экзоцентричного композита",
+      "version": "2026-11-26.1",
+      "condition": "Целое сложного слова характеризует кого-то или что-то вне композита (anyapadārtha-pradhāna).",
+      "position": "Проверяется на уровне предложения ДО выбора подтипа: сначала найти референт, затем восстановить отношение между членами.",
+      "scope": "Только экзоцентричные композиты (бахуврихи и родственные случаи); на двандву и авьяибхаву не распространяется.",
+      "strength": "поддерживает кандидатуру bahuvrīhi — сам по себе не окончателен: subtype остаётся открытым, пока нет сверки с лепестком.",
+      "counterexample": "rāja-bhāryā: внешнего референта нет, главное — правый член внутри композита; признак неприменим.",
+      "change_of_conclusion": "Если в контексте референт не находится или оказывается правым членом, вывод отменяется и кандидатура возвращается к татпуруше."
+    },
+    {
+      "id": "cue-nan-prefix",
+      "name": "nañ в первом члене не решает тип",
+      "version": "2026-11-26.1",
+      "condition": "Первый член несёт отрицательный префикс a-/an- (nañ).",
+      "position": "Самая ранняя позиция формы — читается до разбора членов.",
+      "scope": "Только nañ-композиты; к прочим отрицательным конструкциям не применяется.",
+      "strength": "недостаточно: оставляет выбор открытым между nañ-tatpuruṣa (tatpurusa--tp-special--nan-tp) и bahuvrīhi с nañ (bahuvrihi--bv-special--nan-bv).",
+      "counterexample": "abrāhmaṇaḥ (nañ-татпуруша, «не-брахман») против abhāryaḥ (nañ-бахуврихи, «неженатый») — одна и та же позиция, два класса.",
+      "change_of_conclusion": "Найден внешний референт → bahuvrīhi; отрицание выражает отношение между членами при отсутствии внешнего референта → nañ-tatpuruṣa; без контекста обе трактовки защищаемы и записываются в кандидаты."
+    },
+    {
+      "id": "cue-coordinated-node",
+      "name": "Равноправные члены внутри двандвы",
+      "version": "2026-11-26.1",
+      "condition": "Два и более членов одного узла равноправны: ни один не является главным по отношению к другому (ubhayapadārtha-pradhāna).",
+      "position": "Проверяется на уровне конкретного узла: сначала фиксируем границы A и B, затем решаем, есть ли между ними главный член.",
+      "scope": "Только координативные узлы (dvandva); не распространяется на экзоцентричные композиты и на внешний узел с dāḥ.",
+      "strength": "поддерживает класс dvandva для среднего узла C; класс внешнего узла D определяется отдельно из отношения C к dāḥ.",
+      "counterexample": "D = C + dāḥ: весь C зависит от dāḥ, поэтому это не равноправная координация, а upapada-tatpuruṣa.",
+      "change_of_conclusion": "Если между A и B находится главный член, координация отменяется; если плоская группировка четырёх членов окажется равноправной, средний узел пересматривается — этот вариант остаётся открытым."
+    }
+  ],
+  "candidates": [
+    {
+      "id": "cand-bv-class",
+      "question": "К какому классу относится adhīta-vedakaḥ?",
+      "options": [
+        "bahuvrihi"
+      ],
+      "open": false,
+      "decision_rule": "Класс задан источником (с. 11); подтип остаётся открытым. Вопрос преподавателю: достаточно ли подсказок карточки и атласа, чтобы требовать подтип на этом уровне?"
+    },
+    {
+      "id": "cand-nested",
+      "question": "К какому классу относится внутренний узел C, в котором соединены пары A и B? Отдельно предложите vigraha для связи C с dāḥ во внешнем узле D.",
+      "options": [
+        "dvandva--dv--itaretara",
+        "tatpurusa--tp-special--upapada"
+      ],
+      "open": false,
+      "decision_rule": "В узле C обе пары равноправны, поэтому предлагаем itaretara-dvandva. Связь группы с dāḥ проверяется в отдельной vigraha для узла D. Плоская группировка четырёх членов остаётся открытой."
+    },
+    {
+      "id": "cand-nan-choice",
+      "question": "Тип a-putra: nañ-tatpuruṣa или bahuvrīhi?",
+      "options": [
+        "tatpurusa--tp-special--nan-tp",
+        "bahuvrihi--bv-special--nan-bv"
+      ],
+      "open": true,
+      "decision_rule": "Nañ оставляет обе трактовки открытыми. В контексте проверяем, отрицается ли принадлежность к классу или целое характеризует референт через отсутствие сына. Референт может восстанавливаться из контекста."
+    }
+  ],
+  "examples": [
+    {
+      "id": "adhita-vedaka",
+      "kind": "simple",
+      "label": "Простой пример из открытого источника",
+      "reconstruction": false,
+      "form": "adhīta-vedakaḥ",
+      "source": "yv_doc",
+      "corroborating_source": "h8618_audit",
+      "observation": "Источник на с. 11 (стих 1.9) сам указывает сложное слово adhīta-vedakaḥ, класс bahuvrīhi и развернутую vigraha.",
+      "candidate_set": "cand-bv-class",
+      "cue_refs": [
+        "cue-bv-referent"
+      ],
+      "wheel_leaf_link": "../index.html#k=bahuvrihi",
+      "wheel_leaf_id": "bahuvrihi",
+      "wheel_link_note": "Карточка класса: класс задан источником; подтип остается открытым. Вопрос преподавателю: достаточно ли подсказок карточки, чтобы требовать подтип на этом уровне?",
+      "visual": {
+        "kind": "source-render",
+        "label": "Страница 11 открытого Google Doc (сверенный рендер)",
+        "url": "https://docs.google.com/document/d/177MjZex_bsdGuqMKos2f4cDGCO4UtrxI/edit",
+        "note": "Порядок вопросов (референт → отношение → vigraha) — учебная реконструкция; сам разбор и vigraha принадлежат источнику."
+      },
+      "classification": {
+        "answer": [
+          "bahuvrihi"
+        ],
+        "reason": "Источник на с. 11 (стих 1.9) прямо помечает класс bahuvrīhi; в авторском разборе внешний референт назван brāhmaṇaḥ. Подсказка ведёт к референту, затем к отношению целого к нему; подтип не назван — ждём ответа преподавателя, достаточно ли подсказок.",
+        "status": "draft"
+      },
+      "vigraha": {
+        "status": "source-only",
+        "text": null,
+        "allowed": [
+          "Развёрнутая vigraha из источника, с. 11, стих 1.9 — в пилот не переносится, читается по источнику."
+        ],
+        "reason": "Текст vigraha остаётся у источника: пилот фиксирует только адрес и допустимые ответы, чтобы не пересказывать чужой разбор."
+      },
+      "referent_hint": "В авторском разборе стиха 1.9 «Йога-Васиштхи» внешним референтом композита adhīta-vedakaḥ назван brāhmaṇaḥ. Ученик находит это слово в строфе и объясняет, как композит его характеризует; подтип уровня лепестка пока не запрашивается."
+    },
+    {
+      "id": "sitosna-nested",
+      "kind": "nested",
+      "label": "Вложенный пример, проверенный в репозитории",
+      "reconstruction": false,
+      "form": "śīta-uṣṇa-sukha-duḥkha-dāḥ",
+      "source": "pack",
+      "observation": "«Бхагавадгита», 2.14. На схеме внутренний узел C соединяет пары A и B. Внешний узел D связывает C с dāḥ.",
+      "manifest_ref": "teaching-pack/example_pack_manifest.json, id=sitosnasukhaduhkhadah, review_status=approved",
+      "config_ref": "klammerdiagramm/klammerdiagramm-sitosnasukhaduhkhadah.json",
+      "candidate_set": "cand-nested",
+      "cue_refs": [
+        "cue-coordinated-node"
+      ],
+      "wheel_leaf_link": "../index.html#k=dvandva--dv--itaretara",
+      "wheel_leaf_id": "dvandva--dv--itaretara",
+      "wheel_link_note": "Лепесток итеретара-двандвы; карточка даёт vigraha и § конспекта.",
+      "lesson_link": "../uroki/02-vlozhennaya-dvandva.html",
+      "visual": {
+        "kind": "published-diagram",
+        "label": "Klammerdiagramm (SVG, закоммичен и сверен пакетом примеров)",
+        "url": "https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-sitosnasukhaduhkhadah-example.svg",
+        "path": "klammerdiagramm/klammerdiagramm-sitosnasukhaduhkhadah-example.svg",
+        "config": "klammerdiagramm/klammerdiagramm-sitosnasukhaduhkhadah.json",
+        "caption": "Каноническая схема: A = śīta·uṣṇa, B = sukha·duḥkha, C = их координация, D = C + dāḥ. BG 2.14, источник приведён в пакете примеров.",
+        "note": "Встроенная схема видна на Pages; канонический SVG также доступен по ссылке репозитория. Описание узлов и стих даны текстом для читателей без изображения."
+      },
+      "classification": {
+        "answer": [
+          "dvandva--dv--itaretara"
+        ],
+        "reason": "В узле C пары A и B равноправны. Сопоставьте это с внешним узлом D, где вся группа зависит от dāḥ. Пакет примеров описывает D как upapada-tatpuruṣa. Учебную рубрику и плоскую группировку предстоит сверить.",
+        "status": "draft"
+      },
+      "vigraha": {
+        "status": "checked-in",
+        "text": "śītaṃ ca uṣṇaṃ ca sukhaṃ ca duḥkhaṃ ca dāḥ",
+        "allowed": [
+          "Сверить раскрытие членов с пакетом примеров. Для учебного эталона преподаватель утверждает полную формулировку."
+        ],
+        "reason": "Формула из пакета раскрывает четыре члена и сохраняет dāḥ. Для узла D рабочий вариант поясняет, что обозначает dāḥ и как оно связано с группой C. В задании редактору предложена формула с dadati iti для сверки."
+      },
+      "node_labels": {
+        "A": "śīta·uṣṇa — пара «холод и жара»",
+        "B": "sukha·duḥkha — пара «радость и печаль»",
+        "C": "координация A и B — внутренний узел",
+        "D": "C + dāḥ — внешний узел с главным членом"
+      },
+      "source_anchor": "BG 2.14 — mātrāsparśās tu kaunteya śītoṣṇasukhaduḥkhadāḥ",
+      "lesson_note": "параллель: урок 2 разбирает другой вложенный пример (Лоу, § 7, (46)–(48))",
+      "scheme_status": "reviewed — review_status: approved в teaching-pack/example_pack_manifest.json",
+      "alternate_grouping": {
+        "status": "open",
+        "text": "Плоская группировка четырёх членов в один ранг (без внутреннего узла C) зафиксирована в пакете примеров как flat four-member alternative; оставляем её открытой до сверки преподавателем."
+      }
+    },
+    {
+      "id": "nan-reconstruction",
+      "kind": "underdetermined",
+      "label": "Реконструкция (учебная) — НЕ аттестация",
+      "reconstruction": true,
+      "form": "aputraḥ",
+      "source": "compounds_pptx",
+      "corroborating_source": "quiz",
+      "observation": "Слайд 19 деки («Same word for multiple types»): aputraḥ читается и как nañ-tatpuruṣa (na putraḥ), и как nañ-bahuvrīhi (avidyamānaḥ putraḥ yasya saḥ) — «Either context or canonical paraphrase is required». Членение у обеих трактовок общее (a- + putraḥ): расходится не членение, а отношение между членами и референт целого.",
+      "segmentation": "shared",
+      "candidate_set": "cand-nan-choice",
+      "cue_refs": [
+        "cue-nan-prefix",
+        "cue-bv-referent"
+      ],
+      "wheel_leaf_link": "../index.html#k=tatpurusa--tp-special--nan-tp",
+      "wheel_leaf_id": "tatpurusa--tp-special--nan-tp",
+      "second_wheel_leaf_link": "../index.html#k=bahuvrihi--bv-special--nan-bv",
+      "second_wheel_leaf_id": "bahuvrihi--bv-special--nan-bv",
+      "wheel_link_note": "Оба лепестка открыты рядом: выбор между ними и есть содержание упражнения, и оно ещё не оценивается.",
+      "references": [
+        "compounds_pptx",
+        "w16_3701",
+        "quiz",
+        "tubb_boose"
+      ],
+      "visual": {
+        "kind": "published-diagram",
+        "label": "Схема хода проверки признаков (Drumam, закоммичена)",
+        "path": "docs/drumam/diagrams/samasa_decision_tree_visual.png",
+        "url": "../drumam/diagrams/samasa_decision_tree_visual.png",
+        "note": "Отдельного Klammerdiagramm для реконструкции нет — покрытие схем ограничено."
+      },
+      "classification": {
+        "answer": [],
+        "reason": "Членение общее: в обеих трактовках это a- + putraḥ, поэтому различное членение не утверждается. nañ-префикс занимает ту же позицию в abrāhmaṇaḥ и abhāryaḥ и сам по себе тип не выбирает: контраст только в семантическом отношении и в референте — отрицание тождества (na putraḥ) при отсутствии внешнего референта даёт nañ-tatpuruṣa, а грамматическая развёртка с внешним референтом (avidyamānaḥ putraḥ yasya saḥ) даёт nañ-bahuvrīhi; без контекста обе трактовки защищаемы и набор кандидатов не закрывается.",
+        "status": "open"
+      },
+      "vigraha": {
+        "status": "open",
+        "text": null,
+        "allowed": [
+          "na putraḥ — отрицание тождества, без внешнего референта: nañ-tatpuruṣa (tatpurusa--tp-special--nan-tp).",
+          "avidyamānaḥ putraḥ yasya saḥ (эквивалент: avidyamānaḥ putro yasya saḥ) — грамматическая развёртка, целое характеризует внешний референт: nañ-bahuvrīhi (bahuvrihi--bv-special--nan-bv)."
+        ],
+        "reason": "Обе формулировки опираются на ОДНО и то же членение a- + putraḥ и расходятся только в отношении и референте: слайд 19 деки («Same word for multiple types») требует контекста или канонической парафразы, чтобы выбрать тип. Засчитываются обе, пока контекст не выберет одну; отсечение только после сверки условия и контрпримера. Тубб и Буза, § 1.65.2 для отрицательного bahuvrīhi — сверено."
+      },
+      "contrast_contexts": [
+        {
+          "analysis": "tatpurusa--tp-special--nan-tp",
+          "status": "draft — построенный контекст",
+          "context": "Диалог: «Он приходится ему сыном?» — «Не сын, а другой родственник».",
+          "reading": "Отрицание принадлежности к классу: na putraḥ. Внешний референт через отсутствие сына не вводится.",
+          "analysis_label": "nañ-tatpuruṣa"
+        },
+        {
+          "analysis": "bahuvrihi--bv-special--nan-bv",
+          "status": "draft — построенный контекст",
+          "context": "Рассказ о старике, у которого нет сына.",
+          "reading": "Целое характеризует человека через отсутствие сына: avidyamānaḥ putro yasya saḥ (Тубб и Буза, § 1.65.2 — проверено).",
+          "analysis_label": "nañ-bahuvrīhi"
+        }
+      ],
+      "source_check": "Tubb & Boose, § 1.65.2 — checked: отрицательный bahuvrīhi",
+      "isolation_note": "Обе трактовки остаются открытыми и рассматриваются по отдельности: сначала одна, затем другая; ни одна не закрывает набор кандидатов. Каждая самопроверка открывается независимо и не подсказывает ответ другой.",
+      "wheel_link_label": "nañ-tatpuruṣa",
+      "second_wheel_link_label": "nañ-bahuvrīhi"
+    }
+  ]
+}

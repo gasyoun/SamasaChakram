@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Маршрут и атлас: от примера к признаку и vigraha · H8620</title>
+<style>
+:root{--ink:#1b1a17;--mut:#6b6558;--line:#e2ddd2;--bg:#faf7f0;--warn:#8a2f1d}
+body{font:16px/1.55 Georgia,'Times New Roman',serif;color:var(--ink);background:var(--bg);margin:0 auto;max-width:52rem;padding:1.5rem 1rem}
+h1{font-size:1.5rem;margin:.2rem 0}h2{font-size:1.15rem;border-bottom:1px solid var(--line);padding-bottom:.3rem;margin-top:2rem}.banner{border:2px solid var(--warn);color:var(--warn);padding:.6rem .8rem;border-radius:4px;font-weight:bold;background:#fff}
+.banner small{display:block;font-weight:normal;color:var(--ink)}.ex{border:1px solid var(--line);background:#fff;border-radius:6px;padding:.8rem 1rem;margin:1rem 0}.form{font-size:1.25rem;font-style:italic}
+.kind{font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+.recon{color:var(--warn);font-weight:bold}.row{display:grid;grid-template-columns:11rem 1fr;gap:.2rem .8rem;margin:.5rem 0}.row b{font-weight:normal;color:var(--mut);font-size:.85rem;text-transform:uppercase;letter-spacing:.04em}
+.cue{background:#fff;border:1px solid var(--line);border-radius:6px;padding:.6rem .9rem;margin:.6rem 0}
+.cue h3{margin:.1rem 0 .4rem;font-size:1rem}table{border-collapse:collapse;width:100%;background:#fff;font-size:.95rem}td,th{border:1px solid var(--line);padding:.35rem .5rem;text-align:left;vertical-align:top}a{color:#1a4a7a}
+.mut{color:var(--mut)}
+code{font-size:.95em;overflow-wrap:anywhere}
+.ans{background:#f2f6ee;border-left:3px solid #4a7a3a;padding:.35rem .6rem;margin:.3rem 0}
+.open{background:#fdf3ef;border-left:3px solid var(--warn);padding:.35rem .6rem;margin:.3rem 0}
+.row{display:grid;grid-template-columns:minmax(0,11rem) minmax(0,1fr);gap:.2rem .8rem;margin:.5rem 0}
+.row>*{min-width:0;overflow-wrap:anywhere}
+.ex,.cue{overflow-wrap:anywhere}
+table{border-collapse:collapse;width:100%;background:#fff;font-size:.95rem;table-layout:fixed}
+td,th{border:1px solid var(--line);padding:.35rem .5rem;text-align:left;vertical-align:top;overflow-wrap:anywhere;word-break:break-word}
+@media (max-width:480px){.row{grid-template-columns:1fr;gap:0}body{padding:1rem .75rem}.form{font-size:1.1rem}}
+details.check{margin:.4rem 0;border:1px solid var(--line);border-radius:4px;background:#fff}
+details.check>summary{cursor:pointer;padding:.4rem .6rem;font-weight:bold;font-size:.9rem;letter-spacing:.03em}
+details.check[open]>summary{border-bottom:1px solid var(--line)}
+details.check .ans,details.check .open{border:0;border-radius:0}
+.diagram{margin:.8rem 0;background:#fff;border:1px solid var(--line);border-radius:6px;padding:.6rem}
+.diagram svg{display:block;max-width:100%;height:auto;margin:0 auto}
+.diagram figcaption{font-size:.85rem;color:var(--mut);margin-top:.4rem}
+</style>
+</head>
+<body>
+<h1>Маршрут и атлас: от примера к признаку и vigraha</h1>
+<p class="mut">Статический маршрут пилота H8620 · версия 0.1.0 · данные: <a href="h8620_route_data.json"><code>h8620_route_data.json</code></a> · 2026-11-26</p>
+<div class="banner">Пилот в статусе draft: ни один пример не допущен до оцениваемых упражнений без проверки преподавателем.<small>Ни один пример не допускается до оцениваемых упражнений без подтверждения преподавателем: в пилоте размечены допустимые ответы, но статус каждого примера — draft.</small></div>
+<p class="mut">Преподавателю: <a href="https://github.com/gasyoun/SamasaChakram/blob/148135d61226423df805c3c8bb2f2d282c19511a/docs/LEITAN_EDITOR_README.md">Приглашение к научной редактуре (решения 1–12)</a></p>
+<p class="mut">Упражнение на чтение по блоку 66.1: <a href="https://github.com/gasyoun/SamasaChakram/blob/148135d61226423df805c3c8bb2f2d282c19511a/docs/LEITAN_VISUAL_ANNOTATION.md">Упражнение на чтение, блок 66.1: скобки источника, палитра и комментаторский слой</a></p>
+<h2>Покрытие и ограничения</h2><ul>
+<li>Три примера ручной выборки, не корпус и не выборка: ни одной новой аттестации пилот не добавляет.</li>
+<li>adhīta-vedakaḥ: класс bahuvrīhi взят из источника, подтип (лепесток) остаётся открытым до сверки преподавателем; сама vigraha остаётся в источнике и в пилот не переносится.</li>
+<li>Реконструкция a-putra — учебная реконструкция, не аттестация: обе трактовки защищаемы, набор кандидатов не закрыт.</li>
+<li>Единый Google Doc содержит полный архив курса «Йога-Васиштха: медленное чтение». Разбор 18.17–19 приведён в отдельном авторском посте.</li>
+<li>Посты ЖЖ 496943 и 496753 выросли из работы Лейтана над курсами. У каждой публикации свой адрес.</li>
+<li>У каждого занятия «Синтаксиса санскрита» свой файл в Dropbox и в учебном Telegram-чате. Сверка файлов продолжается.</li>
+<li>Полная приёмка ждёт сверки материалов и утверждения учебных эталонов.</li>
+</ul>
+<p class="mut">Пройти маршрут: откройте лепесток колеса по ссылке примера, затем сверьте признак и отдельную проверку vigraha.</p>
+<h2>Примеры маршрута</h2>
+<div class="ex" id="adhita-vedaka">
+<div class="kind">simple</div>
+<div class="form">adhīta-vedakaḥ</div>
+<p>Простой пример из открытого источника — Источник на с. 11 (стих 1.9) сам указывает сложное слово adhīta-vedakaḥ, класс bahuvrīhi и развернутую vigraha.</p>
+<div class="row"><b>Референт</b><span>В авторском разборе стиха 1.9 «Йога-Васиштхи» внешним референтом композита adhīta-vedakaḥ назван brāhmaṇaḥ. Ученик находит это слово в строфе и объясняет, как композит его характеризует; подтип уровня лепестка пока не запрашивается.</span></div>
+<div class="row"><b>Источник</b><span>Лейтан. «Йога-Васиштха: медленное чтение» — полный архив курса, Google Doc, с. 11, стих 1.9 — <a href="https://docs.google.com/document/d/177MjZex_bsdGuqMKos2f4cDGCO4UtrxI/edit">открыть</a></span></div>
+<div class="row"><b>Сверка</b><span>H8618: проверка источников и покрытия раздаток Лейтана (26-11-2026) — <code>https://github.com/gasyoun/Uprava/pull/8399</code> <span class="mut">(закрытый отчёт о сверке — для чтения страницы не требуется)</span></span></div>
+<div class="row"><b>Лепесток колеса</b><span><a href="../index.html#k=bahuvrihi">bahuvrīhi</a>
+ <span class="mut">— Карточка класса: класс задан источником; подтип остается открытым. Вопрос преподавателю: достаточно ли подсказок карточки, чтобы требовать подтип на этом уровне?</span></span></div>
+<div class="row"><b>Визуальный источник</b><span><a href="https://docs.google.com/document/d/177MjZex_bsdGuqMKos2f4cDGCO4UtrxI/edit">Страница 11 открытого Google Doc (сверенный рендер)</a> <span class="mut">— Порядок вопросов (референт → отношение → vigraha) — учебная реконструкция; сам разбор и vigraha принадлежат источнику.</span></span></div>
+<div class="row"><b>Кандидаты</b><span>К какому классу относится adhīta-vedakaḥ? · bahuvrīhi</span></div>
+<div class="row"><b>Признаки</b><span><a href="#cue-bv-referent">Внешний референт у экзоцентричного композита</a></span></div>
+<details class="check"><summary>Самопроверка 1 — класс и довод · статус draft</summary><div class="ans">Класс: bahuvrīhi<br>Довод: Источник на с. 11 (стих 1.9) прямо помечает класс bahuvrīhi; в авторском разборе внешний референт назван brāhmaṇaḥ. Подсказка ведёт к референту, затем к отношению целого к нему; подтип не назван — ждём ответа преподавателя, достаточно ли подсказок.<br>Правило решения (после ответа): Класс задан источником (с. 11); подтип остаётся открытым. Вопрос преподавателю: достаточно ли подсказок карточки и атласа, чтобы требовать подтип на этом уровне?</div></details>
+<details class="check"><summary>Самопроверка 2 — vigraha · статус source-only</summary><div class="ans">Развёрнутая vigraha из источника, с. 11, стих 1.9 — в пилот не переносится, читается по источнику.<br>Основание: Текст vigraha остаётся у источника: пилот фиксирует только адрес и допустимые ответы, чтобы не пересказывать чужой разбор.</div></details>
+</div>
+<div class="ex" id="sitosna-nested">
+<div class="kind">nested</div>
+<div class="form">śīta-uṣṇa-sukha-duḥkha-dāḥ</div>
+<p>Вложенный пример, проверенный в репозитории — «Бхагавадгита», 2.14. На схеме внутренний узел C соединяет пары A и B. Внешний узел D связывает C с dāḥ.</p>
+<div class="row"><b>Узлы</b><span><b>A</b>: śīta·uṣṇa — пара «холод и жара»; <b>B</b>: sukha·duḥkha — пара «радость и печаль»; <b>C</b>: координация A и B — внутренний узел; <b>D</b>: C + dāḥ — внешний узел с главным членом</span></div>
+<div class="row"><b>Стих</b><span><i>BG 2.14 — mātrāsparśās tu kaunteya śītoṣṇasukhaduḥkhadāḥ</i></span></div>
+<div class="row"><b>Источник</b><span>Пакет разобранных примеров H8028 — <code>teaching-pack/example_pack_manifest.json</code></span></div>
+<div class="row"><b>Лепесток колеса</b><span><a href="../index.html#k=dvandva--dv--itaretara">itaretara</a>
+ <span class="mut">— Лепесток итеретара-двандвы; карточка даёт vigraha и § конспекта.</span></span></div>
+<div class="row"><b>Урок</b><span><a href="../uroki/02-vlozhennaya-dvandva.html">урок 2: вложенная двандва</a> <span class="mut">— параллель: урок 2 разбирает другой вложенный пример (Лоу, § 7, (46)–(48))</span></span></div>
+<div class="row"><b>Визуальный источник</b><span><a href="https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-sitosnasukhaduhkhadah-example.svg">Klammerdiagramm (SVG, закоммичен и сверен пакетом примеров)</a> <span class="mut">— Встроенная схема видна на Pages; канонический SVG также доступен по ссылке репозитория. Описание узлов и стих даны текстом для читателей без изображения.</span></span></div>
+<figure class="diagram" role="group" aria-label="Каноническая схема: A = śīta·uṣṇa, B = sukha·duḥkha, C = их координация, D = C + dāḥ. BG 2.14, источник приведён в пакете примеров."><svg viewBox="0 0 610 430" xmlns="http://www.w3.org/2000/svg" role="img" font-family="'Klammer Serif', 'Charis SIL', Charis, 'Gentium Plus', Georgia, serif">
+<title>Klammerdiagramm — śītoṣṇasukhaduḥkhadāḥ</title>
+<desc>German-Indological bracket diagram of the five-member compound śīta-uṣṇa-sukha-duḥkha-dāḥ (BG 2.14): two coordinate dvandva pairs — A = śīta+uṣṇa, B = sukha+duḥkha, on one rung — coordinated as block C (a dvandva of dvandvas), then the upapada head dāḥ taken right-to-left as mirrored node D: giving cold-and-heat, pleasure-and-pain. II часть begins at dāḥ (asked). Unsandhied segmented members, full word form.</desc>
+<defs>
+<pattern id="hatch" width="5.5" height="5.5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="5.5" stroke="currentColor" stroke-width="0.8"/></pattern>
+</defs>
+<line x1="44" y1="52" x2="179" y2="52" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.5 4.5"/>
+<line x1="295" y1="52" x2="430" y2="52" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.5 4.5"/>
+<path d="M430 52 C 464 54 484 70 490 96" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.5 4.5"/>
+<path d="M550 52 C 516 54 496 70 490 96" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.5 4.5"/>
+<text x="237" y="59" font-size="21" text-anchor="middle" fill="currentColor">I часть</text>
+<text x="555" y="59" font-size="21" text-anchor="middle" fill="currentColor">II часть</text>
+<text y="126" font-size="42" fill="currentColor">
+<tspan x="44.0">śīta-</tspan>
+<tspan x="122.5">uṣṇa-</tspan>
+<tspan x="221.7">sukha-</tspan>
+<tspan x="343.7">duḥkha-</tspan>
+<tspan x="496.8">dāḥ</tspan>
+</text>
+<rect x="48" y="162" width="57" height="36" fill="url(#hatch)"/>
+<path d="M48 146 L44 157 L52 157 Z" fill="currentColor"/>
+<path d="M105 146 L101 157 L110 157 Z" fill="currentColor"/>
+<line x1="48" y1="155" x2="48" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="105" y1="155" x2="105" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<rect x="127" y="162" width="78" height="36" fill="url(#hatch)"/>
+<path d="M127 146 L122 157 L131 157 Z" fill="currentColor"/>
+<path d="M204 146 L200 157 L209 157 Z" fill="currentColor"/>
+<line x1="127" y1="155" x2="127" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="204" y1="155" x2="204" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<rect x="48" y="198" width="61" height="48" fill="url(#hatch)"/>
+<rect x="143" y="198" width="61" height="48" fill="url(#hatch)"/>
+<line x1="48" y1="198" x2="48" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="204" y1="198" x2="204" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="105" y1="198" x2="109" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="48" y1="246" x2="109" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="143" y1="246" x2="204" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="109" y1="198" x2="109" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="143" y1="198" x2="143" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<text x="126" y="231" font-size="26" text-anchor="middle" fill="currentColor">A</text>
+<rect x="230" y="162" width="92" height="36" fill="url(#hatch)"/>
+<path d="M230 146 L226 157 L235 157 Z" fill="currentColor"/>
+<path d="M322 146 L318 157 L327 157 Z" fill="currentColor"/>
+<line x1="230" y1="155" x2="230" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="322" y1="155" x2="322" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<rect x="368" y="162" width="92" height="36" fill="url(#hatch)"/>
+<path d="M368 146 L363 157 L372 157 Z" fill="currentColor"/>
+<path d="M460 146 L455 157 L464 157 Z" fill="currentColor"/>
+<line x1="368" y1="155" x2="368" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="460" y1="155" x2="460" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<rect x="230" y="198" width="98" height="48" fill="url(#hatch)"/>
+<rect x="362" y="198" width="98" height="48" fill="url(#hatch)"/>
+<line x1="230" y1="198" x2="230" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="460" y1="198" x2="460" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="322" y1="198" x2="328" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="362" y1="198" x2="368" y2="198" stroke="currentColor" stroke-width="1.3"/>
+<line x1="230" y1="246" x2="328" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="362" y1="246" x2="460" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="328" y1="198" x2="328" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<line x1="362" y1="198" x2="362" y2="246" stroke="currentColor" stroke-width="1.3"/>
+<text x="345" y="231" font-size="26" text-anchor="middle" fill="currentColor">B</text>
+<line x1="126" y1="248" x2="126" y2="268" stroke="currentColor" stroke-width="1.3"/>
+<line x1="345" y1="248" x2="345" y2="268" stroke="currentColor" stroke-width="1.3"/>
+<rect x="126" y="268" width="93" height="48" fill="url(#hatch)"/>
+<rect x="253" y="268" width="92" height="48" fill="url(#hatch)"/>
+<line x1="126" y1="268" x2="126" y2="316" stroke="currentColor" stroke-width="1.3"/>
+<line x1="345" y1="268" x2="345" y2="316" stroke="currentColor" stroke-width="1.3"/>
+<line x1="126" y1="268" x2="219" y2="268" stroke="currentColor" stroke-width="1.3"/>
+<line x1="253" y1="268" x2="345" y2="268" stroke="currentColor" stroke-width="1.3"/>
+<line x1="126" y1="316" x2="219" y2="316" stroke="currentColor" stroke-width="1.3"/>
+<line x1="253" y1="316" x2="345" y2="316" stroke="currentColor" stroke-width="1.3"/>
+<line x1="219" y1="268" x2="219" y2="316" stroke="currentColor" stroke-width="1.3"/>
+<line x1="253" y1="268" x2="253" y2="316" stroke="currentColor" stroke-width="1.3"/>
+<text x="236" y="301" font-size="26" text-anchor="middle" fill="currentColor">C</text>
+<rect x="501" y="162" width="61" height="224" fill="url(#hatch)"/>
+<rect x="473" y="338" width="28" height="48" fill="url(#hatch)"/>
+<path d="M501 146 L496 157 L505 157 Z" fill="currentColor"/>
+<path d="M562 146 L557 157 L566 157 Z" fill="currentColor"/>
+<line x1="562" y1="155" x2="562" y2="386" stroke="currentColor" stroke-width="1.3"/>
+<line x1="501" y1="155" x2="501" y2="338" stroke="currentColor" stroke-width="1.3"/>
+<line x1="473" y1="338" x2="501" y2="338" stroke="currentColor" stroke-width="1.3"/>
+<line x1="473" y1="386" x2="562" y2="386" stroke="currentColor" stroke-width="1.3"/>
+<line x1="473" y1="338" x2="473" y2="386" stroke="currentColor" stroke-width="1.3"/>
+<line x1="439" y1="362" x2="236" y2="362" stroke="currentColor" stroke-width="1.3"/>
+<line x1="236" y1="362" x2="236" y2="318" stroke="currentColor" stroke-width="1.3"/>
+<text x="456" y="371" font-size="26" text-anchor="middle" fill="currentColor">D</text>
+</svg><figcaption>Каноническая схема: A = śīta·uṣṇa, B = sukha·duḥkha, C = их координация, D = C + dāḥ. BG 2.14, источник приведён в пакете примеров.</figcaption></figure>
+<div class="row"><b>Манифест</b><span><code>teaching-pack/example_pack_manifest.json, id=sitosnasukhaduhkhadah, review_status=approved</code></span></div>
+<div class="row"><b>Конфиг схемы</b><span><code>klammerdiagramm/klammerdiagramm-sitosnasukhaduhkhadah.json</code></span></div>
+<div class="row"><b>Схема и рубрика</b><span>Схема: reviewed — review_status: approved в teaching-pack/example_pack_manifest.json · Рубрика: draft</span></div>
+<div class="row"><b>Альтернатива</b><span><span class="mut">статус open</span> — Плоская группировка четырёх членов в один ранг (без внутреннего узла C) зафиксирована в пакете примеров как flat four-member alternative; оставляем её открытой до сверки преподавателем.</span></div>
+<div class="row"><b>Кандидаты</b><span>К какому классу относится внутренний узел C, в котором соединены пары A и B? Отдельно предложите vigraha для связи C с dāḥ во внешнем узле D. · itaretara, upapada-</span></div>
+<div class="row"><b>Признаки</b><span><a href="#cue-coordinated-node">Равноправные члены внутри двандвы</a></span></div>
+<details class="check"><summary>Самопроверка 1 — класс и довод · статус draft</summary><div class="ans">Класс: itaretara<br>Довод: В узле C пары A и B равноправны. Сопоставьте это с внешним узлом D, где вся группа зависит от dāḥ. Пакет примеров описывает D как upapada-tatpuruṣa. Учебную рубрику и плоскую группировку предстоит сверить.<br>Правило решения (после ответа): В узле C обе пары равноправны, поэтому предлагаем itaretara-dvandva. Связь группы с dāḥ проверяется в отдельной vigraha для узла D. Плоская группировка четырёх членов остаётся открытой.</div></details>
+<details class="check"><summary>Самопроверка 2 — vigraha · статус checked-in</summary><div class="ans">Vigraha: <i>śītaṃ ca uṣṇaṃ ca sukhaṃ ca duḥkhaṃ ca dāḥ</i><br>Основание: Формула из пакета раскрывает четыре члена и сохраняет dāḥ. Для узла D рабочий вариант поясняет, что обозначает dāḥ и как оно связано с группой C. В задании редактору предложена формула с dadati iti для сверки.</div></details>
+</div>
+<div class="ex" id="nan-reconstruction">
+<div class="kind">underdetermined · <span class="recon">реконструкция — не аттестация</span></div>
+<div class="form">aputraḥ</div>
+<p>Реконструкция (учебная) — НЕ аттестация — Слайд 19 деки («Same word for multiple types»): aputraḥ читается и как nañ-tatpuruṣa (na putraḥ), и как nañ-bahuvrīhi (avidyamānaḥ putraḥ yasya saḥ) — «Either context or canonical paraphrase is required». Членение у обеих трактовок общее (a- + putraḥ): расходится не членение, а отношение между членами и референт целого.</p>
+<div class="row"><b>Источник</b><span>Дека к издательской статье о типах композитов (W16-3701), слайд 19 «Same word for multiple types» — <span class="mut">(рабочая копия вне публичного контура; открытый адрес материала — источник w16_3701)</span></span></div>
+<div class="row"><b>Сверка</b><span>Проверенный квиз колеса: два режима — «определи класс» и «виграха → пример» — <code>samasacakra/check_quiz.py</code></span></div>
+<div class="row"><b>Лепесток колеса</b><span><a href="../index.html#k=tatpurusa--tp-special--nan-tp">nañ-tatpuruṣa</a>
+ · <a href="../index.html#k=bahuvrihi--bv-special--nan-bv">nañ-bahuvrīhi</a>
+ <span class="mut">— Оба лепестка открыты рядом: выбор между ними и есть содержание упражнения, и оно ещё не оценивается.</span></span></div>
+<div class="row"><b>Визуальный источник</b><span><a href="../drumam/diagrams/samasa_decision_tree_visual.png">Схема хода проверки признаков (Drumam, закоммичена)</a> <span class="mut">— Отдельного Klammerdiagramm для реконструкции нет — покрытие схем ограничено.</span></span></div>
+<div class="row"><b>Членение</b><span>общее для обеих трактовок (a- + putraḥ): контраст — семантическое отношение и референт, не границы членов</span></div>
+<div class="row"><b>Контексты</b><span><ul><li><b>nañ-tatpuruṣa</b> <span class="mut">(draft — построенный контекст)</span><br>Диалог: «Он приходится ему сыном?» — «Не сын, а другой родственник».<br>Отрицание принадлежности к классу: na putraḥ. Внешний референт через отсутствие сына не вводится.</li><li><b>nañ-bahuvrīhi</b> <span class="mut">(draft — построенный контекст)</span><br>Рассказ о старике, у которого нет сына.<br>Целое характеризует человека через отсутствие сына: avidyamānaḥ putro yasya saḥ (Тубб и Буза, § 1.65.2 — проверено).</li></ul></span></div>
+<div class="row"><b>Сверка источника</b><span>Tubb &amp; Boose, § 1.65.2 — checked: отрицательный bahuvrīhi</span></div>
+<div class="row"><b>Изолированно</b><span>Обе трактовки остаются открытыми и рассматриваются по отдельности: сначала одна, затем другая; ни одна не закрывает набор кандидатов. Каждая самопроверка открывается независимо и не подсказывает ответ другой.</span></div>
+<div class="row"><b>Кандидаты</b><span>Тип a-putra: nañ-tatpuruṣa или bahuvrīhi? · nañ-, nañ-</span></div>
+<div class="row"><b>Признаки</b><span><a href="#cue-bv-referent">Внешний референт у экзоцентричного композита</a>, <a href="#cue-nan-prefix">nañ в первом члене не решает тип</a></span></div>
+<details class="check"><summary>Самопроверка 1 — класс и довод · статус open</summary><div class="open">Класс: <i>выбор открыт</i><br>Довод: Членение общее: в обеих трактовках это a- + putraḥ, поэтому различное членение не утверждается. nañ-префикс занимает ту же позицию в abrāhmaṇaḥ и abhāryaḥ и сам по себе тип не выбирает: контраст только в семантическом отношении и в референте — отрицание тождества (na putraḥ) при отсутствии внешнего референта даёт nañ-tatpuruṣa, а грамматическая развёртка с внешним референтом (avidyamānaḥ putraḥ yasya saḥ) даёт nañ-bahuvrīhi; без контекста обе трактовки защищаемы и набор кандидатов не закрывается.<br>Правило решения (после ответа): Nañ оставляет обе трактовки открытыми. В контексте проверяем, отрицается ли принадлежность к классу или целое характеризует референт через отсутствие сына. Референт может восстанавливаться из контекста.</div></details>
+<details class="check"><summary>Самопроверка 2 — vigraha · статус open</summary><div class="open">Защищаемые трактовки:<ul><li>na putraḥ — отрицание тождества, без внешнего референта: nañ-tatpuruṣa (tatpurusa--tp-special--nan-tp).</li><li>avidyamānaḥ putraḥ yasya saḥ (эквивалент: avidyamānaḥ putro yasya saḥ) — грамматическая развёртка, целое характеризует внешний референт: nañ-bahuvrīhi (bahuvrihi--bv-special--nan-bv).</li></ul>Основание: Обе формулировки опираются на ОДНО и то же членение a- + putraḥ и расходятся только в отношении и референте: слайд 19 деки («Same word for multiple types») требует контекста или канонической парафразы, чтобы выбрать тип. Засчитываются обе, пока контекст не выберет одну; отсечение только после сверки условия и контрпримера. Тубб и Буза, § 1.65.2 для отрицательного bahuvrīhi — сверено.</div></details>
+</div>
+<h2>Формальные признаки</h2>
+<div class="cue" id="cue-bv-referent"><h3>Внешний референт у экзоцентричного композита <span class="mut">(2026-11-26.1)</span></h3>
+<div class="row">
+<b>Условие</b><span>Целое сложного слова характеризует кого-то или что-то вне композита (anyapadārtha-pradhāna).</span>
+<b>Позиция</b><span>Проверяется на уровне предложения ДО выбора подтипа: сначала найти референт, затем восстановить отношение между членами.</span>
+<b>Область</b><span>Только экзоцентричные композиты (бахуврихи и родственные случаи); на двандву и авьяибхаву не распространяется.</span>
+<b>Сила вывода</b><span>поддерживает кандидатуру bahuvrīhi — сам по себе не окончателен: subtype остаётся открытым, пока нет сверки с лепестком.</span>
+<b>Контрпример</b><span>rāja-bhāryā: внешнего референта нет, главное — правый член внутри композита; признак неприменим.</span>
+<b>Что меняет вывод</b><span>Если в контексте референт не находится или оказывается правым членом, вывод отменяется и кандидатура возвращается к татпуруше.</span>
+</div></div>
+<div class="cue" id="cue-nan-prefix"><h3>nañ в первом члене не решает тип <span class="mut">(2026-11-26.1)</span></h3>
+<div class="row">
+<b>Условие</b><span>Первый член несёт отрицательный префикс a-/an- (nañ).</span>
+<b>Позиция</b><span>Самая ранняя позиция формы — читается до разбора членов.</span>
+<b>Область</b><span>Только nañ-композиты; к прочим отрицательным конструкциям не применяется.</span>
+<b>Сила вывода</b><span>недостаточно: оставляет выбор открытым между nañ-tatpuruṣa (tatpurusa--tp-special--nan-tp) и bahuvrīhi с nañ (bahuvrihi--bv-special--nan-bv).</span>
+<b>Контрпример</b><span>abrāhmaṇaḥ (nañ-татпуруша, «не-брахман») против abhāryaḥ (nañ-бахуврихи, «неженатый») — одна и та же позиция, два класса.</span>
+<b>Что меняет вывод</b><span>Найден внешний референт → bahuvrīhi; отрицание выражает отношение между членами при отсутствии внешнего референта → nañ-tatpuruṣa; без контекста обе трактовки защищаемы и записываются в кандидаты.</span>
+</div></div>
+<div class="cue" id="cue-coordinated-node"><h3>Равноправные члены внутри двандвы <span class="mut">(2026-11-26.1)</span></h3>
+<div class="row">
+<b>Условие</b><span>Два и более членов одного узла равноправны: ни один не является главным по отношению к другому (ubhayapadārtha-pradhāna).</span>
+<b>Позиция</b><span>Проверяется на уровне конкретного узла: сначала фиксируем границы A и B, затем решаем, есть ли между ними главный член.</span>
+<b>Область</b><span>Только координативные узлы (dvandva); не распространяется на экзоцентричные композиты и на внешний узел с dāḥ.</span>
+<b>Сила вывода</b><span>поддерживает класс dvandva для среднего узла C; класс внешнего узла D определяется отдельно из отношения C к dāḥ.</span>
+<b>Контрпример</b><span>D = C + dāḥ: весь C зависит от dāḥ, поэтому это не равноправная координация, а upapada-tatpuruṣa.</span>
+<b>Что меняет вывод</b><span>Если между A и B находится главный член, координация отменяется; если плоская группировка четырёх членов окажется равноправной, средний узел пересматривается — этот вариант остаётся открытым.</span>
+</div></div>
+<h2>Источники (провенанс)</h2><table><tr><th>id</th><th>метка</th><th>тип</th><th>адрес</th></tr>
+<tr><td><code>yv_doc</code></td><td>Лейтан. «Йога-Васиштха: медленное чтение» — полный архив курса, Google Doc, с. 11, стих 1.9</td><td>public-source</td><td><a href="https://docs.google.com/document/d/177MjZex_bsdGuqMKos2f4cDGCO4UtrxI/edit">https://docs.google.com/document/d/177MjZex_bsdGuqMKos2f4cDGCO4UtrxI/edit</a></td></tr>
+<tr><td><code>lj_496943</code></td><td>Э. Лейтан, ЖЖ: «Йогавасиштха 18.17-19: медленная работа над переводом» (пост 496943)</td><td>public-source</td><td><a href="https://edgar-leitan.livejournal.com/496943.html">https://edgar-leitan.livejournal.com/496943.html</a></td></tr>
+<tr><td><code>lj_496753</code></td><td>Э. Лейтан, ЖЖ: «Кропотливый перевод с санскрита как садхана (духовное делание)» (пост 496753)</td><td>public-source</td><td><a href="https://edgar-leitan.livejournal.com/496753.html">https://edgar-leitan.livejournal.com/496753.html</a></td></tr>
+<tr><td><code>sanskrit_syntax</code></td><td>Э. Лейтан. «Синтаксис санскрита» — раздатки отдельными файлами на урок</td><td>access-controlled-course-files</td><td><span class="mut">доступ подтверждён: общий Dropbox и Telegram-курса, отдельный файл на урок</span> <span class="mut">(просмотр неполный: доступ ≠ пройденное покрытие)</span></td></tr>
+<tr><td><code>h8618_audit</code></td><td>H8618: проверка источников и покрытия раздаток Лейтана (26-11-2026)</td><td>access-controlled-evidence</td><td><code>https://github.com/gasyoun/Uprava/pull/8399</code> <span class="mut">(закрытый отчёт о сверке — для чтения страницы не требуется)</span></td></tr>
+<tr><td><code>w16_3701</code></td><td>Экспериментальная выборка идентификации типа композита (9 952), ACL W16-3701</td><td>publisher-paper</td><td><a href="https://aclanthology.org/W16-3701.pdf">https://aclanthology.org/W16-3701.pdf</a></td></tr>
+<tr><td><code>compounds_pptx</code></td><td>Дека к издательской статье о типах композитов (W16-3701), слайд 19 «Same word for multiple types»</td><td>access-controlled-evidence</td><td><span class="mut">(рабочая копия вне публичного контура; открытый адрес материала — источник w16_3701)</span></td></tr>
+<tr><td><code>quiz</code></td><td>Проверенный квиз колеса: два режима — «определи класс» и «виграха → пример»</td><td>checked-in</td><td><code>samasacakra/check_quiz.py</code></td></tr>
+<tr><td><code>wheel</code></td><td>Колесо (Pages): детерминированная сборка build_samasacakra.py</td><td>checked-in</td><td><code>docs/index.html</code></td></tr>
+<tr><td><code>lesson02</code></td><td>Урок 2: вложенная двандва</td><td>checked-in</td><td><code>docs/uroki/02-vlozhennaya-dvandva.html</code></td></tr>
+<tr><td><code>klammer_sitosna</code></td><td>Klammerdiagramm: śīta-uṣṇa-sukha-duḥkha-dāḥ (approved в пакете примеров)</td><td>published-diagram</td><td><a href="https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-sitosnasukhaduhkhadah-example.svg">https://github.com/gasyoun/SamasaChakram/blob/main/klammerdiagramm/klammerdiagramm-sitosnasukhaduhkhadah-example.svg</a></td></tr>
+<tr><td><code>pack</code></td><td>Пакет разобранных примеров H8028</td><td>checked-in</td><td><code>teaching-pack/example_pack_manifest.json</code></td></tr>
+<tr><td><code>decision_tree</code></td><td>Drumam: схема хода проверки признаков</td><td>published-diagram</td><td><code>docs/drumam/diagrams/samasa_decision_tree_visual.png</code></td></tr>
+<tr><td><code>teacher_brief</code></td><td>Приглашение к научной редактуре (решения 1–12)</td><td>editorial-guide</td><td><a href="https://github.com/gasyoun/SamasaChakram/blob/148135d61226423df805c3c8bb2f2d282c19511a/docs/LEITAN_EDITOR_README.md">https://github.com/gasyoun/SamasaChakram/blob/148135d61226423df805c3c8bb2f2d282c19511a/docs/LEITAN_EDITOR_README.md</a></td></tr>
+<tr><td><code>visual_annotation</code></td><td>Упражнение на чтение, блок 66.1: скобки источника, палитра и комментаторский слой</td><td>editorial-guide</td><td><a href="https://github.com/gasyoun/SamasaChakram/blob/148135d61226423df805c3c8bb2f2d282c19511a/docs/LEITAN_VISUAL_ANNOTATION.md">https://github.com/gasyoun/SamasaChakram/blob/148135d61226423df805c3c8bb2f2d282c19511a/docs/LEITAN_VISUAL_ANNOTATION.md</a></td></tr>
+<tr><td><code>tubb_boose</code></td><td>Тубб и Буза, Scholastic Sanskrit: A Manual for Students — § 1.65.2 (отрицательный bahuvrīhi)</td><td>publisher-book</td><td><a href="https://thus.org/publication-book/scholastic-sanskrit-a-manual-for-students/">https://thus.org/publication-book/scholastic-sanskrit-a-manual-for-students/</a></td></tr>
+</table>
+</body>
+</html>

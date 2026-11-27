@@ -297,7 +297,8 @@ for c in classes:
             nums.append(number_label(R3b - 12, al + UNIT / 2, str(n)))
             lz = LESSON_BY_LEAF.get(lid)
             meta[lid] = {"kind": "leaf", "name": leaf["term"], "class": c["name"], "cid": c["id"],
-                         "family": fname, "pradhana": c["pradhana"], "structure": c["structure"],
+                         "family": fname, "pradhana": c["pradhana"],
+                         "structure": leaf.get("structure", c["structure"]),
                          "ex": leaf["ex"], "vigraha": leaf["vigraha"], "ru": leaf["ru"],
                          "ex_d": deva(leaf["ex"]), "vigraha_d": deva(leaf["vigraha"]),
                          "note": leaf.get("note", ""),
@@ -307,6 +308,7 @@ for c in classes:
                                    for p in (lz["paras"] if lz else [])],
                          "lesson": ({"title": lz["title"], "href": f'{PAGES}uroki/{lz["slug"]}.html'}
                                     if lz else None),
+                         "route": leaf.get("route"),
                          "diagram": "".join(f'<div class="dwrap">{load_diagram(dg)}</div>' for dg in ([leaf["diagram"]] if isinstance(leaf.get("diagram"), str) else leaf.get("diagram", [])))}
             al += UNIT
         af += span_f
@@ -676,6 +678,7 @@ function openCard(rawId, seg) {
   const links = [];
   (m.paras || []).forEach(pp => links.push(`<a href="${pp.href}">§ ${pp.num} в указателе параграфов</a>`));
   if (m.lesson) links.push(`<a href="${m.lesson.href}">${m.lesson.title}</a>`);
+  if (m.route) links.push(`<a href="${m.route.href}">${m.route.title}</a>`);
   if (m.kind === 'leaf') links.push(`<a href="${GAL}" target="_blank" rel="noopener">Галерея разобранных композитов</a>`);
   if (links.length) h += `<div class="glink">${links.join(' · ')}</div>`;
   if (m.diagram) h += `<figure class="diagram">${m.diagram}<figcaption>Klammerdiagramm — скобочная схема (композит с этой конструкцией из галереи)</figcaption></figure>`;
@@ -701,7 +704,11 @@ function route() {
 }
 window.addEventListener('hashchange', route);
 setMode('none');
-route();
+// H8620: the INITIAL deep-link dispatch runs at the very END of this script, after
+// every control (incl. #quizbtn) is bound — openCard() replaces aside#panel's
+// innerHTML (including #quizbtn), so routing first made `quizbtn.onclick` throw on
+// direct #k= entry. hashchange keeps its listener; normal (hashless) entrypoint
+// behaviour is unchanged.
 // --- embedded quiz: the wheel's own META is the only question bank ---
 const QUIZ_LEAVES = Object.entries(META).filter(([id, m]) =>
   m.kind === 'leaf' && m.ex && m.vigraha && m.ru);
@@ -767,6 +774,7 @@ document.querySelectorAll('[data-qmode]').forEach(b => b.onclick = () => {
 });
 quizBox.addEventListener('click', ev => { if (ev.target === quizBox) quizBox.hidden = true; });
 document.addEventListener('keydown', ev => { if (ev.key === 'Escape' && !quizBox.hidden) quizBox.hidden = true; });
+route();  // initial deep-link dispatch: LAST, after every control above is bound (H8620)
 </script>
 </body>
 </html>
@@ -794,6 +802,14 @@ SEO = """<meta name="description" content="samāsa-cakra — интеракти�
 docs = os.path.join(HERE, "..", "docs")
 os.makedirs(docs, exist_ok=True)
 pages_html = html.replace('<meta name="viewport"', SEO + '<meta name="viewport"', 1)
+# H8620 review: ONE generated navigation link from the Pages start into the route
+# pilot — injected into the /docs copy only (the wheel page, its frequency layer
+# and its geometry stay byte-identical).
+NAVROUTE = ('<a class="navroute" href="route/" style="display:flex;align-items:center;gap:8px;'
+            'font-size:.92rem;text-decoration:none;border:1px solid var(--line);border-radius:999px;'
+            'padding:6px 14px;color:var(--ink2)">Маршрут H8620'
+            '<span style="margin-left:auto">пример → признак → vigraha →</span></a>')
+pages_html = pages_html.replace('<a class="kevalachip"', NAVROUTE + '\n    <a class="kevalachip"', 1)
 with open(os.path.join(docs, "index.html"), "w", encoding="utf-8", newline="\n") as fh:
     fh.write(pages_html)
 open(os.path.join(docs, ".nojekyll"), "w").close()

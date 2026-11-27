@@ -569,7 +569,7 @@ body[data-freq=outline] #bandlegend i[data-band=none]   { border:1px dashed #2a7
       <span>§ 8 · <b>kevala-samāsa</b> — класс вне четырёх: отдельный вход</span>
       <span class="goto">карточка и задание →</span>
     </a>
-    <a class="kevalachip" href="__PAGES__samasa-indexes.html" id="indexchip">
+    <a class="kevalachip" href="__INDEXHREF__" id="indexchip">
       <span><b>Указатели</b> — классификация (4/9/58) и материалы: перекрёстные ссылки</span>
       <span class="goto">открыть →</span>
     </a>
@@ -781,10 +781,12 @@ BANDLEGEND = "".join(
 html = (html.replace("__B64__", b64).replace("__B64I__", b64i).replace("__B64D__", b64d)
         .replace("__GAL__", GALLERY_URL).replace("__META__", meta_json)
         .replace("__SVG__", svg_inline).replace("__ALIAS__", json.dumps(ALIAS, ensure_ascii=False))
-        .replace("__PAGES__", PAGES)
         .replace("__BANDNOTE__", FREQ["band_note"]).replace("__BANDLEGEND__", BANDLEGEND))
+# The wheel in the repo keeps the canonical absolute Pages href; the Pages copy
+# below gets a sibling-relative href so a local `docs/` preview resolves it too.
+wheel_html = html.replace("__INDEXHREF__", PAGES + "samasa-indexes.html")
 with open(os.path.join(HERE, "samasacakra-wheel.html"), "w", encoding="utf-8", newline="\n") as fh:
-    fh.write(html)
+    fh.write(wheel_html)
 print("wrote samasacakra-wheel.html", len(html) // 1024, "KB;", total_leaves, "leaves")
 
 # GitHub Pages copy (H1031): same page + SEO head, served from /docs
@@ -798,7 +800,8 @@ SEO = """<meta name="description" content="samāsa-cakra — интеракти�
 """
 docs = os.path.join(HERE, "..", "docs")
 os.makedirs(docs, exist_ok=True)
-pages_html = html.replace('<meta name="viewport"', SEO + '<meta name="viewport"', 1)
+pages_html = html.replace("__INDEXHREF__", "samasa-indexes.html")
+pages_html = pages_html.replace('<meta name="viewport"', SEO + '<meta name="viewport"', 1)
 with open(os.path.join(docs, "index.html"), "w", encoding="utf-8", newline="\n") as fh:
     fh.write(pages_html)
 open(os.path.join(docs, ".nojekyll"), "w").close()

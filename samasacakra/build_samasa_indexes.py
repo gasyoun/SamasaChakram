@@ -308,9 +308,13 @@ def render(model):
       ' border:1px solid var(--line); border-radius:5px; padding:5px 12px;'
       ' background:var(--panel); }')
     w('.switch a:hover { border-color:var(--ink2); }')
+    # minmax(0,1fr) — bare `1fr` is minmax(auto,1fr): the auto minimum is the
+    # grid item's min-content width, which let the nowrap chips + long source
+    # filenames push the track past the viewport at 390px (doc scrollWidth 825).
     w('main.indexes { max-width:1500px; margin:0 auto; padding:10px 16px 28px;'
-      ' display:grid; gap:22px; grid-template-columns:1fr; }')
-    w('@media (min-width: 980px) { main.indexes { grid-template-columns:1fr 1fr;'
+      ' display:grid; gap:22px; grid-template-columns:minmax(0,1fr); }')
+    w('@media (min-width: 980px) { main.indexes {'
+      ' grid-template-columns:repeat(2,minmax(0,1fr));'
       ' align-items:start; } }')
     w('section h2 { font-size:1.25rem; font-weight:normal; margin:0;'
       ' border-bottom:2px solid var(--line); padding-bottom:6px; }')
@@ -329,7 +333,7 @@ def render(model):
     w('.famname .famwheel a { font-size:.78rem; color:var(--accent);'
       ' text-decoration:none; white-space:nowrap; }')
     w('.famname .rel { display:block; font-size:.82rem; color:var(--ink2);'
-      ' font-weight:normal; margin:2px 0 4px; }')
+      ' font-weight:normal; margin:2px 0 4px; overflow-wrap:anywhere; }')
     w('.leaf { display:flex; gap:8px; align-items:baseline; flex-wrap:wrap;'
       ' padding:3px 0 3px 14px; font-size:.95rem; }')
     w('.leaf .no { color:var(--ink2); font-size:.78rem; flex:none; }')
@@ -342,7 +346,7 @@ def render(model):
     w('.chips { display:inline-flex; gap:5px; flex-wrap:wrap; }')
     w('.chip { font-size:.75rem; line-height:1.2; text-decoration:none;'
       ' border:1px solid var(--line); border-radius:4px; padding:3px 7px;'
-      ' color:var(--ink2); background:var(--surface); white-space:nowrap;'
+      ' color:var(--ink2); background:var(--surface); white-space:normal;'
       ' overflow-wrap:anywhere; }')
     w('a.chip:hover { color:var(--ink); border-color:var(--ink2); }')
     w('a.chip.example { border-color:var(--accent); color:var(--accent); }')

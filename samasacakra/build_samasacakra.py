@@ -569,6 +569,10 @@ body[data-freq=outline] #bandlegend i[data-band=none]   { border:1px dashed #2a7
       <span>§ 8 · <b>kevala-samāsa</b> — класс вне четырёх: отдельный вход</span>
       <span class="goto">карточка и задание →</span>
     </a>
+    <a class="kevalachip" href="__PAGES__samasa-indexes.html" id="indexchip">
+      <span><b>Указатели</b> — классификация (4/9/58) и материалы: перекрёстные ссылки</span>
+      <span class="goto">открыть →</span>
+    </a>
     <div class="freqbar" role="group" aria-label="частотный слой">
       <span>Корпусная доля:</span>
       <button data-mode="none" class="on">без слоя</button>
@@ -777,6 +781,7 @@ BANDLEGEND = "".join(
 html = (html.replace("__B64__", b64).replace("__B64I__", b64i).replace("__B64D__", b64d)
         .replace("__GAL__", GALLERY_URL).replace("__META__", meta_json)
         .replace("__SVG__", svg_inline).replace("__ALIAS__", json.dumps(ALIAS, ensure_ascii=False))
+        .replace("__PAGES__", PAGES)
         .replace("__BANDNOTE__", FREQ["band_note"]).replace("__BANDLEGEND__", BANDLEGEND))
 with open(os.path.join(HERE, "samasacakra-wheel.html"), "w", encoding="utf-8", newline="\n") as fh:
     fh.write(html)

@@ -22,6 +22,7 @@ _Создан: 25-11-2026 · Статус: указатель, не копия �
 | Пять уроков, указатель 67 §§ | [/uroki/](uroki/index.html), [/paragrafy/](paragrafy/index.html) |
 | Конспект Лейтана и приложения | [`leitan/`](../leitan), [`docs/SAMASA_Leitan_COMPLETE.docx`](SAMASA_Leitan_COMPLETE.docx), [`docs/samasa_additions.docx`](samasa_additions.docx), [`docs/samasa_checklists.docx`](samasa_checklists.docx), [`docs/samasa_formal_features.docx`](samasa_formal_features.docx) |
 | Приёмка | [`check_pilot.py`](../samasacakra/check_pilot.py), [`check_quiz.py`](../samasacakra/check_quiz.py), [`check_example_pack.py`](../scripts/check_example_pack.py) |
+| Продуктивность основ: какие ещё композиты образуют основы 58 примеров | [`samasacakra/top1000/data/base_productivity.tsv`](../samasacakra/top1000/data/base_productivity.tsv), сборщик [`build_base_productivity.py`](../samasacakra/top1000/build_base_productivity.py), пересчёт [`check_base_productivity.py`](../scripts/check_base_productivity.py), отчёт [`BASE_PRODUCTIVITY_26-11-2026.md`](../reports/BASE_PRODUCTIVITY_26-11-2026.md) |
 | Глоссарий | [`CONTEXT.md`](../CONTEXT.md) |
 
 Приложения DOCX содержат дополнительную литературу: Ruppel (2017), Зализняк
@@ -44,7 +45,8 @@ _Создан: 25-11-2026 · Статус: указатель, не копия �
 ## 3. Корпус, частоты и кёльнские словари
 
 - **VisualDCS / Digital Corpus of Sanskrit** (Oliver Hellwig, CC BY):
-  `derived-data/Kompozity/cmps.csv` — 401 478 пар «композит → члены» с частотами;
+  `derived-data/Kompozity/cmps.csv` — 401 478 пар «композит → члены» (частот в файле нет:
+  только членение; `count` в наших слоях — продуктивность основы, не частота токенов);
   `uttarapada_dict_vs_corpus.tsv` — MW ↔ корпус по конечным членам;
   `non-derived/Zalizniak/Vyskazyvaniya/Kompozity/` — Зализняк по типам.
 - **kosha** — частотный рейтинг и drills: `data/samasa/samasa_curriculum.tsv`

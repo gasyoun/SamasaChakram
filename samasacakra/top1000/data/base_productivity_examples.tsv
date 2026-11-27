@@ -1,0 +1,59 @@
+key	class	family	leaf	ex	vigraha	purvapada	purvapada_count	purvapada_cmps	purvapada_compounds_txt	uttarapada	uttarapada_count	uttarapada_cmps	uttarapada_compounds_txt	basis
+tatpurusa/vibhakti/prathama	tatpurusa	vibhakti	prathama	pūrvakāyaḥ	pūrvaṃ kāyasya	pūrva	1341	1067	280	kāya	122	122	0	both
+tatpurusa/vibhakti/dvitiya	tatpurusa	vibhakti	dvitiya	grāmagataḥ	grāmaṃ gataḥ	grāma	251	138	115	gata	3	3	0	both
+tatpurusa/vibhakti/trtiya	tatpurusa	vibhakti	trtiya	vākkalahaḥ	vāgbhiḥ kalahaḥ	vāc	392	391	1	kalaha	14	14	0	ex
+tatpurusa/vibhakti/caturthi	tatpurusa	vibhakti	caturthi	yūpadāruḥ	yūpāya dāruḥ	yūpa	54	25	29	dāru	10	10	0	both
+tatpurusa/vibhakti/pancami	tatpurusa	vibhakti	pancami	caurabhayam	caurād bhayam	caura	72	53	19	bhaya	306	306	0	both
+tatpurusa/vibhakti/sasthi	tatpurusa	vibhakti	sasthi	rājaputraḥ	rājñaḥ putraḥ	rājan	1993	1609	389	putra	728	728	0	both
+tatpurusa/vibhakti/saptami	tatpurusa	vibhakti	saptami	vanavāsaḥ	vane vāsaḥ	vana	539	311	230	vāsa	104	104	0	both
+tatpurusa/tp-special/nan-tp	tatpurusa	tp-special	nan-tp	abrāhmaṇaḥ	na brāhmaṇaḥ	na	6946	6885	68	brāhmaṇa	46	46	0	both
+tatpurusa/tp-special/pradi-tp	tatpurusa	tp-special	pradi-tp	prapitāmahaḥ	pragataḥ pitāmahaḥ	pra	92	92	0	pitāmaha	6	6	0	ex
+tatpurusa/tp-special/gati	tatpurusa	tp-special	gati	puraskāraḥ	puras + √kṛ	puras	35	26	9	kāra	51	51	0	ex
+tatpurusa/tp-special/upapada	tatpurusa	tp-special	upapada	kumbhakāraḥ	kumbhaṃ karoti iti	kumbha	129	84	45	kāra	51	51	0	ex
+tatpurusa/tp-special/aluk	tatpurusa	tp-special	aluk	yudhiṣṭhiraḥ	yudhi sthiraḥ	yudhi	1	0	1	sthira	12	12	0	ex
+tatpurusa/tp-special/madhyamapadalopin	tatpurusa	tp-special	madhyamapadalopin	śāka-[priya]-pārthivaḥ	śākapriyaḥ pārthivaḥ	śāka	105	103	2	pārthiva	8	8	0	ex
+tatpurusa/tp-special/mayura	tatpurusa	tp-special	mayura	vanāntaram	anyad vanam	vana	539	311	230	antara	641	641	0	ex
+tatpurusa/karmadharaya/visesanapurvapada	tatpurusa	karmadharaya	visesanapurvapada	kṛṣṇasarpaḥ	kṛṣṇaś cāsau sarpaś ca	kṛṣṇa	837	559	282	sarpa	28	28	0	both
+tatpurusa/karmadharaya/appositional	tatpurusa	karmadharaya	appositional	rājarṣiḥ	rājā ca sa ṛṣiś ca	rājan	1993	1609	389	ṛṣi	222	222	0	ex
+tatpurusa/karmadharaya/visesyapurvapada	tatpurusa	karmadharaya	visesyapurvapada	gopālabālaḥ	gopālaś cāsau bālaś ca	gopāla	17	17	0	bāla	40	40	0	ex
+tatpurusa/karmadharaya/ubhayapada	tatpurusa	karmadharaya	ubhayapada	śītoṣṇam	śītaṃ ca tad uṣṇaṃ ca	śīta	471	380	94	uṣṇa	331	331	0	both
+tatpurusa/karmadharaya/upamanapurvapada	tatpurusa	karmadharaya	upamanapurvapada	meghaśyāmaḥ	megha iva śyāmaḥ	megha	341	209	134	śyāma	54	54	0	both
+tatpurusa/karmadharaya/upamita	tatpurusa	karmadharaya	upamita	puruṣavyāghraḥ	puruṣo vyāghra iva	puruṣa	584	484	104	vyāghra	54	54	0	both
+tatpurusa/karmadharaya/rupaka	tatpurusa	karmadharaya	rupaka	saṃsārārṇavaḥ	saṃsāra eva arṇavaḥ	saṃsāra	231	184	47	arṇava	76	76	0	both
+tatpurusa/karmadharaya/sambhavana	tatpurusa	karmadharaya	sambhavana	guṇabuddhiḥ	guṇa iti buddhiḥ	guṇa	951	787	170	buddhi	225	225	0	both
+tatpurusa/dvigu/taddhitarthe	tatpurusa	dvigu	taddhitarthe	pañcakapālaḥ	pañcasu kapāleṣu saṃskṛtaḥ	pañcan	1178	801	383	kapāla	54	54	0	ex
+tatpurusa/dvigu/uttarapade	tatpurusa	dvigu	uttarapade	pañcagavadhanaḥ	pañca gāvo dhanaṃ yasya	pañcan	1178	801	383	dhana	130	130	0	vigraha
+tatpurusa/dvigu/samahare-dvigu	tatpurusa	dvigu	samahare-dvigu	tribhuvanam	trayāṇāṃ bhuvanānāṃ samāhāraḥ	tri	1047	1034	13	bhuvana	24	24	0	both
+bahuvrihi/samanadhikarana/dvitiyartha	bahuvrihi	samanadhikarana	dvitiyartha	prāptodakaḥ	prāptam udakaṃ yam [grāmaḥ]	prāpta	33	1	32	udaka	289	289	0	both
+bahuvrihi/samanadhikarana/trtiyartha	bahuvrihi	samanadhikarana	trtiyartha	ūḍharathaḥ	ūḍho ratho yena	ūḍha	4	0	4	ratha	234	234	0	both
+bahuvrihi/samanadhikarana/caturthyartha	bahuvrihi	samanadhikarana	caturthyartha	upahatapaśuḥ	upahataḥ paśur yasmai	upahata	2	0	2	paśu	49	49	0	both
+bahuvrihi/samanadhikarana/pancamyartha	bahuvrihi	samanadhikarana	pancamyartha	uddhṛtaudanā	uddhṛta odano yasyāḥ [sthālī]	uddhṛta	3	0	3	odana	54	54	0	both
+bahuvrihi/samanadhikarana/sasthyartha	bahuvrihi	samanadhikarana	sasthyartha	pītāmbaraḥ	pītam ambaraṃ yasya	pīta	259	192	69	ambara	71	71	0	both
+bahuvrihi/samanadhikarana/saptamyartha	bahuvrihi	samanadhikarana	saptamyartha	vīrapuruṣaḥ	vīrāḥ puruṣā yasmin [grāmaḥ]	vīra	424	249	175	puruṣa	178	178	0	both
+bahuvrihi/vyadhikarana/loc-bv	bahuvrihi	vyadhikarana	loc-bv	cakrapāṇiḥ	cakraṃ pāṇau yasya	cakra	335	195	143	pāṇi	105	105	0	both
+bahuvrihi/vyadhikarana/gen-bv	bahuvrihi	vyadhikarana	gen-bv	candrakāntiḥ	candrasyeva kāntir yasya	candra	553	338	216	kānti	40	40	0	both
+bahuvrihi/bv-special/nan-bv	bahuvrihi	bv-special	nan-bv	abhāryaḥ	avidyamānā bhāryā yasya	na	6946	6885	68	bhāryā	102	102	0	both
+bahuvrihi/bv-special/pradi-bv	bahuvrihi	bv-special	pradi-bv	prāñjaliḥ	prabaddho ñjalir yena	pra	92	92	0	añjali	71	71	0	ex
+bahuvrihi/bv-special/saha	bahuvrihi	bv-special	saha	saputraḥ	saha putreṇa	saha	655	444	214	putra	728	728	0	both
+bahuvrihi/bv-special/sankhya	bahuvrihi	bv-special	sankhya	dvitrāḥ	dvau vā trayo vā	dvi	988	704	284	tri	240	240	0	both
+bahuvrihi/bv-special/dig	bahuvrihi	bv-special	dig	dakṣiṇapūrvā	dakṣiṇasyāḥ pūrvasyāś ca diśor antarālam	dakṣiṇa	275	215	61	pūrva	205	205	0	both
+bahuvrihi/bv-special/adverbial	bahuvrihi	bv-special	adverbial	keśākeśi	keśeṣu keśeṣu gṛhītvā	keśa	276	187	90	keśa	67	67	0	both
+bahuvrihi/bv-special/ahitagni	bahuvrihi	bv-special	ahitagni	āhitāgniḥ	āhito gnir yena	āhita	5	0	5	agni	818	818	0	both
+bahuvrihi/bv-special/vibhakti-bv	bahuvrihi	bv-special	vibhakti-bv	bhavanetrajanmā	bhavasya netrāj janma yasya	bhava	286	201	85	janman	119	119	0	ex
+bahuvrihi/bv-special/kim	bahuvrihi	bv-special	kim	kiṃlakṣaṇaḥ	kiṃ lakṣaṇaṃ yasya	kim	101	62	39	lakṣaṇa	337	337	0	both
+bahuvrihi/bv-special/adi	bahuvrihi	bv-special	adi	rāgādayaḥ	rāga ādir yeṣām	rāga	353	298	55	ādi	4269	4269	0	both
+bahuvrihi/bv-special/para	bahuvrihi	bv-special	para	dharmaparā	dharmaḥ paraṃ yasyāḥ	dharma	1618	1616	2	para	489	489	0	both
+bahuvrihi/bv-special/matra	bahuvrihi	bv-special	matra	dehamātram	deha eva	deha	564	500	64	mātra	777	777	0	both
+dvandva/dv/itaretara	dvandva	dv	itaretara	rāmakṛṣṇau	rāmaś ca kṛṣṇaś ca	rāma	553	323	231	kṛṣṇa	69	69	0	both
+dvandva/dv/samahara-dv	dvandva	dv	samahara-dv	pāṇipādamukham	pāṇī ca pādau ca mukhaṃ ca	pāṇi	217	162	55	mukha	684	684	0	ex
+avyayibhava/av/vibhakti-av	avyayibhava	av	vibhakti-av	adhihari	harau iti	adhi	44	43	1	hari	22	22	0	ex
+avyayibhava/av/samipa	avyayibhava	av	samipa	upagaṅgam	gaṅgāyāḥ samīpam	upa	53	53	0	gaṅgā	8	8	0	ex
+avyayibhava/av/samrddhi	avyayibhava	av	samrddhi	sumagadham	magadhānāṃ samṛddhiḥ	su	3277	3247	30	magadha	4	4	0	ex
+avyayibhava/av/vyrddhi	avyayibhava	av	vyrddhi	duryavanam	yavanānāṃ vyṛddhiḥ	dus	624	3	621	yavana	3	3	0	ex
+avyayibhava/av/arthabhava	avyayibhava	av	arthabhava	nirmakṣikam	makṣikāṇām abhāvaḥ	nir	723	28	695	makṣikā	1	1	0	ex
+avyayibhava/av/atyaya	avyayibhava	av	atyaya	atihimam	himasya atyayaḥ	ati	932	649	283	hima	21	21	0	ex
+avyayibhava/av/asamprati	avyayibhava	av	asamprati	atinidram	nidrāṃ samprati na yujyate	ati	932	649	283	nidrā	29	29	0	ex
+avyayibhava/av/sabda	avyayibhava	av	sabda	itihari	hari-śabdasya prādurbhāvaḥ	iti	2803	2773	30	hari	22	22	0	ex
+avyayibhava/av/pascat	avyayibhava	av	pascat	anuratham	rathasya paścāt	anu	158	139	19	ratha	234	234	0	ex
+avyayibhava/av/yatha	avyayibhava	av	yatha	yathāśakti	śaktim anatikramya	yathā	1627	1229	410	śakti	235	235	0	ex
+avyayibhava/av/vipsa	avyayibhava	av	vipsa	pratigrāmam	grāmaṃ grāmaṃ prati	prati	480	125	355	grāma	80	80	0	ex

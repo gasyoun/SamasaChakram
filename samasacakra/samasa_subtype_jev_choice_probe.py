@@ -19,6 +19,11 @@ Usage:
   python3 samasa_subtype_jev_choice_probe.py --taxonomy ../samasacakra/samasacakra-taxonomy.json --dry-run
   python3 samasa_subtype_jev_choice_probe.py --taxonomy ../samasacakra/samasacakra-taxonomy.json --run --out results.json
   python3 samasa_subtype_jev_choice_probe.py --run --limit 1        # smoke
+  python3 samasa_subtype_jev_choice_probe.py --prior --run --out results_prior.json
+      # ADR 0004 type-order prior: candidates ordered by the estimate-derived
+      # frequency order (type_prior.json) + state hint line. Baseline
+      # (H5278) comparisons must run WITHOUT --prior. Order only, no counts
+      # (ADR 0002 unchanged).
 Stdlib only; Python >= 3.9.
 """
 
@@ -313,7 +318,7 @@ def build_criteria(leaves: List[Dict[str, Any]]) -> Dict[str, str]:
     return out
 
 
-def build_state(stem: str) -> str:
+def build_state(stem: str, hint: str = "") -> str:
     s = STATES[stem]
     words = ", ".join(f"{w} «{g}»" for w, g in s["members"])
     lines = [
@@ -322,7 +327,35 @@ def build_state(stem: str) -> str:
         f"Overall meaning: {s['translation']}",
         f"Context: {s['context']}",
     ]
+    if hint:
+        # ADR 0004 type-order prior (estimate-derived): the hint carries the
+        # ORDER only, never counts — ADR 0002 still gates exact-label use.
+        lines.append(hint)
     return "\n".join(lines)
+
+
+def apply_prior(leaves: List[Dict[str, Any]], prior_path: Path):
+    """ADR 0004 type-order prior: reorder candidate leaves so tatpuruṣa
+    (and its most frequent subtypes) come first. Order only — no counts.
+    Returns (leaves, hint_line, prior_meta). Unlisted leaves keep taxonomy
+    order after all ranked leaves."""
+    prior = json.loads(prior_path.read_text(encoding="utf-8"))
+    coarse = {c: i for i, c in enumerate(prior["coarse_order"])}
+    rank = {leaf_id: i for i, leaf_id in enumerate(prior["leaf_order"])}
+    decorated = []
+    for tax_idx, l in enumerate(leaves):
+        # prior file uses the raw leaf ids (verified unique across the 58)
+        decorated.append((coarse.get(l["class_id"], len(coarse)),
+                          rank.get(l["id"], len(rank)),
+                          tax_idx, l))
+    decorated.sort(key=lambda t: (t[0], t[1], t[2]))
+    out = [t[3] for t in decorated]
+    return out, prior.get("hint_line", ""), {
+        "prior_file": prior_path.name,
+        "coarse_order": prior["coarse_order"],
+        "ranked_leaves": len(prior["leaf_order"]),
+        "provenance": prior.get("_provenance", {}).get("status", ""),
+    }
 
 
 def call_with_retry(jev, req: Dict[str, Any], api_key: str, endpoint: str,
@@ -353,10 +386,24 @@ def main() -> int:
     ap.add_argument("--run", action="store_true",
                     help="LIVE: call the API (default is dry-run)")
     ap.add_argument("--env-file", type=Path, default=None)
+    ap.add_argument("--prior", action="store_true",
+                    help="ADR 0004 type-order prior: candidate leaves ordered "
+                         "by the estimate-derived frequency order + state hint "
+                         "line. Order only — counts stay gated by ADR 0002. "
+                         "Baseline (H5278) runs keep this OFF for comparability.")
+    ap.add_argument("--prior-file", type=Path, default=None,
+                    help="type_prior.json path (default: next to --taxonomy)")
     args = ap.parse_args()
 
     jev = load_jev_module(args.uprava_tools)
     leaves = load_leaves(args.taxonomy)
+    prior_meta: Dict[str, Any] = {"enabled": False}
+    hint = ""
+    if args.prior:
+        prior_file = args.prior_file or args.taxonomy.parent / "type_prior.json"
+        if not prior_file.exists():
+            sys.exit(f"--prior: prior file not found: {prior_file}")
+        leaves, hint, prior_meta = apply_prior(leaves, prior_file)
     criteria = build_criteria(leaves)
     stems = [s for s in GOLD if s in STATES]
     missing = sorted(set(GOLD) - set(STATES))
@@ -367,7 +414,7 @@ def main() -> int:
 
     results: List[Dict[str, Any]] = []
     for n, stem in enumerate(stems, 1):
-        state = build_state(stem)
+        state = build_state(stem, hint)
         req = {
             "state": state,
             "model": jev.DEFAULT_MODEL,
@@ -425,6 +472,7 @@ def main() -> int:
             "probe": "H5278 samasa-subtype choice",
             "model": results[0].get("model") if results else None,
             "n_options": len(criteria),
+            "prior": prior_meta,
             "items": results,
         }, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
         print(f"wrote {args.out}")

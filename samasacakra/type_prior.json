@@ -1,0 +1,42 @@
+{
+  "_provenance": {
+    "status": "estimate-derived (ADR 0004, 28-11-2026) — ORDER ONLY, counts are never promoted (ADR 0002 still gates exact-label promotion)",
+    "source_primary": "Patel Preeti Khimji, E-Teaching Capsule for Srimad-Bhagavad-Gita, PhD UoH 2018 (guide Amba P. Kulkarni), ch.8 compound analysis, pp.165-186",
+    "source_report": "Uprava H8604 reports/H8604_REPORT_KULKARNI_GITA_COMPOUNDS_2026-11-28.md (branch h8604-kulkarni-dissertation)",
+    "corroboration_coarse": "kosha gita_morphology_gold.tsv: TP 458 > BV 298 > DV 2 (KD 1); AV absent from gold",
+    "rule": "leaves not listed here keep taxonomy order after all ranked leaves; ties broken by taxonomy order"
+  },
+  "coarse_order": ["tatpurusa", "bahuvrihi", "dvandva", "avyayibhava"],
+  "leaf_order": [
+    "sasthi",
+    "nan-tp",
+    "visesanapurvapada",
+    "upapada",
+    "trtiya",
+    "saptami",
+    "rupaka",
+    "pradi-tp",
+    "dvitiya",
+    "caturthi",
+    "pancami",
+    "madhyamapadalopin",
+    "sambhavana",
+    "ubhayapada",
+    "upamita",
+    "samahare-dvigu",
+    "upamanapurvapada",
+    "sasthyartha",
+    "nan-bv",
+    "pradi-bv",
+    "trtiyartha",
+    "saptamyartha",
+    "pancamyartha",
+    "saha",
+    "caturthyartha",
+    "loc-bv",
+    "gen-bv",
+    "itaretara",
+    "samahara-dv"
+  ],
+  "hint_line": "Frequency prior (estimate-derived, SamasaChakram ADR 0004): tatpuruṣa is the most common class, then bahuvrīhi, dvandva and avyayībhāva are rare; within tatpuruṣa prefer ṣaṣṭhī, then nañ, upapada, tṛtīyā, saptamī, prādi; the largest tatpuruṣa subtype group is karmadhāraya led by viśeṣaṇa-pūrvapada."
+}

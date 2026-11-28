@@ -1,0 +1,4 @@
+# Nightly bug hunt 28-11-2026 (report-only, no HIGH)
+
+- Ночной багхант всей кодовой базы на `origin/main` @ `72fce6f`: 0 HIGH,
+  4 MEDIUM, 6 LOW — отчёт [BUGHUNT-FINDINGS-SamasaChakram-28.11.2026.md](../BUGHUNT-FINDINGS-SamasaChakram-28.11.2026.md). Главное: 8 чисто кириллических заголовков конспекта схлопываются в дублирующий пустой якорь `id="sec-"` на опубликованном указателе § (`build_pilot.py`); `_measure` и валидация `II_START` в `build_klammerdiagramm.py` падают сырым `KeyError`/`IndexError` на краевых конфигах; перезапуск чанка `top1000/chunked.py` молча перезаписывает предсказания (append + last-wins). Автофикс не запускался — по регламенту правятся только HIGH. Приёмка зелёная: pytest 43/43, check_pilot 267/267, check_quiz PASS, check_example_pack 0 отказов, check_historical_plate PASS, check_top1000/check_rules PASS, перегенерация трёх билдеров байт-в-байт.

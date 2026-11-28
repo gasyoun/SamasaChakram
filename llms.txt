@@ -5,6 +5,7 @@
 ## Pages
 
 - [samāsa-cakra app (single page)](https://gasyoun.github.io/SamasaChakram/)
+- [Указатели: классификация и материалы](https://gasyoun.github.io/SamasaChakram/samasa-indexes.html) — cross-linked indexes (4/9/58 ↔ published materials, reciprocal edges)
 - [Five lessons — пилот](https://gasyoun.github.io/SamasaChakram/uroki/)
   - [rāja-bhāryā](https://gasyoun.github.io/SamasaChakram/uroki/01-raja-bharya.html) · [nested dvandva](https://gasyoun.github.io/SamasaChakram/uroki/02-vlozhennaya-dvandva.html) · [rāmeśvaraḥ](https://gasyoun.github.io/SamasaChakram/uroki/03-ramesvarah.html) · [prathamā / ekadeśin](https://gasyoun.github.io/SamasaChakram/uroki/04-prathama-ekadesin.html) · [kevala-samāsa](https://gasyoun.github.io/SamasaChakram/uroki/05-kevala-samasa.html)
 - [Paragraph index — 67 §§ of the Leitan conspectus](https://gasyoun.github.io/SamasaChakram/paragrafy/)

@@ -13,6 +13,7 @@ _Создан: 25-11-2026 · Статус: указатель, не копия �
 | Актив | Где |
 |---|---|
 | Таксономия: 4 класса / 9 семейств / 58 подтипов | [`samasacakra/samasacakra-taxonomy.json`](../samasacakra/samasacakra-taxonomy.json) |
+| Указатели: классификация ↔ материалы (публичная страница) | [`docs/samasa-indexes.html`](samasa-indexes.html) ← [`samasacakra/build_samasa_indexes.py`](../samasacakra/build_samasa_indexes.py), гейт `test_indexes_page.py` (H8638) |
 | Колесо + встроенный квиз + Pages | [`samasacakra/build_samasacakra.py`](../samasacakra/build_samasacakra.py) → [`samasacakra-wheel.html`](../samasacakra/samasacakra-wheel.html), [`docs/index.html`](index.html) |
 | Метод чтения справа налево, все решения MG | [`sanskrit-right-to-left-reading.md`](../sanskrit-right-to-left-reading.md) |
 | Кроссуок с конспектом, голосования D1–D6 | [`KLAMMERDIAGRAMM_LEITAN_SAMASA_COMPARISON.md`](../KLAMMERDIAGRAMM_LEITAN_SAMASA_COMPARISON.md) |
@@ -33,9 +34,12 @@ _Создан: 25-11-2026 · Статус: указатель, не копия �
   https://gasyoun.github.io/kosha/reading/samasa/drills/ · генератор
   [`scripts/build_samasa_trainer.py`](https://github.com/gasyoun/kosha/blob/main/scripts/build_samasa_trainer.py),
   данные `data/samasa/`.
-- **csl-guides** — квиз по 15 вопросов (Wikner, karmadhāraya и lookup):
-  https://sanskrit-lexicon.github.io/csl-guides/docs/users/samasa-quiz ·
-  [`src/data/samasa-quiz.json`](https://github.com/sanskrit-lexicon/csl-guides/blob/main/src/data/samasa-quiz.json).
+- **csl-guides** — ~~квиз по 15 вопросов (Wikner, karmadhāraya и lookup)~~ —
+  **запись удалена 27-11-2026 (H8638)**: страница
+  `https://sanskrit-lexicon.github.io/csl-guides/docs/users/samasa-quiz` отдаёт 404,
+  а в `sanskrit-lexicon/csl-guides` и форке `gasyoun/csl-guides` контента по
+  `samasa` нет вовсе (поиск по коду пуст). Живой внешний тренажёр остаётся
+  kosha drills (выше).
 
 ## 3. Корпус, частоты и кёльнские словари
 
